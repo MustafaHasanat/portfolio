@@ -3,6 +3,7 @@ import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./headTag";
 import Main from "./main";
+import { Stack } from "@mui/material";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const [headerTransform, setHeaderTransform] = useState("none");
@@ -26,12 +27,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     }, []);
 
     return (
-        <div>
+        <Stack>
             <HeadTag />
             <Header />
             <Main>{children}</Main>
             <Footer />
-        </div>
+        </Stack>
     );
 };
 

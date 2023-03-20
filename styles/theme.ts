@@ -3,12 +3,23 @@ import { createTheme } from "@mui/material";
 const theme = createTheme({
     palette: {
         primary: {
-            main: "#eff1f3",
+            main: "#3A1078",
         },
-        blue: { 
-            main: "#eff1f3",
-            light: "#7cc1e3", 
-            dark: "#1892ce", 
+        secondary: {
+            main: "#006CC9",
+        },
+        error: {
+            main: "#A30000",
+        },
+        purple: {
+            main: "#9361D0",
+            light: "#F1B7FF",
+            dark: "#3A1078",
+        },
+        blue: {
+            main: "#00B7E5",
+            light: "#4AFCE2",
+            dark: "#006CC9",
         },
     },
 });
