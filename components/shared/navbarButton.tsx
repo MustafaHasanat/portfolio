@@ -36,6 +36,8 @@ const NavbarButton = ({ item, animation, switchPointInView }: ItemProps) => {
     };
 
     const textStyles = {
+        paddingX: 1.5,
+        paddingY: 0.8,
         fontWeight: "bold",
         fontSize: {
             xs: "1.5vw",
@@ -50,6 +52,7 @@ const NavbarButton = ({ item, animation, switchPointInView }: ItemProps) => {
 
     return (
         <Button
+            sx={{ padding: 0, marginRight: 2, borderRadius: 2.5 }}
             component={motion.div}
             animate={animation}
             initial="visible"
@@ -58,14 +61,14 @@ const NavbarButton = ({ item, animation, switchPointInView }: ItemProps) => {
                 scale: 1.2,
                 backgroundColor: switchPointInView
                     ? theme.palette.blue.main
-                    : theme.palette.purple.main,
+                    : theme.palette.base.light,
             }}
             whileTap={{ scale: 0.9 }}
             transition={{
                 duration: 3,
                 type: "spring",
                 stiffness: 400,
-                damping: 14,
+                damping: 15,
             }}
         >
             <Typography sx={textStyles}>{title}</Typography>

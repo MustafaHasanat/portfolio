@@ -50,7 +50,20 @@ const Header = ({ switchPointInView }: HeaderProps) => {
                         }}
                     />
 
-                    <Typography>Mustafa Alhasanat</Typography>
+                    <Typography
+                        sx={{
+                            fontWeight: "bold",
+                            fontSize: {
+                                xs: "1.5vw",
+                            },
+                            zIndex: 10,
+                            color: switchPointInView
+                                ? theme.palette.base.dark
+                                : theme.palette.base.light,
+                        }}
+                    >
+                        Mustafa Alhasanat
+                    </Typography>
                 </Stack>
 
                 <Navbar
