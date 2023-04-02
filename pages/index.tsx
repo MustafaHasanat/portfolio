@@ -1,7 +1,7 @@
+// import { Stack } from "@mui/material";
+
+import { Stack } from "@mui/material";
+
 export default function Home() {
-  return (
-    <>
-      hello
-    </>
-  )
+    return <Stack>main page</Stack>;
 }

@@ -11,6 +11,11 @@ const theme = createTheme({
         error: {
             main: "#A30000",
         },
+        base: {
+            main: "#9361D0",
+            light: "#FFF",
+            dark: "#000",
+        },
         purple: {
             main: "#9361D0",
             light: "#F1B7FF",

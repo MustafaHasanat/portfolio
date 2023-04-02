@@ -1,35 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./headTag";
 import Main from "./main";
-import { Stack } from "@mui/material";
+import { Stack, Box } from "@mui/material";
+import { useInView } from "react-intersection-observer";
+import { BackFillingBoxStyles } from "./styles";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const [headerTransform, setHeaderTransform] = useState("none");
-
-    useEffect(() => {
-        var lastScroll = 0;
-
-        window.addEventListener("scroll", () => {
-            const currentScroll = window.scrollY;
-
-            // down
-            if (currentScroll > lastScroll) {
-                setHeaderTransform("translate(0px, -100%)");
-                // up
-            } else if (currentScroll < lastScroll) {
-                setHeaderTransform("none");
-            }
-
-            lastScroll = currentScroll;
-        });
-    }, []);
+    const [switchPointRef, switchPointInView] = useInView();
 
     return (
         <Stack>
             <HeadTag />
-            <Header />
+            <Box
+                id="back-filling-box"
+                sx={BackFillingBoxStyles}
+                ref={switchPointRef}
+            />
+
+            <Header switchPointInView={switchPointInView} />
             <Main>{children}</Main>
             <Footer />
         </Stack>
