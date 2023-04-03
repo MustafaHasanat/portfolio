@@ -5,7 +5,6 @@ import HeadTag from "./headTag";
 import Main from "./main";
 import { Stack, Box } from "@mui/material";
 import { useInView } from "react-intersection-observer";
-import { BackFillingBoxStyles } from "./styles";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
     const [switchPointRef, switchPointInView] = useInView();
@@ -15,7 +14,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <HeadTag />
             <Box
                 id="back-filling-box"
-                sx={BackFillingBoxStyles}
                 ref={switchPointRef}
             />
 
