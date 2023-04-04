@@ -7,6 +7,8 @@ import {
     headerVariants,
     headerBoxStyles,
     headerColoredBoxStyles,
+    titleStyles,
+    titleCloneStyles,
 } from "./styles";
 
 interface HeaderProps {
@@ -24,7 +26,7 @@ const Header = ({ switchPointInView }: HeaderProps) => {
     }, [headerAnimations, switchPointInView]);
 
     return (
-        <Box sx={{ position: "relative" }}>
+        <Box sx={{ position: "relative", zIndex: 40 }}>
             <Stack id="header-box" direction="row" sx={headerBoxStyles}>
                 <Box
                     id="header-colored-box"
@@ -40,6 +42,9 @@ const Header = ({ switchPointInView }: HeaderProps) => {
                     direction="row"
                     alignItems="center"
                     spacing={2}
+                    sx={{
+                        cursor: "pointer",
+                    }}
                 >
                     <Avatar
                         variant="square"
@@ -51,18 +56,30 @@ const Header = ({ switchPointInView }: HeaderProps) => {
                     />
 
                     <Typography
-                        sx={{
-                            fontWeight: "bold",
-                            fontSize: {
-                                xs: "1.5vw",
-                            },
-                            zIndex: 10,
-                            color: switchPointInView
-                                ? theme.palette.base.dark
+                        sx={titleStyles(
+                            switchPointInView
+                                ? theme.palette.base.light
                                 : theme.palette.base.light,
-                        }}
+                            switchPointInView
+                                ? theme.palette.blue.main
+                                : theme.palette.base.light
+                        )}
                     >
-                        Mustafa Alhasanat
+                        <Box component="span">
+                            &nbsp;&nbsp;Mustafa&nbsp;Alhasanat&nbsp;&nbsp;
+                        </Box>
+                        <Box
+                            id="shadow-title"
+                            component="span"
+                            sx={titleCloneStyles(
+                                switchPointInView
+                                    ? theme.palette.blue.main
+                                    : theme.palette.base.light
+                            )}
+                            aria-hidden="true"
+                        >
+                            &nbsp;&nbsp;Mustafa&nbsp;Alhasanat&nbsp;&nbsp;
+                        </Box>
                     </Typography>
                 </Stack>
 
