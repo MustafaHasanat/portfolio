@@ -7,8 +7,8 @@ import {
 } from "./styles";
 import { useAnimation, motion } from "framer-motion";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
 import { Fragment, useState } from "react";
-import LandingPageConstants from "@/utils/constants/landingPage";
 
 const DownloadButton = () => {
     const theme = useTheme();
@@ -80,7 +80,7 @@ const DownloadButton = () => {
                 </Box>
             </Stack>
 
-            {LandingPageConstants.downloadButtonAnimations("3px", shadowColor).map((item, index) => {
+            {WelcomeSectionConstants.downloadButtonAnimations("3px", shadowColor).map((item, index) => {
                 return (
                     <Fragment key={`shadow item number: ${index}`}>
                         <Box

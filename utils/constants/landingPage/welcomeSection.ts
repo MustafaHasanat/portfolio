@@ -6,7 +6,7 @@ const span1 = (start: string, end: string) => keyframes`
   50%,100% {${end}}
 `;
 
-const LandingPageConstants = {
+const WelcomeSectionConstants = {
     avatarIons: [
         {
             id: "react-orbital-icon",
@@ -190,4 +190,4 @@ const LandingPageConstants = {
     ],
 };
 
-export default LandingPageConstants;
+export default WelcomeSectionConstants;

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Box } from "@mui/material";
-import LandingPageConstants from "@/utils/constants/landingPage";
+import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
 import { Fragment, useState, useEffect } from "react";
 import {
     avatarStyles,
@@ -16,7 +16,7 @@ const IonicAvatar = () => {
         <Box sx={ionicContainerStyles(scaleValue)}>
             <Avatar src="images/avatar.jpg" sx={avatarStyles(scaleValue)} />
 
-            {LandingPageConstants.avatarIons.map((ion) => {
+            {WelcomeSectionConstants.avatarIons.map((ion) => {
                 return (
                     <Fragment key={ion.id}>
                         <Box

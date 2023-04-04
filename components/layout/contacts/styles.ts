@@ -44,3 +44,82 @@ export const mainButtonStyles = (
         },
     };
 };
+
+export const contatcsContainerStyles = {
+    position: "fixed",
+    bottom: "15%",
+    right: 100,
+    zIndex: 200,
+};
+
+export const itemsVariants = (
+    distance: number,
+    delayVisible: number,
+    delayHidden: number,
+    isModalActive: boolean
+) => {
+    return {
+        visible: {
+            right: 0,
+            bottom: distance,
+            opacity: 0.7,
+            scale: 1,
+            transition: {
+                delay: delayVisible,
+            },
+        },
+        hidden: {
+            right: 0,
+            bottom: 0,
+            opacity: isModalActive ? 0.7 : 0,
+            scale: isModalActive ? 1 : 0,
+            transition: {
+                delay: delayHidden,
+            },
+        },
+    };
+};
+
+export const itemTextVariants = (shadow: string) => {
+    return {
+        visible: {
+            textShadow: `0 0 18px ${shadow}`,
+            opacity: 1,
+            y: 0,
+            x: "-70%",
+            transition: {
+                duration: 0.2,
+            },
+        },
+        hidden: {
+            textShadow: `0 0 0px ${shadow}`,
+            opacity: 0,
+            y: 20,
+            x: "-70%",
+            transition: {
+                duration: 0.2,
+            },
+        },
+    };
+};
+
+export const contactItemStyles = {
+    position: "absolute",
+    bgcolor: "transparent",
+    border: "none",
+    width: "4rem",
+    height: "4rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+};
+
+export const floatingListStyles = (color: string) => {
+    return {
+        pointerEvents: "none",
+        textAlign: "end",
+        width: "500%",
+        position: "absolute",
+        color: color,
+    };
+};
