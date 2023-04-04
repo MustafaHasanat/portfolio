@@ -1,12 +1,19 @@
 import IonicAvatar from "./ionicAvatar";
+import { Typography, useTheme } from "@mui/material";
 import { Stack } from "@mui/material";
-import TypingBox from "./typingBox";
-import { mainSectionStyles } from "./styles";
+import { mainSectionStyles, welcomeTextStyles } from "./styles";
+import DownloadButton from "./downloadButton";
 
 const MainSection = () => {
+    const theme = useTheme();
+
     return (
         <Stack sx={mainSectionStyles} direction="row">
-            <TypingBox />
+            <Typography sx={welcomeTextStyles(theme.palette.base.light)}>
+                welcome to my portfolio!
+            </Typography>
+
+            <DownloadButton />
             <IonicAvatar />
         </Stack>
     );

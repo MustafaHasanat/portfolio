@@ -1,5 +1,5 @@
 import { useTheme } from "@mui/material";
-import { Stack, Avatar, Typography, Box, Button } from "@mui/material";
+import { Typography, Button } from "@mui/material";
 import { motion, AnimationControls } from "framer-motion";
 import { navButtonStyles, buttonVariants, navTextStyles } from "./styles";
 
@@ -21,7 +21,7 @@ const NavbarButton = ({ item, animation, switchPointInView }: ItemProps) => {
         <Button
             sx={navButtonStyles(
                 switchPointInView
-                    ? theme.palette.blue.main
+                    ? theme.palette.blue.light
                     : theme.palette.base.dark
             )}
             component={motion.div}
@@ -46,6 +46,7 @@ const NavbarButton = ({ item, animation, switchPointInView }: ItemProps) => {
                 component={motion.div}
                 whileHover={{
                     opacity: 1,
+                    color: theme.palette.base.dark
                 }}
                 sx={navTextStyles(theme.palette.base.light)}
             >

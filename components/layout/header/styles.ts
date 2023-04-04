@@ -20,7 +20,7 @@ export const headerVariants = {
 export const headerBoxStyles = {
     justifyContent: "space-between",
     alignItems: "center",
-    height: "12vh",
+    height: "16vh",
     paddingX: 12,
     width: "100%",
     position: "fixed",

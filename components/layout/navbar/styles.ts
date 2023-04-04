@@ -23,7 +23,7 @@ export const navButtonStyles = (color: string) => {
     return {
         padding: 0,
         marginRight: 2,
-        borderRadius: 2.5,
+        borderRadius: 0,
         position: "relative",
         overflow: "hidden",
 

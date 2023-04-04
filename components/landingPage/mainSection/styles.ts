@@ -1,4 +1,4 @@
-import { Avatar, Box, keyframes } from "@mui/material";
+import { keyframes } from "@mui/material";
 
 export const mainSectionStyles = {
     alignItems: "center",
@@ -13,9 +13,13 @@ export const mainSectionStyles = {
 
 const orbital = (scale: number) => keyframes`
   0% {
+    opacity: 0;
     transform: rotateZ(0) translateX(${
         12 * scale
     }rem) rotateZ(0) rotateY(-70deg) rotateZ(0deg);
+  }
+  20% {
+    opacity: 1;
   }
   100% {
     transform: rotateZ(360deg) translateX(${
@@ -92,16 +96,67 @@ export const orbitalObjectStyles = (
     };
 };
 
-export const writerStyles = (color: string) => {
+export const welcomeTextStyles = (color: string) => {
     return {
+        textTransform: "capitalize",
         position: "absolute",
         left: 100,
-        top: "30%",
-        width: "23%",
+        top: "20%",
+        width: "30%",
         fontWeight: "bold",
         fontSize: "2rem",
         transition: "0.3s ease-in",
         color: color,
         textShadow: `0rem 0rem 15px ${color}`,
     };
+};
+
+export const downloadButtonStyles = (color: string) => {
+    return {
+        position: "absolute",
+        overflow: "hidden",
+        borderRadius: 0,
+        justifyContent: "center",
+        alignItems: "center",
+        left: 100,
+        bottom: "15%",
+        width: "15vw",
+        height: "5vw",
+
+        "&:hover": {
+            borderRadius: 2.5,
+        },
+    };
+};
+
+export const buttonVariants = (
+    bgColorVisible: string,
+    bgColorHidden: string
+) => {
+    return {
+        visible: {
+            top: "-5vw",
+            background: bgColorVisible,
+            transition: {
+                type: "tween",
+                duration: 0.3,
+            },
+        },
+        hidden: {
+            top: "0",
+            background: bgColorHidden,
+            transition: {
+                type: "tween",
+                duration: 0.3,
+            },
+        },
+    };
+};
+
+export const downloadButtonWraperStyles = {
+    width: "15vw",
+    height: "5vw",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
 };
