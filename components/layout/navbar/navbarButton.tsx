@@ -22,7 +22,7 @@ const NavbarButton = ({ item, animation, switchPointInView }: ItemProps) => {
             sx={navButtonStyles(
                 switchPointInView
                     ? theme.palette.blue.light
-                    : theme.palette.base.dark
+                    : theme.palette.base.light
             )}
             component={motion.div}
             animate={animation}

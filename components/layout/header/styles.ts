@@ -17,14 +17,17 @@ export const headerVariants = {
     },
 };
 
-export const headerBoxStyles = {
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: "16vh",
-    paddingX: 12,
-    width: "100%",
-    position: "fixed",
-    top: "0px",
+export const headerBoxStyles = (switchPointInView: boolean) => {
+    return {
+        justifyContent: "space-between",
+        alignItems: "center",
+        height: switchPointInView ? "16vh" : "10vh",
+        paddingX: 12,
+        width: "100%",
+        position: "fixed",
+        top: "0px",
+        transition: "0.7s ease",
+    };
 };
 
 export const headerColoredBoxStyles = (color: string) => {

@@ -30,12 +30,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     }}
                     sx={{
                         position: "fixed",
-                        opacity: 0.7,
-                        top: 0,
-                        left: 0,
+                        opacity: 0.8,
+                        top: "-50%",
+                        left: "-50%",
                         bgcolor: "black",
-                        width: "100vw",
-                        height: "100vh",
+                        width: "200vw",
+                        height: "200vh",
                         zIndex: 100,
                     }}
                 />
@@ -45,7 +45,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
             <Header switchPointInView={switchPointInView} />
             <Main>{children}</Main>
-            <Contacts />
+            <Contacts switchPointInView={switchPointInView} />
 
             <Footer />
         </Stack>

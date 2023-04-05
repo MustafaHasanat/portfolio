@@ -36,6 +36,7 @@ export const mainButtonStyles = (
         justifyContent: "center",
         alignItems: "center",
         zIndex: 200,
+        transition: "background 0.7s ease, color 0.7s ease, box-shadow 0.4s ease",
 
         "&:hover": {
             background: bgcolorHover,

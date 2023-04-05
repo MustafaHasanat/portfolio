@@ -27,7 +27,7 @@ const Header = ({ switchPointInView }: HeaderProps) => {
 
     return (
         <Box sx={{ position: "relative", zIndex: 40 }}>
-            <Stack id="header-box" direction="row" sx={headerBoxStyles}>
+            <Stack id="header-box" direction="row" sx={headerBoxStyles(switchPointInView)}>
                 <Box
                     id="header-colored-box"
                     sx={headerColoredBoxStyles(theme.palette.purple.dark)}

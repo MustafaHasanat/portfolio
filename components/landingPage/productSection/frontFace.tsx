@@ -1,57 +1,99 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { Stack, Typography, Button, Box, Avatar } from "@mui/material";
+import {
+    Stack,
+    Typography,
+    Button,
+    Box,
+    Avatar,
+    Divider,
+    Chip,
+    Tooltip,
+    Fade,
+} from "@mui/material";
 import { useTheme } from "@mui/material";
 import { useAnimation, motion } from "framer-motion";
 import { Fragment, useState } from "react";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+import FlipButton from "./flipButton";
 
 interface FrontFaceProps {
     index: number;
     contents: {
-        src: string;
+        icon: (color: string, size: string) => JSX.Element;
         title: string;
         description: string;
         tags: string[];
     };
+    flipCard: (card: number, face: string) => void;
 }
 
-const FrontFace = ({ index, contents }: FrontFaceProps) => {
-    const { src, title, description, tags } = contents;
+const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
+    const { icon, title, description, tags } = contents;
+    const theme = useTheme();
 
     return (
         <Stack
             id={`card-front-face-${index}`}
             sx={{
-                bgcolor: "transparent",
-                transition: 0.7,
-                position: "relative",
-                cursor: "pointer",
+                width: "100%",
+                height: "100%",
+                paddingX: 4,
+                borderRadius: "30px",
+                position: "absolute",
+                backfaceVisibility: "hidden",
                 background: "rgba(255,255,255,.05)",
                 boxShadow: "0 0 10px rgba(0,0,0,0.25)",
                 backdropFilter: "blur(10px)",
-                borderRadius: "8px",
-
-                "&:hover": {
-                    transform: "scale(1.04) rotate(1deg)",
-                },
+                justifyContent: "center",
+                alignItems: "center",
             }}
         >
-            <Avatar src={src} />
-            <Typography>{title}</Typography>
-            <Typography>{description}</Typography>
-            <Stack direction="row">
+            {icon(theme.palette.blue.dark, "30%")}
+
+            <Typography fontSize="3vw" textTransform="uppercase">
+                {title}
+            </Typography>
+
+            <Typography fontSize="1.5vw" textAlign="center">
+                {description}
+            </Typography>
+
+            <Stack
+                justifyContent="center"
+                direction="row"
+                spacing={3}
+                mt={4}
+                flexWrap="wrap"
+            >
                 {tags.map((tag, tagIndex) => {
                     return (
                         <Fragment key={`front card tag number: ${tagIndex}`}>
-                            <Typography>{tag}</Typography>
+                            <Chip
+                                label={tag}
+                                sx={{ fontSize: "1.1vw", mb: 1 }}
+                            />
                         </Fragment>
                     );
                 })}
             </Stack>
 
-            <Box>
-                <SwapHorizIcon />
-            </Box>
+            <Divider sx={{ width: "100%", marginTop: 3, marginBottom: 2 }} />
+
+            <Stack direction="row" justifyContent="space-between" width="100%">
+                <Button
+                    sx={{
+                        height: "fit-content",
+                        borderRadius: 2,
+                        background: theme.palette.blue.dark,
+                    }}
+                >
+                    <Typography p={0.5} color={theme.palette.base.light}>
+                        check projects
+                    </Typography>
+                </Button>
+
+                <FlipButton index={index} face="front" flipCard={flipCard} />
+            </Stack>
         </Stack>
     );
 };
