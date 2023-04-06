@@ -21,11 +21,14 @@ export const mainButtonStyles = (
     bgcolor: string,
     bgcolorHover: string,
     color: string,
-    shadowColor: string
+    colorHover: string,
+    shadowColor: string,
+    shadowColorHover: string
 ) => {
     return {
         background: bgcolor,
         color: color,
+        boxShadow: `0 0 20px ${shadowColor}`,
         position: "absolute",
         bottom: 0,
         right: 0,
@@ -36,19 +39,20 @@ export const mainButtonStyles = (
         justifyContent: "center",
         alignItems: "center",
         zIndex: 200,
-        transition: "background 0.7s ease, color 0.7s ease, box-shadow 0.4s ease",
+        transition:
+            "background 0.7s ease, color 0.7s ease, box-shadow 0.4s ease",
 
         "&:hover": {
             background: bgcolorHover,
-            color: shadowColor,
-            boxShadow: `0 0 20px ${shadowColor}`,
+            color: colorHover,
+            boxShadow: `0 0 20px ${shadowColorHover}`,
         },
     };
 };
 
 export const contatcsContainerStyles = {
     position: "fixed",
-    bottom: "15%",
+    bottom: "10%",
     right: 100,
     zIndex: 200,
 };

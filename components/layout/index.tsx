@@ -1,16 +1,17 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./headTag";
 import Main from "./main";
 import { Stack, Box } from "@mui/material";
-import { useInView } from "react-intersection-observer";
 import Contacts from "./contacts";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/utils/store/store";
+import { useInView } from "framer-motion";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const [switchPointRef, switchPointInView] = useInView();
+    const landingSectionRef = useRef(null);
+    const landingSectionInView = useInView(landingSectionRef);
 
     const dispatch = useDispatch();
     const isModalActive = useSelector(
@@ -41,11 +42,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 />
             )}
 
-            <Box id="back-filling-box" ref={switchPointRef} />
+            <Box id="back-filling-box" ref={landingSectionRef} />
 
-            <Header switchPointInView={switchPointInView} />
+            <Header landingSectionInView={landingSectionInView} />
             <Main>{children}</Main>
-            <Contacts switchPointInView={switchPointInView} />
+            <Contacts landingSectionInView={landingSectionInView} />
 
             <Footer />
         </Stack>

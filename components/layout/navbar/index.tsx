@@ -6,16 +6,16 @@ import { useAnimation, motion, AnimationControls } from "framer-motion";
 
 interface NavbarProps {
     animation: AnimationControls;
-    switchPointInView: boolean;
+    landingSectionInView: boolean;
 }
 
-const Navbar = ({ animation, switchPointInView }: NavbarProps) => {
+const Navbar = ({ animation, landingSectionInView }: NavbarProps) => {
     return (
         <Stack direction="row" spacing={2}>
             {HeaderConstants.navbarItems.map((item) => (
                 <Fragment key={`${item.id}`}>
                     <NavbarButton
-                        switchPointInView={switchPointInView}
+                        landingSectionInView={landingSectionInView}
                         animation={animation}
                         item={{ ...item }}
                     />

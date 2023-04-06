@@ -1,12 +1,4 @@
-import {
-    Button,
-    Box,
-    Stack,
-    Avatar,
-    Typography,
-    Tooltip,
-    Zoom,
-} from "@mui/material";
+import { Button, Box, Stack, Avatar, Typography } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { useAnimation, motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
@@ -26,10 +18,10 @@ import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSectio
 import Link from "next/link";
 
 interface ContactsProps {
-    switchPointInView: boolean;
+    landingSectionInView: boolean;
 }
 
-const Contacts = ({ switchPointInView }: ContactsProps) => {
+const Contacts = ({ landingSectionInView: switchPointInView }: ContactsProps) => {
     const theme = useTheme();
     const buttonAnimations = useAnimation();
     const itemsAnimations = useAnimation();
@@ -54,53 +46,52 @@ const Contacts = ({ switchPointInView }: ContactsProps) => {
 
     return (
         <Stack sx={contatcsContainerStyles}>
-            <Tooltip
-                title="contact me"
-                arrow 
-                TransitionComponent={Zoom}
-                placement="left"
+            <Button
+                component={motion.button}
+                animate={buttonAnimations}
+                initial="hidden"
+                variants={buttonVariants}
+                onClick={() => {
+                    buttonAnimations.start("visible");
+                    itemsAnimations.start("visible");
+                    setActive(!isModalActive);
+                }}
+                sx={mainButtonStyles(
+                    switchPointInView
+                        ? theme.palette.base.dark
+                        : theme.palette.purple.dark,
+                    switchPointInView
+                        ? theme.palette.blue.light
+                        : theme.palette.blue.dark,
+                    switchPointInView
+                        ? theme.palette.base.light
+                        : theme.palette.base.light,
+                    switchPointInView
+                        ? theme.palette.base.dark
+                        : theme.palette.base.dark,
+                    switchPointInView
+                        ? theme.palette.base.light
+                        : "transparent",
+                    switchPointInView
+                        ? theme.palette.base.dark
+                        : theme.palette.base.dark
+                )}
             >
-                <Button
-                    component={motion.button}
-                    animate={buttonAnimations}
-                    initial="hidden"
-                    variants={buttonVariants}
-                    onClick={() => {
-                        buttonAnimations.start("visible");
-                        itemsAnimations.start("visible");
-                        setActive(!isModalActive);
+                <Box
+                    sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
                     }}
-                    sx={mainButtonStyles(
-                        switchPointInView
-                            ? theme.palette.blue.light
-                            : theme.palette.purple.dark,
-                        switchPointInView
-                            ? theme.palette.purple.dark
-                            : theme.palette.blue.dark,
-                        switchPointInView
-                            ? theme.palette.base.dark
-                            : theme.palette.base.light,
-                        switchPointInView
-                            ? theme.palette.base.light
-                            : theme.palette.base.dark
-                    )}
                 >
-                    <Box
+                    <QuestionAnswerRoundedIcon
                         sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
+                            width: "50%",
+                            height: "auto",
                         }}
-                    >
-                        <QuestionAnswerRoundedIcon
-                            sx={{
-                                width: "50%",
-                                height: "auto",
-                            }}
-                        />
-                    </Box>
-                </Button>
-            </Tooltip>
+                    />
+                </Box>
+            </Button>
 
             {WelcomeSectionConstants.contacts.map((item, index) => {
                 return (

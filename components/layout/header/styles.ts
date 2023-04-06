@@ -17,7 +17,10 @@ export const headerVariants = {
     },
 };
 
-export const headerBoxStyles = (switchPointInView: boolean) => {
+export const headerBoxStyles = (
+    switchPointInView: boolean,
+    borderColor: string
+) => {
     return {
         justifyContent: "space-between",
         alignItems: "center",
@@ -27,6 +30,8 @@ export const headerBoxStyles = (switchPointInView: boolean) => {
         position: "fixed",
         top: "0px",
         transition: "0.7s ease",
+        borderBottom: `2px solid ${borderColor}`,
+        boxShadow: switchPointInView ? "none" : `0 2px 10px ${borderColor}`,
     };
 };
 

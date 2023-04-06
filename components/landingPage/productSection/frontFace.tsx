@@ -3,16 +3,11 @@ import {
     Stack,
     Typography,
     Button,
-    Box,
-    Avatar,
     Divider,
     Chip,
-    Tooltip,
-    Fade,
 } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { useAnimation, motion } from "framer-motion";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import FlipButton from "./flipButton";
 

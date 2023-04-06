@@ -1,6 +1,6 @@
 import Navbar from "../navbar";
 import { Stack, Avatar, Typography, Box } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
 import { useTheme } from "@mui/material";
 import {
@@ -12,22 +12,36 @@ import {
 } from "./styles";
 
 interface HeaderProps {
-    switchPointInView: boolean;
+    landingSectionInView: boolean;
 }
 
-const Header = ({ switchPointInView }: HeaderProps) => {
+const Header = ({ landingSectionInView }: HeaderProps) => {
     const theme = useTheme();
     const headerAnimations = useAnimation();
 
     useEffect(() => {
-        switchPointInView
+        landingSectionInView
             ? headerAnimations.start("visible")
             : headerAnimations.start("hidden");
-    }, [headerAnimations, switchPointInView]);
+    }, [headerAnimations, landingSectionInView]);
 
     return (
-        <Box sx={{ position: "relative", zIndex: 40 }}>
-            <Stack id="header-box" direction="row" sx={headerBoxStyles(switchPointInView)}>
+        <Box
+            sx={{
+                position: "relative",
+                zIndex: 40,
+            }}
+        >
+            <Stack
+                id="header-box"
+                direction="row"
+                sx={headerBoxStyles(
+                    landingSectionInView,
+                    landingSectionInView
+                        ? "transparent"
+                        : theme.palette.base.dark
+                )}
+            >
                 <Box
                     id="header-colored-box"
                     sx={headerColoredBoxStyles(theme.palette.purple.dark)}
@@ -57,10 +71,10 @@ const Header = ({ switchPointInView }: HeaderProps) => {
 
                     <Typography
                         sx={titleStyles(
-                            switchPointInView
+                            landingSectionInView
                                 ? theme.palette.base.light
                                 : theme.palette.base.light,
-                            switchPointInView
+                            landingSectionInView
                                 ? theme.palette.blue.main
                                 : theme.palette.base.light
                         )}
@@ -72,8 +86,8 @@ const Header = ({ switchPointInView }: HeaderProps) => {
                             id="shadow-title"
                             component="span"
                             sx={titleCloneStyles(
-                                switchPointInView
-                                    ? theme.palette.blue.main
+                                landingSectionInView
+                                    ? theme.palette.blue.light
                                     : theme.palette.base.light
                             )}
                             aria-hidden="true"
@@ -85,7 +99,7 @@ const Header = ({ switchPointInView }: HeaderProps) => {
 
                 <Navbar
                     animation={headerAnimations}
-                    switchPointInView={switchPointInView}
+                    landingSectionInView={landingSectionInView}
                 />
             </Stack>
         </Box>

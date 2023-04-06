@@ -1,7 +1,6 @@
-import DvrRoundedIcon from '@mui/icons-material/DvrRounded';
-import PhoneIphoneRoundedIcon from '@mui/icons-material/PhoneIphoneRounded';
-import KeyboardRoundedIcon from '@mui/icons-material/KeyboardRounded';
-import BugReportRoundedIcon from '@mui/icons-material/BugReportRounded';
+import DvrRoundedIcon from "@mui/icons-material/DvrRounded";
+import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
+import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
 
 const ProductSectionConstants = {
     blobs: [
@@ -31,18 +30,43 @@ const ProductSectionConstants = {
                 title: "web",
                 description:
                     "I build responsive web applications using modern frameworks",
-                tags: ["frontend", "backend", "UI/UX"],
+                tags: ["frontend", "backend", "UI/UX", "unit test"],
             },
             back: {
                 cards: [
                     {
                         src: String.raw`\icons\frameworks\reactIcon.png`,
-                        title: "React",
-                        projects: 3,
+                        name: "React",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\frameworks\nextIcon.png`,
+                        name: "Next.js",
+                        projects: 0,
                     },
                     {
                         src: String.raw`\icons\frameworks\angularIcon.png`,
-                        title: "Angular",
+                        name: "Angular",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\frameworks\nodeIcon.png`,
+                        name: "Node.js",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\frameworks\djangoIcon.png`,
+                        name: "Django",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\frameworks\fastAPIIcon.png`,
+                        name: "FastAPI",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\frameworks\flaskIcon.png`,
+                        name: "Flask",
                         projects: 0,
                     },
                 ],
@@ -61,7 +85,18 @@ const ProductSectionConstants = {
                 tags: ["frontend", "backend", "cross-platform", "UI/UX"],
             },
             back: {
-                cards: [],
+                cards: [
+                    {
+                        src: String.raw`\icons\frameworks\reactIcon.png`,
+                        name: "React Native",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\frameworks\flutterIcon.png`,
+                        name: "Flutter",
+                        projects: 0,
+                    },
+                ],
             },
         },
         {
@@ -77,25 +112,20 @@ const ProductSectionConstants = {
                 tags: ["frontend", "UI/UX"],
             },
             back: {
-                cards: [],
+                cards: [
+                    {
+                        src: String.raw`\icons\frameworks\tkinterIcon.png`,
+                        name: "TkInter",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\frameworks\elctronIcon.png`,
+                        name: "Electron.js",
+                        projects: 0,
+                    },
+                ],
             },
-        },
-        {
-            front: {
-                icon: (color: string, size: string) => (
-                    <BugReportRoundedIcon
-                        sx={{ color: color, width: "auto", height: size }}
-                    />
-                ),
-                title: "qa testing",
-                description:
-                    "I perform unit tests to ensure working functionalities and coverage",
-                tags: ["unit tests", "lighthouse"],
-            },
-            back: {
-                cards: [],
-            },
-        },
+        }
     ],
 };
 

@@ -1,14 +1,19 @@
 import ProductSectionConstants from "@/utils/constants/landingPage/productSection";
-import { Box, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import FrontFace from "./frontFace";
 import BackFace from "./backFace";
+import { motion, useInView } from "framer-motion";
+import InteractiveTitle from "@/components/shared/title";
 
 const ProductSection = () => {
     const theme = useTheme();
     const [cardTransform, setCardTransform] = useState("none");
     const [cardFlipped, setCardFlipped] = useState(0);
+
+    const cardsContainerRef = useRef(null);
+    const cardsContainerInView = useInView(cardsContainerRef);
 
     const flipCard = (card: number, face: string) => {
         if (card !== cardFlipped && cardTransform === "rotateY(180deg)") {
@@ -37,7 +42,7 @@ const ProductSection = () => {
                 bgcolor: theme.palette.base.light,
             }}
         >
-            {/* {ProductSectionConstants.blobs.map((blob, index) => {
+            {ProductSectionConstants.blobs.map((blob, index) => {
                 return (
                     <Fragment key={`blob number: ${index}`}>
                         <Avatar
@@ -60,28 +65,46 @@ const ProductSection = () => {
                         />
                     </Fragment>
                 );
-            })} */}
+            })}
 
-            <Box
-                sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    paddingY: 5,
-                }}
+            <InteractiveTitle
+                primary={theme.palette.blue.dark}
+                secondary={theme.palette.base.dark}
+                tertiary={theme.palette.base.dark}
+                containerHeight="30vh"
+                buttonWidth="40%"
+                buttonHeight="50%"
+                linesSpace={15}
+                buttonCuttingRatio={0.13}
             >
-                <Typography fontSize="5vw">What Do I do</Typography>
-            </Box>
+                <Typography
+                    fontSize="2.7vw"
+                    color={theme.palette.base.light}
+                    textTransform="uppercase"
+                    letterSpacing={3}
+                    fontWeight="bold"
+                >
+                    What Do I do
+                </Typography>
+            </InteractiveTitle>
 
             <Stack
                 id="cards-container"
+                ref={cardsContainerRef}
                 gap={5}
                 width="90%"
                 direction="row"
                 flexWrap="wrap"
                 justifyContent="space-evenly"
                 alignItems="center"
+                zIndex={2}
                 position="relative"
+                sx={{
+                    transform: cardsContainerInView
+                        ? "unset"
+                        : "translateY(100px)",
+                    transition: "1s ease",
+                }}
             >
                 {ProductSectionConstants.products.map((card, index) => {
                     return (
@@ -90,11 +113,10 @@ const ProductSection = () => {
                                 id={`card-${index}`}
                                 sx={{
                                     position: "relative",
-                                    zIndex: 2,
                                     width: "30vw",
                                     height: "75vh",
                                     transformStyle: "preserve-3d",
-                                    transition: "1s",
+                                    transition: "1s ease",
                                     transform:
                                         cardFlipped === index + 1
                                             ? cardTransform
