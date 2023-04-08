@@ -119,7 +119,7 @@ const ProductSectionConstants = {
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\elctronIcon.png`,
+                        src: String.raw`\icons\frameworks\electronIcon.png`,
                         name: "Electron.js",
                         projects: 0,
                     },

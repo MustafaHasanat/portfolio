@@ -1,14 +1,7 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import {
-    Stack,
-    Typography,
-    Button,
-    Divider,
-    Chip,
-} from "@mui/material";
+import { Stack, Typography, Button, Divider, Chip } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Fragment } from "react";
-import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import FlipButton from "./flipButton";
 
 interface FrontFaceProps {
@@ -27,22 +20,7 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
     const theme = useTheme();
 
     return (
-        <Stack
-            id={`card-front-face-${index}`}
-            sx={{
-                width: "100%",
-                height: "100%",
-                paddingX: 4,
-                borderRadius: "30px",
-                position: "absolute",
-                backfaceVisibility: "hidden",
-                background: "rgba(255,255,255,.05)",
-                boxShadow: "0 0 10px rgba(0,0,0,0.25)",
-                backdropFilter: "blur(10px)",
-                justifyContent: "center",
-                alignItems: "center",
-            }}
-        >
+        <Fragment>
             {icon(theme.palette.blue.dark, "30%")}
 
             <Typography fontSize="3vw" textTransform="uppercase">
@@ -89,7 +67,7 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
 
                 <FlipButton index={index} face="front" flipCard={flipCard} />
             </Stack>
-        </Stack>
+        </Fragment>
     );
 };
 

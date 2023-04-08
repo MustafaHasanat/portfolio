@@ -2,15 +2,19 @@ import { keyframes } from "@mui/material";
 import globalConstants from "@/utils/constants/global";
 
 const span1 = (start: string, end: string) => keyframes`
-  0% {${start}}
-  50%,100% {${end}}
+  0% {
+    ${start};
+    }
+  50%,100% {
+    ${end};
+    }
 `;
 
 const WelcomeSectionConstants = {
     avatarIons: [
         {
             id: "react-orbital-icon",
-            src: String.raw`\icons\frameworks\reactIcon.png`,
+            src: String.raw`\icons\frameworks\frontend\reactIcon.png`,
             rotateZ: 60,
             rotateY: 80,
             delay: 0,
@@ -18,7 +22,7 @@ const WelcomeSectionConstants = {
         },
         {
             id: "angular-orbital-icon",
-            src: String.raw`icons\frameworks\angularIcon.png`,
+            src: String.raw`icons\frameworks\frontend\angularIcon.png`,
             rotateZ: 60,
             rotateY: 80,
             delay: 1,
@@ -26,7 +30,7 @@ const WelcomeSectionConstants = {
         },
         {
             id: "flutter-orbital-icon",
-            src: String.raw`icons\frameworks\flutterIcon.png`,
+            src: String.raw`icons\frameworks\frontend\flutterIcon.png`,
             rotateZ: 60,
             rotateY: 80,
             delay: 2,
@@ -34,7 +38,7 @@ const WelcomeSectionConstants = {
         },
         {
             id: "next-orbital-icon",
-            src: String.raw`icons\frameworks\nextIcon.png`,
+            src: String.raw`icons\frameworks\frontend\nextIcon.png`,
             rotateZ: 60,
             rotateY: 80,
             delay: 3,
@@ -42,7 +46,7 @@ const WelcomeSectionConstants = {
         },
         {
             id: "node-orbital-icon",
-            src: String.raw`icons\frameworks\nodeIcon.png`,
+            src: String.raw`icons\frameworks\backend\nodeIcon.png`,
             rotateZ: -60,
             rotateY: 80,
             delay: 0.3,
@@ -50,7 +54,7 @@ const WelcomeSectionConstants = {
         },
         {
             id: "fastAPI-orbital-icon",
-            src: String.raw`icons\frameworks\fastAPIIcon.png`,
+            src: String.raw`icons\frameworks\backend\fastAPIIcon.png`,
             rotateZ: -60,
             rotateY: 80,
             delay: 1.3,
@@ -58,7 +62,7 @@ const WelcomeSectionConstants = {
         },
         {
             id: "electron-orbital-icon",
-            src: String.raw`icons\frameworks\elctronIcon.png`,
+            src: String.raw`icons\frameworks\frontend\electronIcon.png`,
             rotateZ: -60,
             rotateY: 80,
             delay: 2.3,
@@ -66,7 +70,7 @@ const WelcomeSectionConstants = {
         },
         {
             id: "django-orbital-icon",
-            src: String.raw`icons\frameworks\djangoIcon.png`,
+            src: String.raw`icons\frameworks\backend\djangoIcon.png`,
             rotateZ: -60,
             rotateY: 80,
             delay: 3.3,
@@ -168,7 +172,7 @@ const WelcomeSectionConstants = {
             distance: 300,
             delayVisible: 0.1,
             delayHidden: 0.2,
-            src: String.raw`\icons\contacts\linkedInIcon.png`,
+            src: String.raw`\icons\websites\linkedInIcon.png`,
             link: globalConstants.myLinkedInURL,
         },
         {

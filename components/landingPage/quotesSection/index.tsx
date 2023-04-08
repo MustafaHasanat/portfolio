@@ -1,11 +1,8 @@
 import InteractiveTitle from "@/components/shared/title";
-import SkillsSectionConstants from "@/utils/constants/landingPage/skillsSection";
-import { useTheme } from "@mui/material";
 import { Stack, Typography } from "@mui/material";
-import { Fragment } from "react";
-import SkillsFipper from "./skillsFipper";
+import { useTheme } from "@mui/material";
 
-const SkillsSection = () => {
+const QuotesSecction = () => {
     const theme = useTheme();
 
     return (
@@ -27,28 +24,14 @@ const SkillsSection = () => {
                     letterSpacing={3}
                     fontWeight="bold"
                 >
-                    My Skills
+                    favorite quotes
                 </Typography>
             </InteractiveTitle>
 
-            <Stack
-                direction="row"
-                justifyContent="center"
-                flexWrap="wrap"
-                px={10}
-                py={5}
-                gap={5}
-            >
-                {SkillsSectionConstants.categories.map((category, index) => {
-                    return (
-                        <Fragment key={`skill category number: ${index}`}>
-                            <SkillsFipper index={index} category={category} />
-                        </Fragment>
-                    );
-                })}
+            <Stack sx={{height: "60vh"}}>
             </Stack>
         </Stack>
     );
 };
 
-export default SkillsSection;
+export default QuotesSecction;

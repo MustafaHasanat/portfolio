@@ -1,11 +1,13 @@
 import ProductSectionConstants from "@/utils/constants/landingPage/productSection";
-import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Fragment, useRef, useState } from "react";
 import FrontFace from "./frontFace";
 import BackFace from "./backFace";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import InteractiveTitle from "@/components/shared/title";
+import Blobs from "../../shared/blobs";
+import FlipBox from "@/components/shared/flipBox";
 
 const ProductSection = () => {
     const theme = useTheme();
@@ -42,30 +44,7 @@ const ProductSection = () => {
                 bgcolor: theme.palette.base.light,
             }}
         >
-            {ProductSectionConstants.blobs.map((blob, index) => {
-                return (
-                    <Fragment key={`blob number: ${index}`}>
-                        <Avatar
-                            component={motion.div}
-                            animate={{ y: [0, 30, 0] }}
-                            transition={{
-                                duration: 5,
-                                delay: blob.delay,
-                                ease: "easeInOut",
-                                repeat: Infinity,
-                            }}
-                            src={blob.src}
-                            sx={{
-                                position: "absolute",
-                                inset: blob.inset,
-                                width: blob.size,
-                                height: blob.size,
-                                zIndex: 1,
-                            }}
-                        />
-                    </Fragment>
-                );
-            })}
+            <Blobs blobs={ProductSectionConstants.blobs} />
 
             <InteractiveTitle
                 primary={theme.palette.blue.dark}
@@ -109,31 +88,41 @@ const ProductSection = () => {
                 {ProductSectionConstants.products.map((card, index) => {
                     return (
                         <Fragment key={`product card number: ${index}`}>
-                            <Stack
-                                id={`card-${index}`}
-                                sx={{
-                                    position: "relative",
-                                    width: "30vw",
-                                    height: "75vh",
-                                    transformStyle: "preserve-3d",
-                                    transition: "1s ease",
-                                    transform:
-                                        cardFlipped === index + 1
-                                            ? cardTransform
-                                            : "none",
+                            <FlipBox
+                                frontChildren={
+                                    <FrontFace
+                                        contents={card.front}
+                                        index={index}
+                                        flipCard={flipCard}
+                                    />
+                                }
+                                frontSX={{
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    paddingX: 4,
                                 }}
-                            >
-                                <FrontFace
-                                    contents={card.front}
-                                    index={index}
-                                    flipCard={flipCard}
-                                />
-                                <BackFace
-                                    contents={card.back}
-                                    index={index}
-                                    flipCard={flipCard}
-                                />
-                            </Stack>
+                                backChildren={
+                                    <BackFace
+                                        contents={card.back}
+                                        index={index}
+                                        flipCard={flipCard}
+                                    />
+                                }
+                                backSX={{
+                                    justifyContent: "flex-start",
+                                    alignItems: "center",
+                                    paddingX: 2,
+                                    paddingY: 2,
+                                }}
+                                id={`card-${index}`}
+                                transform={
+                                    cardFlipped === index + 1
+                                        ? cardTransform
+                                        : "none"
+                                }
+                                width="25vw"
+                                height="75vh"
+                            />
                         </Fragment>
                     );
                 })}

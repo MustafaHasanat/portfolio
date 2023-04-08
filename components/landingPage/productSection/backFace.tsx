@@ -1,16 +1,9 @@
-import {
-    Stack,
-    Typography,
-    Button,
-    Box,
-    Avatar,
-    Tooltip,
-    Fade,
-} from "@mui/material";
+import { Stack, Typography, Box, Avatar } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Fragment, useState } from "react";
 import FlipButton from "./flipButton";
 import { motion } from "framer-motion";
+import useBoxSize from "@/hooks/useBoxSize";
 
 interface BackFaceProps {
     index: number;
@@ -27,28 +20,12 @@ interface BackFaceProps {
 const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
     const { cards } = contents;
     const theme = useTheme();
+    const { ref: miniCardRef, width: miniCardWidth } = useBoxSize();
 
     const [hoveredCard, setHoveredCard] = useState(0);
 
     return (
-        <Stack
-            id={`card-back-face-${index}`}
-            sx={{
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                backfaceVisibility: "hidden",
-                transform: "rotateY(180deg)",
-                paddingX: 2,
-                paddingY: 2,
-                borderRadius: "30px",
-                background: "rgba(255,255,255,.05)",
-                boxShadow: "0 0 10px rgba(0,0,0,0.25)",
-                backdropFilter: "blur(10px)",
-                justifyContent: "flex-start",
-                alignItems: "center",
-            }}
-        >
+        <Fragment>
             <Stack
                 direction="row"
                 gap={3}
@@ -66,6 +43,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                     return (
                         <Fragment key={`back card number: ${cardIndex}`}>
                             <Box
+                                ref={miniCardRef}
                                 onMouseEnter={() => {
                                     setHoveredCard(cardIndex + 1);
                                 }}
@@ -76,7 +54,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                     display: "flex",
                                     position: "relative",
                                     width: "25%",
-                                    height: "35%",
+                                    height: miniCardWidth * 1.5,
                                     borderRadius: "10px",
                                     boxShadow: "0 0 10px rgba(0,0,0,0.25)",
                                     background: `${theme.palette.blue.dark}11`,
@@ -177,7 +155,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
             </Stack>
 
             <FlipButton index={index} face="back" flipCard={flipCard} />
-        </Stack>
+        </Fragment>
     );
 };
 

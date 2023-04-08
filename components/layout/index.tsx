@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./headTag";
@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/utils/store/store";
 import { useInView } from "framer-motion";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({ children }: { children: JSX.Element }) => {
     const landingSectionRef = useRef(null);
     const landingSectionInView = useInView(landingSectionRef);
 
