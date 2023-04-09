@@ -26,13 +26,9 @@ export const skillMainBoxVariants = (boxWidth: number) => {
     return {
         hidden: {
             x: 0,
-            scale: 1,
-            opacity: 1,
         },
         visible: {
             x: `${-1.5 * boxWidth}vw`,
-            scale: 0,
-            opacity: 0,
         },
     };
 };
@@ -41,13 +37,9 @@ export const skillTempBoxVariants = (boxWidth: number) => {
     return {
         hidden: {
             x: `${0.5 * boxWidth}vw`,
-            scale: 0,
-            opacity: 0,
         },
         visible: {
             x: `${-boxWidth}vw`,
-            scale: 1,
-            opacity: 1,
         },
     };
 };

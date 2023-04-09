@@ -70,11 +70,11 @@ const ProductSection = () => {
             <Stack
                 id="cards-container"
                 ref={cardsContainerRef}
-                gap={5}
+                gap={15}
                 width="90%"
                 direction="row"
                 flexWrap="wrap"
-                justifyContent="space-evenly"
+                justifyContent="center"
                 alignItems="center"
                 zIndex={2}
                 position="relative"
@@ -120,7 +120,7 @@ const ProductSection = () => {
                                         ? cardTransform
                                         : "none"
                                 }
-                                width="25vw"
+                                width="30vw"
                                 height="75vh"
                             />
                         </Fragment>

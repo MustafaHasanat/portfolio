@@ -116,6 +116,31 @@ const SkillsSectionConstants = {
             ],
         },
         {
+            title: "devOps",
+            skills: [
+                {
+                    name: "Firebase",
+                    src: String.raw`icons\tools\firebaseIcon.png`,
+                },
+                { name: "Vercel", src: String.raw`icons\tools\vercelIcon.svg` },
+                { name: "Heroku", src: String.raw`icons\tools\herokuIcon.jpg` },
+                { name: "cPanel", src: String.raw`icons\tools\cpanelIcon.png` },
+            ],
+        },
+        {
+            title: "electronics",
+            skills: [
+                {
+                    name: "Arduino",
+                    src: String.raw`\icons\electronics\arduinoIcon.png`,
+                },
+                {
+                    name: "ESP",
+                    src: String.raw`\icons\electronics\nodeMCUIcon.png`,
+                },
+            ],
+        },
+        {
             title: "others",
             skills: [
                 {
@@ -130,15 +155,6 @@ const SkillsSectionConstants = {
                     name: "Power Point",
                     src: String.raw`icons\others\powerpointIcon.png`,
                 },
-            ],
-        },
-        {
-            title: "devOps",
-            skills: [
-                { name: "Firebase", src: String.raw`icons\tools\firebaseIcon.png` },
-                { name: "Vercel", src: String.raw`icons\tools\vercelIcon.svg` },
-                { name: "Heroku", src: String.raw`icons\tools\herokuIcon.jpg` },
-                { name: "cPanel", src: String.raw`icons\tools\cpanelIcon.png` },
             ],
         },
     ],

@@ -1,6 +1,8 @@
 import DvrRoundedIcon from "@mui/icons-material/DvrRounded";
 import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
 import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
+import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+
 
 const ProductSectionConstants = {
     blobs: [
@@ -35,37 +37,37 @@ const ProductSectionConstants = {
             back: {
                 cards: [
                     {
-                        src: String.raw`\icons\frameworks\reactIcon.png`,
+                        src: String.raw`\icons\frameworks\frontend\reactIcon.png`,
                         name: "React",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\nextIcon.png`,
+                        src: String.raw`\icons\frameworks\frontend\nextIcon.png`,
                         name: "Next.js",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\angularIcon.png`,
+                        src: String.raw`\icons\frameworks\frontend\angularIcon.png`,
                         name: "Angular",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\nodeIcon.png`,
+                        src: String.raw`\icons\frameworks\backend\nodeIcon.png`,
                         name: "Node.js",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\djangoIcon.png`,
+                        src: String.raw`\icons\frameworks\backend\djangoIcon.png`,
                         name: "Django",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\fastAPIIcon.png`,
+                        src: String.raw`\icons\frameworks\backend\fastAPIIcon.png`,
                         name: "FastAPI",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\flaskIcon.png`,
+                        src: String.raw`\icons\frameworks\backend\flaskIcon.png`,
                         name: "Flask",
                         projects: 0,
                     },
@@ -87,12 +89,12 @@ const ProductSectionConstants = {
             back: {
                 cards: [
                     {
-                        src: String.raw`\icons\frameworks\reactIcon.png`,
+                        src: String.raw`\icons\frameworks\frontend\reactIcon.png`,
                         name: "React Native",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\flutterIcon.png`,
+                        src: String.raw`\icons\frameworks\frontend\flutterIcon.png`,
                         name: "Flutter",
                         projects: 0,
                     },
@@ -114,18 +116,45 @@ const ProductSectionConstants = {
             back: {
                 cards: [
                     {
-                        src: String.raw`\icons\frameworks\tkinterIcon.png`,
+                        src: String.raw`\icons\frameworks\frontend\tkinterIcon.png`,
                         name: "TkInter",
                         projects: 0,
                     },
                     {
-                        src: String.raw`\icons\frameworks\electronIcon.png`,
+                        src: String.raw`\icons\frameworks\frontend\electronIcon.png`,
                         name: "Electron.js",
                         projects: 0,
                     },
                 ],
             },
-        }
+        },
+        {
+            front: {
+                icon: (color: string, size: string) => (
+                    <PrecisionManufacturingIcon
+                        sx={{ color: color, width: "auto", height: size }}
+                    />
+                ),
+                title: "robots",
+                description:
+                    "I design and build robots and IoT projects with various communication systems",
+                tags: ["robots", "IoT", "CNC"],
+            },
+            back: {
+                cards: [
+                    {
+                        src: String.raw`\icons\electronics\arduinoIcon.png`,
+                        name: "Arduino",
+                        projects: 0,
+                    },
+                    {
+                        src: String.raw`\icons\electronics\nodeMCUIcon.png`,
+                        name: "ESP",
+                        projects: 0,
+                    },
+                ],
+            },
+        },
     ],
 };
 

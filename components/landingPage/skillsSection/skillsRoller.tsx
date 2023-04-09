@@ -36,6 +36,7 @@ const SkillsRoller = ({
     const handleMovingCard = () => {
         if (hoverIsActive) {
             const newVariant = animation === "visible" ? "hidden" : "visible";
+
             boxAnimation.start(newVariant);
             setAnimation(newVariant);
 
@@ -51,7 +52,7 @@ const SkillsRoller = ({
                         mainCard + 1 >= skills.length ? 0 : mainCard + 1
                     );
                 }
-            }, 300);
+            }, 1000);
         }
     };
 
@@ -60,11 +61,17 @@ const SkillsRoller = ({
     };
 
     const avatarWrapper = (src: string) => {
-        return <Avatar variant="square" src={src} sx={{ width: "auto", height: "60%" }} />;
+        return (
+            <Avatar
+                variant="square"
+                src={src}
+                sx={{ width: "auto", height: "60%" }}
+            />
+        );
     };
 
     useEffect(() => {
-        const interval = setInterval(() => handleMovingCard(), 1000);
+        const interval = setInterval(() => handleMovingCard(), 1500);
 
         return () => {
             clearInterval(interval);
