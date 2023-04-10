@@ -24,7 +24,7 @@ const QuotesSecction = () => {
     };
 
     return (
-        <Stack>
+        <Stack py={5}>
             <InteractiveTitle
                 primary={theme.palette.blue.dark}
                 secondary={theme.palette.base.dark}

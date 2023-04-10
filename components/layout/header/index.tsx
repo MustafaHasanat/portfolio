@@ -27,6 +27,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
 
     return (
         <Box
+            component="header"
             sx={{
                 position: "relative",
                 zIndex: 40,

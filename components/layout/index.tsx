@@ -1,13 +1,14 @@
 import { useRef } from "react";
 import Footer from "./footer";
 import Header from "./header";
-import HeadTag from "./headTag";
+import HeadTag from "./metadata/headTag";
 import Main from "./main";
 import { Stack, Box } from "@mui/material";
 import Contacts from "./contacts";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/utils/store/store";
 import { useInView } from "framer-motion";
+import ModalBackLight from "./contacts/modalBackLight";
 
 const Layout = ({ children }: { children: JSX.Element }) => {
     const landingSectionRef = useRef(null);
@@ -19,33 +20,25 @@ const Layout = ({ children }: { children: JSX.Element }) => {
             state.modalReducer.isActive
     );
 
+    const toggleModalVisibility = (state: boolean) => {
+        dispatch(modalActions.setActive(state));
+    };
+
     return (
         <Stack>
             <HeadTag />
 
-            {isModalActive && (
-                <Box
-                    component="button"
-                    onClick={() => {
-                        dispatch(modalActions.setActive(false));
-                    }}
-                    sx={{
-                        position: "fixed",
-                        opacity: 0.8,
-                        top: "-50%",
-                        left: "-50%",
-                        bgcolor: "black",
-                        width: "200vw",
-                        height: "200vh",
-                        zIndex: 100,
-                    }}
-                />
-            )}
+            <ModalBackLight
+                isModalActive={isModalActive}
+                toggleModalVisibility={toggleModalVisibility}
+            />
 
             <Box id="back-filling-box" ref={landingSectionRef} />
 
             <Header landingSectionInView={landingSectionInView} />
+
             <Main>{children}</Main>
+            
             <Contacts landingSectionInView={landingSectionInView} />
 
             <Footer />
