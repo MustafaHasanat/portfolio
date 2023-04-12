@@ -1,11 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import GlassBox from "@/components/shared/glassBox";
-import LayoutConstants from "@/utils/constants/layout";
-import { Stack, useTheme } from "@mui/material";
-import React, { Fragment, MutableRefObject } from "react";
+import LayoutConstants from "@/utils/constants/global/layout";
+import { Stack } from "@mui/material";
+import React, {
+    Dispatch,
+    Fragment,
+    MutableRefObject,
+    SetStateAction,
+    useState,
+} from "react";
 import InputField from "./inputField";
 import MessageBox from "./messageBox";
-import SendButton from "./sendButton";
+import ButtonsSet from "./buttonsSet";
 
 interface FormProps {
     formRef: MutableRefObject<undefined>;
@@ -13,17 +19,36 @@ interface FormProps {
 }
 
 const Form = ({ formRef, handleSubmit }: FormProps) => {
-    const theme = useTheme();
+    const [isReset, setIsReset] = useState(false);
+
+    const handleChange = (
+        length: number,
+        isRequired: boolean,
+        setError: Dispatch<SetStateAction<boolean>>
+    ) => {
+        if (length === 0 && isRequired) {
+            setError(true);
+        } else {
+            setError(false);
+        }
+    };
+
+    const clearForm = () => {
+        setIsReset(true);
+        setTimeout(() => {
+            setIsReset(false);
+        }, 1000);
+    };
 
     return (
         <GlassBox
             id={"footer-form-box"}
-            extraSX={{ width: "50%", position: "relative" }}
+            extraSX={{ width: "60%", position: "relative" }}
         >
             <Stack
+                ref={formRef}
                 component="form"
                 p={5}
-                ref={formRef}
                 onSubmit={handleSubmit}
                 sx={{
                     height: "100%",
@@ -33,25 +58,24 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
                     gap: 3,
                 }}
             >
-                {LayoutConstants.footerFormFields(theme.palette.base.light).map(
-                    (field, index) => {
-                        return (
-                            <Fragment
-                                key={`footer form field number: ${index}`}
-                            >
-                                {InputField(
-                                    field.type,
-                                    field.label,
-                                    field.icon,
-                                    field.defaultValue
-                                )}
-                            </Fragment>
-                        );
-                    }
-                )}
+                {LayoutConstants.footerFormFields.map((field, index) => {
+                    return (
+                        <Fragment key={`footer form field number: ${index}`}>
+                            <InputField
+                                type={field.type}
+                                label={field.label}
+                                icon={field.icon}
+                                isRequired={field.isRequired}
+                                helperText={field.helperText}
+                                isReset={isReset}
+                                handleChange={handleChange}
+                            />
+                        </Fragment>
+                    );
+                })}
 
-                <MessageBox />
-                <SendButton />
+                <MessageBox isReset={isReset} handleChange={handleChange} />
+                <ButtonsSet clearForm={clearForm} />
             </Stack>
         </GlassBox>
     );

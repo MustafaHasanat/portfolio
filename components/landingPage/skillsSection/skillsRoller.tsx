@@ -65,6 +65,7 @@ const SkillsRoller = ({
             <Avatar
                 variant="square"
                 src={src}
+                alt="skill"
                 sx={{ width: "auto", height: "60%" }}
             />
         );

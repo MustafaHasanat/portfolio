@@ -83,7 +83,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     zIndex: 5,
                 }}
             >
-                {["", "rotateX(180deg) rotateY(180deg)"].map(
+                {["rotateX(0deg) rotateY(0deg)", "rotateX(180deg) rotateY(180deg)"].map(
                     (svgShape, index) => {
                         return (
                             <Fragment key={`lines shape number: ${index}`}>
@@ -183,7 +183,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     height="100%"
                     style={{
                         position: "absolute",
-                        transform: titleInView ? "unset" : "translateX(-100px)",
+                        transform: titleInView ? "translateX(0px)" : "translateX(-100px)",
                         transition: "1.3s ease",
                     }}
                 >
@@ -209,7 +209,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     height="100%"
                     style={{
                         position: "absolute",
-                        transform: titleInView ? "unset" : "translateX(100px)",
+                        transform: titleInView ? "translateX(0px)" : "translateX(100px)",
                         transition: "1.3s ease",
                     }}
                 >
@@ -246,7 +246,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     zIndex: 6,
                     fontWeight: "bold",
                     opacity: titleInView ? 1 : 0,
-                    transform: titleInView ? "unset" : "translateY(100px)",
+                    transform: titleInView ? "translateY(0px)" : "translateY(100px)",
                     transition: "1.3s ease",
                 }}
             >

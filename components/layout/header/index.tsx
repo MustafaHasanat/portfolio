@@ -64,6 +64,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     <Avatar
                         variant="square"
                         src="images\logo.png"
+                        alt="logo"
                         sx={{
                             width: "3rem",
                             height: "auto",

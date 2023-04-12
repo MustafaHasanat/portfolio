@@ -66,7 +66,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                     transform:
                                         hoveredCard === cardIndex + 1
                                             ? "scale(1.1) rotate(-3deg)"
-                                            : "none",
+                                            : "scale(1) rotate(0deg)",
 
                                     "*::WebkitScrollbarThumb": "red",
                                 }}
@@ -100,6 +100,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                             repeat: Infinity,
                                         }}
                                         src={card.src}
+                                        alt="framework"
                                         sx={{
                                             width: "60%",
                                             height: "auto",

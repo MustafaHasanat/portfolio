@@ -28,6 +28,7 @@ const Blobs = ({blobs}: BlobsProps) => {
                                 repeat: Infinity,
                             }}
                             src={blob.src}
+                            alt="blob"
                             sx={{
                                 position: "absolute",
                                 inset: blob.inset,

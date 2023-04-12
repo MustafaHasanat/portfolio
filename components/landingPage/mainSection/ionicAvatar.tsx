@@ -14,7 +14,7 @@ const IonicAvatar = () => {
 
     return (
         <Box sx={ionicContainerStyles(scaleValue)}>
-            <Avatar src="images/avatar.jpg" sx={avatarStyles(scaleValue)} />
+            <Avatar src="images/avatar.jpg" alt="avatar" sx={avatarStyles(scaleValue)} />
 
             {WelcomeSectionConstants.avatarIons.map((ion) => {
                 return (
@@ -31,6 +31,7 @@ const IonicAvatar = () => {
                             <Fragment key={`${ion.id} icon`}>
                                 <Avatar
                                     src={ion.src}
+                                    alt="ion-image"
                                     sx={orbitalObjectStyles(
                                         ion.delay,
                                         ion.shadow,

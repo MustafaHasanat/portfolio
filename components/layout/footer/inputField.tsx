@@ -1,20 +1,62 @@
-import { Stack, useTheme } from "@mui/material";
-import { ReactNode } from "react";
+import { Box, Stack, useTheme } from "@mui/material";
+import {
+    Dispatch,
+    ReactNode,
+    SetStateAction,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { ColoredTextField } from "./styles";
 
-const InputField = (
-    type: string,
-    label: string,
-    icon: ReactNode,
-    defaultValue?: string
-) => {
+interface InputFieldProps {
+    handleChange: (
+        length: number,
+        isRequired: boolean,
+        setError: Dispatch<SetStateAction<boolean>>
+    ) => void;
+    type: string;
+    label: string;
+    icon: (error: boolean, color: string) => JSX.Element;
+    isRequired: boolean;
+    helperText: string;
+    isReset: boolean;
+}
+
+const InputField = ({
+    handleChange,
+    type,
+    label,
+    icon,
+    isRequired,
+    helperText,
+    isReset,
+}: InputFieldProps) => {
     const theme = useTheme();
+    const [hovered, setHovered] = useState(false);
+    const [error, setError] = useState(false);
+    const fieldRef = useRef<HTMLInputElement | null>(null);
+
+    useEffect(() => {
+        if (isReset) {
+            if (fieldRef.current) {
+                handleChange(0, isRequired, setError);
+                fieldRef.current.value = "";
+            }
+        }
+    }, [handleChange, isRequired, isReset]);
 
     return (
         <Stack
             direction="row"
             justifyContent="space-between"
             alignItems="center"
+            onMouseEnter={() => {
+                setHovered(true);
+            }}
+            onMouseLeave={() => {
+                setHovered(false);
+            }}
             sx={{
                 display: "flex",
                 width: "100%",
@@ -22,19 +64,43 @@ const InputField = (
                 gridColumn: "1 / 2",
             }}
         >
-            {icon}
+            <Box
+                sx={{
+                    width: "10%",
+                    height: "auto",
+                    transition: "0.3s ease",
+                    opacity: hovered ? 0.6 : 1,
+                }}
+            >
+                {icon(error, theme.palette.base.light)}
+            </Box>
 
             <ColoredTextField
+                inputRef={fieldRef}
                 label={label}
                 variant="standard"
                 type={type}
                 name={label}
-                defaultValue={defaultValue}
                 color="secondary"
+                required={isRequired}
+                error={error}
+                helperText={error ? "This field is required!" : helperText}
+                onChange={(e) => {
+                    handleChange(e.target.value.length, isRequired, setError);
+                }}
+                FormHelperTextProps={{
+                    sx: {
+                        color: theme.palette.base.light,
+                    },
+                }}
                 sx={{
                     width: "85%",
-                    input: { color: theme.palette.base.light },
-                    label: { color: theme.palette.base.light },
+                    input: { color: theme.palette.base.light, opacity: 0.7 },
+                    label: {
+                        color: theme.palette.base.light,
+                        fontWeight: "bold",
+                        textTransform: "capitalize",
+                    },
                 }}
             />
         </Stack>

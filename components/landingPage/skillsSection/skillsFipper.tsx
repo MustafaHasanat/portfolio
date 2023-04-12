@@ -46,7 +46,7 @@ const SkillsFipper = ({ index, category }: SkillsFipperProps) => {
                 justifyContent: "center",
                 alignItems: "center",
                 opacity: boxInView ? 1 : 0,
-                transform: boxInView ? "unset" : "translateY(80px)",
+                transform: boxInView ? "translateY(0px)" : "translateY(80px)",
                 transition: "1s ease",
             }}
             onMouseEnter={() => {

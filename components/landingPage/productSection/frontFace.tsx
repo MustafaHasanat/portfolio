@@ -55,7 +55,6 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
             <Stack direction="row" justifyContent="space-between" width="100%">
                 <Button
                     sx={{
-                        height: "fit-content",
                         borderRadius: 2,
                         background: theme.palette.blue.dark,
                     }}

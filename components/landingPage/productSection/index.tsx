@@ -11,7 +11,7 @@ import FlipBox from "@/components/shared/flipBox";
 
 const ProductSection = () => {
     const theme = useTheme();
-    const [cardTransform, setCardTransform] = useState("none");
+    const [cardTransform, setCardTransform] = useState("rotateY(0deg)");
     const [cardFlipped, setCardFlipped] = useState(0);
 
     const cardsContainerRef = useRef(null);
@@ -24,14 +24,14 @@ const ProductSection = () => {
                 setCardTransform("rotateY(180deg)");
             } else {
                 setCardFlipped(0);
-                setCardTransform("none");
+                setCardTransform("rotateY(0deg)");
             }
         } else if (face === "front") {
             setCardFlipped(card);
             setCardTransform("rotateY(180deg)");
         } else if (face === "back") {
             setCardFlipped(0);
-            setCardTransform("none");
+            setCardTransform("rotateY(0deg)");
         }
     };
 
@@ -80,7 +80,7 @@ const ProductSection = () => {
                 position="relative"
                 sx={{
                     transform: cardsContainerInView
-                        ? "unset"
+                        ? "translateY(0px)"
                         : "translateY(100px)",
                     transition: "1s ease",
                 }}
@@ -118,7 +118,7 @@ const ProductSection = () => {
                                 transform={
                                     cardFlipped === index + 1
                                         ? cardTransform
-                                        : "none"
+                                        : "rotateY(0deg)"
                                 }
                                 width="30vw"
                                 height="75vh"

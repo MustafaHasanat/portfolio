@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/utils/store/store";
 import { useInView } from "framer-motion";
 import ModalBackLight from "./contacts/modalBackLight";
+import SnackBar from "../shared/snackbar";
 
 const Layout = ({ children }: { children: JSX.Element }) => {
     const landingSectionRef = useRef(null);
@@ -36,11 +37,9 @@ const Layout = ({ children }: { children: JSX.Element }) => {
             <Box id="back-filling-box" ref={landingSectionRef} />
 
             <Header landingSectionInView={landingSectionInView} />
-
             <Main>{children}</Main>
-            
             <Contacts landingSectionInView={landingSectionInView} />
-
+            <SnackBar />
             <Footer />
         </Stack>
     );

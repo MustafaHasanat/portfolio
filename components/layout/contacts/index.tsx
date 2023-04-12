@@ -14,14 +14,16 @@ import {
     itemsVariants,
     mainButtonStyles,
 } from "./styles";
-import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
 import Link from "next/link";
+import globalConstants from "@/utils/constants/global/global";
 
 interface ContactsProps {
     landingSectionInView: boolean;
 }
 
-const Contacts = ({ landingSectionInView: switchPointInView }: ContactsProps) => {
+const Contacts = ({
+    landingSectionInView: switchPointInView,
+}: ContactsProps) => {
     const theme = useTheme();
     const buttonAnimations = useAnimation();
     const itemsAnimations = useAnimation();
@@ -51,6 +53,7 @@ const Contacts = ({ landingSectionInView: switchPointInView }: ContactsProps) =>
                 animate={buttonAnimations}
                 initial="hidden"
                 variants={buttonVariants}
+                title="contact-button"
                 onClick={() => {
                     buttonAnimations.start("visible");
                     itemsAnimations.start("visible");
@@ -93,11 +96,11 @@ const Contacts = ({ landingSectionInView: switchPointInView }: ContactsProps) =>
                 </Box>
             </Button>
 
-            {WelcomeSectionConstants.contacts.map((item, index) => {
+            {globalConstants.contacts.map((item, index) => {
                 return (
                     <Fragment key={`contact item number: ${index}`}>
                         <Box
-                            component={motion.button}
+                            component={motion.div}
                             animate={itemsAnimations}
                             initial="hidden"
                             onMouseEnter={() => {
@@ -128,10 +131,15 @@ const Contacts = ({ landingSectionInView: switchPointInView }: ContactsProps) =>
                             )}
                             sx={contactItemStyles}
                         >
-                            <Link href={item.link} title="" target="_blank">
+                            <Link
+                                href={item.link}
+                                title={item.link}
+                                target="_blank"
+                            >
                                 <Avatar
                                     variant="square"
                                     src={item.src}
+                                    alt="contact"
                                     sx={{
                                         width: "80%",
                                         height: "80%",
