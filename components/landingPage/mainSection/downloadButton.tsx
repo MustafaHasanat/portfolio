@@ -9,6 +9,7 @@ import { useAnimation, motion } from "framer-motion";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
 import { Fragment, useState } from "react";
+import downloadDriveFile from "@/utils/emails/downloadDriveFile";
 
 const DownloadButton = () => {
     const theme = useTheme();
@@ -44,6 +45,7 @@ const DownloadButton = () => {
                 setShadowColor(theme.palette.base.light);
                 buttonAnimations.start("hidden");
             }}
+            onClick={()=>{downloadDriveFile()}}
         >
             <Stack
                 component={motion.div}

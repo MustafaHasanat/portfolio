@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Box } from "@mui/material";
 import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import {
     avatarStyles,
     ionicContainerStyles,

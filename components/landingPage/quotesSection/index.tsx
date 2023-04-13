@@ -24,7 +24,7 @@ const QuotesSecction = () => {
     };
 
     return (
-        <Stack py={5}>
+        <Stack py={10}>
             <InteractiveTitle
                 primary={theme.palette.blue.dark}
                 secondary={theme.palette.base.dark}
@@ -57,17 +57,14 @@ const QuotesSecction = () => {
                     onClick={() => {
                         handleArrowClick("left");
                     }}
-                    sx={{ width: "10%", height: "auto" }}
+                    sx={{ width: "10%", height: "auto", cursor: "pointer" }}
                 >
                     <KeyboardDoubleArrowLeftIcon
                         sx={{ height: "100%", width: "100%" }}
                     />
                 </Box>
 
-                <Stack
-                    sx={{ height: "100%", width: "70%" }}
-                    alignItems="center"
-                >
+                <Stack sx={{ height: "80%", width: "60%" }} alignItems="center">
                     <Box
                         component={motion.div}
                         initial={{ opacity: 0 }}
@@ -87,10 +84,13 @@ const QuotesSecction = () => {
                         }}
                     >
                         <Typography
+                            textTransform="capitalize"
+                            fontSize="2.5vw"
                             sx={{
                                 position: "absolute",
-                                top: 0,
-                                left: 0,
+                                top: 80,
+                                left: 80,
+                                width: "80%",
                                 bgcolor: "transparent",
                                 color: theme.palette.base.light,
                             }}
@@ -99,15 +99,17 @@ const QuotesSecction = () => {
                         </Typography>
 
                         <Typography
+                            textTransform="uppercase"
+                            fontSize="1.5vw"
                             sx={{
                                 position: "absolute",
-                                bottom: 0,
-                                right: 0,
+                                bottom: 80,
+                                right: 80,
                                 bgcolor: "transparent",
                                 color: theme.palette.base.light,
                             }}
                         >
-                            {QuotesSectionConstants.quotes[bgImage].author}
+                            {"~ " + QuotesSectionConstants.quotes[bgImage].author}
                         </Typography>
                     </Box>
                 </Stack>
@@ -117,7 +119,7 @@ const QuotesSecction = () => {
                     onClick={() => {
                         handleArrowClick("right");
                     }}
-                    sx={{ width: "10%" }}
+                    sx={{ width: "10%", height: "auto", cursor: "pointer" }}
                 >
                     <KeyboardDoubleArrowRightIcon
                         sx={{ height: "100%", width: "100%" }}

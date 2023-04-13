@@ -6,6 +6,7 @@ import Form from "./form";
 import { snackbarActions } from "@/utils/store/store";
 import { useDispatch } from "react-redux";
 import Hexagons from "./hexagons";
+import theme from "@/styles/theme";
 
 const Footer = () => {
     const formRef = useRef();
@@ -36,7 +37,7 @@ const Footer = () => {
             justifyContent="space-between"
             alignItems="center"
             sx={{
-                height: "90vh",
+                height: "100vh",
                 p: 5,
                 background: `
                     linear-gradient(
@@ -46,6 +47,7 @@ const Footer = () => {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top",
+                borderTop: `2px solid ${theme.palette.blue.dark}`,
             }}
         >
             <Form formRef={formRef} handleSubmit={handleSubmit} />

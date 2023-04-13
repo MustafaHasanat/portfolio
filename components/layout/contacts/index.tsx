@@ -62,22 +62,22 @@ const Contacts = ({
                 sx={mainButtonStyles(
                     switchPointInView
                         ? theme.palette.base.dark
-                        : theme.palette.purple.dark,
+                        : theme.palette.base.light,
                     switchPointInView
                         ? theme.palette.blue.light
                         : theme.palette.blue.dark,
                     switchPointInView
                         ? theme.palette.base.light
-                        : theme.palette.base.light,
-                    switchPointInView
-                        ? theme.palette.base.dark
                         : theme.palette.base.dark,
                     switchPointInView
+                        ? theme.palette.base.dark
+                        : theme.palette.base.light,
+                    switchPointInView
                         ? theme.palette.base.light
-                        : "transparent",
+                        : theme.palette.base.dark,
                     switchPointInView
                         ? theme.palette.base.dark
-                        : theme.palette.base.dark
+                        : theme.palette.base.light
                 )}
             >
                 <Box

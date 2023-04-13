@@ -34,7 +34,7 @@ const Layout = ({ children }: { children: JSX.Element }) => {
                 toggleModalVisibility={toggleModalVisibility}
             />
 
-            <Box id="back-filling-box" ref={landingSectionRef} />
+            <Box id="back-box" ref={landingSectionRef} />
 
             <Header landingSectionInView={landingSectionInView} />
             <Main>{children}</Main>

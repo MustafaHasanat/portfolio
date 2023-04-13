@@ -8,6 +8,7 @@ import { useInView } from "framer-motion";
 import InteractiveTitle from "@/components/shared/title";
 import Blobs from "../../shared/blobs";
 import FlipBox from "@/components/shared/flipBox";
+import { CardsBox, ProductBox } from "./styles";
 
 const ProductSection = () => {
     const theme = useTheme();
@@ -36,14 +37,7 @@ const ProductSection = () => {
     };
 
     return (
-        <Stack
-            sx={{
-                position: "relative",
-                alignItems: "center",
-                paddingY: 10,
-                bgcolor: theme.palette.base.light,
-            }}
-        >
+        <Stack sx={ProductBox(theme.palette.base.light)}>
             <Blobs blobs={ProductSectionConstants.blobs} />
 
             <InteractiveTitle
@@ -70,20 +64,11 @@ const ProductSection = () => {
             <Stack
                 id="cards-container"
                 ref={cardsContainerRef}
-                gap={15}
-                width="90%"
-                direction="row"
-                flexWrap="wrap"
-                justifyContent="center"
-                alignItems="center"
-                zIndex={2}
-                position="relative"
-                sx={{
-                    transform: cardsContainerInView
+                sx={CardsBox(
+                    cardsContainerInView
                         ? "translateY(0px)"
-                        : "translateY(100px)",
-                    transition: "1s ease",
-                }}
+                        : "translateY(100px)"
+                )}
             >
                 {ProductSectionConstants.products.map((card, index) => {
                     return (

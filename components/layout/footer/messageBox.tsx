@@ -33,7 +33,7 @@ const MessageBox = ({ handleChange, isReset }: MessageBoxProps) => {
             justifyContent="space-between"
             alignItems="flex-start"
             sx={{
-                gridRow: "1 / 5",
+                gridRow: "3 / 5",
                 gridColumn: "2 / 3",
             }}
         >
@@ -64,7 +64,7 @@ const MessageBox = ({ handleChange, isReset }: MessageBoxProps) => {
                 defaultValue="Hi Mustafa, I would like to set a meeting with you."
                 color="secondary"
                 multiline
-                maxRows={10}
+                maxRows={4}
                 required
                 error={error}
                 helperText={

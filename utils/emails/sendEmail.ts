@@ -6,7 +6,7 @@ const sendEmail = (formData: any): number => {
     const PUBLIC_KEY = "U-wOn_g6FYxF5xN4c";
 
     try {
-        // emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY);
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY);
         return 200;
     } catch {
         return 500;
