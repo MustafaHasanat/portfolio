@@ -64,6 +64,7 @@ const ProductSection = () => {
             <Stack
                 id="cards-container"
                 ref={cardsContainerRef}
+                direction="row"
                 sx={CardsBox(
                     cardsContainerInView
                         ? "translateY(0px)"
