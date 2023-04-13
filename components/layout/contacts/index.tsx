@@ -5,62 +5,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/utils/store/store";
 import { Fragment, useEffect, useState } from "react";
 import QuestionAnswerRoundedIcon from "@mui/icons-material/QuestionAnswerRounded";
-import { buttonVariants, mainButtonStyles } from "./styles";
-import LandingPageConstants from "@/utils/constants/landingPage";
+import {
+    buttonVariants,
+    contactItemStyles,
+    contatcsContainerStyles,
+    floatingListStyles,
+    itemTextVariants,
+    itemsVariants,
+    mainButtonStyles,
+} from "./styles";
 import Link from "next/link";
+import globalConstants from "@/utils/constants/global/global";
 
-export const itemsVariants = (
-    distance: number,
-    delayVisible: number,
-    delayHidden: number,
-    isModalActive: boolean
-) => {
-    return {
-        visible: {
-            right: 0,
-            bottom: distance,
-            opacity: 0.7,
-            scale: 1,
-            transition: {
-                delay: delayVisible,
-            },
-        },
-        hidden: {
-            right: 0,
-            bottom: 0,
-            opacity: isModalActive ? 0.7 : 0,
-            scale: isModalActive ? 1 : 0,
-            transition: {
-                delay: delayHidden,
-            },
-        },
-    };
-};
+interface ContactsProps {
+    landingSectionInView: boolean;
+}
 
-export const itemTextVariants = (shadow: string) => {
-    return {
-        visible: {
-            textShadow: `0 0 18px ${shadow}`,
-            opacity: 1,
-            y: 0,
-            x: "-70%",
-            transition: {
-                duration: 0.2,
-            },
-        },
-        hidden: {
-            textShadow: `0 0 0px ${shadow}`,
-            opacity: 0,
-            y: 20,
-            x: "-70%",
-            transition: {
-                duration: 0.2,
-            },
-        },
-    };
-};
-
-const Contacts = () => {
+const Contacts = ({
+    landingSectionInView: switchPointInView,
+}: ContactsProps) => {
     const theme = useTheme();
     const buttonAnimations = useAnimation();
     const itemsAnimations = useAnimation();
@@ -84,29 +47,37 @@ const Contacts = () => {
     useEffect(() => {}, [hoveredContact]);
 
     return (
-        <Stack
-            sx={{
-                position: "fixed",
-                bottom: "15%",
-                right: 100,
-                zIndex: 200,
-            }}
-        >
+        <Stack sx={contatcsContainerStyles}>
             <Button
                 component={motion.button}
                 animate={buttonAnimations}
                 initial="hidden"
                 variants={buttonVariants}
+                title="contact-button"
                 onClick={() => {
                     buttonAnimations.start("visible");
                     itemsAnimations.start("visible");
                     setActive(!isModalActive);
                 }}
                 sx={mainButtonStyles(
-                    theme.palette.blue.light,
-                    theme.palette.purple.dark,
-                    theme.palette.base.dark,
-                    theme.palette.base.light
+                    switchPointInView
+                        ? theme.palette.base.dark
+                        : theme.palette.base.light,
+                    switchPointInView
+                        ? theme.palette.blue.light
+                        : theme.palette.blue.dark,
+                    switchPointInView
+                        ? theme.palette.base.light
+                        : theme.palette.base.dark,
+                    switchPointInView
+                        ? theme.palette.base.dark
+                        : theme.palette.base.light,
+                    switchPointInView
+                        ? theme.palette.base.light
+                        : theme.palette.base.dark,
+                    switchPointInView
+                        ? theme.palette.base.dark
+                        : theme.palette.base.light
                 )}
             >
                 <Box
@@ -125,11 +96,11 @@ const Contacts = () => {
                 </Box>
             </Button>
 
-            {LandingPageConstants.contacts.map((item, index) => {
+            {globalConstants.contacts.map((item, index) => {
                 return (
                     <Fragment key={`contact item number: ${index}`}>
                         <Box
-                            component={motion.button}
+                            component={motion.div}
                             animate={itemsAnimations}
                             initial="hidden"
                             onMouseEnter={() => {
@@ -158,21 +129,17 @@ const Contacts = () => {
                                 item.delayHidden,
                                 isModalActive
                             )}
-                            sx={{
-                                position: "absolute",
-                                bgcolor: "transparent",
-                                border: "none",
-                                width: "4rem",
-                                height: "4rem",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
+                            sx={contactItemStyles}
                         >
-                            <Link href={item.link} title="" target="_blank">
+                            <Link
+                                href={item.link}
+                                title={item.link}
+                                target="_blank"
+                            >
                                 <Avatar
                                     variant="square"
                                     src={item.src}
+                                    alt="contact"
                                     sx={{
                                         width: "80%",
                                         height: "80%",
@@ -191,12 +158,9 @@ const Contacts = () => {
                                 variants={itemTextVariants(
                                     theme.palette.base.light
                                 )}
-                                sx={{
-                                    textAlign: "end",
-                                    width: "500%",
-                                    position: "absolute",
-                                    color: theme.palette.base.light,
-                                }}
+                                sx={floatingListStyles(
+                                    theme.palette.base.light
+                                )}
                             >
                                 {item.text}
                             </Typography>

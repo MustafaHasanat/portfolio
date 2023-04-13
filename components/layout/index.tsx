@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useRef } from "react";
 import Footer from "./footer";
 import Header from "./header";
-import HeadTag from "./headTag";
+import HeadTag from "./metadata/headTag";
 import Main from "./main";
 import { Stack, Box } from "@mui/material";
-import { useInView } from "react-intersection-observer";
 import Contacts from "./contacts";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/utils/store/store";
+import { useInView } from "framer-motion";
+import ModalBackLight from "./contacts/modalBackLight";
+import SnackBar from "../shared/snackbar";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
-    const [switchPointRef, switchPointInView] = useInView();
+const Layout = ({ children }: { children: JSX.Element }) => {
+    const landingSectionRef = useRef(null);
+    const landingSectionInView = useInView(landingSectionRef);
 
     const dispatch = useDispatch();
     const isModalActive = useSelector(
@@ -18,35 +21,25 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             state.modalReducer.isActive
     );
 
+    const toggleModalVisibility = (state: boolean) => {
+        dispatch(modalActions.setActive(state));
+    };
+
     return (
         <Stack>
             <HeadTag />
 
-            {isModalActive && (
-                <Box
-                    component="button"
-                    onClick={() => {
-                        dispatch(modalActions.setActive(false));
-                    }}
-                    sx={{
-                        position: "fixed",
-                        opacity: 0.7,
-                        top: 0,
-                        left: 0,
-                        bgcolor: "black",
-                        width: "100vw",
-                        height: "100vh",
-                        zIndex: 100,
-                    }}
-                />
-            )}
+            <ModalBackLight
+                isModalActive={isModalActive}
+                toggleModalVisibility={toggleModalVisibility}
+            />
 
-            <Box id="back-filling-box" ref={switchPointRef} />
+            <Box id="back-box" ref={landingSectionRef} />
 
-            <Header switchPointInView={switchPointInView} />
+            <Header landingSectionInView={landingSectionInView} />
             <Main>{children}</Main>
-            <Contacts />
-
+            <Contacts landingSectionInView={landingSectionInView} />
+            <SnackBar />
             <Footer />
         </Stack>
     );

@@ -1,23 +1,23 @@
-import { Stack, Avatar, Typography, Box, Button } from "@mui/material";
-import HeaderConstants from "@/utils/constants/header";
-import { Fragment, useEffect } from "react";
+import { Stack } from "@mui/material";
+import LayoutConstants from "@/utils/constants/global/layout";
+import { Fragment } from "react";
 import NavbarButton from "@/components/layout/navbar/navbarButton";
-import { useAnimation, motion, AnimationControls } from "framer-motion";
+import { AnimationControls } from "framer-motion";
 
 interface NavbarProps {
     animation: AnimationControls;
-    switchPointInView: boolean;
+    landingSectionInView: boolean;
 }
 
-const Navbar = ({ animation, switchPointInView }: NavbarProps) => {
+const Navbar = ({ animation, landingSectionInView }: NavbarProps) => {
     return (
         <Stack direction="row" spacing={2}>
-            {HeaderConstants.navbarItems.map((item) => (
-                <Fragment key={`${item.id}`}>
+            {LayoutConstants.navbarItems.map((item, index) => (
+                <Fragment key={`${index}`}>
                     <NavbarButton
-                        switchPointInView={switchPointInView}
+                        landingSectionInView={landingSectionInView}
                         animation={animation}
-                        item={{ ...item }}
+                        item={{ ...item, id: index }}
                     />
                 </Fragment>
             ))}

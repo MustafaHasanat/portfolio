@@ -1,42 +1,52 @@
-import styled from "@emotion/styled";
+// export const headerVariants = {
+//     visible: {
+//         opacity: 0,
+//         transition: {
+//             type: "tween",
+//             duration: 0.3,
+//         },
+//     },
+//     hidden: {
+//         opacity: 1,
+//         transition: {
+//             type: "tween",
+//             duration: 0.7,
+//         },
+//     },
+// };
 
-export const headerVariants = {
-    visible: {
-        opacity: 0,
-        transition: {
-            type: "tween",
-            duration: 0.3,
-        },
-    },
-    hidden: {
-        opacity: 1,
-        transition: {
-            type: "tween",
-            duration: 0.7,
-        },
-    },
-};
-
-export const headerBoxStyles = {
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: "16vh",
-    paddingX: 12,
-    width: "100%",
-    position: "fixed",
-    top: "0px",
-};
-
-export const headerColoredBoxStyles = (color: string) => {
+export const headerBoxStyles = (
+    switchPointInView: boolean,
+    headerPosition: string,
+    borderColor: string,
+    bgColor: string
+) => {
     return {
+        background: switchPointInView ? "transparent" : bgColor,
+        justifyContent: "space-between",
+        alignItems: "center",
+        height: switchPointInView ? "16vh" : "10vh",
+        paddingX: 12,
         width: "100%",
-        height: "100%",
-        position: "absolute",
-        top: "0px",
-        left: "0px",
-        background: color,
+        position: "fixed",
+        top: headerPosition,
+        transition: "0.7s ease",
+        borderBottom: `2px solid ${borderColor}`,
+        boxShadow: switchPointInView ? "none" : `0 2px 10px ${borderColor}`,
+        backdropFilter: switchPointInView ? "blur(0px)" : "blur(10px)",
     };
 };
+
+// export const headerColoredBoxStyles = (color: string) => {
+//     return {
+//         width: "100%",
+//         height: "100%",
+//         position: "absolute",
+//         top: "0px",
+//         left: "0px",
+//         background: color,
+//     };
+// };
 
 export const titleStyles = (color: string, shadowColor: string) => {
     return {
@@ -46,7 +56,7 @@ export const titleStyles = (color: string, shadowColor: string) => {
         zIndex: 10,
         position: "relative",
         fontSize: {
-            xs: "1.5vw",
+            xs: "1.3vw",
         },
 
         "&:hover #shadow-title": {

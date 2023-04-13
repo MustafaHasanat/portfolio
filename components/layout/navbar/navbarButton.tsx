@@ -4,7 +4,7 @@ import { motion, AnimationControls } from "framer-motion";
 import { navButtonStyles, buttonVariants, navTextStyles } from "./styles";
 
 interface ItemProps {
-    switchPointInView: boolean;
+    landingSectionInView: boolean;
     animation: AnimationControls;
     item: {
         id: number;
@@ -13,16 +13,16 @@ interface ItemProps {
     };
 }
 
-const NavbarButton = ({ item, animation, switchPointInView }: ItemProps) => {
+const NavbarButton = ({ item, animation, landingSectionInView }: ItemProps) => {
     const { id, title, link } = item;
     const theme = useTheme();
 
     return (
         <Button
             sx={navButtonStyles(
-                switchPointInView
+                landingSectionInView
                     ? theme.palette.blue.light
-                    : theme.palette.base.dark
+                    : theme.palette.base.light
             )}
             component={motion.div}
             animate={animation}

@@ -1,16 +1,19 @@
 import { keyframes } from "@mui/material";
-import globalConstants from "@/utils/constants/global";
 
 const span1 = (start: string, end: string) => keyframes`
-  0% {${start}}
-  50%,100% {${end}}
+  0% {
+    ${start};
+    }
+  50%,100% {
+    ${end};
+    }
 `;
 
-const LandingPageConstants = {
+const WelcomeSectionConstants = {
     avatarIons: [
         {
             id: "react-orbital-icon",
-            src: String.raw`\icons\frameworks\reactIcon.png`,
+            src: String.raw`\icons\frameworks\frontend\reactIcon.png`,
             rotateZ: 60,
             rotateY: 80,
             delay: 0,
@@ -18,31 +21,31 @@ const LandingPageConstants = {
         },
         {
             id: "angular-orbital-icon",
-            src: String.raw`icons\frameworks\angularIcon.png`,
+            src: String.raw`icons\frameworks\frontend\angularIcon.png`,
             rotateZ: 60,
             rotateY: 80,
-            delay: 0.8,
+            delay: 1,
             shadow: "red",
         },
         {
             id: "flutter-orbital-icon",
-            src: String.raw`icons\frameworks\flutterIcon.png`,
+            src: String.raw`icons\frameworks\frontend\flutterIcon.png`,
             rotateZ: 60,
             rotateY: 80,
-            delay: 1.6,
+            delay: 2,
             shadow: "cyan",
         },
         {
-            id: "github-orbital-icon",
-            src: String.raw`icons\frameworks\nextIcon.png`,
+            id: "next-orbital-icon",
+            src: String.raw`icons\frameworks\frontend\nextIcon.png`,
             rotateZ: 60,
             rotateY: 80,
-            delay: 2.4,
+            delay: 3,
             shadow: "black",
         },
         {
             id: "node-orbital-icon",
-            src: String.raw`icons\frameworks\nodeIcon.png`,
+            src: String.raw`icons\frameworks\backend\nodeIcon.png`,
             rotateZ: -60,
             rotateY: 80,
             delay: 0.3,
@@ -50,26 +53,26 @@ const LandingPageConstants = {
         },
         {
             id: "fastAPI-orbital-icon",
-            src: String.raw`icons\frameworks\fastAPIIcon.png`,
+            src: String.raw`icons\frameworks\backend\fastAPIIcon.png`,
             rotateZ: -60,
             rotateY: 80,
-            delay: 1.1,
+            delay: 1.3,
             shadow: "cyan",
         },
         {
-            id: "docker-orbital-icon",
-            src: String.raw`icons\tools\dockerIcon.png`,
+            id: "electron-orbital-icon",
+            src: String.raw`icons\frameworks\frontend\electronIcon.png`,
             rotateZ: -60,
             rotateY: 80,
-            delay: 1.9,
+            delay: 2.3,
             shadow: "white",
         },
         {
             id: "django-orbital-icon",
-            src: String.raw`icons\frameworks\djangoIcon.png`,
+            src: String.raw`icons\frameworks\backend\djangoIcon.png`,
             rotateZ: -60,
             rotateY: 80,
-            delay: 2.7,
+            delay: 3.3,
             shadow: "white",
         },
         {
@@ -85,7 +88,7 @@ const LandingPageConstants = {
             src: String.raw`icons\languages\cssIcon.png`,
             rotateZ: 0,
             rotateY: 80,
-            delay: 1.4,
+            delay: 1.6,
             shadow: "lightblue",
         },
         {
@@ -93,7 +96,7 @@ const LandingPageConstants = {
             src: String.raw`icons\languages\jsIcon.png`,
             rotateZ: 0,
             rotateY: 80,
-            delay: 2.2,
+            delay: 2.6,
             shadow: "yellow",
         },
         {
@@ -101,7 +104,7 @@ const LandingPageConstants = {
             src: String.raw`icons\languages\pythonIcon.png`,
             rotateZ: 0,
             rotateY: 80,
-            delay: 3,
+            delay: 3.6,
             shadow: "blue",
         },
     ],
@@ -153,41 +156,6 @@ const LandingPageConstants = {
             animationDelay: "1.125s",
         },
     ],
-
-    contacts: [
-        {
-            text: "send me an email",
-            distance: 400,
-            delayVisible: 0,
-            delayHidden: 0.3,
-            src: String.raw`\icons\contacts\gmailIcon.png`,
-            link: `mailto:${globalConstants.myEmail}?Subject=Setting a meeting&body=Hello Mustafa, I would like to set a meeting with you.`,
-        },
-        {
-            text: "contact me via LinkedIn",
-            distance: 300,
-            delayVisible: 0.1,
-            delayHidden: 0.2,
-            src: String.raw`\icons\contacts\linkedInIcon.png`,
-            link: globalConstants.myLinkedInURL,
-        },
-        {
-            text: "call me",
-            distance: 200,
-            delayVisible: 0.2,
-            delayHidden: 0.1,
-            src: String.raw`\icons\contacts\phoneIcon.png`,
-            link: `tel:${globalConstants.myPhoneNumber}`,
-        },
-        {
-            text: "chat with me via Whatsapp",
-            distance: 100,
-            delayVisible: 0.3,
-            delayHidden: 0,
-            src: String.raw`\icons\contacts\whatsappIcon.png`,
-            link: `http://wa.me/${globalConstants.myPhoneNumber}`,
-        },
-    ],
 };
 
-export default LandingPageConstants;
+export default WelcomeSectionConstants;

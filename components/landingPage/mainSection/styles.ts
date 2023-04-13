@@ -6,7 +6,7 @@ export const mainSectionStyles = {
     position: "relative",
     width: "100%",
     height: "100vh",
-    background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${"images/desktopWP.jpg"})`,
+    background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/desktopWP.jpg")`,
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
 };
@@ -96,22 +96,7 @@ export const orbitalObjectStyles = (
     };
 };
 
-export const welcomeTextStyles = (color: string) => {
-    return {
-        textTransform: "capitalize",
-        position: "absolute",
-        left: 100,
-        top: "20%",
-        width: "30%",
-        fontWeight: "bold",
-        fontSize: "2rem",
-        transition: "0.3s ease-in",
-        color: color,
-        textShadow: `0rem 0rem 15px ${color}`,
-    };
-};
-
-export const downloadButtonStyles = (color: string) => {
+export const downloadButtonStyles = (width: string, height: string) => {
     return {
         position: "absolute",
         overflow: "hidden",
@@ -119,23 +104,24 @@ export const downloadButtonStyles = (color: string) => {
         justifyContent: "center",
         alignItems: "center",
         left: 100,
-        bottom: "15%",
-        width: "15vw",
-        height: "5vw",
+        bottom: "10%",
+        width: width,
+        height: height,
 
         "&:hover": {
-            borderRadius: 2.5,
+            borderRadius: 1,
         },
     };
 };
 
 export const buttonVariants = (
     bgColorVisible: string,
-    bgColorHidden: string
+    bgColorHidden: string,
+    buttonHeight: string
 ) => {
     return {
         visible: {
-            top: "-5vw",
+            top: `-${buttonHeight}`,
             background: bgColorVisible,
             transition: {
                 type: "tween",
@@ -153,10 +139,12 @@ export const buttonVariants = (
     };
 };
 
-export const downloadButtonWraperStyles = {
-    width: "15vw",
-    height: "5vw",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+export const downloadButtonWraperStyles = (width: string, height: string) => {
+    return {
+        width: width,
+        height: height,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    };
 };
