@@ -2,12 +2,16 @@ import InteractiveTitle from "@/components/shared/title";
 import { Box, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
 import QuotesSectionConstants from "@/utils/constants/landingPage/quotesSection";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
-const QuotesSecction = () => {
+interface QuotesSecctionProps {
+    inViewRef: MutableRefObject<null>;
+}
+
+const QuotesSecction = ({ inViewRef }: QuotesSecctionProps) => {
     const theme = useTheme();
     const [bgImage, setBgImage] = useState(0);
 
@@ -24,20 +28,30 @@ const QuotesSecction = () => {
     };
 
     return (
-        <Stack py={10}>
+        <Stack id="home-quotes" py={10} position="relative">
+            <Box
+                ref={inViewRef}
+                sx={{
+                    position: "absolute",
+                    top: "50%",
+                    width: " 100%",
+                }}
+            />
+
             <InteractiveTitle
-                primary={theme.palette.blue.dark}
+                primary={theme.palette.blue.main}
                 secondary={theme.palette.base.dark}
-                tertiary={theme.palette.base.dark}
+                tertiary={theme.palette.blue.main}
                 containerHeight="30vh"
-                buttonWidth="40%"
-                buttonHeight="50%"
+                buttonWidth="50%"
+                buttonHeight="60%"
                 linesSpace={15}
                 buttonCuttingRatio={0.13}
+                buttonGap={18}
             >
                 <Typography
                     fontSize="2.7vw"
-                    color={theme.palette.base.light}
+                    color={theme.palette.base.dark}
                     textTransform="uppercase"
                     letterSpacing={3}
                     fontWeight="bold"
@@ -109,7 +123,8 @@ const QuotesSecction = () => {
                                 color: theme.palette.base.light,
                             }}
                         >
-                            {"~ " + QuotesSectionConstants.quotes[bgImage].author}
+                            {"~ " +
+                                QuotesSectionConstants.quotes[bgImage].author}
                         </Typography>
                     </Box>
                 </Stack>

@@ -9,7 +9,8 @@ import { useAnimation, motion } from "framer-motion";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
 import { Fragment, useState } from "react";
-import downloadDriveFile from "@/utils/emails/downloadDriveFile";
+import Link from "next/link";
+import { urls } from "@/utils/constants/global/global";
 
 const DownloadButton = () => {
     const theme = useTheme();
@@ -45,7 +46,6 @@ const DownloadButton = () => {
                 setShadowColor(theme.palette.base.light);
                 buttonAnimations.start("hidden");
             }}
-            onClick={()=>{downloadDriveFile()}}
         >
             <Stack
                 component={motion.div}
@@ -75,15 +75,26 @@ const DownloadButton = () => {
                     Download CV
                 </Typography>
 
-                <Box sx={downloadButtonWraperStyles(buttonWidth, buttonHeight)}>
-                    <FileDownloadOutlinedIcon
-                        sx={{
-                            width: "auto",
-                            height: "90%",
-                            color: theme.palette.base.dark,
-                        }}
-                    />
-                </Box>
+                <Link
+                    href={urls.myResumeURL}
+                    title="Go to my resume on drive"
+                    target="_blank"
+                >
+                    <Box
+                        sx={downloadButtonWraperStyles(
+                            buttonWidth,
+                            buttonHeight
+                        )}
+                    >
+                        <FileDownloadOutlinedIcon
+                            sx={{
+                                width: "auto",
+                                height: "90%",
+                                color: theme.palette.base.dark,
+                            }}
+                        />
+                    </Box>
+                </Link>
             </Stack>
 
             {WelcomeSectionConstants.downloadButtonAnimations(

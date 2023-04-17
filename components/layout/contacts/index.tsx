@@ -65,7 +65,7 @@ const Contacts = ({
                         : theme.palette.base.light,
                     switchPointInView
                         ? theme.palette.blue.light
-                        : theme.palette.blue.dark,
+                        : theme.palette.blue.main,
                     switchPointInView
                         ? theme.palette.base.light
                         : theme.palette.base.dark,

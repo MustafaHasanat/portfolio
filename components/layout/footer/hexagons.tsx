@@ -24,7 +24,7 @@ const Hexagons = () => {
                 width="80%"
                 textAlign="center"
                 color={theme.palette.base.light}
-                fontSize="2vw"
+                fontSize="1.5vw"
             >
                 {title}
             </Typography>

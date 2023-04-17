@@ -3,6 +3,8 @@ import { Stack, Typography, Button, Divider, Chip } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Fragment } from "react";
 import FlipButton from "./flipButton";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import IconicButton from "@/components/shared/iconicButton";
 
 interface FrontFaceProps {
     index: number;
@@ -21,13 +23,21 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
 
     return (
         <Fragment>
-            {icon(theme.palette.blue.dark, "30%")}
+            {icon(theme.palette.blue.main, "30%")}
 
-            <Typography fontSize="3vw" textTransform="uppercase">
+            <Typography
+                fontSize="3vw"
+                textTransform="uppercase"
+                color={theme.palette.base.light}
+            >
                 {title}
             </Typography>
 
-            <Typography fontSize="1.5vw" textAlign="center">
+            <Typography
+                fontSize="1.5vw"
+                textAlign="center"
+                color={theme.palette.base.light}
+            >
                 {description}
             </Typography>
 
@@ -43,7 +53,12 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
                         <Fragment key={`front card tag number: ${tagIndex}`}>
                             <Chip
                                 label={tag}
-                                sx={{ fontSize: "1.1vw", mb: 1 }}
+                                sx={{
+                                    fontSize: "1.1vw",
+                                    mb: 1,
+                                    color: theme.palette.base.light,
+                                    bgcolor: theme.palette.blue.main,
+                                }}
                             />
                         </Fragment>
                     );
@@ -53,16 +68,27 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
             <Divider sx={{ width: "100%", marginTop: 3, marginBottom: 2 }} />
 
             <Stack direction="row" justifyContent="space-between" width="100%">
-                <Button
-                    sx={{
-                        borderRadius: 2,
-                        background: theme.palette.blue.dark,
+                <IconicButton
+                    icon={
+                        <LocalShippingIcon
+                            sx={{
+                                color: theme.palette.blue.main,
+                                height: "100%",
+                            }}
+                        />
+                    }
+                    color={theme.palette.base.light}
+                    hoverColor={theme.palette.blue.main}
+                    onClick={() => {}}
+                    extraSX={{
+                        width: "40%",
+                        height: "80%",
                     }}
                 >
-                    <Typography p={0.5} color={theme.palette.base.light}>
-                        check projects
+                    <Typography fontSize="1.3vw" textTransform="uppercase">
+                        order
                     </Typography>
-                </Button>
+                </IconicButton>
 
                 <FlipButton index={index} face="front" flipCard={flipCard} />
             </Stack>

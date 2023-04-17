@@ -1,15 +1,9 @@
 import Navbar from "../navbar";
 import { Stack, Avatar, Typography, Box, Link } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
 import { useTheme } from "@mui/material";
-import {
-    // headerVariants,
-    headerBoxStyles,
-    // headerColoredBoxStyles,
-    titleStyles,
-    titleCloneStyles,
-} from "./styles";
+import { headerBoxStyles, titleStyles, titleCloneStyles } from "./styles";
 import { urls } from "@/utils/constants/global/global";
 
 interface HeaderProps {
@@ -25,17 +19,13 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
     useEffect(() => {
         var lastScroll = 0;
 
-        // useMemo(() => first, [second])
-
         window.addEventListener("scroll", () => {
             const currentScroll = window.scrollY;
 
             if (currentScroll >= lastScroll) {
                 setHeaderPosition("-16vh");
-                console.log("down");
             } else if (currentScroll < lastScroll) {
                 setHeaderPosition("0vh");
-                console.log("up");
             }
 
             lastScroll = currentScroll;
@@ -68,15 +58,6 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     theme.palette.base.dark
                 )}
             >
-                {/* <Box
-                    id="header-colored-box"
-                    sx={headerColoredBoxStyles(theme.palette.purple.dark)}
-                    component={motion.div}
-                    animate={headerAnimations}
-                    initial="visible"
-                    variants={headerVariants}
-                /> */}
-
                 <Stack
                     id="header-logo-box"
                     direction="row"
@@ -98,11 +79,9 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
 
                     <Typography
                         sx={titleStyles(
+                            theme.palette.base.light,
                             landingSectionInView
-                                ? theme.palette.base.light
-                                : theme.palette.base.light,
-                            landingSectionInView
-                                ? theme.palette.blue.main
+                                ? theme.palette.blue.light
                                 : theme.palette.base.light
                         )}
                     >
@@ -160,10 +139,14 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                             initial="hidden"
                             variants={{
                                 visible: {
+                                    scale: 1,
+                                    x: "-50%",
                                     opacity: 1,
-                                    transition: { duration: 0.3 },
+                                    transition: { duration: 0.2 },
                                 },
                                 hidden: {
+                                    scale: 0,
+                                    x: "-50%",
                                     opacity: 0,
                                     transition: { duration: 0.3 },
                                 },
@@ -179,7 +162,6 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                                 position: "absolute",
                                 borderRadius: 2,
                                 left: "50%",
-                                transform: "translateX(-50%)",
                             }}
                         />
                     </Box>

@@ -1,14 +1,17 @@
 import { keyframes } from "@mui/material";
 
-export const mainSectionStyles = {
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    width: "100%",
-    height: "100vh",
-    background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/desktopWP.jpg")`,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+export const mainSectionStyles = (borderColor: string) => {
+    return {
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        width: "100%",
+        height: "101vh",
+        background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/desktopWP.jpg")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        borderBottom: `1px solid ${borderColor}`,
+    };
 };
 
 const orbital = (scale: number) => keyframes`
@@ -104,7 +107,7 @@ export const downloadButtonStyles = (width: string, height: string) => {
         justifyContent: "center",
         alignItems: "center",
         left: 100,
-        bottom: "10%",
+        bottom: "calc(10% + 1vh)",
         width: width,
         height: height,
 

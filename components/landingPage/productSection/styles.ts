@@ -1,10 +1,7 @@
-export const ProductBox = (color: string) => {
-    return {
-        position: "relative",
-        alignItems: "center",
-        paddingY: 10,
-        bgcolor: color,
-    };
+export const ProductBox = {
+    position: "relative",
+    alignItems: "center",
+    paddingY: 10,
 };
 
 export const CardsBox = (transform: string) => {

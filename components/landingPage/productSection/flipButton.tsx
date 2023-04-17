@@ -28,7 +28,7 @@ const FlipButton = ({ index, face, flipCard }: FlipButtonProps) => {
             >
                 <SwapHorizIcon
                     sx={{
-                        color: theme.palette.blue.dark,
+                        color: theme.palette.blue.main,
                         width: "100%",
                         height: "100%",
                     }}

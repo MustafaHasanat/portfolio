@@ -20,14 +20,14 @@ const theme = createTheme({
             dark: "#000",
         },
         purple: {
-            main: "#9361D0",
-            light: "#F1B7FF",
-            dark: "#3A1078",
+            main: "#3A1078",
         },
         blue: {
-            main: "#00B7E5",
+            main: "#006CC9",
             light: "#4AFCE2",
-            dark: "#006CC9",
+        },
+        gold: {
+            main: "#FFD700",
         },
     },
 });
