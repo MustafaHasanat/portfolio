@@ -52,7 +52,7 @@ const SkillsRoller = ({
                         mainCard + 1 >= skills.length ? 0 : mainCard + 1
                     );
                 }
-            }, 1000);
+            }, 400);
         }
     };
 
@@ -72,7 +72,7 @@ const SkillsRoller = ({
     };
 
     useEffect(() => {
-        const interval = setInterval(() => handleMovingCard(), 1500);
+        const interval = setInterval(() => handleMovingCard(), 700);
 
         return () => {
             clearInterval(interval);

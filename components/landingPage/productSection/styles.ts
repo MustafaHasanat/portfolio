@@ -10,8 +10,6 @@ export const ProductBox = (color: string) => {
 export const CardsBox = (transform: string) => {
     return {
         gap: 15,
-        width: "90%",
-        direction: "row",
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
