@@ -9,12 +9,23 @@ const LayoutConstants = {
         {
             title: "home",
             link: String.raw`/`,
-            navigationBars: ["home-main", "home-product", "home-skills", "home-quotes"],
+            navigationBars: [
+                "home-main",
+                "home-product",
+                "home-skills",
+                "home-quotes",
+            ],
         },
         {
             title: "about me",
             link: String.raw`/about`,
-            navigationBars: ["about-1", "about-2", "about-3"],
+            navigationBars: [
+                "about-bio",
+                "about-education",
+                "about-experience",
+                "about-certificates",
+                "about-languages",
+            ],
         },
         {
             title: "projects",

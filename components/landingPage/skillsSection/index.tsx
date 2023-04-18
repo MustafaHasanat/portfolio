@@ -26,7 +26,7 @@ const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
             <InteractiveTitle
                 primary={theme.palette.blue.main}
                 secondary={theme.palette.base.dark}
-                tertiary={theme.palette.blue.main}
+                tertiary={theme.palette.gold.main}
                 containerHeight="30vh"
                 buttonWidth="40%"
                 buttonHeight="60%"

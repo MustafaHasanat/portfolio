@@ -15,8 +15,6 @@ export default function Home() {
             state.navigationBarReducer.currentView
     );
 
-    // const [currentView, setCurrentView] = useState("home-main");
-
     const mainSecRef = useRef(null);
     const productSecRef = useRef(null);
     const skillsSecRef = useRef(null);

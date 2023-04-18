@@ -41,7 +41,7 @@ const QuotesSecction = ({ inViewRef }: QuotesSecctionProps) => {
             <InteractiveTitle
                 primary={theme.palette.blue.main}
                 secondary={theme.palette.base.dark}
-                tertiary={theme.palette.blue.main}
+                tertiary={theme.palette.gold.main}
                 containerHeight="30vh"
                 buttonWidth="50%"
                 buttonHeight="60%"

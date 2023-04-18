@@ -56,7 +56,7 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
             <InteractiveTitle
                 primary={theme.palette.blue.main}
                 secondary={theme.palette.base.dark}
-                tertiary={theme.palette.blue.main}
+                tertiary={theme.palette.gold.main}
                 containerHeight="30vh"
                 buttonWidth="40%"
                 buttonHeight="60%"
@@ -66,10 +66,13 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
             >
                 <Typography
                     fontSize="2.7vw"
-                    color={theme.palette.base.dark}
+                    color={theme.palette.gold.main}
                     textTransform="uppercase"
                     letterSpacing={3}
                     fontWeight="bold"
+                    sx={{
+                        textShadow: `3px 3px 15px ${theme.palette.base.dark}`
+                    }}
                 >
                     What Do I do
                 </Typography>

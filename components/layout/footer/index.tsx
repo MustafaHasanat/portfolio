@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Box, Stack } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import sendEmail from "@/utils/emails/sendEmail";
+import sendEmail from "@/utils/helpers/sendEmail";
 import Form from "./form";
 import { snackbarActions, navigationBarActions } from "@/utils/store/store";
 import { useDispatch } from "react-redux";

@@ -65,20 +65,27 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
                 })}
             </Stack>
 
-            <Divider sx={{ width: "100%", marginTop: 3, marginBottom: 2 }} />
+            <Divider
+                sx={{
+                    width: "100%",
+                    marginTop: 3,
+                    marginBottom: 2,
+                    bgcolor: theme.palette.base.light,
+                }}
+            />
 
             <Stack direction="row" justifyContent="space-between" width="100%">
                 <IconicButton
                     icon={
                         <LocalShippingIcon
                             sx={{
-                                color: theme.palette.blue.main,
+                                color: theme.palette.gold.main,
                                 height: "100%",
                             }}
                         />
                     }
                     color={theme.palette.base.light}
-                    hoverColor={theme.palette.blue.main}
+                    hoverColor={theme.palette.gold.main}
                     onClick={() => {}}
                     extraSX={{
                         width: "40%",

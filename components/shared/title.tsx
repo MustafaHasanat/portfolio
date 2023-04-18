@@ -20,7 +20,6 @@ interface SharedTitleProps {
     secondaryBorder?: string;
     tertiary?: string;
     thickness?: number;
-    shadowColor?: string;
 }
 const InteractiveTitle = (props: SharedTitleProps) => {
     const theme = useTheme();
@@ -33,8 +32,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
         primaryBorder = "transparent",
         secondary = theme.palette.blue.main,
         secondaryBorder = "transparent",
-        tertiary = theme.palette.blue.main,
-        shadowColor = theme.palette.gold.main,
+        tertiary = theme.palette.gold.main,
         thickness = 3,
         // sizes
         containerWidth = "100%",
@@ -193,7 +191,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                             ? "translateX(0px)"
                             : "translateX(-100px)",
                         transition: "1.3s ease",
-                        filter: `drop-shadow(0px 0px 3px ${shadowColor})`,
+                        filter: `drop-shadow(0px 0px 3px ${tertiary})`,
                     }}
                 >
                     <path
@@ -222,7 +220,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                             ? "translateX(0px)"
                             : "translateX(100px)",
                         transition: "1.3s ease",
-                        filter: `drop-shadow(0px 0px 3px ${shadowColor})`,
+                        filter: `drop-shadow(0px 0px 3px ${tertiary})`,
                     }}
                 >
                     <path
