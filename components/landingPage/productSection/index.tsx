@@ -66,13 +66,10 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
             >
                 <Typography
                     fontSize="2.7vw"
-                    color={theme.palette.gold.main}
+                    color={theme.palette.base.dark}
                     textTransform="uppercase"
                     letterSpacing={3}
                     fontWeight="bold"
-                    sx={{
-                        textShadow: `3px 3px 15px ${theme.palette.base.dark}`
-                    }}
                 >
                     What Do I do
                 </Typography>

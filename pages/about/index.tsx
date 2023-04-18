@@ -10,7 +10,6 @@ import { useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export default function About() {
     const currentView = useSelector(
         (state: { navigationBarReducer: { currentView: string } }) =>
@@ -37,7 +36,8 @@ export default function About() {
                 bio: currentView === "about-bio" ? true : false,
                 education: currentView === "about-education" ? true : false,
                 experience: currentView === "about-experience" ? true : false,
-                certificates: currentView === "about-certificates" ? true : false,
+                certificates:
+                    currentView === "about-certificates" ? true : false,
                 languages: currentView === "about-languages" ? true : false,
             })
         );
@@ -67,14 +67,14 @@ export default function About() {
         if (languagesSecInView)
             dispatch(navigationBarActions.setCurrentView("about-languages"));
     }, [languagesSecInView]);
-    
+
     return (
         <Stack>
-            <BioSection inViewRef={bioSecRef}/>
-            <EducationSection inViewRef={educationSecRef}/>
-            <ExperienceSection inViewRef={experienceSecRef}/>
-            <CertificatesSection inViewRef={certificatesSecRef}/>
-            <LanguagesSection inViewRef={languagesSecRef}/>
+            <BioSection inViewRef={bioSecRef} />
+            <EducationSection inViewRef={educationSecRef} />
+            <ExperienceSection inViewRef={experienceSecRef} />
+            <CertificatesSection inViewRef={certificatesSecRef} />
+            <LanguagesSection inViewRef={languagesSecRef} />
         </Stack>
     );
 }

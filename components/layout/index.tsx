@@ -33,6 +33,7 @@ const Layout = ({ children }: { children: JSX.Element }) => {
                 background:
                     "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(images/hexaWP.jpg)",
                 backgroundRepeat: "repeat",
+                backgroundPosition: "center",
             }}
         >
             <HeadTag />

@@ -11,9 +11,6 @@ export default function NotFoundPage() {
             alignItems="center"
             sx={{
                 height: "100vh",
-                background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/desktopWP.jpg")`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
             }}
         >
             <GlitchedText

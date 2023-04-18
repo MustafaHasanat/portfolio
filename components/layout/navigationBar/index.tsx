@@ -53,6 +53,7 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
                 left: 0,
                 zIndex: 20,
                 transform: "translateY(50%)",
+                bgcolor: "transparent"
             }}
         >
             {bars.map((bar, index) => {

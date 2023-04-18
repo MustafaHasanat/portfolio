@@ -1,5 +1,6 @@
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
 import { MutableRefObject } from "react";
+import ButtonSet from "./buttonSet";
 
 interface BioSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -69,7 +70,12 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
     };
 
     return (
-        <Box id="about-bio" height="105vh" pt="20vh" px={12} position="relative">
+        <Box
+            id="about-bio"
+            pt="20vh"
+            px={12}
+            position="relative"
+        >
             <Box
                 ref={inViewRef}
                 sx={{
@@ -89,6 +95,12 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
             )}
             {paragraph(
                 "I always ensure to enjoy my work to follow my huge ambition to work on an international software company that builds products which will have a worldwide impact on people's lives. I really believe that it will guarantee for me the constant self-growth I truly desire for both technical and soft skills, beside providing me the opportunity to work with world's top experts."
+            )}
+
+            <ButtonSet />
+
+            {paragraph(
+                "In addition, I love teaching what I learn to others. Either by my shared online documents, courses, or workshops. I have +3000 students around the world enrolled in my Udemy programming courses, and I have trained several groups of children on building small robots."
             )}
             {paragraph(
                 "I value affiliation, and loves being in a group of colleagues whom I can exchange knowledge and experiences with them. I also prioritizes precision, discipline, and the value of time. At my free time, I enjoy drawing and learning new languages."

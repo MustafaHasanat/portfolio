@@ -20,7 +20,9 @@ const Navbar = ({ animation, landingSectionInView }: NavbarProps) => {
     useEffect(() => {
         dispatch(
             navigationBarActions.setBars(
-                LayoutConstants.navbarItems[pathNumber].navigationBars
+                pathNumber === -1
+                    ? []
+                    : LayoutConstants.navbarItems[pathNumber].navigationBars
             )
         );
     }, [path]);
