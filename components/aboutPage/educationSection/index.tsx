@@ -1,6 +1,15 @@
+import GlassBox from "@/components/shared/glassBox";
 import InteractiveTitle from "@/components/shared/title";
 import EducationSectionConstants from "@/utils/constants/aboutPage/educationSection";
-import { Avatar, Box, Stack, Typography, useTheme } from "@mui/material";
+import {
+    Avatar,
+    Box,
+    Chip,
+    Divider,
+    Stack,
+    Typography,
+    useTheme,
+} from "@mui/material";
 import { Fragment, MutableRefObject } from "react";
 
 interface EducationSectionProps {
@@ -9,9 +18,25 @@ interface EducationSectionProps {
 
 const EducationSection = ({ inViewRef }: EducationSectionProps) => {
     const theme = useTheme();
-    
+
+    const textItem = (key: string, value: string) => {
+        return (
+            <Stack direction="row" spacing={1}>
+                <Typography color={theme.palette.base.light} fontWeight="bold">
+                    {key}
+                </Typography>
+                <Typography
+                    color={theme.palette.base.light}
+                    sx={{ opacity: 0.8 }}
+                >
+                    {value}
+                </Typography>
+            </Stack>
+        );
+    };
+
     return (
-        <Stack id="about-education" height="105vh" px={12} position="relative">
+        <Stack id="about-education" px={12} pt={5} position="relative">
             <Box
                 ref={inViewRef}
                 sx={{
@@ -43,30 +68,102 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
                 </Typography>
             </InteractiveTitle>
 
-            <Stack direction="row" justifyContent="space-evenly">
+            <Stack
+                spacing={10}
+                justifyContent="center"
+                my={5}
+                flexWrap="wrap"
+                direction="row"
+            >
                 {EducationSectionConstants.certificates.map((cert, index) => {
                     return (
                         <Fragment key={`certificate number: ${index}`}>
-                            <Box
-                                sx={{
+                            <GlassBox
+                                id={`certificate box number: ${index}`}
+                                extraSX={{
                                     width: "35vw",
-                                    height: "35vh",
                                     position: "relative",
+                                    padding: 3,
+                                    alignItems: "center",
                                 }}
                             >
-                                <Avatar
-                                    variant="square"
-                                    src={cert.logoSrc}
+                                <Stack
+                                    direction="row"
+                                    height="25vh"
+                                    justifyContent="start"
+                                    alignItems="center"
+                                >
+                                    <Avatar
+                                        variant="square"
+                                        src={cert.logoSrc}
+                                        sx={{
+                                            width: "25%",
+                                            height: "fit-content",
+                                        }}
+                                    />
+
+                                    <Stack
+                                        ml={3}
+                                        justifyContent="space-between"
+                                        sx={{
+                                            width: "fit-content",
+                                            height: "70%",
+                                        }}
+                                    >
+                                        {textItem("Facility:", cert.facility)}
+                                        {textItem("Degree:", cert.degree)}
+                                        {textItem("Duration:", cert.date)}
+                                    </Stack>
+                                </Stack>
+
+                                <Divider
                                     sx={{
-                                        padding: 10,
-                                        position: "absolute",
-                                        top: "50%",
-                                        left: "50%",
-                                        zIndex: 2,
-                                        ...cert.extraSX,
+                                        bgcolor: theme.palette.base.light,
+                                        width: "100%",
+                                        marginY: 2,
                                     }}
                                 />
-                            </Box>
+
+                                <Stack mt={3} width="100%" alignItems="center">
+                                    <Typography
+                                        fontWeight="bold"
+                                        color={theme.palette.base.light}
+                                        textTransform="uppercase"
+                                        fontSize="1.5vw"
+                                    >
+                                        skills
+                                    </Typography>
+
+                                    <Stack
+                                        direction="row"
+                                        flexWrap="wrap"
+                                        justifyContent="center"
+                                        gap={2}
+                                        width="100%"
+                                        py={5}
+                                    >
+                                        {cert.skills.map((skill, index) => {
+                                            return (
+                                                <Fragment
+                                                    key={`certificate number: ${index}`}
+                                                >
+                                                    <Chip
+                                                        label={skill}
+                                                        sx={{
+                                                            fontSize: "1.2vw",
+                                                            color: theme.palette
+                                                                .base.light,
+                                                            bgcolor:
+                                                                theme.palette
+                                                                    .blue.main,
+                                                        }}
+                                                    />
+                                                </Fragment>
+                                            );
+                                        })}
+                                    </Stack>
+                                </Stack>
+                            </GlassBox>
                         </Fragment>
                     );
                 })}
