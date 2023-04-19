@@ -1,30 +1,86 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import InteractiveTitle from "@/components/shared/title";
 import { Box, Stack, Typography } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { motion } from "framer-motion";
-import { MutableRefObject, useState } from "react";
+import { Fragment, MutableRefObject, useEffect, useState } from "react";
 import QuotesSectionConstants from "@/utils/constants/landingPage/quotesSection";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import GlassBox from "@/components/shared/glassBox";
+import shuffleArray from "@/utils/helpers/shuffleArray";
 
-interface QuotesSecctionProps {
+
+interface QuotesSectionProps {
     inViewRef: MutableRefObject<null>;
 }
 
-const QuotesSecction = ({ inViewRef }: QuotesSecctionProps) => {
+const QuotesSection = ({ inViewRef }: QuotesSectionProps) => {
     const theme = useTheme();
-    const [bgImage, setBgImage] = useState(0);
+    let shuffledQuotes = QuotesSectionConstants.quotes
+
+    const cardWidth = "20vw";
+    const cardsSpacing = "10vw";
+    const cardsBoxWidth = `calc(${cardWidth} * 3 + ${cardsSpacing})`;
+
+    const [shiftIndex, setShiftIndex] = useState(1);
+    const shiftFactor = `calc((${cardWidth} + ${cardsSpacing} / 2) * ${shiftIndex})`;
+
+
+    useEffect(() => {
+        shuffledQuotes = shuffleArray(shuffledQuotes)
+    }, [])
+    
 
     const handleArrowClick = (arrow: string) => {
         if (arrow === "left") {
-            setBgImage((prev) =>
-                prev > 0 ? prev - 1 : QuotesSectionConstants.quotes.length - 1
+            setShiftIndex((prev) =>
+                prev - 1 >= -1 * shuffledQuotes.length + 2
+                    ? prev - 1
+                    : prev
             );
         } else {
-            setBgImage((prev) =>
-                prev < QuotesSectionConstants.quotes.length - 1 ? prev + 1 : 0
-            );
+            setShiftIndex((prev) => (prev + 1 <= 1 ? prev + 1 : prev));
         }
+    };
+
+    const arrow = (
+        transform: string,
+        positionPair: { left: string } | { right: string },
+        direction: string
+    ) => {
+        const newTransform = "translateY(-50%) " + transform;
+
+        return (
+            <Box
+                component={motion.div}
+                initial={{
+                    transform: newTransform,
+                }}
+                whileHover={{
+                    transform: newTransform + " scale(1.3)",
+                }}
+                whileTap={{
+                    transform: newTransform + " scale(0.7)",
+                }}
+                onClick={() => {
+                    handleArrowClick(direction);
+                }}
+                sx={{
+                    position: "absolute",
+                    top: "50%",
+                    width: "7vw",
+                    height: "7vw",
+                    cursor: "pointer",
+                    opacity: 0.5,
+                    zIndex: 5,
+                    ...positionPair,
+                }}
+            >
+                <KeyboardDoubleArrowLeftIcon
+                    sx={{ height: "100%", width: "100%" }}
+                />
+            </Box>
+        );
     };
 
     return (
@@ -64,85 +120,140 @@ const QuotesSecction = ({ inViewRef }: QuotesSecctionProps) => {
                 direction="row"
                 justifyContent="space-evenly"
                 alignItems="center"
-                sx={{ height: "80vh" }}
+                height="80vh"
+                color={theme.palette.base.light}
+                position="relative"
             >
-                <Box
-                    component={motion.div}
-                    onClick={() => {
-                        handleArrowClick("left");
-                    }}
-                    sx={{ width: "10%", height: "auto", cursor: "pointer" }}
-                >
-                    <KeyboardDoubleArrowLeftIcon
-                        sx={{ height: "100%", width: "100%" }}
-                    />
-                </Box>
+                {arrow("rotate(0deg)", { left: "6%" }, "right")}
+                {arrow("rotate(180deg)", { right: "6%" }, "left")}
 
-                <Stack sx={{ height: "80%", width: "60%" }} alignItems="center">
-                    <Box
-                        component={motion.div}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
+                <Box
+                    sx={{
+                        position: "relative",
+                        height: "80%",
+                        width: "70vw",
+                        overflow: "hidden",
+                        zIndex: 4,
+                    }}
+                >
+                    <Stack
+                        direction="row"
+                        alignItems="center"
                         sx={{
                             position: "relative",
-                            width: "100%",
                             height: "100%",
-                            backgroundImage: `
-                                linear-gradient(rgba(0, 0, 0, 0.6), 
-                                rgba(0, 0, 0, 0.9)), 
-                                url("${QuotesSectionConstants.quotes[bgImage].src}")`,
-                            backgroundRepeat: "no-repeat",
-                            backgroundPositionY: "center",
-                            backgroundPositionX: "center",
-                            backgroundSize: "cover",
+                            width: cardsBoxWidth,
+                            overflow: "hidden",
+                            zIndex: 4,
                         }}
                     >
-                        <Typography
-                            textTransform="capitalize"
-                            fontSize="2.5vw"
+                        <Stack
+                            id="inner-moving-box"
+                            component={motion.div}
+                            initial={{ x: 0 }}
+                            animate={{ x: shiftFactor }}
+                            direction="row"
+                            spacing={`calc(${cardsSpacing} / 2)`}
                             sx={{
-                                position: "absolute",
-                                top: 80,
-                                left: 80,
-                                width: "80%",
-                                bgcolor: "transparent",
+                                height: "40%",
+                                width: "fit-content",
                                 color: theme.palette.base.light,
                             }}
                         >
-                            {QuotesSectionConstants.quotes[bgImage].quote}
-                        </Typography>
+                            {shuffledQuotes.map(
+                                (quote, index) => {
+                                    return (
+                                        <Fragment
+                                            key={`quote number: ${index}`}
+                                        >
+                                            <Box
+                                                component={motion.div}
+                                                initial={{
+                                                    scale: 1,
+                                                    zIndex: 5,
+                                                }}
+                                                animate={{
+                                                    scale:
+                                                        shiftIndex - 1 ===
+                                                        index * -1
+                                                            ? 2.3
+                                                            : 1,
+                                                    zIndex:
+                                                        shiftIndex - 1 ===
+                                                        index * -1
+                                                            ? 6
+                                                            : 5,
+                                                }}
+                                            >
+                                                <GlassBox
+                                                    id="quotes-glass-box"
+                                                    extraSX={{
+                                                        position: "relative",
+                                                        height: "100%",
+                                                        width: cardWidth,
+                                                        overflow: "hidden",
+                                                    }}
+                                                >
+                                                    <Box
+                                                        sx={{
+                                                            position:
+                                                                "relative",
+                                                            width: "100%",
+                                                            height: "100%",
+                                                            backgroundImage: `
+                                                                linear-gradient(rgba(0, 0, 0, 0.6), 
+                                                                rgba(0, 0, 0, 0.9)), 
+                                                                url("${quote.src}")`,
+                                                            backgroundRepeat:
+                                                                "no-repeat",
+                                                            backgroundPositionY:
+                                                                "center",
+                                                            backgroundPositionX:
+                                                                "center",
+                                                            backgroundSize:
+                                                                "cover",
+                                                        }}
+                                                    >
+                                                        <Typography
+                                                            textTransform="capitalize"
+                                                            fontSize="1vw"
+                                                            sx={{
+                                                                position:
+                                                                    "absolute",
+                                                                top: 15,
+                                                                left: 15,
+                                                                width: "80%",
+                                                            }}
+                                                        >
+                                                            {quote.quote}
+                                                        </Typography>
 
-                        <Typography
-                            textTransform="uppercase"
-                            fontSize="1.5vw"
-                            sx={{
-                                position: "absolute",
-                                bottom: 80,
-                                right: 80,
-                                bgcolor: "transparent",
-                                color: theme.palette.base.light,
-                            }}
-                        >
-                            {"~ " +
-                                QuotesSectionConstants.quotes[bgImage].author}
-                        </Typography>
-                    </Box>
-                </Stack>
-
-                <Box
-                    component={motion.div}
-                    onClick={() => {
-                        handleArrowClick("right");
-                    }}
-                    sx={{ width: "10%", height: "auto", cursor: "pointer" }}
-                >
-                    <KeyboardDoubleArrowRightIcon
-                        sx={{ height: "100%", width: "100%" }}
-                    />
+                                                        <Typography
+                                                            textTransform="uppercase"
+                                                            fontSize="0.6vw"
+                                                            sx={{
+                                                                position:
+                                                                    "absolute",
+                                                                bottom: 15,
+                                                                right: 15,
+                                                            }}
+                                                        >
+                                                            {"~ " +
+                                                                quote.author}
+                                                        </Typography>
+                                                    </Box>
+                                                </GlassBox>
+                                            </Box>
+                                        </Fragment>
+                                    );
+                                }
+                            )}
+                        </Stack>
+                    </Stack>
                 </Box>
             </Stack>
         </Stack>
     );
 };
 
-export default QuotesSecction;
+export default QuotesSection;

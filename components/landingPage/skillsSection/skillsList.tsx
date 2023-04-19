@@ -58,20 +58,6 @@ const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
                         return (
                             <Fragment key={`skill set number:${skillIndex}`}>
                                 <Stack
-                                    component={motion.div}
-                                    initial="hidden"
-                                    animate={listAnimation}
-                                    variants={{
-                                        hidden: {
-                                            scale: 0,
-                                        },
-                                        visible: {
-                                            scale: 1,
-                                            transition: {
-                                                delay: (skillIndex + 1) * 0.05,
-                                            },
-                                        },
-                                    }}
                                     direction="row"
                                     justifyContent="space-between"
                                     alignItems="center"

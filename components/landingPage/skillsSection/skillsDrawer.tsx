@@ -30,6 +30,7 @@ const SkillsDrawer = ({
                 height: "10vh",
                 overflow: "hidden",
                 borderRadius: 3,
+                marginBottom: 10,
             }}
         >
             <Stack

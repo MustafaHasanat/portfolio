@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import MainSection from "@/components/landingPage/mainSection";
 import ProductSection from "@/components/landingPage/productSection";
-import QuotesSecction from "@/components/landingPage/quotesSection";
+import QuotesSection from "@/components/landingPage/quotesSection";
 import SkillsSection from "@/components/landingPage/skillsSection";
 import { navigationBarActions } from "@/utils/store/store";
 import { Stack } from "@mui/material";
@@ -63,7 +63,7 @@ export default function Home() {
             <MainSection inViewRef={mainSecRef} />
             <ProductSection inViewRef={productSecRef} />
             <SkillsSection inViewRef={skillsSecRef} />
-            <QuotesSecction inViewRef={quotesSecRef} />
+            <QuotesSection inViewRef={quotesSecRef} />
         </Stack>
     );
 }

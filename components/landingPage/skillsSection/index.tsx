@@ -28,7 +28,7 @@ const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
     };
 
     return (
-        <Stack id="home-skills" height="130vh">
+        <Stack id="home-skills" position="relative" height="120vh">
             <Box
                 ref={inViewRef}
                 sx={{
