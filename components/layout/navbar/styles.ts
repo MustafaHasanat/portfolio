@@ -1,24 +1,3 @@
-export const buttonVariants = (visibleColor: string, hiddenColor: string) => {
-    return {
-        visible: {
-            backgroundColor: "transparent",
-            color: visibleColor,
-            transition: {
-                type: "Spring",
-                duration: 0.1,
-            },
-        },
-        hidden: {
-            backgroundColor: "transparent",
-            color: hiddenColor,
-            transition: {
-                type: "Spring",
-                duration: 0.1,
-            },
-        },
-    };
-};
-
 export const navButtonStyles = (color: string) => {
     return {
         padding: 0,

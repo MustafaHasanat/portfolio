@@ -1,7 +1,12 @@
+import {
+    AboutPageProps,
+    HomePageProps,
+} from "@/utils/store/navigationBarSlice";
 import { Box, Stack, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
+import getViewDetails from "../../../utils/helpers/getViewDetails";
 
 interface NavigationBarProps {
     landingSectionInView: boolean;
@@ -15,17 +20,18 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
             state.navigationBarReducer.bars
     );
 
-    const homePageState = useSelector(
+    const { homePage, aboutPage } = useSelector(
         (state: {
             navigationBarReducer: {
-                homePage: {
-                    main: boolean;
-                    product: boolean;
-                    skills: boolean;
-                    quotes: boolean;
-                };
+                homePage: HomePageProps;
+                aboutPage: AboutPageProps;
             };
-        }) => state.navigationBarReducer.homePage
+        }) => {
+            return {
+                homePage: state.navigationBarReducer.homePage,
+                aboutPage: state.navigationBarReducer.aboutPage,
+            };
+        }
     );
 
     const handleClick = (bar: string) => {
@@ -34,20 +40,8 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
         });
     };
 
-    const getView = (bar: string) => {
-        switch (bar) {
-            case "home-main":
-                return homePageState.main;
-            case "home-product":
-                return homePageState.product;
-            case "home-skills":
-                return homePageState.skills;
-            case "home-quotes":
-                return homePageState.quotes;
-            default:
-                return false;
-        }
-    };
+    const getView = (bar: string) =>
+        getViewDetails(bar, { homePage, aboutPage });
 
     return (
         <Stack
@@ -59,6 +53,7 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
                 left: 0,
                 zIndex: 20,
                 transform: "translateY(50%)",
+                bgcolor: "transparent"
             }}
         >
             {bars.map((bar, index) => {

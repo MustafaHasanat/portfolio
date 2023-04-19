@@ -47,7 +47,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                 }}
                                 sx={MiniCardBox(
                                     miniCardWidth,
-                                    theme.palette.blue.dark,
+                                    theme.palette.blue.main,
                                     hoveredCard === cardIndex + 1
                                         ? "scale(1.1) rotate(-3deg)"
                                         : "scale(1) rotate(0deg)"

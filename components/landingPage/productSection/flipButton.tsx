@@ -1,6 +1,7 @@
 import { Button, Fade, Tooltip } from "@mui/material";
 import { useTheme } from "@mui/material";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
+import { useState } from "react";
 
 interface FlipButtonProps {
     index: number;
@@ -10,6 +11,7 @@ interface FlipButtonProps {
 
 const FlipButton = ({ index, face, flipCard }: FlipButtonProps) => {
     const theme = useTheme();
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
         <Tooltip
@@ -25,10 +27,19 @@ const FlipButton = ({ index, face, flipCard }: FlipButtonProps) => {
                     borderRadius: "100%",
                 }}
                 onClick={() => flipCard(index + 1, face)}
+                onMouseEnter={() => {
+                    setIsHovered(true);
+                }}
+                onMouseLeave={() => {
+                    setIsHovered(false);
+                }}
             >
                 <SwapHorizIcon
                     sx={{
-                        color: theme.palette.blue.dark,
+                        transition: "0.3s ease",
+                        color: isHovered
+                            ? theme.palette.gold.main
+                            : theme.palette.blue.main,
                         width: "100%",
                         height: "100%",
                     }}

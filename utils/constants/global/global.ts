@@ -10,6 +10,8 @@ export const urls = {
     myCVURL:
         "https://docs.google.com/document/d/e/2PACX-1vRUFPqrfEa6liv4fabfbP3DRU6MK_Kbs2ODfnHh-Gcv6lY7v-S0T0C9eqnrthojSw/pub",
     myBMCURL: "https://www.buymeacoffee.com/MustafaHasanat",
+    myResumeURL:
+        "https://drive.google.com/file/d/1JI0T4S14lpNuumdhuR9K9PLJaAUySMCe/view?usp=sharing",
 };
 
 const globalConstants = {

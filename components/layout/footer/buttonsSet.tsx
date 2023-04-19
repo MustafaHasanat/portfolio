@@ -4,6 +4,7 @@ import { useState } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import useBoxSize from "@/hooks/useBoxSize";
 import { motion } from "framer-motion";
+import IconicButton from "@/components/shared/iconicButton";
 
 interface ButtonsSetProps {
     clearForm: () => void;
@@ -12,8 +13,6 @@ interface ButtonsSetProps {
 const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
     const theme = useTheme();
     const [sendHovered, setSendHovered] = useState(false);
-    const [clearHovered, setClearHovered] = useState(false);
-    const { ref: buttonRef, height: buttonHeight } = useBoxSize();
 
     return (
         <Stack
@@ -47,7 +46,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                     mr={3}
                     color={
                         sendHovered
-                            ? theme.palette.blue.dark
+                            ? theme.palette.blue.main
                             : theme.palette.base.light
                     }
                 >
@@ -68,7 +67,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                     <SendIcon
                         sx={{
                             color: sendHovered
-                                ? theme.palette.blue.dark
+                                ? theme.palette.blue.main
                                 : theme.palette.base.light,
                             width: "100%",
                             height: "100%",
@@ -78,70 +77,21 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 </Stack>
             </Button>
 
-            <Box
-                component="div"
-                ref={buttonRef}
-                onMouseEnter={() => {
-                    setClearHovered(true);
-                }}
-                onMouseLeave={() => {
-                    setClearHovered(false);
-                }}
-                sx={{
-                    position: "relative",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    width: "10%",
-                    color: theme.palette.base.light,
-                    border: `1px solid`,
-                    borderRadius: 1,
-                    transition: "0.2s ease",
-                    borderColor: clearHovered
-                        ? "red"
-                        : theme.palette.base.light,
-                    overflow: "hidden",
-                    cursor: "pointer",
-                }}
+            <IconicButton
+                icon={
+                    <DeleteForeverIcon
+                        sx={{
+                            color: "red",
+                            height: "100%",
+                        }}
+                    />
+                }
+                onClick={clearForm}
+                color={theme.palette.base.light}
+                hoverColor="red"
             >
-                <Stack
-                    component={motion.div}
-                    initial={{ y: 0 }}
-                    whileHover={{ y: -buttonHeight }}
-                    sx={{
-                        width: "100%",
-                        position: "absolute",
-                    }}
-                >
-                    <Box
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: buttonHeight,
-                        }}
-                    >
-                        <Typography>clear</Typography>
-                    </Box>
-
-                    <Box
-                        onClick={clearForm}
-                        sx={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: buttonHeight,
-                        }}
-                    >
-                        <DeleteForeverIcon
-                            sx={{
-                                color: "red",
-                                height: buttonHeight,
-                            }}
-                        />
-                    </Box>
-                </Stack>
-            </Box>
+                <Typography>clear</Typography>
+            </IconicButton>
         </Stack>
     );
 };

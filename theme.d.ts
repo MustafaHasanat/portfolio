@@ -5,8 +5,9 @@ declare module "@mui/material/styles" {
     interface Theme {
         palette: {
             base: { main: string; light: string; dark: string };
-            purple: { main: string; light: string; dark: string };
-            blue: { main: string; light: string; dark: string };
+            purple: { main: string; };
+            blue: { main: string; light: string; };
+            gold: { main: string };
         };
     }
 
@@ -14,5 +15,6 @@ declare module "@mui/material/styles" {
         base: PaletteOptions["primary"];
         purple: PaletteOptions["primary"];
         blue: PaletteOptions["primary"];
+        gold: PaletteOptions["primary"];
     }
 }

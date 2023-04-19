@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRef } from "react";
 import Footer from "./footer";
 import Header from "./header";
@@ -10,6 +11,7 @@ import { modalActions } from "@/utils/store/store";
 import { useInView } from "framer-motion";
 import ModalBackLight from "./contacts/modalBackLight";
 import SnackBar from "../shared/snackbar";
+import NavigationBar from "./navigationBar";
 
 const Layout = ({ children }: { children: JSX.Element }) => {
     const landingSectionRef = useRef(null);
@@ -26,7 +28,14 @@ const Layout = ({ children }: { children: JSX.Element }) => {
     };
 
     return (
-        <Stack>
+        <Stack
+            sx={{
+                background:
+                    "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(images/hexaWP.jpg)",
+                backgroundRepeat: "repeat",
+                backgroundPosition: "center",
+            }}
+        >
             <HeadTag />
 
             <ModalBackLight
@@ -38,8 +47,11 @@ const Layout = ({ children }: { children: JSX.Element }) => {
 
             <Header landingSectionInView={landingSectionInView} />
             <Main>{children}</Main>
+
             <Contacts landingSectionInView={landingSectionInView} />
             <SnackBar />
+            <NavigationBar landingSectionInView={landingSectionInView} />
+
             <Footer />
         </Stack>
     );

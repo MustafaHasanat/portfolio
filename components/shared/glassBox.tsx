@@ -7,11 +7,7 @@ interface GlassBoxProps {
     extraSX?: any;
 }
 
-const GlassBox = ({
-    children,
-    id,
-    extraSX,
-}: GlassBoxProps) => {
+const GlassBox = ({ children, id, extraSX }: GlassBoxProps) => {
     return (
         <Stack
             id={id}
@@ -22,7 +18,7 @@ const GlassBox = ({
                 backfaceVisibility: "hidden",
                 borderRadius: "30px",
                 background: "rgba(255,255,255,.05)",
-                boxShadow: "0 0 10px rgba(0,0,0,0.25)",
+                boxShadow: "0 0 5px rgb(255, 255, 255)",
                 backdropFilter: "blur(10px)",
                 ...extraSX,
             }}

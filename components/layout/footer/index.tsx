@@ -1,16 +1,26 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Stack } from "@mui/material";
-import React, { useRef } from "react";
-import sendEmail from "@/utils/emails/sendEmail";
+import { Box, Stack } from "@mui/material";
+import React, { useEffect, useRef } from "react";
+import sendEmail from "@/utils/helpers/sendEmail";
 import Form from "./form";
-import { snackbarActions } from "@/utils/store/store";
+import { snackbarActions, navigationBarActions } from "@/utils/store/store";
 import { useDispatch } from "react-redux";
 import Hexagons from "./hexagons";
 import theme from "@/styles/theme";
+import { useInView } from "framer-motion";
 
 const Footer = () => {
     const formRef = useRef();
     const dispatch = useDispatch();
+
+    const footerRef = useRef(null);
+    const footerInView = useInView(footerRef);
+
+    useEffect(() => {
+        if (footerInView)
+            dispatch(navigationBarActions.setCurrentView("footer"));
+    }, [footerInView]);
 
     const handleClick = (snackbarMessage: string, color: string) => {
         dispatch(snackbarActions.setColorScheme(color));
@@ -32,13 +42,14 @@ const Footer = () => {
 
     return (
         <Stack
+            id="layout-footer"
             component="footer"
             direction="row"
             justifyContent="space-between"
             alignItems="center"
+            px={12}
             sx={{
                 height: "100vh",
-                p: 5,
                 background: `
                     linear-gradient(
                         rgba(0, 0, 0, 0.6), 
@@ -47,9 +58,19 @@ const Footer = () => {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top",
-                borderTop: `2px solid ${theme.palette.blue.dark}`,
+                borderTop: `1px solid ${theme.palette.blue.main}`,
+                position: "relative",
             }}
         >
+            <Box
+                ref={footerRef}
+                sx={{
+                    position: "absolute",
+                    top: "20%",
+                    width: " 100%",
+                }}
+            />
+
             <Form formRef={formRef} handleSubmit={handleSubmit} />
             <Hexagons />
         </Stack>

@@ -30,9 +30,9 @@ const InteractiveTitle = (props: SharedTitleProps) => {
         // colors
         primary = theme.palette.blue.main,
         primaryBorder = "transparent",
-        secondary = theme.palette.blue.dark,
+        secondary = theme.palette.blue.main,
         secondaryBorder = "transparent",
-        tertiary = theme.palette.blue.dark,
+        tertiary = theme.palette.gold.main,
         thickness = 3,
         // sizes
         containerWidth = "100%",
@@ -42,7 +42,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
         // button and lines values
         buttonCuttingRatio = 0.25,
         buttonGap = 10,
-        buttonLimit = 0,
+        buttonLimit = 15,
         linesSpace = 10,
     } = props;
 
@@ -70,7 +70,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                 height: containerHeight,
             }}
         >
-            <Box
+            {/* <Box
                 id="svg-lines-container"
                 ref={linesRef}
                 sx={{
@@ -83,17 +83,19 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     zIndex: 5,
                 }}
             >
-                {["rotateX(0deg) rotateY(0deg)", "rotateX(180deg) rotateY(180deg)"].map(
-                    (svgShape, index) => {
-                        return (
-                            <Fragment key={`lines shape number: ${index}`}>
-                                <svg
-                                    width="100%"
-                                    height="100%"
-                                    style={{ transform: svgShape }}
-                                >
-                                    <path
-                                        d={`
+                {[
+                    "rotateX(0deg) rotateY(0deg)",
+                    "rotateX(180deg) rotateY(180deg)",
+                ].map((svgShape, index) => {
+                    return (
+                        <Fragment key={`lines shape number: ${index}`}>
+                            <svg
+                                width="100%"
+                                height="100%"
+                                style={{ transform: svgShape }}
+                            >
+                                <path
+                                    d={`
                             M 0 ${linesHeight / 2}
                             L ${
                                 linesWidth / 2 -
@@ -107,11 +109,11 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                                 buttonLimit -
                                 linesSpace
                             } ${
-                                            linesHeight / 2 +
-                                            buttonRefHeight / 2 -
-                                            buttonLimit +
-                                            linesSpace
-                                        }
+                                        linesHeight / 2 +
+                                        buttonRefHeight / 2 -
+                                        buttonLimit +
+                                        linesSpace
+                                    }
                             L ${linesWidth / 2 - buttonRefWidth / 4}
                             ${
                                 linesHeight / 2 +
@@ -122,16 +124,15 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                             L ${linesWidth / 2 - buttonRefWidth / 4}
                             ${linesHeight / 2}
                         `}
-                                        stroke={tertiary}
-                                        strokeWidth={thickness}
-                                        fill="none"
-                                    />
-                                </svg>
-                            </Fragment>
-                        );
-                    }
-                )}
-            </Box>
+                                    stroke={tertiary}
+                                    strokeWidth={thickness}
+                                    fill="none"
+                                />
+                            </svg>
+                        </Fragment>
+                    );
+                })}
+            </Box> */}
 
             <Box
                 id="svg-button-container"
@@ -151,6 +152,7 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     height="100%"
                     style={{
                         position: "absolute",
+                        // filter: `drop-shadow(0px 0px 1px ${shadowColor})`,
                     }}
                 >
                     <path
@@ -163,6 +165,8 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                             buttonRefWidth * buttonCuttingRatio
                         }
                             L ${buttonLimit} ${buttonRefHeight - buttonLimit}
+
+
                             L ${buttonRefWidth * (1 - buttonCuttingRatio)} ${
                             buttonRefHeight - buttonLimit
                         }
@@ -183,8 +187,11 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     height="100%"
                     style={{
                         position: "absolute",
-                        transform: titleInView ? "translateX(0px)" : "translateX(-100px)",
+                        transform: titleInView
+                            ? "translateX(0px)"
+                            : "translateX(-100px)",
                         transition: "1.3s ease",
+                        filter: `drop-shadow(0px 0px 3px ${tertiary})`,
                     }}
                 >
                     <path
@@ -209,8 +216,11 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     height="100%"
                     style={{
                         position: "absolute",
-                        transform: titleInView ? "translateX(0px)" : "translateX(100px)",
+                        transform: titleInView
+                            ? "translateX(0px)"
+                            : "translateX(100px)",
                         transition: "1.3s ease",
+                        filter: `drop-shadow(0px 0px 3px ${tertiary})`,
                     }}
                 >
                     <path
@@ -234,6 +244,43 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                         fill={secondary}
                     />
                 </svg>
+
+                {/* <svg
+                    width="100%"
+                    height="100%"
+                    style={{
+                        position: "absolute",
+                        transform: titleInView
+                            ? "translateY(0px)"
+                            : "translateY(50px)",
+                        transition: "1.3s ease",
+                        filter: `drop-shadow(0px 0px 3px ${shadowColor})`,
+                    }}
+                >
+                    <path
+                        d={`
+                            M ${
+                                buttonRefWidth * (buttonCuttingRatio - 0.05)
+                            } ${buttonRefHeight} 
+                            L ${
+                                buttonRefWidth *
+                                (buttonCuttingRatio - 0.05 + 0.03)
+                            } ${buttonRefHeight - buttonRefHeight * 0.2}
+                            L ${
+                                buttonRefWidth *
+                                (buttonCuttingRatio - 0.05 + 0.03 + 0.5)
+                            } ${buttonRefHeight - buttonRefHeight * 0.2}
+                            L ${
+                                buttonRefWidth *
+                                (buttonCuttingRatio - 0.05 + 0.03 + 0.53)
+                            } ${buttonRefHeight}
+                            Z
+                            `}
+                        stroke={secondaryBorder}
+                        strokeWidth={thickness}
+                        fill={secondary}
+                    />
+                </svg> */}
             </Box>
 
             <Box
@@ -246,7 +293,9 @@ const InteractiveTitle = (props: SharedTitleProps) => {
                     zIndex: 6,
                     fontWeight: "bold",
                     opacity: titleInView ? 1 : 0,
-                    transform: titleInView ? "translateY(0px)" : "translateY(100px)",
+                    transform: titleInView
+                        ? "translateY(0px)"
+                        : "translateY(100px)",
                     transition: "1.3s ease",
                 }}
             >

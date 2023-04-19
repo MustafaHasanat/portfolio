@@ -1,20 +1,3 @@
-// export const headerVariants = {
-//     visible: {
-//         opacity: 0,
-//         transition: {
-//             type: "tween",
-//             duration: 0.3,
-//         },
-//     },
-//     hidden: {
-//         opacity: 1,
-//         transition: {
-//             type: "tween",
-//             duration: 0.7,
-//         },
-//     },
-// };
-
 export const headerBoxStyles = (
     switchPointInView: boolean,
     headerPosition: string,
@@ -36,17 +19,6 @@ export const headerBoxStyles = (
         backdropFilter: switchPointInView ? "blur(0px)" : "blur(10px)",
     };
 };
-
-// export const headerColoredBoxStyles = (color: string) => {
-//     return {
-//         width: "100%",
-//         height: "100%",
-//         position: "absolute",
-//         top: "0px",
-//         left: "0px",
-//         background: color,
-//     };
-// };
 
 export const titleStyles = (color: string, shadowColor: string) => {
     return {

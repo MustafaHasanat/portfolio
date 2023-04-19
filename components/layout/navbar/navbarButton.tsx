@@ -1,7 +1,8 @@
 import { useTheme } from "@mui/material";
 import { Typography, Button } from "@mui/material";
 import { motion, AnimationControls } from "framer-motion";
-import { navButtonStyles, buttonVariants, navTextStyles } from "./styles";
+import { navButtonStyles, navTextStyles } from "./styles";
+import Link from "next/link";
 
 interface ItemProps {
     landingSectionInView: boolean;
@@ -26,32 +27,23 @@ const NavbarButton = ({ item, animation, landingSectionInView }: ItemProps) => {
             )}
             component={motion.div}
             animate={animation}
-            initial="visible"
             whileTap={{ scale: 0.9 }}
-            variants={buttonVariants(
-                theme.palette.base.light,
-                theme.palette.blue.dark
-            )}
             whileHover={{
                 scale: 1.2,
             }}
-            transition={{
-                duration: 3,
-                type: "spring",
-                stiffness: 400,
-                damping: 15,
-            }}
         >
-            <Typography
-                component={motion.div}
-                whileHover={{
-                    opacity: 1,
-                    color: theme.palette.base.dark
-                }}
-                sx={navTextStyles(theme.palette.base.light)}
-            >
-                {title}
-            </Typography>
+            <Link href={link}>
+                <Typography
+                    component={motion.div}
+                    whileHover={{
+                        opacity: 1,
+                        color: theme.palette.base.dark,
+                    }}
+                    sx={navTextStyles(theme.palette.base.light)}
+                >
+                    {title}
+                </Typography>
+            </Link>
         </Button>
     );
 };

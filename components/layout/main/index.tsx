@@ -1,8 +1,10 @@
+import { Stack } from "@mui/material";
+
 const Main = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div>
+        <Stack>
             {children}
-        </div>
+        </Stack>
     );
 }
 
