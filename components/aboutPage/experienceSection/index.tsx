@@ -45,22 +45,11 @@ const ExperienceSection = ({ inViewRef }: ExperienceSectionProps) => {
             </InteractiveTitle>
 
             <Stack spacing={5} position="relative">
-                <Box
-                    sx={{
-                        position: "absolute",
-                        left: "50%",
-                        transform: "translateX(-50%)",
-                        bgcolor: theme.palette.blue.main,
-                        width: "2px",
-                        height: "100%",
-                    }}
-                />
-
                 {ExperiencesSectionConstants.experiences.map(
                     (experience, index) => {
                         return (
                             <Fragment key={`experience box number: ${index}`}>
-                                <RoleBox experience={experience} />
+                                <RoleBox experience={experience} index={index} />
                             </Fragment>
                         );
                     }

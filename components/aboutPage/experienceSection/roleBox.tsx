@@ -14,11 +14,12 @@ interface RoleBoxProps {
         company: string;
         location: string;
         locationType: string;
-        description: string;
+        bullets: string[];
     };
+    index: number;
 }
 
-const RoleBox = ({ experience }: RoleBoxProps) => {
+const RoleBox = ({ experience, index }: RoleBoxProps) => {
     const roleAnimation = useAnimation();
     const roleRef = useRef(null);
     const roleInView = useInView(roleRef);
@@ -40,7 +41,7 @@ const RoleBox = ({ experience }: RoleBoxProps) => {
                 roleRef={roleRef}
                 experiences={experience}
                 roleAnimation={roleAnimation}
-                roleInView={roleInView}
+                index={index}
             />
             <ExperienceInfo
                 experiences={experience}

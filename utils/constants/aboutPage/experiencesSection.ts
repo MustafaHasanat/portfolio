@@ -8,17 +8,26 @@ const ExperiencesSectionConstants = {
             company: "SociumTech",
             location: "Jordan - Amman",
             locationType: "hybrid",
-            description: "",
+            bullets: [
+                "Built web applications",
+                "Built microservices",
+                "Built unit tests",
+                "Conduct daily meetings with clients around the world",
+            ],
         },
         {
             src: "icons/work/asacIcon.jpeg",
             role: "software engineer",
-            employmentType: "bootcamp",
+            employmentType: "internship",
             duration: "Jan 2022 - Jul 2022",
             company: "ASAC / Code Fellows",
             location: "Jordan - Amman",
             locationType: "remote",
-            description: "",
+            bullets: [
+                "Built web applications (React/Node/Django)",
+                "Learned DSA to solve problems using Pythons",
+                "Learned simple data science using Python",
+            ],
         },
         {
             src: "icons/work/robotIcon.png",
@@ -28,7 +37,12 @@ const ExperiencesSectionConstants = {
             company: "none",
             location: "Jordan - Amman",
             locationType: "on-site",
-            description: "",
+            bullets: [
+                "Built robots using Arduino",
+                "Built IoT robots using ESP",
+                "Designed required parts using a 3D Printer",
+                "Designed wooden containers using CNC machine",
+            ],
         },
     ],
 };
