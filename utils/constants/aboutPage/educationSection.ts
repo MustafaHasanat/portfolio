@@ -1,8 +1,7 @@
 const EducationSectionConstants = {
     certificates: [
         {
-            src: "images/universityCert.jpg",
-            logoSrc: "icons/others/ttuLogo.png",
+            src: "icons/work/ttuLogo.png",
             facility: "Tafila Technical University",
             degree: "Bachelor's Degree in Telecommunications and Electronics Engineering",
             date: "2017 - 2021",
@@ -15,8 +14,7 @@ const EducationSectionConstants = {
             ],
         },
         {
-            src: "images/ltucCert.jpg",
-            logoSrc: "icons/others/ltucLogo.png",
+            src: "icons/work/ltucLogo.png",
             facility: "Luminous Technical University Collage",
             degree: "Diploma in Advanced Software Engineering",
             date: "Jan 2022 - Jul 2022",

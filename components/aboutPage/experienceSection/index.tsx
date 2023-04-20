@@ -1,6 +1,8 @@
-import { MutableRefObject } from "react";
+import { Fragment, MutableRefObject } from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import InteractiveTitle from "@/components/shared/title";
+import ExperiencesSectionConstants from "@/utils/constants/aboutPage/experiencesSection";
+import RoleBox from "./roleBox";
 
 interface ExperienceSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -10,7 +12,7 @@ const ExperienceSection = ({ inViewRef }: ExperienceSectionProps) => {
     const theme = useTheme();
 
     return (
-        <Stack id="about-experience" height="105vh" px={12} position="relative">
+        <Stack id="about-experience" px={12} pb={5} position="relative">
             <Box
                 ref={inViewRef}
                 sx={{
@@ -41,6 +43,18 @@ const ExperienceSection = ({ inViewRef }: ExperienceSectionProps) => {
                     Experiences
                 </Typography>
             </InteractiveTitle>
+
+            <Stack spacing={5} position="relative">
+                {ExperiencesSectionConstants.experiences.map(
+                    (experience, index) => {
+                        return (
+                            <Fragment key={`experience box number: ${index}`}>
+                                <RoleBox experience={experience} index={index} />
+                            </Fragment>
+                        );
+                    }
+                )}
+            </Stack>
         </Stack>
     );
 };
