@@ -14,7 +14,7 @@ const MainSection = ({ inViewRef }: MainSectionProps) => {
     return (
         <Stack
             id="home-main"
-            sx={mainSectionStyles(theme.palette.blue.main)}
+            sx={mainSectionStyles(theme.palette.primary.main)}
             direction="row"
         >
             <Box

@@ -46,7 +46,7 @@ const SkillsDrawer = ({
                     textTransform="capitalize"
                     fontSize="1.5vw"
                     fontWeight="bold"
-                    color={theme.palette.base.light}
+                    color={theme.palette.text.primary}
                 >
                     {title}
                 </Typography>
@@ -70,7 +70,7 @@ const SkillsDrawer = ({
                 >
                     <ArrowDropDownIcon
                         sx={{
-                            color: theme.palette.blue.main,
+                            color: theme.palette.primary.main,
                             height: "100%",
                             width: "100%",
                         }}

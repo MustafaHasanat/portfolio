@@ -26,7 +26,7 @@ export const mainButtonStyles = (
     shadowColorHover: string
 ) => {
     return {
-        background: bgcolor,
+        background: `${bgcolor}CC`,
         color: color,
         boxShadow: `0 0 20px ${shadowColor}`,
         position: "absolute",

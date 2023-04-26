@@ -14,9 +14,10 @@ const LowerSection = ({ cert }: LowerSectionProps) => {
         <Stack mt={3} width="100%" alignItems="center">
             <Typography
                 fontWeight="bold"
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
                 textTransform="uppercase"
-                fontSize="1.5vw"
+                variant="h6"
+                letterSpacing={1}
             >
                 skills
             </Typography>
@@ -36,8 +37,8 @@ const LowerSection = ({ cert }: LowerSectionProps) => {
                                 label={skill}
                                 sx={{
                                     fontSize: "1.2vw",
-                                    color: theme.palette.base.light,
-                                    bgcolor: theme.palette.blue.main,
+                                    color: theme.palette.secondary.main,
+                                    bgcolor: theme.palette.primary.main,
                                 }}
                             />
                         </Fragment>

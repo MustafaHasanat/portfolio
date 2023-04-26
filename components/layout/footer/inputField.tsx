@@ -72,7 +72,7 @@ const InputField = ({
                     opacity: hovered ? 0.6 : 1,
                 }}
             >
-                {icon(error, theme.palette.base.light)}
+                {icon(error, theme.palette.text.primary)}
             </Box>
 
             <ColoredTextField
@@ -81,7 +81,7 @@ const InputField = ({
                 variant="standard"
                 type={type}
                 name={label}
-                color="secondary"
+                color="primary"
                 required={isRequired}
                 error={error}
                 helperText={error ? "This field is required!" : helperText}
@@ -90,14 +90,14 @@ const InputField = ({
                 }}
                 FormHelperTextProps={{
                     sx: {
-                        color: theme.palette.base.light,
+                        color: theme.palette.text.primary,
                     },
                 }}
                 sx={{
                     width: "85%",
-                    input: { color: theme.palette.base.light, opacity: 0.7 },
+                    input: { color: theme.palette.text.primary, opacity: 0.7 },
                     label: {
-                        color: theme.palette.base.light,
+                        color: theme.palette.text.primary,
                         fontWeight: "bold",
                         textTransform: "capitalize",
                     },

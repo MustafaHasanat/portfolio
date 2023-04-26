@@ -70,7 +70,7 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
                 >
                     <Typography
                         textAlign="center"
-                        color={theme.palette.base.light}
+                        color={theme.palette.text.primary}
                         fontSize="2vw"
                         width="70%"
                     >

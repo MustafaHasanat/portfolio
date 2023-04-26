@@ -1,13 +1,7 @@
 import GlassBox from "@/components/shared/glassBox";
-import InteractiveTitle from "@/components/shared/title";
+import AnimatedTitle from "@/components/shared/animatedTitle";
 import EducationSectionConstants from "@/utils/constants/aboutPage/educationSection";
-import {
-    Box,
-    Divider,
-    Stack,
-    Typography,
-    useTheme,
-} from "@mui/material";
+import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
 import { Fragment, MutableRefObject } from "react";
 import UpperSection from "./upperSection";
 import LowerSection from "./lowerSection";
@@ -30,32 +24,13 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
                 }}
             />
 
-            <InteractiveTitle
-                primary={theme.palette.blue.main}
-                secondary={theme.palette.base.dark}
-                tertiary={theme.palette.gold.main}
-                containerHeight="30vh"
-                buttonWidth="40%"
-                buttonHeight="60%"
-                linesSpace={15}
-                buttonCuttingRatio={0.17}
-                buttonGap={18}
-            >
-                <Typography
-                    fontSize="2.7vw"
-                    color={theme.palette.base.dark}
-                    textTransform="uppercase"
-                    letterSpacing={3}
-                    fontWeight="bold"
-                >
-                    Education
-                </Typography>
-            </InteractiveTitle>
+            <AnimatedTitle buttonWidth="40%" text="education" />
 
             <Stack
                 spacing={10}
                 justifyContent="center"
-                my={5}
+                gap={15}
+                my={10}
                 flexWrap="wrap"
                 direction="row"
             >
@@ -65,9 +40,11 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
                             <GlassBox
                                 id={`certificate box number: ${index}`}
                                 extraSX={{
-                                    width: "35vw",
+                                    width: "25vw",
+                                    height: "80vh",
                                     position: "relative",
                                     padding: 3,
+                                    justifyContent: "space-evenly",
                                     alignItems: "center",
                                 }}
                             >
@@ -75,7 +52,7 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
 
                                 <Divider
                                     sx={{
-                                        bgcolor: theme.palette.base.light,
+                                        bgcolor: theme.palette.text.primary,
                                         width: "100%",
                                         marginY: 2,
                                     }}

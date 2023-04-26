@@ -1,8 +1,7 @@
-import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
+import { Button, Stack, Typography, useTheme } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import useBoxSize from "@/hooks/useBoxSize";
 import { motion } from "framer-motion";
 import IconicButton from "@/components/shared/iconicButton";
 
@@ -26,7 +25,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
             <Button
                 type="submit"
                 variant="outlined"
-                color="secondary"
+                color="success"
                 onMouseEnter={() => {
                     setSendHovered(true);
                 }}
@@ -35,8 +34,8 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 }}
                 sx={{
                     width: "87%",
-                    color: theme.palette.base.light,
-                    border: `1px solid ${theme.palette.base.light}`,
+                    color: theme.palette.text.primary,
+                    border: `1px solid ${theme.palette.text.primary}`,
                 }}
             >
                 <Typography
@@ -46,8 +45,8 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                     mr={3}
                     color={
                         sendHovered
-                            ? theme.palette.blue.main
-                            : theme.palette.base.light
+                            ? theme.palette.success.main
+                            : theme.palette.text.primary
                     }
                 >
                     send
@@ -67,8 +66,8 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                     <SendIcon
                         sx={{
                             color: sendHovered
-                                ? theme.palette.blue.main
-                                : theme.palette.base.light,
+                                ? theme.palette.success.main
+                                : theme.palette.text.primary,
                             width: "100%",
                             height: "100%",
                             transition: "0.3s ease",
@@ -81,14 +80,14 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 icon={
                     <DeleteForeverIcon
                         sx={{
-                            color: "red",
+                            color: theme.palette.error.main,
                             height: "100%",
                         }}
                     />
                 }
                 onClick={clearForm}
-                color={theme.palette.base.light}
-                hoverColor="red"
+                color={theme.palette.text.primary}
+                hoverColor={theme.palette.error.main}
             >
                 <Typography>clear</Typography>
             </IconicButton>

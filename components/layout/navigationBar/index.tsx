@@ -2,11 +2,12 @@ import {
     AboutPageProps,
     HomePageProps,
 } from "@/utils/store/navigationBarSlice";
-import { Box, Stack, useTheme } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import getViewDetails from "../../../utils/helpers/getViewDetails";
+import { useTheme } from "@mui/material/styles";
 
 interface NavigationBarProps {
     landingSectionInView: boolean;
@@ -53,7 +54,7 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
                 left: 0,
                 zIndex: 20,
                 transform: "translateY(50%)",
-                bgcolor: "transparent"
+                bgcolor: "transparent",
             }}
         >
             {bars.map((bar, index) => {
@@ -62,28 +63,28 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
                         <Box
                             component={motion.button}
                             initial={{
-                                opacity: 0.5,
-                                background: theme.palette.blue.light,
+                                opacity: 0.3,
+                                background: theme.palette.primary.main,
                             }}
                             animate={{
                                 height: getView(bar) ? "80px" : "30px",
                                 background: landingSectionInView
-                                    ? theme.palette.blue.light
-                                    : theme.palette.blue.main,
-                                borderRadius: landingSectionInView ? 0 : 5,
+                                    ? theme.palette.primary.main
+                                    : theme.palette.primary.main,
+                                borderRadius: 3,
                                 transition: {
                                     type: "spring",
                                 },
                             }}
                             whileHover={{
-                                scale: 1.3,
+                                scale: 1.2,
                                 opacity: 1,
                                 transition: {
                                     type: "spring",
                                 },
                             }}
                             whileTap={{
-                                scale: 0.8,
+                                scale: 0.7,
                                 opacity: 1,
                                 transition: {
                                     type: "spring",

@@ -15,7 +15,7 @@ export const headerBoxStyles = (
         top: headerPosition,
         transition: "0.7s ease",
         borderBottom: `2px solid ${borderColor}`,
-        boxShadow: switchPointInView ? "none" : `0 2px 10px ${borderColor}`,
+        boxShadow: switchPointInView ? "none" : `0 0 5px ${borderColor}`,
         backdropFilter: switchPointInView ? "blur(0px)" : "blur(10px)",
     };
 };

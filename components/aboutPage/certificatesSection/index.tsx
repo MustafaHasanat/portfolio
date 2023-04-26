@@ -1,6 +1,6 @@
 import { MutableRefObject } from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
-import InteractiveTitle from "@/components/shared/title";
+import AnimatedTitle from "@/components/shared/animatedTitle";
 
 interface ExperienceSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -8,7 +8,7 @@ interface ExperienceSectionProps {
 
 const CertificatesSection = ({ inViewRef }: ExperienceSectionProps) => {
     const theme = useTheme();
-    
+
     return (
         <Stack
             id="about-certificates"
@@ -25,27 +25,7 @@ const CertificatesSection = ({ inViewRef }: ExperienceSectionProps) => {
                 }}
             />
 
-            <InteractiveTitle
-                primary={theme.palette.blue.main}
-                secondary={theme.palette.base.dark}
-                tertiary={theme.palette.gold.main}
-                containerHeight="30vh"
-                buttonWidth="50%"
-                buttonHeight="60%"
-                linesSpace={15}
-                buttonCuttingRatio={0.17}
-                buttonGap={18}
-            >
-                <Typography
-                    fontSize="2.7vw"
-                    color={theme.palette.base.dark}
-                    textTransform="uppercase"
-                    letterSpacing={3}
-                    fontWeight="bold"
-                >
-                    Certifications
-                </Typography>
-            </InteractiveTitle>
+            <AnimatedTitle buttonWidth="50%" text="certifications" />
         </Stack>
     );
 };

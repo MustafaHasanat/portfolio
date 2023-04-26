@@ -33,6 +33,5 @@ export const navTextStyles = (color: string) => {
         paddingX: 1.5,
         paddingY: 0.8,
         fontWeight: "bold",
-        fontSize: "1.1vw",
     };
 };

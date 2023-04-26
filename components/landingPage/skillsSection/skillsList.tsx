@@ -61,7 +61,7 @@ const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
                                     direction="row"
                                     justifyContent="space-between"
                                     alignItems="center"
-                                    bgcolor={theme.palette.blue.main}
+                                    bgcolor={`${theme.palette.primary.main}99`}
                                     overflow="hidden"
                                     borderRadius={2}
                                     py={1}
@@ -69,7 +69,7 @@ const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
                                     height="7.5vh"
                                 >
                                     <Typography
-                                        color={theme.palette.base.light}
+                                        color={theme.palette.text.primary}
                                         fontSize="1.4vw"
                                     >
                                         {skill.name}
@@ -80,7 +80,7 @@ const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
                                         src={skill.src}
                                         sx={{
                                             padding: 0.5,
-                                            bgcolor: theme.palette.base.light,
+                                            bgcolor: theme.palette.text.primary,
                                             height: "100%",
                                             width: "auto",
                                             borderRadius: 2,

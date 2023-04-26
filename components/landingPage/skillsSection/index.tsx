@@ -1,4 +1,4 @@
-import InteractiveTitle from "@/components/shared/title";
+import AnimatedTitle from "@/components/shared/animatedTitle";
 import SkillsSectionConstants from "@/utils/constants/landingPage/skillsSection";
 import { Box, useTheme } from "@mui/material";
 import { Stack, Typography } from "@mui/material";
@@ -28,7 +28,7 @@ const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
     };
 
     return (
-        <Stack id="home-skills" position="relative" height="120vh">
+        <Stack id="home-skills" position="relative">
             <Box
                 ref={inViewRef}
                 sx={{
@@ -38,34 +38,14 @@ const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
                 }}
             />
 
-            <InteractiveTitle
-                primary={theme.palette.blue.main}
-                secondary={theme.palette.base.dark}
-                tertiary={theme.palette.gold.main}
-                containerHeight="30vh"
-                buttonWidth="40%"
-                buttonHeight="60%"
-                linesSpace={15}
-                buttonCuttingRatio={0.17}
-                buttonGap={18}
-            >
-                <Typography
-                    fontSize="2.7vw"
-                    color={theme.palette.base.dark}
-                    textTransform="uppercase"
-                    letterSpacing={3}
-                    fontWeight="bold"
-                >
-                    My Skills
-                </Typography>
-            </InteractiveTitle>
+            <AnimatedTitle buttonWidth="40%" text="My Skills" />
 
             <Stack
                 direction="row"
                 justifyContent="center"
                 flexWrap="wrap"
                 px={10}
-                py={5}
+                my={10}
                 gap={5}
             >
                 {SkillsSectionConstants.categories.map((category, index) => {

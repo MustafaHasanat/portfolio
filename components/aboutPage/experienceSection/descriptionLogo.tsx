@@ -90,7 +90,7 @@ const DescriptionLogo = ({
                     position: "absolute",
                     top: "50%",
                     left: "50%",
-                    color: theme.palette.base.light,
+                    color: theme.palette.text.primary,
                     zIndex: 6,
                     width: "30%",
                     height: "90%",
@@ -128,7 +128,7 @@ const DescriptionLogo = ({
                                 }}
                             />
                         }
-                        color={theme.palette.blue.main}
+                        color={theme.palette.primary.main}
                         hoverColor="red"
                         onClick={() => {
                             bulletsAnimation.start("hidden");

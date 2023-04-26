@@ -62,7 +62,7 @@ const ExperienceInfo = ({
                 }}
             >
                 <Typography
-                    color={theme.palette.base.light}
+                    color={theme.palette.text.primary}
                     fontWeight="bold"
                     fontSize="1.6vw"
                     sx={{
@@ -73,7 +73,7 @@ const ExperienceInfo = ({
                 </Typography>
 
                 <Typography
-                    color={theme.palette.base.light}
+                    color={theme.palette.text.primary}
                     fontSize="1.3vw"
                     sx={{
                         opacity: 0.8,

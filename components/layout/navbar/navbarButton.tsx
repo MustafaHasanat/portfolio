@@ -5,7 +5,6 @@ import { navButtonStyles, navTextStyles } from "./styles";
 import Link from "next/link";
 
 interface ItemProps {
-    landingSectionInView: boolean;
     animation: AnimationControls;
     item: {
         id: number;
@@ -14,17 +13,13 @@ interface ItemProps {
     };
 }
 
-const NavbarButton = ({ item, animation, landingSectionInView }: ItemProps) => {
+const NavbarButton = ({ item, animation }: ItemProps) => {
     const { id, title, link } = item;
     const theme = useTheme();
 
     return (
         <Button
-            sx={navButtonStyles(
-                landingSectionInView
-                    ? theme.palette.blue.light
-                    : theme.palette.base.light
-            )}
+            sx={navButtonStyles(theme.palette.primary.main)}
             component={motion.div}
             animate={animation}
             whileTap={{ scale: 0.9 }}
@@ -37,9 +32,9 @@ const NavbarButton = ({ item, animation, landingSectionInView }: ItemProps) => {
                     component={motion.div}
                     whileHover={{
                         opacity: 1,
-                        color: theme.palette.base.dark,
+                        color: theme.palette.secondary.main,
                     }}
-                    sx={navTextStyles(theme.palette.base.light)}
+                    sx={navTextStyles(theme.palette.text.primary)}
                 >
                     {title}
                 </Typography>

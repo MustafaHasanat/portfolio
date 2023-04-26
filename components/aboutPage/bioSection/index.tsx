@@ -12,7 +12,7 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
     const title = (text: string) => {
         return (
             <Typography
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
                 fontSize="3vw"
                 textTransform="capitalize"
                 mb={3}
@@ -26,7 +26,7 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
     const paragraph = (text: string) => {
         return (
             <Typography
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
                 fontSize="1.5vw"
                 textAlign="justify"
                 mb={3}

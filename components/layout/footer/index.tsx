@@ -58,7 +58,7 @@ const Footer = () => {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top",
-                borderTop: `1px solid ${theme.palette.blue.main}`,
+                borderTop: `1px solid ${theme.palette.primary.main}`,
                 position: "relative",
             }}
         >

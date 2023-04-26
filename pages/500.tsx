@@ -17,7 +17,7 @@ export default function ServerErrorPage() {
             }}
         >
             <GlitchedText
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
                 text={"500"}
                 fontSize={"10vw"}
                 shadowColor1={"#f80505"}
@@ -26,7 +26,7 @@ export default function ServerErrorPage() {
             />
 
             <GlitchedText
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
                 text={"Server Error"}
                 fontSize={"2vw"}
                 shadowColor1={"#f80505"}

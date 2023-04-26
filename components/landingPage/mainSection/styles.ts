@@ -103,7 +103,7 @@ export const downloadButtonStyles = (width: string, height: string) => {
     return {
         position: "absolute",
         overflow: "hidden",
-        borderRadius: 0,
+        borderRadius: 1,
         justifyContent: "center",
         alignItems: "center",
         left: 100,
@@ -112,7 +112,7 @@ export const downloadButtonStyles = (width: string, height: string) => {
         height: height,
 
         "&:hover": {
-            borderRadius: 1,
+            boxShadow: "0 0 5px",
         },
     };
 };

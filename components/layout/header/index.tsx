@@ -54,8 +54,8 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     headerPosition,
                     landingSectionInView
                         ? "transparent"
-                        : theme.palette.base.light,
-                    theme.palette.base.dark
+                        : theme.palette.primary.main,
+                    theme.palette.secondary.main
                 )}
             >
                 <Stack
@@ -79,10 +79,8 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
 
                     <Typography
                         sx={titleStyles(
-                            theme.palette.base.light,
-                            landingSectionInView
-                                ? theme.palette.blue.light
-                                : theme.palette.base.light
+                            theme.palette.text.primary,
+                            theme.palette.primary.main
                         )}
                     >
                         <Box component="span">
@@ -91,11 +89,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                         <Box
                             id="shadow-title"
                             component="span"
-                            sx={titleCloneStyles(
-                                landingSectionInView
-                                    ? theme.palette.blue.light
-                                    : theme.palette.base.light
-                            )}
+                            sx={titleCloneStyles(theme.palette.primary.main)}
                             aria-hidden="true"
                         >
                             &nbsp;&nbsp;Mustafa&nbsp;Alhasanat&nbsp;&nbsp;
@@ -105,7 +99,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     <Box
                         sx={{
                             position: "relative",
-                            bgcolor: theme.palette.base.light,
+                            bgcolor: theme.palette.text.primary,
                             width: "6vh",
                             height: "6vh",
                             borderRadius: 2,
@@ -154,8 +148,8 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                             src="icons\websites\bmcIcon2.png"
                             sx={{
                                 padding: 1,
-                                bgcolor: theme.palette.base.light,
-                                border: `2px solid ${theme.palette.base.dark}`,
+                                bgcolor: theme.palette.text.primary,
+                                border: `2px solid ${theme.palette.secondary.dark}`,
                                 width: "200px",
                                 height: "auto",
                                 top: 80,

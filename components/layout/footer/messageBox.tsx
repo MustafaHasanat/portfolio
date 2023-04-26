@@ -48,7 +48,7 @@ const MessageBox = ({ handleChange, isReset }: MessageBoxProps) => {
                 <MessageIcon
                     color={error ? "error" : undefined}
                     sx={{
-                        color: error ? undefined : theme.palette.base.light,
+                        color: error ? undefined : theme.palette.text.primary,
                         width: "100%",
                         height: "100%",
                     }}
@@ -62,7 +62,7 @@ const MessageBox = ({ handleChange, isReset }: MessageBoxProps) => {
                 type="text"
                 name="message"
                 defaultValue="Hi Mustafa, I would like to set a meeting with you."
-                color="secondary"
+                color="primary"
                 multiline
                 maxRows={4}
                 required
@@ -85,19 +85,19 @@ const MessageBox = ({ handleChange, isReset }: MessageBoxProps) => {
                 }}
                 FormHelperTextProps={{
                     sx: {
-                        color: theme.palette.base.light,
+                        color: theme.palette.text.primary,
                     },
                 }}
                 InputProps={{
                     sx: {
-                        color: theme.palette.base.light,
+                        color: theme.palette.text.primary,
                         opacity: 0.7,
                     },
                 }}
                 sx={{
                     width: "85%",
                     label: {
-                        color: theme.palette.base.light,
+                        color: theme.palette.text.primary,
                         fontWeight: "bold",
                         textTransform: "capitalize",
                     },

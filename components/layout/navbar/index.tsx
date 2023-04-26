@@ -32,7 +32,6 @@ const Navbar = ({ animation, landingSectionInView }: NavbarProps) => {
             {LayoutConstants.navbarItems.map((item, index) => (
                 <Fragment key={`${index}`}>
                     <NavbarButton
-                        landingSectionInView={landingSectionInView}
                         animation={animation}
                         item={{ ...item, id: index }}
                     />

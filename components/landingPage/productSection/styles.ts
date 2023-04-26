@@ -6,7 +6,9 @@ export const ProductBox = {
 
 export const CardsBox = (transform: string) => {
     return {
-        gap: 15,
+        gap: 20,
+        my: 5,
+        px: 15,
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
@@ -37,7 +39,7 @@ export const MiniCardBox = (
         position: "relative",
         width: "25%",
         height: height * 1.5,
-        borderRadius: "10px",
+        borderRadius: 3,
         boxShadow: "0 0 10px rgba(0,0,0,0.25)",
         background: `${bgcolor}11`,
         justifyContent: "center",

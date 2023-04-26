@@ -60,24 +60,12 @@ const Contacts = ({
                     setActive(!isModalActive);
                 }}
                 sx={mainButtonStyles(
-                    switchPointInView
-                        ? theme.palette.base.dark
-                        : theme.palette.base.light,
-                    switchPointInView
-                        ? theme.palette.blue.light
-                        : theme.palette.blue.main,
-                    switchPointInView
-                        ? theme.palette.base.light
-                        : theme.palette.base.dark,
-                    switchPointInView
-                        ? theme.palette.base.dark
-                        : theme.palette.base.light,
-                    switchPointInView
-                        ? theme.palette.base.light
-                        : theme.palette.base.dark,
-                    switchPointInView
-                        ? theme.palette.base.dark
-                        : theme.palette.base.light
+                    theme.palette.primary.main,
+                    theme.palette.secondary.main,
+                    theme.palette.secondary.main,
+                    theme.palette.primary.main,
+                    theme.palette.secondary.main,
+                    theme.palette.primary.main
                 )}
             >
                 <Box
@@ -156,10 +144,10 @@ const Contacts = ({
                                 }
                                 initial={"hidden"}
                                 variants={itemTextVariants(
-                                    theme.palette.base.light
+                                    theme.palette.text.primary
                                 )}
                                 sx={floatingListStyles(
-                                    theme.palette.base.light
+                                    theme.palette.text.primary
                                 )}
                             >
                                 {item.text}
