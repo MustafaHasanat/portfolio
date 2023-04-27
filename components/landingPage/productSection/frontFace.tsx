@@ -23,7 +23,7 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
 
     return (
         <Fragment>
-            {icon(theme.palette.primary.main, "30%")}
+            {icon(theme.palette.primary.main, "20%")}
 
             <Typography
                 p={1}

@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material";
 import { Fragment, MutableRefObject, useRef, useState } from "react";
 import FrontFace from "./frontFace";
 import BackFace from "./backFace";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import AnimatedTitle from "@/components/shared/animatedTitle";
 import Blobs from "../../shared/blobs";
 import FlipBox from "@/components/shared/flipBox";
@@ -19,8 +19,8 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
     const [cardTransform, setCardTransform] = useState("rotateY(0deg)");
     const [cardFlipped, setCardFlipped] = useState(0);
 
-    const cardsContainerRef = useRef(null);
-    const cardsContainerInView = useInView(cardsContainerRef);
+    // const cardsContainerRef = useRef(null);
+    // const cardsContainerInView = useInView(cardsContainerRef);
 
     const flipCard = (card: number, face: string) => {
         if (card !== cardFlipped && cardTransform === "rotateY(180deg)") {
@@ -57,13 +57,8 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
 
             <Stack
                 id="cards-container"
-                ref={cardsContainerRef}
                 direction="row"
-                sx={CardsBox(
-                    cardsContainerInView
-                        ? "translateY(0px)"
-                        : "translateY(100px)"
-                )}
+                sx={CardsBox}
             >
                 {ProductSectionConstants.products.map((card, index) => {
                     return (
@@ -80,7 +75,7 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                                     justifyContent: "center",
                                     alignItems: "center",
                                     paddingX: 4,
-                                    borderRadius: 4,
+                                    borderRadius: 3,
                                 }}
                                 backChildren={
                                     <BackFace
@@ -94,7 +89,7 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                                     alignItems: "center",
                                     paddingX: 2,
                                     paddingY: 2,
-                                    borderRadius: 4,
+                                    borderRadius: 3,
                                 }}
                                 id={`card-${index}`}
                                 transform={
@@ -103,7 +98,7 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                                         : "rotateY(0deg)"
                                 }
                                 width="25vw"
-                                height="75vh"
+                                height="65vh"
                             />
                         </Fragment>
                     );

@@ -1,17 +1,24 @@
 import GlassBox from "@/components/shared/glassBox";
 import AnimatedTitle from "@/components/shared/animatedTitle";
-import EducationSectionConstants from "@/utils/constants/aboutPage/educationSection";
-import { Box, Divider, Stack, Typography, useTheme } from "@mui/material";
-import { Fragment, MutableRefObject } from "react";
+import { Box, Divider, Stack, useTheme } from "@mui/material";
+import { MutableRefObject, useRef } from "react";
 import UpperSection from "./upperSection";
 import LowerSection from "./lowerSection";
+import { motion, useInView } from "framer-motion";
+import { Certificate } from "@/types/certificate";
 
 interface EducationSectionProps {
     inViewRef: MutableRefObject<null>;
+    certificates: Certificate[];
 }
 
-const EducationSection = ({ inViewRef }: EducationSectionProps) => {
+const EducationSection = ({
+    inViewRef,
+    certificates,
+}: EducationSectionProps) => {
     const theme = useTheme();
+    const cardRef = useRef(null);
+    const cardInView = useInView(cardRef);
 
     return (
         <Stack id="about-education" px={12} pt={5} position="relative">
@@ -34,9 +41,20 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
                 flexWrap="wrap"
                 direction="row"
             >
-                {EducationSectionConstants.certificates.map((cert, index) => {
+                {certificates.map((cert, index) => {
                     return (
-                        <Fragment key={`certificate number: ${index}`}>
+                        <Box
+                            key={`certificate number: ${index}`}
+                            component={motion.div}
+                            ref={cardRef}
+                            initial={{ scale: 0.7 }}
+                            animate={{
+                                scale: cardInView ? 1 : 0.7,
+                                transition: {
+                                    type: "spring",
+                                },
+                            }}
+                        >
                             <GlassBox
                                 id={`certificate box number: ${index}`}
                                 extraSX={{
@@ -46,6 +64,7 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
                                     padding: 3,
                                     justifyContent: "space-evenly",
                                     alignItems: "center",
+                                    borderRadius: 3,
                                 }}
                             >
                                 <UpperSection cert={cert} />
@@ -60,7 +79,7 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
 
                                 <LowerSection cert={cert} />
                             </GlassBox>
-                        </Fragment>
+                        </Box>
                     );
                 })}
             </Stack>

@@ -5,6 +5,10 @@ html,
     /* background-color: #FEF9EE; */
 }
 
+div::-webkit-scrollbar {
+    display: none;
+}
+
 * {
     margin: 0;
     padding: 0;

@@ -1,5 +1,7 @@
 import { Stack } from "@mui/material";
 import GlassBox from "./glassBox";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 interface FlipBoxProps {
     frontChildren: JSX.Element;
@@ -36,16 +38,26 @@ const FlipBox = ({
     width,
     height,
 }: FlipBoxProps): JSX.Element => {
+    const cardRef = useRef(null);
+    const cardInView = useInView(cardRef);
+
     return (
         <Stack
             id={id}
+            ref={cardRef}
+            component={motion.div}
+            initial={{ transform: `${transform} scale(0.7)` }}
+            animate={{
+                transform: `${transform} scale(${cardInView ? 1 : 0.7})`,
+                transition: {
+                    type: "spring",
+                },
+            }}
             sx={{
                 position: "relative",
                 width: width,
                 height: height,
                 transformStyle: "preserve-3d",
-                transition: "1s ease",
-                transform: transform,
             }}
         >
             <GlassBox id={`card-front-face-${id}`} extraSX={frontSX}>

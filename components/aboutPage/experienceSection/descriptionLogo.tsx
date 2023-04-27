@@ -57,19 +57,36 @@ const DescriptionLogo = ({
                 }}
                 sx={{
                     width: "auto",
-                    zIndex: 5,
                     cursor: "pointer",
+                    position: "relative",
+                    borderRadius: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    zIndex: 4,
                 }}
                 onClick={() => {
                     bulletsAnimation.start("visible");
                     setIsBulletsOpen(true);
                 }}
             >
+                <Box
+                    sx={{
+                        width: "100%",
+                        height: "100%",
+                        zIndex: 3,
+                        boxShadow: "0 0 15px 8px black inset",
+                        position: "absolute",
+                        borderRadius: "50%",
+                    }}
+                />
                 <Avatar
                     src={src}
                     sx={{
                         width: "100%",
                         height: "100%",
+                        zIndex: 2,
+                        border: "0.5px solid black",
                     }}
                 />
             </Box>
@@ -102,7 +119,7 @@ const DescriptionLogo = ({
                         justifyContent: "space-between",
                         alignItems: "center",
                         padding: 5,
-                        bgcolor: "#000000BB"
+                        bgcolor: "#000000BB",
                     }}
                 >
                     <Stack alignItems="start" width="100%">

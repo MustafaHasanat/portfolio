@@ -44,6 +44,7 @@ const RoleBox = ({ experience, index }: RoleBoxProps) => {
                 index={index}
             />
             <ExperienceInfo
+                index={index}
                 experiences={experience}
                 roleAnimation={roleAnimation}
                 roleInView={roleInView}

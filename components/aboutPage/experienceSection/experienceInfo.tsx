@@ -1,3 +1,4 @@
+import GlassBox from "@/components/shared/glassBox";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { AnimationControls, motion } from "framer-motion";
 
@@ -11,6 +12,7 @@ interface ExperienceInfoProps {
         locationType: string;
     };
     roleAnimation: AnimationControls;
+    index: number;
     roleInView: boolean;
 }
 
@@ -18,6 +20,7 @@ const ExperienceInfo = ({
     experiences,
     roleAnimation,
     roleInView,
+    index,
 }: ExperienceInfoProps) => {
     const theme = useTheme();
 
@@ -61,27 +64,40 @@ const ExperienceInfo = ({
                     position: "absolute",
                 }}
             >
-                <Typography
-                    color={theme.palette.text.primary}
-                    fontWeight="bold"
-                    fontSize="1.6vw"
-                    sx={{
-                        textTransform: textTransform,
+                <GlassBox
+                    id={`experience info number: ${index}`}
+                    extraSX={{
+                        width: "fit-content",
+                        height: "fit-content",
+                        position: "relative",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: 3,
+                        padding: 1,
+                        boxShadow: `0 0 3px ${theme.palette.primary.main}`,
                     }}
                 >
-                    {title}
-                </Typography>
+                    <Typography
+                        color={theme.palette.text.primary}
+                        fontWeight="bold"
+                        variant="h6"
+                        sx={{
+                            textTransform: textTransform,
+                        }}
+                    >
+                        {title}
+                    </Typography>
 
-                <Typography
-                    color={theme.palette.text.primary}
-                    fontSize="1.3vw"
-                    sx={{
-                        opacity: 0.8,
-                        textTransform: textTransform,
-                    }}
-                >
-                    {text}
-                </Typography>
+                    <Typography
+                        color={theme.palette.text.primary}
+                        sx={{
+                            opacity: 0.8,
+                            textTransform: textTransform,
+                        }}
+                    >
+                        {text}
+                    </Typography>
+                </GlassBox>
             </Stack>
         );
     };

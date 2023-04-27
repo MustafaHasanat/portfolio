@@ -4,19 +4,15 @@ export const ProductBox = {
     paddingY: 10,
 };
 
-export const CardsBox = (transform: string) => {
-    return {
-        gap: 20,
-        my: 5,
-        px: 15,
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 2,
-        position: "relative",
-        transform: transform,
-        transition: "1s ease",
-    };
+export const CardsBox = {
+    gap: 20,
+    my: 5,
+    px: 15,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 2,
+    position: "relative",
 };
 
 export const BackBox = {

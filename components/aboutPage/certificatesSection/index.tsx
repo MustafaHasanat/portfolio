@@ -1,21 +1,22 @@
 import { MutableRefObject } from "react";
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import AnimatedTitle from "@/components/shared/animatedTitle";
+import CertsChart from "./certsChart";
+import CertsList from "./certsList";
+import { Course } from "@/types/course";
 
 interface ExperienceSectionProps {
     inViewRef: MutableRefObject<null>;
+    courses: Course[];
 }
 
-const CertificatesSection = ({ inViewRef }: ExperienceSectionProps) => {
-    const theme = useTheme();
+const CertificatesSection = ({
+    inViewRef,
+    courses,
+}: ExperienceSectionProps) => {
 
     return (
-        <Stack
-            id="about-certificates"
-            height="105vh"
-            px={12}
-            position="relative"
-        >
+        <Stack id="about-certificates" px={12} position="relative">
             <Box
                 ref={inViewRef}
                 sx={{
@@ -25,7 +26,17 @@ const CertificatesSection = ({ inViewRef }: ExperienceSectionProps) => {
                 }}
             />
 
-            <AnimatedTitle buttonWidth="50%" text="certifications" />
+            <AnimatedTitle buttonWidth="40%" text="certifications" />
+
+            <Stack
+                direction="row"
+                p={5}
+                justifyContent="center"
+                alignItems="center"
+            >
+                <CertsChart courses={courses} />
+                <CertsList courses={courses} />
+            </Stack>
         </Stack>
     );
 };

@@ -1,12 +1,8 @@
+import { Certificate } from "@/types/certificate";
 import { Avatar, Stack, Typography, useTheme } from "@mui/material";
 
 interface UpperSectionProps {
-    cert: {
-        src: string;
-        facility: string;
-        degree: string;
-        date: string;
-    };
+    cert: Certificate
 }
 
 const UpperSection = ({ cert }: UpperSectionProps) => {
@@ -36,7 +32,7 @@ const UpperSection = ({ cert }: UpperSectionProps) => {
         >
             <Avatar
                 variant="square"
-                src={cert.src}
+                src={cert.logo.asset.url}
                 sx={{
                     width: "25%",
                     height: "fit-content",
