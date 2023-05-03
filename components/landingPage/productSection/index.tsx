@@ -1,12 +1,10 @@
 import ProductSectionConstants from "@/utils/constants/landingPage/productSection";
-import { Box, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Stack } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { Fragment, MutableRefObject, useRef, useState } from "react";
+import { Fragment, MutableRefObject, useState } from "react";
 import FrontFace from "./frontFace";
 import BackFace from "./backFace";
-import { useInView } from "framer-motion";
-import InteractiveTitle from "@/components/shared/title";
-import Blobs from "../../shared/blobs";
+import AnimatedTitle from "@/components/shared/animatedTitle";
 import FlipBox from "@/components/shared/flipBox";
 import { CardsBox, ProductBox } from "./styles";
 
@@ -19,8 +17,15 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
     const [cardTransform, setCardTransform] = useState("rotateY(0deg)");
     const [cardFlipped, setCardFlipped] = useState(0);
 
-    const cardsContainerRef = useRef(null);
-    const cardsContainerInView = useInView(cardsContainerRef);
+    const faceSX = {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        backfaceVisibility: "hidden",
+        background: theme.palette.secondary.main,
+        boxShadow: "0 0 5px rgb(255, 255, 255)",
+        backdropFilter: "blur(10px)",
+    };
 
     const flipCard = (card: number, face: string) => {
         if (card !== cardFlipped && cardTransform === "rotateY(180deg)") {
@@ -41,9 +46,7 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
     };
 
     return (
-        <Stack id="home-product" sx={ProductBox}>
-            {/* <Blobs blobs={ProductSectionConstants.blobs} /> */}
-
+        <Stack id="home-product" sx={ProductBox(theme.palette.text.primary)}>
             <Box
                 ref={inViewRef}
                 sx={{
@@ -53,39 +56,14 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                 }}
             />
 
-            <InteractiveTitle
-                primary={theme.palette.blue.main}
-                secondary={theme.palette.base.dark}
-                tertiary={theme.palette.gold.main}
-                containerHeight="30vh"
+            <AnimatedTitle
                 buttonWidth="40%"
-                buttonHeight="60%"
-                linesSpace={15}
-                buttonCuttingRatio={0.17}
-                buttonGap={18}
-            >
-                <Typography
-                    fontSize="2.7vw"
-                    color={theme.palette.base.dark}
-                    textTransform="uppercase"
-                    letterSpacing={3}
-                    fontWeight="bold"
-                >
-                    What Do I do
-                </Typography>
-            </InteractiveTitle>
+                text="What Do I do"
+                tertiary={theme.palette.secondary.main}
+                shadowColor={theme.palette.primary.main}
+            />
 
-            <Stack
-                id="cards-container"
-                ref={cardsContainerRef}
-                mb={5}
-                direction="row"
-                sx={CardsBox(
-                    cardsContainerInView
-                        ? "translateY(0px)"
-                        : "translateY(100px)"
-                )}
-            >
+            <Stack id="cards-container" direction="row" sx={CardsBox}>
                 {ProductSectionConstants.products.map((card, index) => {
                     return (
                         <Fragment key={`product card number: ${index}`}>
@@ -98,9 +76,11 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                                     />
                                 }
                                 frontSX={{
+                                    ...faceSX,
                                     justifyContent: "center",
                                     alignItems: "center",
                                     paddingX: 4,
+                                    borderRadius: 3,
                                 }}
                                 backChildren={
                                     <BackFace
@@ -110,10 +90,13 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                                     />
                                 }
                                 backSX={{
+                                    ...faceSX,
                                     justifyContent: "flex-start",
-                                    alignItems: "center",
-                                    paddingX: 2,
-                                    paddingY: 2,
+                                    alignItems: "flex-end",
+                                    paddingX: 3,
+                                    paddingTop: 2,
+                                    paddingBottom: 3,
+                                    borderRadius: 3,
                                 }}
                                 id={`card-${index}`}
                                 transform={
@@ -121,8 +104,8 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                                         ? cardTransform
                                         : "rotateY(0deg)"
                                 }
-                                width="30vw"
-                                height="75vh"
+                                width="25vw"
+                                height="65vh"
                             />
                         </Fragment>
                     );

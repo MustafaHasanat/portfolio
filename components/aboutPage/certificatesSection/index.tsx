@@ -1,20 +1,29 @@
-import { MutableRefObject } from "react";
-import { Box, Stack, Typography, useTheme } from "@mui/material";
-import InteractiveTitle from "@/components/shared/title";
+import { MutableRefObject, useState } from "react";
+import { Box, Stack, useTheme } from "@mui/material";
+import AnimatedTitle from "@/components/shared/animatedTitle";
+import CertsChart from "./certsChart";
+import CertsList from "./certsList";
+import { Course } from "@/types/course";
 
-interface ExperienceSectionProps {
+interface CertificatesSectionProps {
     inViewRef: MutableRefObject<null>;
+    courses: Course[];
 }
 
-const CertificatesSection = ({ inViewRef }: ExperienceSectionProps) => {
+const CertificatesSection = ({
+    inViewRef,
+    courses,
+}: CertificatesSectionProps) => {
     const theme = useTheme();
-    
+    const [chartType, setChartType] = useState("radar");
+
     return (
         <Stack
             id="about-certificates"
-            height="105vh"
             px={12}
+            py={10}
             position="relative"
+            bgcolor={theme.palette.text.primary}
         >
             <Box
                 ref={inViewRef}
@@ -25,27 +34,27 @@ const CertificatesSection = ({ inViewRef }: ExperienceSectionProps) => {
                 }}
             />
 
-            <InteractiveTitle
-                primary={theme.palette.blue.main}
-                secondary={theme.palette.base.dark}
-                tertiary={theme.palette.gold.main}
-                containerHeight="30vh"
-                buttonWidth="50%"
-                buttonHeight="60%"
-                linesSpace={15}
-                buttonCuttingRatio={0.17}
-                buttonGap={18}
+            <AnimatedTitle
+                buttonWidth="40%"
+                text="courses"
+                tertiary={theme.palette.secondary.main}
+                shadowColor={theme.palette.primary.main}
+            />
+
+            <Stack
+                direction="row"
+                p={5}
+                justifyContent="space-evenly"
+                alignItems="center"
+                width="100%"
             >
-                <Typography
-                    fontSize="2.7vw"
-                    color={theme.palette.base.dark}
-                    textTransform="uppercase"
-                    letterSpacing={3}
-                    fontWeight="bold"
-                >
-                    Certifications
-                </Typography>
-            </InteractiveTitle>
+                <CertsChart courses={courses} chartType={chartType} />
+                <CertsList
+                    courses={courses}
+                    chartType={chartType}
+                    setChartType={setChartType}
+                />
+            </Stack>
         </Stack>
     );
 };

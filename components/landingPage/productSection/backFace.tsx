@@ -47,7 +47,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                 }}
                                 sx={MiniCardBox(
                                     miniCardWidth,
-                                    theme.palette.blue.main,
+                                    theme.palette.primary.main,
                                     hoveredCard === cardIndex + 1
                                         ? "scale(1.1) rotate(-3deg)"
                                         : "scale(1) rotate(0deg)"
@@ -92,8 +92,8 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                     <Typography
                                         fontWeight="bold"
                                         sx={MiniCardText(
-                                            theme.palette.base.light,
-                                            theme.palette.base.dark
+                                            theme.palette.text.primary,
+                                            theme.palette.secondary.dark
                                         )}
                                     >
                                         {card.name}
@@ -103,8 +103,8 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                         sx={{
                                             opacity: 0.8,
                                             ...MiniCardText(
-                                                theme.palette.base.light,
-                                                theme.palette.base.dark
+                                                theme.palette.text.primary,
+                                                theme.palette.secondary.dark
                                             ),
                                         }}
                                     >

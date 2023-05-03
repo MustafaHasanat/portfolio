@@ -14,7 +14,7 @@ export default function NotFoundPage() {
             }}
         >
             <GlitchedText
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
                 text={"404"}
                 fontSize={"10vw"}
                 shadowColor1={"#f80505"}
@@ -23,7 +23,7 @@ export default function NotFoundPage() {
             />
 
             <GlitchedText
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
                 text={"Page Not Found"}
                 fontSize={"2vw"}
                 shadowColor1={"#f80505"}

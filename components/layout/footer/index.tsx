@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Box, Stack } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-import sendEmail from "@/utils/helpers/sendEmail";
+import sendEmailEmailJS from "@/utils/helpers/sendEmail";
 import Form from "./form";
 import { snackbarActions, navigationBarActions } from "@/utils/store/store";
 import { useDispatch } from "react-redux";
@@ -31,12 +31,37 @@ const Footer = () => {
     const handleSubmit = (e: any) => {
         e.preventDefault();
 
-        const status = sendEmail(e.target);
+        const message = `
+            A new message from your portfolio:<br/><br/>
+            
+            Sender: <br/>
+                Name: ${e.target.name.value}<br/>
+                Email: ${e.target.email.value}<br/>
+                Phone: ${e.target.phone.value}<br/><br/>
 
-        if (status === 200) {
-            handleClick("Your message was sent successfully!", "success");
-        } else {
-            handleClick("Something went wrong on the server", "error");
+            Message:<br/>
+            ${e.target.message.value}
+        `;
+
+        const securedSmtpConfig = {
+            SecureToken: process.env.NEXT_PUBLIC_SMTP_SECURED_TOKEN, // TODO: create another one from the website for production page
+            To: "mustafa.hasanat99@gmail.com",
+            From: "mustfaaayyed@gmail.com",
+            Subject: e.target.subject.value,
+            Body: message,
+        };
+
+        if (window.Email) {
+            window.Email.send(securedSmtpConfig).then((message: any) => {
+                if (message === "OK") {
+                    handleClick(
+                        "Your message was sent successfully!",
+                        "success"
+                    );
+                } else {
+                    handleClick("Something went wrong on the server", "error");
+                }
+            });
         }
     };
 
@@ -58,7 +83,7 @@ const Footer = () => {
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top",
-                borderTop: `1px solid ${theme.palette.blue.main}`,
+                borderTop: `1px solid ${theme.palette.primary.main}`,
                 position: "relative",
             }}
         >

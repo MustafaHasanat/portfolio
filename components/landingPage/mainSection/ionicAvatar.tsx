@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Box } from "@mui/material";
-import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
 import { Fragment, useState } from "react";
 import {
     avatarStyles,
@@ -8,33 +7,37 @@ import {
     orbitalObjectStyles,
     orbitalPathStyles,
 } from "./styles";
+import { AvatarIcon } from "@/types/avatarIcon";
 
-const IonicAvatar = () => {
+const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     const [scaleValue, setScaleValue] = useState(1);
 
     return (
         <Box sx={ionicContainerStyles(scaleValue)}>
-            <Avatar src="images/avatar.jpg" alt="avatar" sx={avatarStyles(scaleValue)} />
+            <Avatar
+                src="images/avatar.jpg"
+                alt="avatar"
+                sx={avatarStyles(scaleValue)}
+            />
 
-            {WelcomeSectionConstants.avatarIons.map((ion) => {
+            {avatarIcons.map((ion) => {
                 return (
-                    <Fragment key={ion.id}>
+                    <Fragment key={ion.title}>
                         <Box
-                            id="ellipse-path"
                             sx={orbitalPathStyles(
-                                ion.rotateZ,
-                                ion.rotateY,
-                                ion.delay,
+                                ion.position.rotateZ,
+                                ion.position.rotateY,
+                                ion.position.delay,
                                 scaleValue
                             )}
                         >
-                            <Fragment key={`${ion.id} icon`}>
+                            <Fragment key={`${ion._id} icon`}>
                                 <Avatar
-                                    src={ion.src}
+                                    src={ion.logo.asset.url}
                                     alt="ion-image"
                                     sx={orbitalObjectStyles(
-                                        ion.delay,
-                                        ion.shadow,
+                                        ion.position.delay,
+                                        ion.color,
                                         scaleValue
                                     )}
                                 />

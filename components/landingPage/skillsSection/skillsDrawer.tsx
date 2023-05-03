@@ -1,4 +1,3 @@
-import GlassBox from "@/components/shared/glassBox";
 import { Typography, useTheme, Box, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
@@ -8,34 +7,35 @@ interface SkillsDrawerProps {
     category: {
         title: string;
     };
-    isOpened: boolean;
-    toggleDrawer: (drawer: number, state: string) => void;
+    isDrawerActive: boolean;
+    toggleDrawer: (drawer: number) => void;
 }
 
 const SkillsDrawer = ({
     index,
     category,
-    isOpened,
+    isDrawerActive,
     toggleDrawer,
 }: SkillsDrawerProps) => {
     const { title } = category;
     const theme = useTheme();
 
     return (
-        <GlassBox
-            id={`skill-cat-glass-box-${index}`}
-            extraSX={{
+        <Stack
+            sx={{
+                background: theme.palette.text.primary,
                 position: "relative",
-                width: "25vw",
+                width: "18vw",
                 height: "10vh",
                 overflow: "hidden",
                 borderRadius: 3,
                 marginBottom: 10,
+                paddingLeft: 3,
             }}
         >
             <Stack
                 direction="row"
-                justifyContent="space-around"
+                justifyContent="space-between"
                 alignItems="center"
                 sx={{
                     width: "100%",
@@ -46,38 +46,45 @@ const SkillsDrawer = ({
                     textTransform="capitalize"
                     fontSize="1.5vw"
                     fontWeight="bold"
-                    color={theme.palette.base.light}
+                    color={theme.palette.secondary.main}
                 >
                     {title}
                 </Typography>
 
                 <Box
-                    component={motion.div}
-                    animate={{
-                        transform: isOpened
-                            ? "rotate(-180deg)"
-                            : "rotate(0deg)",
-                    }}
                     sx={{
-                        height: "80%",
+                        bgcolor: theme.palette.primary.main,
+                        height: "100%",
                         width: "auto",
-                        cursor: "pointer",
-                    }}
-                    onClick={() => {
-                        toggleDrawer(index + 1, isOpened ? "opened" : "closed");
-                        console.log(isOpened);
                     }}
                 >
-                    <ArrowDropDownIcon
+                    <Box
+                        component={motion.div}
+                        animate={{
+                            transform: isDrawerActive
+                                ? "rotate(-180deg)"
+                                : "rotate(0deg)",
+                        }}
                         sx={{
-                            color: theme.palette.blue.main,
                             height: "100%",
                             width: "100%",
+                            cursor: "pointer",
                         }}
-                    />
+                        onClick={() => {
+                            toggleDrawer(index);
+                        }}
+                    >
+                        <ArrowDropDownIcon
+                            sx={{
+                                color: theme.palette.secondary.main,
+                                height: "100%",
+                                width: "100%",
+                            }}
+                        />
+                    </Box>
                 </Box>
             </Stack>
-        </GlassBox>
+        </Stack>
     );
 };
 

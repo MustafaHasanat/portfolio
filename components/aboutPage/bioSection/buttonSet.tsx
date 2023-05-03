@@ -19,13 +19,13 @@ const ButtonSet = () => {
                     icon={
                         <AutoStoriesSharpIcon
                             sx={{
-                                color: theme.palette.blue.light,
+                                color: theme.palette.primary.main,
                                 height: "100%",
                             }}
                         />
                     }
-                    color={theme.palette.base.light}
-                    hoverColor={theme.palette.blue.light}
+                    color={theme.palette.text.primary}
+                    hoverColor={theme.palette.primary.main}
                     onClick={() => {}}
                     extraSX={{
                         width: "18vw",

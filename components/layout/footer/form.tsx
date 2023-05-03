@@ -44,7 +44,12 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
     return (
         <GlassBox
             id={"footer-form-box"}
-            extraSX={{ width: "60%", height: "80%", position: "relative" }}
+            extraSX={{
+                width: "60%",
+                height: "80%",
+                position: "relative",
+                borderRadius: 3,
+            }}
         >
             <Stack
                 ref={formRef}
@@ -70,7 +75,7 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
                 >
                     <Typography
                         textAlign="center"
-                        color={theme.palette.base.light}
+                        color={theme.palette.text.primary}
                         fontSize="2vw"
                         width="70%"
                     >

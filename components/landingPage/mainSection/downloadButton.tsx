@@ -15,7 +15,7 @@ import { urls } from "@/utils/constants/global/global";
 const DownloadButton = () => {
     const theme = useTheme();
     const buttonAnimations = useAnimation();
-    const [shadowColor, setShadowColor] = useState(theme.palette.base.light);
+    // const [shadowColor, setShadowColor] = useState(theme.palette.text.primary);
 
     const buttonWidth = "13vw";
     const buttonHeight = "4vw";
@@ -39,11 +39,11 @@ const DownloadButton = () => {
             whileTap={{ scale: 0.9 }}
             sx={downloadButtonStyles(buttonWidth, buttonHeight)}
             onMouseEnter={() => {
-                setShadowColor(theme.palette.blue.light);
+                // setShadowColor(theme.palette.primary.main);
                 buttonAnimations.start("visible");
             }}
             onMouseLeave={() => {
-                setShadowColor(theme.palette.base.light);
+                // setShadowColor(theme.palette.text.primary);
                 buttonAnimations.start("hidden");
             }}
         >
@@ -52,8 +52,8 @@ const DownloadButton = () => {
                 animate={buttonAnimations}
                 initial="hidden"
                 variants={buttonVariants(
-                    theme.palette.blue.light,
-                    theme.palette.base.dark,
+                    theme.palette.secondary.main,
+                    `${theme.palette.primary.main}CC`,
                     buttonHeight
                 )}
                 position="absolute"
@@ -70,7 +70,7 @@ const DownloadButton = () => {
                     alignItems="center"
                     textTransform="uppercase"
                     letterSpacing={3}
-                    color={theme.palette.base.light}
+                    color={theme.palette.secondary.main}
                 >
                     Download CV
                 </Typography>
@@ -90,14 +90,14 @@ const DownloadButton = () => {
                             sx={{
                                 width: "auto",
                                 height: "90%",
-                                color: theme.palette.base.dark,
+                                color: theme.palette.primary.main,
                             }}
                         />
                     </Box>
                 </Link>
             </Stack>
 
-            {WelcomeSectionConstants.downloadButtonAnimations(
+            {/* {WelcomeSectionConstants.downloadButtonAnimations(
                 "2px",
                 shadowColor
             ).map((item, index) => {
@@ -121,7 +121,7 @@ const DownloadButton = () => {
                         />
                     </Fragment>
                 );
-            })}
+            })} */}
         </Button>
     );
 };

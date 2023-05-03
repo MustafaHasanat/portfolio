@@ -149,6 +149,20 @@ const LayoutConstants = {
             src: "/icons/tools/githubIcon.png",
             transform: "translateX(-135%) translateY(-100%)",
         },
+        {
+            link: urls.myDribbbleURL,
+            bgcolor: "#e84c88",
+            text: "Check my Dribbble shots",
+            src: "/icons/tools/dribbbleIcon.svg",
+            transform: "translateX(-135%) translateY(100%)",
+        },
+        {
+            link: urls.myCourseraURL,
+            bgcolor: "#0056d2",
+            text: "Skills earned by Coursera",
+            src: "/icons/tools/courseraIcon.png",
+            transform: "translateX(35%) translateY(100%)",
+        },
     ],
 };
 

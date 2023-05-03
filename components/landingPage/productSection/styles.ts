@@ -1,20 +1,21 @@
-export const ProductBox = {
-    position: "relative",
-    alignItems: "center",
-    paddingY: 10,
+export const ProductBox = (bgcolor: string) => {
+    return {
+        position: "relative",
+        alignItems: "center",
+        paddingY: 10,
+        background: `${bgcolor}`,
+    };
 };
 
-export const CardsBox = (transform: string) => {
-    return {
-        gap: 15,
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 2,
-        position: "relative",
-        transform: transform,
-        transition: "1s ease",
-    };
+export const CardsBox = {
+    gap: 20,
+    my: 5,
+    px: 15,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    zIndex: 2,
+    position: "relative",
 };
 
 export const BackBox = {
@@ -37,7 +38,7 @@ export const MiniCardBox = (
         position: "relative",
         width: "25%",
         height: height * 1.5,
-        borderRadius: "10px",
+        borderRadius: 3,
         boxShadow: "0 0 10px rgba(0,0,0,0.25)",
         background: `${bgcolor}11`,
         justifyContent: "center",

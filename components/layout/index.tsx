@@ -4,7 +4,7 @@ import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./metadata/headTag";
 import Main from "./main";
-import { Stack, Box } from "@mui/material";
+import { Stack, Box, useTheme } from "@mui/material";
 import Contacts from "./contacts";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/utils/store/store";
@@ -14,6 +14,7 @@ import SnackBar from "../shared/snackbar";
 import NavigationBar from "./navigationBar";
 
 const Layout = ({ children }: { children: JSX.Element }) => {
+    const theme = useTheme();
     const landingSectionRef = useRef(null);
     const landingSectionInView = useInView(landingSectionRef);
 
@@ -28,14 +29,7 @@ const Layout = ({ children }: { children: JSX.Element }) => {
     };
 
     return (
-        <Stack
-            sx={{
-                background:
-                    "linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(images/hexaWP.jpg)",
-                backgroundRepeat: "repeat",
-                backgroundPosition: "center",
-            }}
-        >
+        <Stack>
             <HeadTag />
 
             <ModalBackLight

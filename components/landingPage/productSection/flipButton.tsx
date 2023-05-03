@@ -38,8 +38,8 @@ const FlipButton = ({ index, face, flipCard }: FlipButtonProps) => {
                     sx={{
                         transition: "0.3s ease",
                         color: isHovered
-                            ? theme.palette.gold.main
-                            : theme.palette.blue.main,
+                            ? theme.palette.primary.main
+                            : theme.palette.primary.main,
                         width: "100%",
                         height: "100%",
                     }}

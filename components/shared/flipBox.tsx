@@ -1,5 +1,7 @@
-import { Stack } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
 import GlassBox from "./glassBox";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 interface FlipBoxProps {
     frontChildren: JSX.Element;
@@ -36,28 +38,38 @@ const FlipBox = ({
     width,
     height,
 }: FlipBoxProps): JSX.Element => {
+    const theme = useTheme();
+    const cardRef = useRef(null);
+    const cardInView = useInView(cardRef);
+
     return (
         <Stack
             id={id}
+            ref={cardRef}
+            component={motion.div}
+            initial={{ transform: `${transform} scale(0.9)` }}
+            animate={{
+                transform: `${transform} scale(${cardInView ? 1 : 0.9})`,
+                transition: {
+                    duration: 0.5,
+                },
+            }}
             sx={{
                 position: "relative",
                 width: width,
                 height: height,
                 transformStyle: "preserve-3d",
-                transition: "1s ease",
-                transform: transform,
             }}
         >
-            <GlassBox id={`card-front-face-${id}`} extraSX={frontSX}>
+            <Stack sx={frontSX}>
                 {frontChildren}
-            </GlassBox>
+            </Stack>
 
-            <GlassBox
-                id={`card-back-face-${id}`}
-                extraSX={{ ...backSX, transform: "rotateY(180deg)" }}
+            <Stack
+                sx={{ ...backSX, transform: "rotateY(180deg)" }}
             >
                 {backChildren}
-            </GlassBox>
+            </Stack>
         </Stack>
     );
 };

@@ -8,8 +8,28 @@ import { Stack } from "@mui/material";
 import { useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Quote } from "@/types/quote";
+import { getAllQuotes } from "@/utils/sanity/quote";
+import { AvatarIcon } from "@/types/avatarIcon";
+import { getAllAvatarIcons } from "@/utils/sanity/avatarIcon";
 
-export default function Home() {
+export const getStaticProps = async (): Promise<{
+    props: { quotes: Quote[]; avatarIcons: AvatarIcon[] };
+}> => {
+    const quotes = await getAllQuotes();
+    const avatarIcons = await getAllAvatarIcons();
+
+    return {
+        props: { quotes, avatarIcons },
+    };
+};
+
+interface HomeProps {
+    quotes: Quote[];
+    avatarIcons: AvatarIcon[];
+}
+
+export default function Home({ quotes, avatarIcons }: HomeProps) {
     const currentView = useSelector(
         (state: { navigationBarReducer: { currentView: string } }) =>
             state.navigationBarReducer.currentView
@@ -41,29 +61,20 @@ export default function Home() {
     useEffect(() => {
         if (mainSecInView)
             dispatch(navigationBarActions.setCurrentView("home-main"));
-    }, [mainSecInView]);
-
-    useEffect(() => {
         if (productSecInView)
             dispatch(navigationBarActions.setCurrentView("home-product"));
-    }, [productSecInView]);
-
-    useEffect(() => {
         if (skillsSecInView)
             dispatch(navigationBarActions.setCurrentView("home-skills"));
-    }, [skillsSecInView]);
-
-    useEffect(() => {
         if (quotesSecInView)
             dispatch(navigationBarActions.setCurrentView("home-quotes"));
-    }, [quotesSecInView]);
+    }, [mainSecInView, productSecInView, skillsSecInView, quotesSecInView]);
 
     return (
         <Stack>
-            <MainSection inViewRef={mainSecRef} />
+            <MainSection inViewRef={mainSecRef} avatarIcons={avatarIcons} />
             <ProductSection inViewRef={productSecRef} />
             <SkillsSection inViewRef={skillsSecRef} />
-            <QuotesSection inViewRef={quotesSecRef} />
+            <QuotesSection inViewRef={quotesSecRef} quotes={quotes} />
         </Stack>
     );
 }

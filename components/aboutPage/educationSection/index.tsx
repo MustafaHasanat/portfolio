@@ -1,26 +1,33 @@
 import GlassBox from "@/components/shared/glassBox";
-import InteractiveTitle from "@/components/shared/title";
-import EducationSectionConstants from "@/utils/constants/aboutPage/educationSection";
-import {
-    Box,
-    Divider,
-    Stack,
-    Typography,
-    useTheme,
-} from "@mui/material";
-import { Fragment, MutableRefObject } from "react";
+import AnimatedTitle from "@/components/shared/animatedTitle";
+import { Box, Divider, Stack, useTheme } from "@mui/material";
+import { MutableRefObject, useRef } from "react";
 import UpperSection from "./upperSection";
 import LowerSection from "./lowerSection";
+import { motion, useInView } from "framer-motion";
+import { Certificate } from "@/types/certificate";
 
 interface EducationSectionProps {
     inViewRef: MutableRefObject<null>;
+    certificates: Certificate[];
 }
 
-const EducationSection = ({ inViewRef }: EducationSectionProps) => {
+const EducationSection = ({
+    inViewRef,
+    certificates,
+}: EducationSectionProps) => {
     const theme = useTheme();
+    const cardRef = useRef(null);
+    const cardInView = useInView(cardRef);
 
     return (
-        <Stack id="about-education" px={12} pt={5} position="relative">
+        <Stack
+            id="about-education"
+            px={12}
+            py={10}
+            position="relative"
+            bgcolor={theme.palette.text.primary}
+        >
             <Box
                 ref={inViewRef}
                 sx={{
@@ -30,60 +37,56 @@ const EducationSection = ({ inViewRef }: EducationSectionProps) => {
                 }}
             />
 
-            <InteractiveTitle
-                primary={theme.palette.blue.main}
-                secondary={theme.palette.base.dark}
-                tertiary={theme.palette.gold.main}
-                containerHeight="30vh"
+            <AnimatedTitle
                 buttonWidth="40%"
-                buttonHeight="60%"
-                linesSpace={15}
-                buttonCuttingRatio={0.17}
-                buttonGap={18}
-            >
-                <Typography
-                    fontSize="2.7vw"
-                    color={theme.palette.base.dark}
-                    textTransform="uppercase"
-                    letterSpacing={3}
-                    fontWeight="bold"
-                >
-                    Education
-                </Typography>
-            </InteractiveTitle>
+                text="education"
+                tertiary={theme.palette.secondary.main}
+                shadowColor={theme.palette.primary.main}
+            />
 
             <Stack
-                spacing={10}
                 justifyContent="center"
+                gap={15}
                 my={5}
                 flexWrap="wrap"
                 direction="row"
             >
-                {EducationSectionConstants.certificates.map((cert, index) => {
+                {certificates.map((cert, index) => {
                     return (
-                        <Fragment key={`certificate number: ${index}`}>
-                            <GlassBox
-                                id={`certificate box number: ${index}`}
-                                extraSX={{
-                                    width: "35vw",
-                                    position: "relative",
-                                    padding: 3,
-                                    alignItems: "center",
+                        <Stack
+                            key={`certificate number: ${index}`}
+                            component={motion.div}
+                            ref={cardRef}
+                            initial={{ scale: 0.9 }}
+                            animate={{
+                                scale: cardInView ? 1 : 0.9,
+                                transition: {
+                                    type: "spring",
+                                },
+                            }}
+                            sx={{
+                                width: "25vw",
+                                height: "80vh",
+                                position: "relative",
+                                padding: 3,
+                                justifyContent: "space-evenly",
+                                alignItems: "center",
+                                borderRadius: 3,
+                                bgcolor: theme.palette.secondary.main,
+                            }}
+                        >
+                            <UpperSection cert={cert} />
+
+                            <Divider
+                                sx={{
+                                    bgcolor: theme.palette.text.primary,
+                                    width: "100%",
+                                    marginY: 2,
                                 }}
-                            >
-                                <UpperSection cert={cert} />
+                            />
 
-                                <Divider
-                                    sx={{
-                                        bgcolor: theme.palette.base.light,
-                                        width: "100%",
-                                        marginY: 2,
-                                    }}
-                                />
-
-                                <LowerSection cert={cert} />
-                            </GlassBox>
-                        </Fragment>
+                            <LowerSection cert={cert} />
+                        </Stack>
                     );
                 })}
             </Stack>

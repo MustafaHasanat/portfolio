@@ -23,20 +23,20 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
 
     return (
         <Fragment>
-            {icon(theme.palette.blue.main, "30%")}
+            {icon(theme.palette.primary.main, "20%")}
 
             <Typography
-                fontSize="3vw"
+                p={1}
+                variant="h4"
                 textTransform="uppercase"
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
             >
                 {title}
             </Typography>
 
             <Typography
-                fontSize="1.5vw"
                 textAlign="center"
-                color={theme.palette.base.light}
+                color={theme.palette.text.primary}
             >
                 {description}
             </Typography>
@@ -56,8 +56,8 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
                                 sx={{
                                     fontSize: "1.1vw",
                                     mb: 1,
-                                    color: theme.palette.base.light,
-                                    bgcolor: theme.palette.blue.main,
+                                    color: theme.palette.secondary.main,
+                                    bgcolor: theme.palette.primary.main,
                                 }}
                             />
                         </Fragment>
@@ -70,7 +70,7 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
                     width: "100%",
                     marginTop: 3,
                     marginBottom: 2,
-                    bgcolor: theme.palette.base.light,
+                    bgcolor: theme.palette.text.primary,
                 }}
             />
 
@@ -79,13 +79,13 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
                     icon={
                         <LocalShippingIcon
                             sx={{
-                                color: theme.palette.gold.main,
+                                color: theme.palette.primary.main,
                                 height: "100%",
                             }}
                         />
                     }
-                    color={theme.palette.base.light}
-                    hoverColor={theme.palette.gold.main}
+                    color={theme.palette.text.primary}
+                    hoverColor={theme.palette.primary.main}
                     onClick={() => {}}
                     extraSX={{
                         width: "40%",

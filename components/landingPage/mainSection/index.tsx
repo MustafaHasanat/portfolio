@@ -3,18 +3,20 @@ import { Box, Stack, useTheme } from "@mui/material";
 import { mainSectionStyles } from "./styles";
 import DownloadButton from "./downloadButton";
 import { MutableRefObject } from "react";
+import { AvatarIcon } from "@/types/avatarIcon";
 
 interface MainSectionProps {
     inViewRef: MutableRefObject<null>;
+    avatarIcons: AvatarIcon[]
 }
 
-const MainSection = ({ inViewRef }: MainSectionProps) => {
+const MainSection = ({ inViewRef, avatarIcons }: MainSectionProps) => {
     const theme = useTheme();
 
     return (
         <Stack
             id="home-main"
-            sx={mainSectionStyles(theme.palette.blue.main)}
+            sx={mainSectionStyles(theme.palette.primary.main)}
             direction="row"
         >
             <Box
@@ -27,7 +29,7 @@ const MainSection = ({ inViewRef }: MainSectionProps) => {
             />
 
             <DownloadButton />
-            <IonicAvatar />
+            <IonicAvatar avatarIcons={avatarIcons} />
         </Stack>
     );
 };

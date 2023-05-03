@@ -7,6 +7,9 @@ export const urls = {
     myFacebookURL: "https://www.facebook.com/mustfa.alhasanat",
     myUdemyURL: "https://www.udemy.com/user/mustfa-alhasana/",
     myCalendlyURL: "https://calendly.com/mustafa-hasanat/long-interview",
+    myDribbbleURL: "https://dribbble.com/MustafaAlhasanat",
+    myCourseraURL:
+        "https://www.coursera.org/user/6a1a09a353774aa843c9328e7053d5f9",
     myCVURL:
         "https://docs.google.com/document/d/e/2PACX-1vRUFPqrfEa6liv4fabfbP3DRU6MK_Kbs2ODfnHh-Gcv6lY7v-S0T0C9eqnrthojSw/pub",
     myBMCURL: "https://www.buymeacoffee.com/MustafaHasanat",
