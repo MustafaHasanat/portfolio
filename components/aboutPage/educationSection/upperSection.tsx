@@ -2,7 +2,7 @@ import { Certificate } from "@/types/certificate";
 import { Avatar, Stack, Typography, useTheme } from "@mui/material";
 
 interface UpperSectionProps {
-    cert: Certificate
+    cert: Certificate;
 }
 
 const UpperSection = ({ cert }: UpperSectionProps) => {
@@ -11,7 +11,10 @@ const UpperSection = ({ cert }: UpperSectionProps) => {
     const textItem = (key: string, value: string) => {
         return (
             <Stack direction="row" spacing={1}>
-                <Typography color={theme.palette.text.primary} fontWeight="bold">
+                <Typography
+                    color={theme.palette.text.primary}
+                    fontWeight="bold"
+                >
                     {key}
                 </Typography>
                 <Typography
@@ -25,11 +28,7 @@ const UpperSection = ({ cert }: UpperSectionProps) => {
     };
 
     return (
-        <Stack
-            direction="row"
-            justifyContent="start"
-            alignItems="center"
-        >
+        <Stack direction="row" justifyContent="start" alignItems="center">
             <Avatar
                 variant="square"
                 src={cert.logo.asset.url}
@@ -48,7 +47,8 @@ const UpperSection = ({ cert }: UpperSectionProps) => {
             >
                 {textItem("Facility:", cert.facility)}
                 {textItem("Degree:", cert.degree)}
-                {textItem("Duration:", cert.date)}
+                {textItem("Start:", cert.startDate.toString())}
+                {textItem("End:", cert.endDate.toString())}
             </Stack>
         </Stack>
     );

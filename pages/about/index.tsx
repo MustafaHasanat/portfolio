@@ -6,8 +6,10 @@ import ExperienceSection from "@/components/aboutPage/experienceSection";
 import LanguagesSection from "@/components/aboutPage/languagesSection";
 import { Certificate } from "@/types/certificate";
 import { Course } from "@/types/course";
+import { Language } from "@/types/language";
 import { getAllCertificates } from "@/utils/sanity/certificate";
 import { getAllCourses } from "@/utils/sanity/course";
+import { getAllLanguages } from "@/utils/sanity/language";
 import { navigationBarActions } from "@/utils/store/store";
 import { Stack } from "@mui/material";
 import { useInView } from "framer-motion";
@@ -15,22 +17,32 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 export const getStaticProps = async (): Promise<{
-    props: { certificates: Certificate[]; courses: Course[] };
+    props: {
+        certificates: Certificate[];
+        courses: Course[];
+        languages: Language[];
+    };
 }> => {
     const certificates = await getAllCertificates();
     const courses = await getAllCourses();
+    const languages = await getAllLanguages();
 
     return {
-        props: { certificates, courses },
+        props: { certificates, courses, languages },
     };
 };
 
 interface AboutProps {
     certificates: Certificate[];
     courses: Course[];
+    languages: Language[];
 }
 
-export default function About({ certificates, courses }: AboutProps) {
+export default function About({
+    certificates,
+    courses,
+    languages,
+}: AboutProps) {
     const currentView = useSelector(
         (state: { navigationBarReducer: { currentView: string } }) =>
             state.navigationBarReducer.currentView
@@ -94,7 +106,10 @@ export default function About({ certificates, courses }: AboutProps) {
                 inViewRef={certificatesSecRef}
                 courses={courses}
             />
-            <LanguagesSection inViewRef={languagesSecRef} />
+            <LanguagesSection
+                inViewRef={languagesSecRef}
+                languages={languages}
+            />
         </Stack>
     );
 }
