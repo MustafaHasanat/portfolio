@@ -1,11 +1,11 @@
-import { MutableRefObject } from "react";
-import { Box, Stack } from "@mui/material";
+import { MutableRefObject, useState } from "react";
+import { Box, Stack, useTheme } from "@mui/material";
 import AnimatedTitle from "@/components/shared/animatedTitle";
 import CertsChart from "./certsChart";
 import CertsList from "./certsList";
 import { Course } from "@/types/course";
 
-interface ExperienceSectionProps {
+interface CertificatesSectionProps {
     inViewRef: MutableRefObject<null>;
     courses: Course[];
 }
@@ -13,10 +13,18 @@ interface ExperienceSectionProps {
 const CertificatesSection = ({
     inViewRef,
     courses,
-}: ExperienceSectionProps) => {
+}: CertificatesSectionProps) => {
+    const theme = useTheme();
+    const [chartType, setChartType] = useState("radar");
 
     return (
-        <Stack id="about-certificates" px={12} position="relative">
+        <Stack
+            id="about-certificates"
+            px={12}
+            py={10}
+            position="relative"
+            bgcolor={theme.palette.text.primary}
+        >
             <Box
                 ref={inViewRef}
                 sx={{
@@ -26,16 +34,26 @@ const CertificatesSection = ({
                 }}
             />
 
-            <AnimatedTitle buttonWidth="40%" text="certifications" />
+            <AnimatedTitle
+                buttonWidth="40%"
+                text="courses"
+                tertiary={theme.palette.secondary.main}
+                shadowColor={theme.palette.primary.main}
+            />
 
             <Stack
                 direction="row"
                 p={5}
-                justifyContent="center"
+                justifyContent="space-evenly"
                 alignItems="center"
+                width="100%"
             >
-                <CertsChart courses={courses} />
-                <CertsList courses={courses} />
+                <CertsChart courses={courses} chartType={chartType} />
+                <CertsList
+                    courses={courses}
+                    chartType={chartType}
+                    setChartType={setChartType}
+                />
             </Stack>
         </Stack>
     );
