@@ -7,7 +7,6 @@ export async function getAllCourses(): Promise<Course[]> {
         _id,
         title,
         category,
-        issuer,
         date,
         certificated,
         image {
@@ -15,6 +14,15 @@ export async function getAllCourses(): Promise<Course[]> {
                 ...,
                 url
             }
+        },
+        issuer->{
+            issuer,
+            image {
+                asset->{
+                    ...,
+                    url
+                }
+            },    
         }
     }`);
 }

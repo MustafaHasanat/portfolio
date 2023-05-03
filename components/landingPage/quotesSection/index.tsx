@@ -33,7 +33,7 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
     };
 
     return (
-        <Stack id="home-quotes" py={10} position="relative">
+        <Stack id="home-quotes" py={10} position="relative" bgcolor={theme.palette.text.primary}>
             <Box
                 ref={inViewRef}
                 sx={{
@@ -43,7 +43,12 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
                 }}
             />
 
-            <AnimatedTitle buttonWidth="40%" text="favorite quotes" />
+            <AnimatedTitle
+                buttonWidth="40%"
+                text="favorite quotes"
+                tertiary={theme.palette.secondary.main}
+                shadowColor={theme.palette.primary.main}
+            />
 
             <Stack
                 direction="row"
@@ -64,7 +69,7 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
                     shiftIndex={shiftIndex}
                     shuffledQuotes={shuffledQuotes}
                 />
-                
+
                 <ArrowComponent
                     transform="rotate(180deg)"
                     positionPair={{ right: "6%" }}

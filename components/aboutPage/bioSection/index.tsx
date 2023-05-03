@@ -51,7 +51,7 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
                         width: "25vw",
                         height: "25vw",
                         zIndex: 3,
-                        boxShadow: "0 0 20px 10px black inset",
+                        boxShadow: `0 0 20px 10px ${theme.palette.secondary.main} inset`,
                         position: "absolute",
                     }}
                 />
@@ -73,8 +73,10 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
         <Box
             id="about-bio"
             pt="20vh"
-            px={12}
+            pb={10}
+            px={18}
             position="relative"
+            bgcolor={theme.palette.secondary.main}
         >
             <Box
                 ref={inViewRef}

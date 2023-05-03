@@ -71,59 +71,53 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                                                 : 5,
                                     }}
                                 >
-                                    <GlassBox
-                                        id="quotes-glass-box"
-                                        extraSX={{
-                                            position: "relative",
-                                            height: "100%",
-                                            width: cardWidth,
+                                    <Box
+                                        sx={{
                                             overflow: "hidden",
-                                        }}
-                                    >
-                                        <Box
-                                            sx={{
-                                                position: "relative",
-                                                width: "100%",
-                                                height: "100%",
-                                                backgroundImage: `
-                                                                linear-gradient(rgba(0, 0, 0, 0.6), 
-                                                                rgba(0, 0, 0, 0.9)), 
+                                            position: "relative",
+                                            width: cardWidth,
+                                            height: "100%",
+                                            borderRadius: 3,
+                                            boxShadow: `0 0 10px 10px ${theme.palette.text.primary}`,
+                                            backgroundImage: `
+                                                                linear-gradient(
+                                                                    rgba(0, 0, 0, 0.8), 
+                                                                    rgba(0, 0, 0, 0.3)), 
                                                                 ${
                                                                     quote.background &&
                                                                     `url("${quote.background.asset.url}")`
                                                                 }`,
-                                                backgroundRepeat: "no-repeat",
-                                                backgroundPositionY: "center",
-                                                backgroundPositionX: "center",
-                                                backgroundSize: "cover",
+                                            backgroundRepeat: "no-repeat",
+                                            backgroundPositionY: "center",
+                                            backgroundPositionX: "center",
+                                            backgroundSize: "cover",
+                                        }}
+                                    >
+                                        <Typography
+                                            textTransform="capitalize"
+                                            fontSize="1vw"
+                                            sx={{
+                                                position: "absolute",
+                                                top: 15,
+                                                left: 15,
+                                                width: "80%",
                                             }}
                                         >
-                                            <Typography
-                                                textTransform="capitalize"
-                                                fontSize="1vw"
-                                                sx={{
-                                                    position: "absolute",
-                                                    top: 15,
-                                                    left: 15,
-                                                    width: "80%",
-                                                }}
-                                            >
-                                                {quote.quote}
-                                            </Typography>
+                                            {quote.quote}
+                                        </Typography>
 
-                                            <Typography
-                                                textTransform="uppercase"
-                                                fontSize="0.6vw"
-                                                sx={{
-                                                    position: "absolute",
-                                                    bottom: 15,
-                                                    right: 15,
-                                                }}
-                                            >
-                                                {"~ " + quote.author}
-                                            </Typography>
-                                        </Box>
-                                    </GlassBox>
+                                        <Typography
+                                            textTransform="uppercase"
+                                            fontSize="0.6vw"
+                                            sx={{
+                                                position: "absolute",
+                                                bottom: 15,
+                                                right: 15,
+                                            }}
+                                        >
+                                            {"~ " + quote.author}
+                                        </Typography>
+                                    </Box>
                                 </Box>
                             </Fragment>
                         );

@@ -1,8 +1,10 @@
+import { Issuer } from "./issuer";
+
 export type Course = {
     _id: string;
     title: string;
     category: string;
-    issuer: string;
+    issuer: Issuer;
     date: Date;
     certificated: boolean;
     image: {

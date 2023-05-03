@@ -11,19 +11,19 @@ interface SkillsListProps {
             src: string;
         }[];
     };
-    isOpened: boolean;
+    isDrawerActive: boolean;
 }
 
-const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
+const SkillsList = ({ index, category, isDrawerActive }: SkillsListProps) => {
     const { skills } = category;
     const theme = useTheme();
     const listAnimation = useAnimation();
 
     useEffect(() => {
-        isOpened
+        isDrawerActive
             ? listAnimation.start("visible")
             : listAnimation.start("hidden");
-    }, [isOpened, listAnimation]);
+    }, [isDrawerActive, listAnimation]);
 
     return (
         <Stack
@@ -48,8 +48,9 @@ const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
                 id={`skill-list-glass-box-${index}`}
                 extraSX={{
                     position: "relative",
-                    width: "25vw",
+                    width: "18vw",
                     overflow: "hidden",
+                    boxShadow: `0 0 4px ${theme.palette.primary.main}`,
                     borderRadius: 3,
                 }}
             >
@@ -61,15 +62,15 @@ const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
                                     direction="row"
                                     justifyContent="space-between"
                                     alignItems="center"
-                                    bgcolor={`${theme.palette.primary.main}99`}
+                                    bgcolor={theme.palette.text.primary}
                                     overflow="hidden"
                                     borderRadius={2}
                                     py={1}
-                                    px={5}
+                                    px={2}
                                     height="7.5vh"
                                 >
                                     <Typography
-                                        color={theme.palette.text.primary}
+                                        color={theme.palette.secondary.main}
                                         fontSize="1.4vw"
                                     >
                                         {skill.name}
@@ -80,7 +81,7 @@ const SkillsList = ({ index, category, isOpened }: SkillsListProps) => {
                                         src={skill.src}
                                         sx={{
                                             padding: 0.5,
-                                            bgcolor: theme.palette.text.primary,
+                                            bgcolor: "white",
                                             height: "100%",
                                             width: "auto",
                                             borderRadius: 2,

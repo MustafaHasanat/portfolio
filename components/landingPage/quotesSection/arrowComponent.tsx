@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
@@ -16,6 +16,7 @@ const ArrowComponent = ({
     handleArrowClick,
 }: ArrowComponentProps) => {
     const newTransform = "translateY(-50%) " + transform;
+    const theme = useTheme();
 
     return (
         <Box
@@ -44,7 +45,11 @@ const ArrowComponent = ({
             }}
         >
             <KeyboardDoubleArrowLeftIcon
-                sx={{ height: "100%", width: "100%" }}
+                sx={{
+                    height: "100%",
+                    width: "100%",
+                    color: theme.palette.primary.main,
+                }}
             />
         </Box>
     );

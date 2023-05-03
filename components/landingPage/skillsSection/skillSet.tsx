@@ -11,28 +11,28 @@ interface SkillsDrawerProps {
             src: string;
         }[];
     };
-    toggleDrawer: (drawer: number, state: string) => void;
-    drawerOpened: number;
+    toggleDrawer: (currentIndex: number) => void;
+    isDrawerActive: (index: number) => boolean;
 }
 
 const SkillSet = ({
     index,
     category,
     toggleDrawer,
-    drawerOpened,
+    isDrawerActive,
 }: SkillsDrawerProps) => {
     return (
         <Stack spacing={2} position="relative">
             <SkillsDrawer
                 index={index}
                 category={category}
-                isOpened={drawerOpened === index + 1}
+                isDrawerActive={isDrawerActive(index)}
                 toggleDrawer={toggleDrawer}
             />
             <SkillsList
                 index={index}
                 category={category}
-                isOpened={drawerOpened === index + 1}
+                isDrawerActive={isDrawerActive(index)}
             />
         </Stack>
     );

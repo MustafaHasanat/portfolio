@@ -21,7 +21,13 @@ const EducationSection = ({
     const cardInView = useInView(cardRef);
 
     return (
-        <Stack id="about-education" px={12} pt={5} position="relative">
+        <Stack
+            id="about-education"
+            px={12}
+            py={10}
+            position="relative"
+            bgcolor={theme.palette.text.primary}
+        >
             <Box
                 ref={inViewRef}
                 sx={{
@@ -31,55 +37,56 @@ const EducationSection = ({
                 }}
             />
 
-            <AnimatedTitle buttonWidth="40%" text="education" />
+            <AnimatedTitle
+                buttonWidth="40%"
+                text="education"
+                tertiary={theme.palette.secondary.main}
+                shadowColor={theme.palette.primary.main}
+            />
 
             <Stack
-                spacing={10}
                 justifyContent="center"
                 gap={15}
-                my={10}
+                my={5}
                 flexWrap="wrap"
                 direction="row"
             >
                 {certificates.map((cert, index) => {
                     return (
-                        <Box
+                        <Stack
                             key={`certificate number: ${index}`}
                             component={motion.div}
                             ref={cardRef}
-                            initial={{ scale: 0.7 }}
+                            initial={{ scale: 0.9 }}
                             animate={{
-                                scale: cardInView ? 1 : 0.7,
+                                scale: cardInView ? 1 : 0.9,
                                 transition: {
                                     type: "spring",
                                 },
                             }}
+                            sx={{
+                                width: "25vw",
+                                height: "80vh",
+                                position: "relative",
+                                padding: 3,
+                                justifyContent: "space-evenly",
+                                alignItems: "center",
+                                borderRadius: 3,
+                                bgcolor: theme.palette.secondary.main,
+                            }}
                         >
-                            <GlassBox
-                                id={`certificate box number: ${index}`}
-                                extraSX={{
-                                    width: "25vw",
-                                    height: "80vh",
-                                    position: "relative",
-                                    padding: 3,
-                                    justifyContent: "space-evenly",
-                                    alignItems: "center",
-                                    borderRadius: 3,
+                            <UpperSection cert={cert} />
+
+                            <Divider
+                                sx={{
+                                    bgcolor: theme.palette.text.primary,
+                                    width: "100%",
+                                    marginY: 2,
                                 }}
-                            >
-                                <UpperSection cert={cert} />
+                            />
 
-                                <Divider
-                                    sx={{
-                                        bgcolor: theme.palette.text.primary,
-                                        width: "100%",
-                                        marginY: 2,
-                                    }}
-                                />
-
-                                <LowerSection cert={cert} />
-                            </GlassBox>
-                        </Box>
+                            <LowerSection cert={cert} />
+                        </Stack>
                     );
                 })}
             </Stack>

@@ -60,8 +60,6 @@ const Footer = () => {
                     );
                 } else {
                     handleClick("Something went wrong on the server", "error");
-                    console.log(message);
-                    console.log(securedSmtpConfig);
                 }
             });
         }

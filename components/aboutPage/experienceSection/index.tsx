@@ -12,7 +12,13 @@ const ExperienceSection = ({ inViewRef }: ExperienceSectionProps) => {
     const theme = useTheme();
 
     return (
-        <Stack id="about-experience" px={12} pb={5} position="relative">
+        <Stack
+            id="about-experience"
+            px={12}
+            py={10}
+            position="relative"
+            bgcolor={theme.palette.secondary.main}
+        >
             <Box
                 ref={inViewRef}
                 sx={{
@@ -21,7 +27,7 @@ const ExperienceSection = ({ inViewRef }: ExperienceSectionProps) => {
                     width: " 100%",
                 }}
             />
-            
+
             <AnimatedTitle buttonWidth="40%" text="experiences" />
 
             <Stack spacing={5} position="relative">

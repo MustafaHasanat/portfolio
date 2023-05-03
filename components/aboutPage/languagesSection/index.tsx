@@ -10,7 +10,13 @@ const LanguagesSection = ({ inViewRef }: LanguagesSectionProps) => {
     const theme = useTheme();
 
     return (
-        <Stack id="about-languages" height="105vh" px={12} position="relative">
+        <Stack
+            id="about-languages"
+            height="105vh"
+            px={12}
+            position="relative"
+            bgcolor={theme.palette.secondary.main}
+        >
             <Box
                 ref={inViewRef}
                 sx={{

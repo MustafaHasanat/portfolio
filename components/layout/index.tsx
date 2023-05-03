@@ -29,13 +29,7 @@ const Layout = ({ children }: { children: JSX.Element }) => {
     };
 
     return (
-        <Stack
-            sx={{
-                background: `linear-gradient(${theme.palette.secondary.main}DD, ${theme.palette.secondary.main}33), url(images/hexaWP.jpg)`,
-                backgroundRepeat: "repeat",
-                backgroundPosition: "center",
-            }}
-        >
+        <Stack>
             <HeadTag />
 
             <ModalBackLight

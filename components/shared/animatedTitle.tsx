@@ -20,6 +20,7 @@ interface AnimatedTitleProps {
     secondaryBorder?: string;
     tertiary?: string;
     thickness?: number;
+    shadowColor?: string;
 }
 const AnimatedTitle = (props: AnimatedTitleProps) => {
     const theme = useTheme();
@@ -34,6 +35,7 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
         secondaryBorder = "transparent",
         tertiary = theme.palette.primary.main,
         thickness = 3,
+        shadowColor = theme.palette.primary.main,
         // sizes
         containerWidth = "100%",
         containerHeight = "30vh",
@@ -44,7 +46,7 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
         buttonGap = 18,
         buttonLimit = 15,
         // text
-        text = "title placeholder"
+        text = "title placeholder",
     } = props;
 
     const {
@@ -83,7 +85,7 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                     height="100%"
                     style={{
                         position: "absolute",
-                        // filter: `drop-shadow(0px 0px 1px ${shadowColor})`,
+                        filter: `drop-shadow(0px 0px 3px ${shadowColor})`,
                     }}
                 >
                     <path

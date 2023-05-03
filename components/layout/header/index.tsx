@@ -99,7 +99,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     <Box
                         sx={{
                             position: "relative",
-                            bgcolor: theme.palette.text.primary,
+                            bgcolor: theme.palette.secondary.light,
                             width: "6vh",
                             height: "6vh",
                             borderRadius: 2,
@@ -148,7 +148,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                             src="icons\websites\bmcIcon2.png"
                             sx={{
                                 padding: 1,
-                                bgcolor: theme.palette.text.primary,
+                                bgcolor: theme.palette.secondary.light,
                                 border: `2px solid ${theme.palette.secondary.dark}`,
                                 width: "200px",
                                 height: "auto",

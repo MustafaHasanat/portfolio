@@ -4,6 +4,7 @@ import { Box, useTheme } from "@mui/material";
 import { Stack, Typography } from "@mui/material";
 import { Fragment, MutableRefObject, useState } from "react";
 import SkillSet from "./skillSet";
+import useMultiControl from "@/hooks/useMultiControl";
 
 interface SkillsSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -11,24 +12,17 @@ interface SkillsSectionProps {
 
 const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
     const theme = useTheme();
-    const [drawerOpened, setDrawerOpened] = useState(0);
 
-    const toggleDrawer = (drawer: number, state: string) => {
-        if (drawer !== drawerOpened) {
-            if (state === "closed") {
-                setDrawerOpened(drawer);
-            } else {
-                setDrawerOpened(0);
-            }
-        } else if (state === "closed") {
-            setDrawerOpened(drawer);
-        } else if (state === "opened") {
-            setDrawerOpened(0);
-        }
-    };
+    const { updateState: toggleDrawer, isActive: isDrawerActive } =
+        useMultiControl();
 
     return (
-        <Stack id="home-skills" position="relative">
+        <Stack
+            id="home-skills"
+            position="relative"
+            bgcolor={theme.palette.secondary.main}
+            py={10}
+        >
             <Box
                 ref={inViewRef}
                 sx={{
@@ -38,15 +32,19 @@ const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
                 }}
             />
 
-            <AnimatedTitle buttonWidth="40%" text="My Skills" />
+            <AnimatedTitle
+                buttonWidth="40%"
+                text="My Skills"
+                shadowColor={theme.palette.primary.main}
+            />
 
             <Stack
                 direction="row"
                 justifyContent="center"
                 flexWrap="wrap"
-                px={10}
+                px={15}
                 my={10}
-                gap={5}
+                gap={10}
             >
                 {SkillsSectionConstants.categories.map((category, index) => {
                     return (
@@ -55,7 +53,7 @@ const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
                                 index={index}
                                 category={category}
                                 toggleDrawer={toggleDrawer}
-                                drawerOpened={drawerOpened}
+                                isDrawerActive={isDrawerActive}
                             />
                         </Fragment>
                     );

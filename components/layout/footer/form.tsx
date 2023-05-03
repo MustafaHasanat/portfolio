@@ -44,7 +44,12 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
     return (
         <GlassBox
             id={"footer-form-box"}
-            extraSX={{ width: "60%", height: "80%", position: "relative" }}
+            extraSX={{
+                width: "60%",
+                height: "80%",
+                position: "relative",
+                borderRadius: 3,
+            }}
         >
             <Stack
                 ref={formRef}
