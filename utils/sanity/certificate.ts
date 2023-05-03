@@ -7,7 +7,8 @@ export async function getAllCertificates(): Promise<Certificate[]> {
         _id,
         facility,
         degree,
-        date,
+        startDate,
+        endDate,
         skills,
         logo {
             asset->{

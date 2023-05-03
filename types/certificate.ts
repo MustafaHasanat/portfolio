@@ -2,7 +2,8 @@ export type Certificate = {
     _id: string;
     facility: string;
     degree: string;
-    date: string;
+    startDate: Date;
+    endDate: Date;
     skills: string[];
     logo: {
         asset: {
