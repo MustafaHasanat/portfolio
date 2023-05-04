@@ -14,7 +14,6 @@ export async function getAllAvatarIcons(): Promise<AvatarIcon[]> {
         },
         logo {
             asset->{
-                ...,
                 url
             }
         }

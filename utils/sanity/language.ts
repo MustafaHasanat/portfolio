@@ -10,7 +10,6 @@ export async function getAllLanguages(): Promise<Language[]> {
         level,
         flag {
             asset->{
-                ...,
                 url
             }
         },

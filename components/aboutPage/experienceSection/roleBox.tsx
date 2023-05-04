@@ -4,18 +4,10 @@ import { useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import DescriptionLogo from "./descriptionLogo";
 import ExperienceInfo from "./experienceInfo";
+import { Experience } from "@/types/experience";
 
 interface RoleBoxProps {
-    experience: {
-        src: string;
-        role: string;
-        employmentType: string;
-        duration: string;
-        company: string;
-        location: string;
-        locationType: string;
-        bullets: string[];
-    };
+    experience: Experience;
     index: number;
 }
 
@@ -39,13 +31,13 @@ const RoleBox = ({ experience, index }: RoleBoxProps) => {
         >
             <DescriptionLogo
                 roleRef={roleRef}
-                experiences={experience}
+                experience={experience}
                 roleAnimation={roleAnimation}
                 index={index}
             />
             <ExperienceInfo
                 index={index}
-                experiences={experience}
+                experience={experience}
                 roleAnimation={roleAnimation}
                 roleInView={roleInView}
             />

@@ -11,7 +11,6 @@ export async function getAllCourses(): Promise<Course[]> {
         certificated,
         image {
             asset->{
-                ...,
                 url
             }
         },
@@ -19,7 +18,6 @@ export async function getAllCourses(): Promise<Course[]> {
             issuer,
             image {
                 asset->{
-                    ...,
                     url
                 }
             },    

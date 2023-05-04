@@ -1,15 +1,27 @@
-import { Fragment, MutableRefObject } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Fragment, MutableRefObject, useEffect } from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import AnimatedTitle from "@/components/shared/animatedTitle";
 import ExperiencesSectionConstants from "@/utils/constants/aboutPage/experiencesSection";
 import RoleBox from "./roleBox";
+import { Experience } from "@/types/experience";
 
 interface ExperienceSectionProps {
     inViewRef: MutableRefObject<null>;
+    experiences: Experience[];
 }
 
-const ExperienceSection = ({ inViewRef }: ExperienceSectionProps) => {
+const ExperienceSection = ({
+    inViewRef,
+    experiences,
+}: ExperienceSectionProps) => {
     const theme = useTheme();
+
+    useEffect(() => {
+        experiences.sort((a, b) =>
+            a.order < b.order ? 1 : b.order < a.order ? -1 : 0
+        );
+    }, []);
 
     return (
         <Stack
@@ -31,18 +43,13 @@ const ExperienceSection = ({ inViewRef }: ExperienceSectionProps) => {
             <AnimatedTitle buttonWidth="40%" text="experiences" />
 
             <Stack spacing={5} position="relative">
-                {ExperiencesSectionConstants.experiences.map(
-                    (experience, index) => {
-                        return (
-                            <Fragment key={`experience box number: ${index}`}>
-                                <RoleBox
-                                    experience={experience}
-                                    index={index}
-                                />
-                            </Fragment>
-                        );
-                    }
-                )}
+                {experiences.map((experience, index) => {
+                    return (
+                        <Fragment key={`experience box number: ${index}`}>
+                            <RoleBox experience={experience} index={index} />
+                        </Fragment>
+                    );
+                })}
             </Stack>
         </Stack>
     );

@@ -12,24 +12,28 @@ import { Quote } from "@/types/quote";
 import { getAllQuotes } from "@/utils/sanity/quote";
 import { AvatarIcon } from "@/types/avatarIcon";
 import { getAllAvatarIcons } from "@/utils/sanity/avatarIcon";
+import { getAllProducts } from "@/utils/sanity/product";
+import { Product } from "@/types/product";
 
 export const getStaticProps = async (): Promise<{
-    props: { quotes: Quote[]; avatarIcons: AvatarIcon[] };
+    props: { quotes: Quote[]; avatarIcons: AvatarIcon[]; products: Product[] };
 }> => {
     const quotes = await getAllQuotes();
     const avatarIcons = await getAllAvatarIcons();
+    const products = await getAllProducts();
 
     return {
-        props: { quotes, avatarIcons },
+        props: { quotes, avatarIcons, products },
     };
 };
 
 interface HomeProps {
     quotes: Quote[];
     avatarIcons: AvatarIcon[];
+    products: Product[];
 }
 
-export default function Home({ quotes, avatarIcons }: HomeProps) {
+export default function Home({ quotes, avatarIcons, products }: HomeProps) {
     const currentView = useSelector(
         (state: { navigationBarReducer: { currentView: string } }) =>
             state.navigationBarReducer.currentView
@@ -72,7 +76,7 @@ export default function Home({ quotes, avatarIcons }: HomeProps) {
     return (
         <Stack>
             <MainSection inViewRef={mainSecRef} avatarIcons={avatarIcons} />
-            <ProductSection inViewRef={productSecRef} />
+            <ProductSection inViewRef={productSecRef} products={products} />
             <SkillsSection inViewRef={skillsSecRef} />
             <QuotesSection inViewRef={quotesSecRef} quotes={quotes} />
         </Stack>

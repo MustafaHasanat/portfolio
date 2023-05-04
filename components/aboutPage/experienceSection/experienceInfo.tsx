@@ -1,31 +1,32 @@
 import GlassBox from "@/components/shared/glassBox";
+import { Experience } from "@/types/experience";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { AnimationControls, motion } from "framer-motion";
 
 interface ExperienceInfoProps {
-    experiences: {
-        role: string;
-        employmentType: string;
-        duration: string;
-        company: string;
-        location: string;
-        locationType: string;
-    };
+    experience: Experience;
     roleAnimation: AnimationControls;
     index: number;
     roleInView: boolean;
 }
 
 const ExperienceInfo = ({
-    experiences,
+    experience,
     roleAnimation,
     roleInView,
     index,
 }: ExperienceInfoProps) => {
     const theme = useTheme();
 
-    const { role, employmentType, duration, company, location, locationType } =
-        experiences;
+    const {
+        role,
+        employmentType,
+        startDate,
+        endDate,
+        company,
+        location,
+        locationType,
+    } = experience;
 
     const floatingText = (
         title: string,
@@ -122,8 +123,10 @@ const ExperienceInfo = ({
                 0.1
             )}
             {floatingText(
-                "duration",
-                duration,
+                "From - To",
+                `${startDate.toString()} - ${
+                    !endDate ? "Present" : endDate.toString()
+                }`,
                 "30%",
                 "80%",
                 "capitalize",

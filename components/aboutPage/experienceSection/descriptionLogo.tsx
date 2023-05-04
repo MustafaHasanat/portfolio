@@ -4,24 +4,27 @@ import { Avatar, Box, Stack, Typography, useTheme } from "@mui/material";
 import { AnimationControls, motion, useAnimation } from "framer-motion";
 import { Fragment, MutableRefObject, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { Experience } from "@/types/experience";
 
 interface DescriptionLogoProps {
     roleRef: MutableRefObject<null>;
-    experiences: {
-        src: string;
-        bullets: string[];
-    };
+    experience: Experience;
     roleAnimation: AnimationControls;
     index: number;
 }
 
 const DescriptionLogo = ({
     roleRef,
-    experiences,
+    experience,
     roleAnimation,
     index,
 }: DescriptionLogoProps) => {
-    const { src, bullets } = experiences;
+    const {
+        logo: {
+            asset: { url: logoURL },
+        },
+        bullets,
+    } = experience;
     const theme = useTheme();
     const bulletsAnimation = useAnimation();
     const [isBulletsOpen, setIsBulletsOpen] = useState(false);
@@ -81,7 +84,7 @@ const DescriptionLogo = ({
                     }}
                 />
                 <Avatar
-                    src={src}
+                    src={logoURL}
                     sx={{
                         width: "100%",
                         height: "100%",

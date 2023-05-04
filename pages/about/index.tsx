@@ -6,9 +6,11 @@ import ExperienceSection from "@/components/aboutPage/experienceSection";
 import LanguagesSection from "@/components/aboutPage/languagesSection";
 import { Certificate } from "@/types/certificate";
 import { Course } from "@/types/course";
+import { Experience } from "@/types/experience";
 import { Language } from "@/types/language";
 import { getAllCertificates } from "@/utils/sanity/certificate";
 import { getAllCourses } from "@/utils/sanity/course";
+import { getAllExperiences } from "@/utils/sanity/experience";
 import { getAllLanguages } from "@/utils/sanity/language";
 import { navigationBarActions } from "@/utils/store/store";
 import { Stack } from "@mui/material";
@@ -21,14 +23,16 @@ export const getStaticProps = async (): Promise<{
         certificates: Certificate[];
         courses: Course[];
         languages: Language[];
+        experiences: Experience[];
     };
 }> => {
     const certificates = await getAllCertificates();
     const courses = await getAllCourses();
     const languages = await getAllLanguages();
+    const experiences = await getAllExperiences();
 
     return {
-        props: { certificates, courses, languages },
+        props: { certificates, courses, languages, experiences },
     };
 };
 
@@ -36,12 +40,14 @@ interface AboutProps {
     certificates: Certificate[];
     courses: Course[];
     languages: Language[];
+    experiences: Experience[];
 }
 
 export default function About({
     certificates,
     courses,
     languages,
+    experiences,
 }: AboutProps) {
     const currentView = useSelector(
         (state: { navigationBarReducer: { currentView: string } }) =>
@@ -101,7 +107,10 @@ export default function About({
                 inViewRef={educationSecRef}
                 certificates={certificates}
             />
-            <ExperienceSection inViewRef={experienceSecRef} />
+            <ExperienceSection
+                inViewRef={experienceSecRef}
+                experiences={experiences}
+            />
             <CertificatesSection
                 inViewRef={certificatesSecRef}
                 courses={courses}
