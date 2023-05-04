@@ -5,25 +5,44 @@ import { Fragment } from "react";
 import FlipButton from "./flipButton";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import IconicButton from "@/components/shared/iconicButton";
+import { Product } from "@/types/product";
+import DvrRoundedIcon from "@mui/icons-material/DvrRounded";
+import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
+import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
+import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 
 interface FrontFaceProps {
     index: number;
-    contents: {
-        icon: (color: string, size: string) => JSX.Element;
-        title: string;
-        description: string;
-        tags: string[];
-    };
+    product: Product;
     flipCard: (card: number, face: string) => void;
 }
 
-const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
-    const { icon, title, description, tags } = contents;
+const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
+    const { title, description, tags } = product;
     const theme = useTheme();
+
+    const getIcon = (iconTitle: string) => {
+        const sx = {
+            color: theme.palette.primary.main,
+            width: "auto",
+            height: "20%",
+        };
+
+        switch (iconTitle) {
+            case "web":
+                return <DvrRoundedIcon sx={sx} />;
+            case "mobile":
+                return <PhoneIphoneRoundedIcon sx={sx} />;
+            case "desktop":
+                return <KeyboardRoundedIcon sx={sx} />;
+            case "robots":
+                return <PrecisionManufacturingIcon sx={sx} />;
+        }
+    };
 
     return (
         <Fragment>
-            {icon(theme.palette.primary.main, "20%")}
+            {getIcon(title)}
 
             <Typography
                 p={1}
@@ -34,10 +53,7 @@ const FrontFace = ({ index, contents, flipCard }: FrontFaceProps) => {
                 {title}
             </Typography>
 
-            <Typography
-                textAlign="center"
-                color={theme.palette.text.primary}
-            >
+            <Typography textAlign="center" color={theme.palette.text.primary}>
                 {description}
             </Typography>
 

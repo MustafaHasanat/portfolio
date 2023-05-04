@@ -11,21 +11,16 @@ import {
     MiniCardHidden,
     MiniCardText,
 } from "./styles";
+import { Product } from "@/types/product";
 
 interface BackFaceProps {
     index: number;
-    contents: {
-        cards: {
-            src: string;
-            name: string;
-            projects: number;
-        }[];
-    };
+    product: Product;
     flipCard: (card: number, face: string) => void;
 }
 
-const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
-    const { cards } = contents;
+const BackFace = ({ index, product, flipCard }: BackFaceProps) => {
+    const { cards } = product;
     const theme = useTheme();
     const { ref: miniCardRef, width: miniCardWidth } = useBoxSize();
 
@@ -74,7 +69,7 @@ const BackFace = ({ index, contents, flipCard }: BackFaceProps) => {
                                             ease: "easeInOut",
                                             repeat: Infinity,
                                         }}
-                                        src={card.src}
+                                        src={card.logo.asset.url}
                                         alt="framework"
                                         sx={{
                                             width: "60%",

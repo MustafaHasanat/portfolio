@@ -1,23 +1,22 @@
 import { Typography, useTheme, Box, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { SkillSet } from "@/types/skillSet";
 
 interface SkillsDrawerProps {
     index: number;
-    category: {
-        title: string;
-    };
+    skillSet: SkillSet;
     isDrawerActive: boolean;
     toggleDrawer: (drawer: number) => void;
 }
 
 const SkillsDrawer = ({
     index,
-    category,
+    skillSet,
     isDrawerActive,
     toggleDrawer,
 }: SkillsDrawerProps) => {
-    const { title } = category;
+    const { title } = skillSet;
     const theme = useTheme();
 
     return (

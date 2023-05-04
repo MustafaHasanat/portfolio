@@ -12,7 +12,6 @@ export async function getAllCertificates(): Promise<Certificate[]> {
         skills,
         logo {
             asset->{
-                ...,
                 url
             }
         }

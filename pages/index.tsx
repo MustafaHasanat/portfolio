@@ -12,24 +12,42 @@ import { Quote } from "@/types/quote";
 import { getAllQuotes } from "@/utils/sanity/quote";
 import { AvatarIcon } from "@/types/avatarIcon";
 import { getAllAvatarIcons } from "@/utils/sanity/avatarIcon";
+import { getAllProducts } from "@/utils/sanity/product";
+import { Product } from "@/types/product";
+import { SkillSet } from "@/types/skillSet";
+import { getAllSkillSets } from "@/utils/sanity/product copy";
 
 export const getStaticProps = async (): Promise<{
-    props: { quotes: Quote[]; avatarIcons: AvatarIcon[] };
+    props: {
+        quotes: Quote[];
+        avatarIcons: AvatarIcon[];
+        products: Product[];
+        skillSets: SkillSet[];
+    };
 }> => {
     const quotes = await getAllQuotes();
     const avatarIcons = await getAllAvatarIcons();
+    const products = await getAllProducts();
+    const skillSets = await getAllSkillSets();
 
     return {
-        props: { quotes, avatarIcons },
+        props: { quotes, avatarIcons, products, skillSets },
     };
 };
 
 interface HomeProps {
     quotes: Quote[];
     avatarIcons: AvatarIcon[];
+    products: Product[];
+    skillSets: SkillSet[];
 }
 
-export default function Home({ quotes, avatarIcons }: HomeProps) {
+export default function Home({
+    quotes,
+    avatarIcons,
+    products,
+    skillSets,
+}: HomeProps) {
     const currentView = useSelector(
         (state: { navigationBarReducer: { currentView: string } }) =>
             state.navigationBarReducer.currentView
@@ -72,8 +90,8 @@ export default function Home({ quotes, avatarIcons }: HomeProps) {
     return (
         <Stack>
             <MainSection inViewRef={mainSecRef} avatarIcons={avatarIcons} />
-            <ProductSection inViewRef={productSecRef} />
-            <SkillsSection inViewRef={skillsSecRef} />
+            <ProductSection inViewRef={productSecRef} products={products} />
+            <SkillsSection inViewRef={skillsSecRef} skillSets={skillSets} />
             <QuotesSection inViewRef={quotesSecRef} quotes={quotes} />
         </Stack>
     );

@@ -1,41 +1,36 @@
 import { Stack } from "@mui/material";
 import SkillsDrawer from "./skillsDrawer";
 import SkillsList from "./skillsList";
+import { SkillSet } from "@/types/skillSet";
 
-interface SkillsDrawerProps {
+interface SkillsDrawerBoxProps {
     index: number;
-    category: {
-        title: string;
-        skills: {
-            name: string;
-            src: string;
-        }[];
-    };
+    skillSet: SkillSet;
     toggleDrawer: (currentIndex: number) => void;
     isDrawerActive: (index: number) => boolean;
 }
 
-const SkillSet = ({
+const SkillSetBox = ({
     index,
-    category,
+    skillSet,
     toggleDrawer,
     isDrawerActive,
-}: SkillsDrawerProps) => {
+}: SkillsDrawerBoxProps) => {
     return (
         <Stack spacing={2} position="relative">
             <SkillsDrawer
                 index={index}
-                category={category}
+                skillSet={skillSet}
                 isDrawerActive={isDrawerActive(index)}
                 toggleDrawer={toggleDrawer}
             />
             <SkillsList
                 index={index}
-                category={category}
+                skillSet={skillSet}
                 isDrawerActive={isDrawerActive(index)}
             />
         </Stack>
     );
 };
 
-export default SkillSet;
+export default SkillSetBox;

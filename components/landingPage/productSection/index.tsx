@@ -1,18 +1,21 @@
-import ProductSectionConstants from "@/utils/constants/landingPage/productSection";
-import { Avatar, Box, Stack } from "@mui/material";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Box, Stack } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { Fragment, MutableRefObject, useState } from "react";
+import { Fragment, MutableRefObject, useEffect, useState } from "react";
 import FrontFace from "./frontFace";
 import BackFace from "./backFace";
 import AnimatedTitle from "@/components/shared/animatedTitle";
 import FlipBox from "@/components/shared/flipBox";
 import { CardsBox, ProductBox } from "./styles";
+import { Product } from "@/types/product";
+import sortByOrder from "@/utils/helpers/sortByOrder";
 
 interface ProductSectionProps {
     inViewRef: MutableRefObject<null>;
+    products: Product[];
 }
 
-const ProductSection = ({ inViewRef }: ProductSectionProps) => {
+const ProductSection = ({ inViewRef, products }: ProductSectionProps) => {
     const theme = useTheme();
     const [cardTransform, setCardTransform] = useState("rotateY(0deg)");
     const [cardFlipped, setCardFlipped] = useState(0);
@@ -45,6 +48,10 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
         }
     };
 
+    useEffect(() => {
+        sortByOrder(products);
+    }, []);
+
     return (
         <Stack id="home-product" sx={ProductBox(theme.palette.text.primary)}>
             <Box
@@ -64,13 +71,13 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
             />
 
             <Stack id="cards-container" direction="row" sx={CardsBox}>
-                {ProductSectionConstants.products.map((card, index) => {
+                {products.map((product, index) => {
                     return (
                         <Fragment key={`product card number: ${index}`}>
                             <FlipBox
                                 frontChildren={
                                     <FrontFace
-                                        contents={card.front}
+                                        product={product}
                                         index={index}
                                         flipCard={flipCard}
                                     />
@@ -84,7 +91,7 @@ const ProductSection = ({ inViewRef }: ProductSectionProps) => {
                                 }}
                                 backChildren={
                                     <BackFace
-                                        contents={card.back}
+                                        product={product}
                                         index={index}
                                         flipCard={flipCard}
                                     />

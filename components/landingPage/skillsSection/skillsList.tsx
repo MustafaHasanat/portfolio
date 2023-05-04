@@ -1,21 +1,17 @@
 import GlassBox from "@/components/shared/glassBox";
+import { SkillSet } from "@/types/skillSet";
 import { Typography, useTheme, Stack, Avatar } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
 import { Fragment, useEffect } from "react";
 
 interface SkillsListProps {
     index: number;
-    category: {
-        skills: {
-            name: string;
-            src: string;
-        }[];
-    };
+    skillSet: SkillSet;
     isDrawerActive: boolean;
 }
 
-const SkillsList = ({ index, category, isDrawerActive }: SkillsListProps) => {
-    const { skills } = category;
+const SkillsList = ({ index, skillSet, isDrawerActive }: SkillsListProps) => {
+    const { skills } = skillSet;
     const theme = useTheme();
     const listAnimation = useAnimation();
 
@@ -78,7 +74,7 @@ const SkillsList = ({ index, category, isDrawerActive }: SkillsListProps) => {
 
                                     <Avatar
                                         variant="square"
-                                        src={skill.src}
+                                        src={skill.logo.asset.url}
                                         sx={{
                                             padding: 0.5,
                                             bgcolor: "white",

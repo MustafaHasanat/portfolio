@@ -9,7 +9,6 @@ export async function getAllQuotes(): Promise<Quote[]> {
         author,
         background {
             asset->{
-                ...,
                 url
             }
         }
