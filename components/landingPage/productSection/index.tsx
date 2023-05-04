@@ -8,6 +8,7 @@ import AnimatedTitle from "@/components/shared/animatedTitle";
 import FlipBox from "@/components/shared/flipBox";
 import { CardsBox, ProductBox } from "./styles";
 import { Product } from "@/types/product";
+import sortByOrder from "@/utils/helpers/sortByOrder";
 
 interface ProductSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -48,9 +49,7 @@ const ProductSection = ({ inViewRef, products }: ProductSectionProps) => {
     };
 
     useEffect(() => {
-        products.sort((a, b) =>
-            a.order < b.order ? 1 : b.order < a.order ? -1 : 0
-        );
+        sortByOrder(products);
     }, []);
 
     return (

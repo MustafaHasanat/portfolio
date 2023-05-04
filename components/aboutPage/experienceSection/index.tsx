@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Fragment, MutableRefObject, useEffect } from "react";
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
 import AnimatedTitle from "@/components/shared/animatedTitle";
-import ExperiencesSectionConstants from "@/utils/constants/aboutPage/experiencesSection";
 import RoleBox from "./roleBox";
 import { Experience } from "@/types/experience";
+import sortByOrder from "@/utils/helpers/sortByOrder";
 
 interface ExperienceSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -18,9 +18,7 @@ const ExperienceSection = ({
     const theme = useTheme();
 
     useEffect(() => {
-        experiences.sort((a, b) =>
-            a.order < b.order ? 1 : b.order < a.order ? -1 : 0
-        );
+        sortByOrder(experiences);
     }, []);
 
     return (

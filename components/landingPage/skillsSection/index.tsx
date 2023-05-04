@@ -1,20 +1,27 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import AnimatedTitle from "@/components/shared/animatedTitle";
-import SkillsSectionConstants from "@/utils/constants/landingPage/skillsSection";
 import { Box, useTheme } from "@mui/material";
-import { Stack, Typography } from "@mui/material";
-import { Fragment, MutableRefObject, useState } from "react";
-import SkillSet from "./skillSet";
+import { Stack } from "@mui/material";
+import { Fragment, MutableRefObject, useEffect } from "react";
+import SkillSetBox from "./skillSetBox";
 import useMultiControl from "@/hooks/useMultiControl";
+import { SkillSet } from "@/types/skillSet";
+import sortByOrder from "@/utils/helpers/sortByOrder";
 
 interface SkillsSectionProps {
     inViewRef: MutableRefObject<null>;
+    skillSets: SkillSet[];
 }
 
-const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
+const SkillsSection = ({ inViewRef, skillSets }: SkillsSectionProps) => {
     const theme = useTheme();
 
     const { updateState: toggleDrawer, isActive: isDrawerActive } =
         useMultiControl();
+
+    useEffect(() => {
+        sortByOrder(skillSets);
+    }, []);
 
     return (
         <Stack
@@ -46,12 +53,12 @@ const SkillsSection = ({ inViewRef }: SkillsSectionProps) => {
                 my={10}
                 gap={10}
             >
-                {SkillsSectionConstants.categories.map((category, index) => {
+                {skillSets.map((skillSet, index) => {
                     return (
                         <Fragment key={`skill category number: ${index}`}>
-                            <SkillSet
+                            <SkillSetBox
                                 index={index}
-                                category={category}
+                                skillSet={skillSet}
                                 toggleDrawer={toggleDrawer}
                                 isDrawerActive={isDrawerActive}
                             />

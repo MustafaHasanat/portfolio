@@ -7,15 +7,12 @@ import {
 } from "./styles";
 import { useAnimation, motion } from "framer-motion";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-import WelcomeSectionConstants from "@/utils/constants/landingPage/welcomeSection";
-import { Fragment, useState } from "react";
 import Link from "next/link";
 import { urls } from "@/utils/constants/global/global";
 
 const DownloadButton = () => {
     const theme = useTheme();
     const buttonAnimations = useAnimation();
-    // const [shadowColor, setShadowColor] = useState(theme.palette.text.primary);
 
     const buttonWidth = "13vw";
     const buttonHeight = "4vw";
@@ -39,11 +36,9 @@ const DownloadButton = () => {
             whileTap={{ scale: 0.9 }}
             sx={downloadButtonStyles(buttonWidth, buttonHeight)}
             onMouseEnter={() => {
-                // setShadowColor(theme.palette.primary.main);
                 buttonAnimations.start("visible");
             }}
             onMouseLeave={() => {
-                // setShadowColor(theme.palette.text.primary);
                 buttonAnimations.start("hidden");
             }}
         >
