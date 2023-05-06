@@ -1,4 +1,4 @@
-const CertificatesSectionConstants = {
+export const certificates = {
     categories: [
         "web",
         "data science",
@@ -28,5 +28,3 @@ const CertificatesSectionConstants = {
         ],
     },
 };
-
-export default CertificatesSectionConstants;

@@ -9,6 +9,7 @@ export default function NotFoundPage() {
             spacing={3}
             justifyContent="center"
             alignItems="center"
+            bgcolor={theme.palette.secondary.main}
             sx={{
                 height: "100vh",
             }}

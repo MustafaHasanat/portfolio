@@ -5,6 +5,8 @@ import { useAnimation, motion } from "framer-motion";
 import { useTheme } from "@mui/material";
 import { headerBoxStyles, titleStyles, titleCloneStyles } from "./styles";
 import { urls } from "@/utils/constants/global/global";
+import { useSelector } from "react-redux";
+import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
 
 interface HeaderProps {
     landingSectionInView: boolean;
@@ -15,6 +17,11 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
     const headerAnimations = useAnimation();
     const bmcAnimations = useAnimation();
     const [headerPosition, setHeaderPosition] = useState("0vh");
+
+    const backgrounds = useSelector(
+        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
+            state.globalAssetsReducer.backgrounds
+    );
 
     useEffect(() => {
         var lastScroll = 0;
@@ -69,7 +76,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                 >
                     <Avatar
                         variant="square"
-                        src="images\logo.png"
+                        src={backgrounds?.websiteLogo?.src}
                         alt="logo"
                         sx={{
                             width: "3rem",
@@ -109,7 +116,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     >
                         <Link href={urls.myBMCURL} title="bmc" target="_blank">
                             <Avatar
-                                src="icons\websites\bmcIcon.png"
+                                src={backgrounds?.bmcLogo?.src}
                                 component="div"
                                 onMouseEnter={() => {
                                     bmcAnimations.start("visible");
@@ -145,7 +152,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                                     transition: { duration: 0.3 },
                                 },
                             }}
-                            src="icons\websites\bmcIcon2.png"
+                            src={backgrounds?.bmcSlogan?.src}
                             sx={{
                                 padding: 1,
                                 bgcolor: theme.palette.secondary.light,

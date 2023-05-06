@@ -1,6 +1,8 @@
 import { Avatar, Box, Typography, useTheme } from "@mui/material";
 import { MutableRefObject } from "react";
 import ButtonSet from "./buttonSet";
+import { useSelector } from "react-redux";
+import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
 
 interface BioSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -8,6 +10,11 @@ interface BioSectionProps {
 
 const BioSection = ({ inViewRef }: BioSectionProps) => {
     const theme = useTheme();
+
+    const backgrounds = useSelector(
+        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
+            state.globalAssetsReducer.backgrounds
+    );
 
     const title = (text: string) => {
         return (
@@ -87,7 +94,7 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
                 }}
             />
 
-            {imgBox("images/avatar.jpg", "avatar")}
+            {imgBox(backgrounds?.mySecondAvatar?.src, "avatar")}
             {title("a little about me")}
             {paragraph(
                 "My name is Mustafa Alhasanat, I'm a software engineer with a background in electronics engineering. I build web applications, mobile applications, and robotic prototypes."

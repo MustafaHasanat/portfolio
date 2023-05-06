@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Box, Link, Stack, Typography, useTheme } from "@mui/material";
 import LayoutConstants from "@/utils/constants/global/layout";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import HexagonRoundedIcon from "@mui/icons-material/HexagonRounded";
+import { useSelector } from "react-redux";
+import { FooterSocial } from "@/types/footerSocial";
 
 const Hexagons = () => {
     const theme = useTheme();
@@ -10,6 +13,11 @@ const Hexagons = () => {
     const [title, setTitle] = useState(defaultTitle);
 
     const hexagonSize = "90px";
+
+    let footerSocials = useSelector(
+        (state: { globalAssetsReducer: { footerSocials: FooterSocial[] } }) =>
+            state.globalAssetsReducer.footerSocials
+    );
 
     return (
         <Stack
@@ -36,7 +44,7 @@ const Hexagons = () => {
                     height: "70%",
                 }}
             >
-                {LayoutConstants.footerSocials.map((website, index) => {
+                {footerSocials.map((website, index) => {
                     return (
                         <Fragment key={`footer social item number: ${index}`}>
                             <Box
@@ -65,8 +73,8 @@ const Hexagons = () => {
                                 }}
                             >
                                 <Link
-                                    href={website.link}
-                                    title={website.link}
+                                    href={website.url}
+                                    title={website.title}
                                     target="_blank"
                                 >
                                     <HexagonRoundedIcon
@@ -74,12 +82,12 @@ const Hexagons = () => {
                                             position: "absolute",
                                             width: "100%",
                                             height: "100%",
-                                            color: website.bgcolor,
+                                            color: website.bgColor,
                                         }}
                                     />
 
                                     <Avatar
-                                        src={website.src}
+                                        src={website.image.asset.url}
                                         sx={{
                                             position: "absolute",
                                             top: "50%",

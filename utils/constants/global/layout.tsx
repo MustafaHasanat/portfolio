@@ -2,7 +2,6 @@ import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import PortraitIcon from "@mui/icons-material/Portrait";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import AddIcCallIcon from "@mui/icons-material/AddIcCall";
-import { urls } from "./global";
 
 const LayoutConstants = {
     navbarItems: [
@@ -103,65 +102,6 @@ const LayoutConstants = {
                     }}
                 />
             ),
-        },
-    ],
-
-    footerSocials: [
-        {
-            link: urls.myCalendlyURL,
-            bgcolor: "#fff",
-            text: "Book a Calendly meeting",
-            src: "/icons/websites/calendlyIcon.png",
-            transform: "translateX(120%) translateY(-150%)",
-        },
-        {
-            link: urls.myFacebookURL,
-            bgcolor: "#1877f2",
-            text: "Check my Facebook page",
-            src: "/icons/websites/facebookIcon.png",
-            transform: "translateX(35%) translateY(-200%)",
-        },
-        {
-            link: urls.myLeetCodeURL,
-            bgcolor: "#fff",
-            text: "Check my LeetCode progress",
-            src: "/icons/websites/leetCodeIcon.png",
-            transform: "translateX(35%) translateY(-100%)",
-        },
-        {
-            link: urls.myLinkedInURL,
-            bgcolor: "#007ab9",
-            text: "Connect with me on LinkedIn",
-            src: "/icons/websites/linkedInIcon.png",
-            transform: "translateX(-50%) translateY(-50%)",
-        },
-        {
-            link: urls.myUdemyURL,
-            bgcolor: "#fff",
-            text: "Get my courses on Udemy",
-            src: "/icons/websites/udemyIcon.png",
-            transform: "translateX(-50%) translateY(50%)",
-        },
-        {
-            link: urls.myGitHubURL,
-            bgcolor: "#fff",
-            text: "Check my GitHub repos",
-            src: "/icons/tools/githubIcon.png",
-            transform: "translateX(-135%) translateY(-100%)",
-        },
-        {
-            link: urls.myDribbbleURL,
-            bgcolor: "#e84c88",
-            text: "Check my Dribbble shots",
-            src: "/icons/tools/dribbbleIcon.svg",
-            transform: "translateX(-135%) translateY(100%)",
-        },
-        {
-            link: urls.myCourseraURL,
-            bgcolor: "#0056d2",
-            text: "Skills earned by Coursera",
-            src: "/icons/tools/courseraIcon.png",
-            transform: "translateX(35%) translateY(100%)",
         },
     ],
 };

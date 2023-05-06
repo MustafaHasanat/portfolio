@@ -2,7 +2,7 @@
 import { Course } from "@/types/course";
 import { Stack, useTheme } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { default as constants } from "@/utils/constants/aboutPage/certificatesSection";
+import { certificates } from "@/utils/constants/aboutPageConstants";
 import {
     Radar,
     Doughnut,
@@ -23,16 +23,16 @@ const CertsChart = ({ courses, chartType }: CertsChartProps) => {
     const chartRef = useRef(null);
 
     const [coursesData, setCoursesData] = useState<number[]>(
-        Array(constants.categories.length).fill(0)
+        Array(certificates.categories.length).fill(0)
     );
 
     const chartData = {
-        labels: constants.categories,
+        labels: certificates.categories,
         datasets: [
             {
                 label: "courses",
                 data: coursesData,
-                backgroundColor: constants.chartTypes.colors,
+                backgroundColor: certificates.chartTypes.colors,
             },
         ],
     };
@@ -108,7 +108,7 @@ const CertsChart = ({ courses, chartType }: CertsChartProps) => {
 
         courses.map((course) => {
             setCoursesData((prev) => {
-                const index = constants.categories.indexOf(course.category);
+                const index = certificates.categories.indexOf(course.category);
                 prev[index] += 1;
                 return prev;
             });
