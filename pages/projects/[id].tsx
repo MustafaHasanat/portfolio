@@ -43,6 +43,7 @@ export default function ProjectDetails({ project }: ProjectProps) {
             sx={{
                 color: "white",
                 bgcolor: theme.palette.secondary.main,
+                p: 30,
             }}
         >
             {project._id}

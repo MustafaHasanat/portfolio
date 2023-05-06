@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { Stack, Typography, Button, Divider, Chip } from "@mui/material";
+import { Stack, Typography, Button, Divider, Chip, Link } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Fragment } from "react";
 import FlipButton from "./flipButton";
@@ -10,6 +10,7 @@ import DvrRoundedIcon from "@mui/icons-material/DvrRounded";
 import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
 import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
+import { useRouter } from "next/router";
 
 interface FrontFaceProps {
     index: number;
@@ -20,6 +21,7 @@ interface FrontFaceProps {
 const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     const { title, description, tags } = product;
     const theme = useTheme();
+    const router = useRouter();
 
     const getIcon = (iconTitle: string) => {
         const sx = {
@@ -102,7 +104,9 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                     }
                     color={theme.palette.text.primary}
                     hoverColor={theme.palette.primary.main}
-                    onClick={() => {}}
+                    onClick={() => {
+                        router.push("/products/" + product._id);
+                    }}
                     extraSX={{
                         width: "40%",
                         height: "80%",

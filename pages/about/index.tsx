@@ -18,6 +18,13 @@ import { useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+interface AboutProps {
+    certificates: Certificate[];
+    courses: Course[];
+    languages: Language[];
+    experiences: Experience[];
+}
+
 export const getStaticProps = async (): Promise<{
     props: {
         certificates: Certificate[];
@@ -35,13 +42,6 @@ export const getStaticProps = async (): Promise<{
         props: { certificates, courses, languages, experiences },
     };
 };
-
-interface AboutProps {
-    certificates: Certificate[];
-    courses: Course[];
-    languages: Language[];
-    experiences: Experience[];
-}
 
 export default function About({
     certificates,
