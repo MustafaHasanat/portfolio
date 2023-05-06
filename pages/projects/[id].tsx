@@ -34,7 +34,7 @@ export const getStaticProps = async (
     };
 };
 
-const Project = ({ project }: ProjectProps) => {
+export default function ProjectDetails({ project }: ProjectProps) {
     const theme = useTheme();
 
     return (
@@ -44,8 +44,8 @@ const Project = ({ project }: ProjectProps) => {
                 color: "white",
                 bgcolor: theme.palette.secondary.main,
             }}
-        ></Stack>
+        >
+            {project._id}
+        </Stack>
     );
-};
-
-export default Project;
+}
