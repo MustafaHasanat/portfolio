@@ -1,5 +1,5 @@
 import Navbar from "../navbar";
-import { Stack, Avatar, Typography, Box, Link } from "@mui/material";
+import { Stack, Avatar, Box, Link } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
 import { useTheme } from "@mui/material";
@@ -7,6 +7,7 @@ import { headerBoxStyles, titleStyles, titleCloneStyles } from "./styles";
 import { urls } from "@/utils/constants/global/global";
 import { useSelector } from "react-redux";
 import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import SlidingTitle from "@/components/shared/slidingTitle";
 
 interface HeaderProps {
     landingSectionInView: boolean;
@@ -84,24 +85,13 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                         }}
                     />
 
-                    <Typography
-                        sx={titleStyles(
-                            theme.palette.text.primary,
-                            theme.palette.primary.main
-                        )}
-                    >
-                        <Box component="span">
-                            &nbsp;&nbsp;Mustafa&nbsp;Alhasanat&nbsp;&nbsp;
-                        </Box>
-                        <Box
-                            id="shadow-title"
-                            component="span"
-                            sx={titleCloneStyles(theme.palette.primary.main)}
-                            aria-hidden="true"
-                        >
-                            &nbsp;&nbsp;Mustafa&nbsp;Alhasanat&nbsp;&nbsp;
-                        </Box>
-                    </Typography>
+                    <Link href="/" sx={{ textDecoration: "none" }}>
+                        <SlidingTitle
+                            text={"Mustafa Alhasanat"}
+                            primary={theme.palette.primary.main}
+                            secondary={theme.palette.text.primary}
+                        />
+                    </Link>
 
                     <Box
                         sx={{

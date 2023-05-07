@@ -32,8 +32,8 @@ const LayoutConstants = {
             navigationBars: [],
         },
         {
-            title: "products",
-            link: String.raw`/products`,
+            title: "documents",
+            link: String.raw`/docs`,
             navigationBars: [],
         },
     ],
