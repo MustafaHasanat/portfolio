@@ -1,10 +1,13 @@
 import Navbar from "../navbar";
-import { Stack, Avatar, Typography, Box, Link } from "@mui/material";
+import { Stack, Avatar, Box, Link } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
 import { useTheme } from "@mui/material";
 import { headerBoxStyles, titleStyles, titleCloneStyles } from "./styles";
 import { urls } from "@/utils/constants/global/global";
+import { useSelector } from "react-redux";
+import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import SlidingTitle from "@/components/shared/slidingTitle";
 
 interface HeaderProps {
     landingSectionInView: boolean;
@@ -15,6 +18,11 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
     const headerAnimations = useAnimation();
     const bmcAnimations = useAnimation();
     const [headerPosition, setHeaderPosition] = useState("0vh");
+
+    const backgrounds = useSelector(
+        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
+            state.globalAssetsReducer.backgrounds
+    );
 
     useEffect(() => {
         var lastScroll = 0;
@@ -41,6 +49,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
     return (
         <Box
             component="header"
+            width="100vw"
             sx={{
                 position: "relative",
                 zIndex: 40,
@@ -69,7 +78,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                 >
                     <Avatar
                         variant="square"
-                        src="images\logo.png"
+                        src={backgrounds?.websiteLogo?.src}
                         alt="logo"
                         sx={{
                             width: "3rem",
@@ -77,24 +86,13 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                         }}
                     />
 
-                    <Typography
-                        sx={titleStyles(
-                            theme.palette.text.primary,
-                            theme.palette.primary.main
-                        )}
-                    >
-                        <Box component="span">
-                            &nbsp;&nbsp;Mustafa&nbsp;Alhasanat&nbsp;&nbsp;
-                        </Box>
-                        <Box
-                            id="shadow-title"
-                            component="span"
-                            sx={titleCloneStyles(theme.palette.primary.main)}
-                            aria-hidden="true"
-                        >
-                            &nbsp;&nbsp;Mustafa&nbsp;Alhasanat&nbsp;&nbsp;
-                        </Box>
-                    </Typography>
+                    <Link href="/" sx={{ textDecoration: "none" }}>
+                        <SlidingTitle
+                            text={"Mustafa Alhasanat"}
+                            primary={theme.palette.primary.main}
+                            secondary={theme.palette.text.primary}
+                        />
+                    </Link>
 
                     <Box
                         sx={{
@@ -109,7 +107,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     >
                         <Link href={urls.myBMCURL} title="bmc" target="_blank">
                             <Avatar
-                                src="icons\websites\bmcIcon.png"
+                                src={backgrounds?.bmcLogo?.src}
                                 component="div"
                                 onMouseEnter={() => {
                                     bmcAnimations.start("visible");
@@ -145,7 +143,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                                     transition: { duration: 0.3 },
                                 },
                             }}
-                            src="icons\websites\bmcIcon2.png"
+                            src={backgrounds?.bmcSlogan?.src}
                             sx={{
                                 padding: 1,
                                 bgcolor: theme.palette.secondary.light,

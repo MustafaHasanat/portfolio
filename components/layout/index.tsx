@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./metadata/headTag";
@@ -7,13 +7,22 @@ import Main from "./main";
 import { Stack, Box, useTheme } from "@mui/material";
 import Contacts from "./contacts";
 import { useSelector, useDispatch } from "react-redux";
-import { modalActions } from "@/utils/store/store";
+import { modalActions, globalAssetsActions } from "@/utils/store/store";
 import { useInView } from "framer-motion";
 import ModalBackLight from "./contacts/modalBackLight";
 import SnackBar from "../shared/snackbar";
 import NavigationBar from "./navigationBar";
+import { Background } from "@/types/background";
+import { getAllBackgrounds } from "@/utils/sanity/background";
+import { getAllFooterSocials } from "@/utils/sanity/footerSocial";
+import { FooterSocial } from "@/types/footerSocial";
+import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
 
-const Layout = ({ children }: { children: JSX.Element }) => {
+interface LayoutProps {
+    children: JSX.Element;
+}
+
+const Layout = ({ children }: LayoutProps) => {
     const theme = useTheme();
     const landingSectionRef = useRef(null);
     const landingSectionInView = useInView(landingSectionRef);
@@ -27,6 +36,26 @@ const Layout = ({ children }: { children: JSX.Element }) => {
     const toggleModalVisibility = (state: boolean) => {
         dispatch(modalActions.setActive(state));
     };
+
+    useEffect(() => {
+        const getGlobalAssets = async () => {
+            const sanityBackgrounds: Background[] = await getAllBackgrounds();
+            const footerSocials: FooterSocial[] = await getAllFooterSocials();
+
+            let backgrounds: BackgroundsProps = {};
+
+            sanityBackgrounds.map((bg) => {
+                backgrounds[bg.alt] = {
+                    alt: bg.alt,
+                    src: bg.src.asset.url,
+                };
+            });
+
+            dispatch(globalAssetsActions.setBackgrounds(backgrounds));
+            dispatch(globalAssetsActions.setFooterSocials(footerSocials));
+        };
+        getGlobalAssets();
+    }, []);
 
     return (
         <Stack>

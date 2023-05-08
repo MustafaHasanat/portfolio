@@ -15,7 +15,7 @@ import { getAllAvatarIcons } from "@/utils/sanity/avatarIcon";
 import { getAllProducts } from "@/utils/sanity/product";
 import { Product } from "@/types/product";
 import { SkillSet } from "@/types/skillSet";
-import { getAllSkillSets } from "@/utils/sanity/product copy";
+import { getAllSkillSets } from "@/utils/sanity/skillSet";
 
 export const getStaticProps = async (): Promise<{
     props: {

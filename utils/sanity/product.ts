@@ -20,3 +20,25 @@ export async function getAllProducts(): Promise<Product[]> {
         }[],
     }`);
 }
+
+export async function getProductById(id: string): Promise<Product> {
+    const product =
+        await client.fetch(groq`*[_type == "product" && _id == "${id}"]{
+        _id,
+        title,
+        description,
+        tags,
+        order,
+        cards {
+            name,
+            projects,
+            logo {
+                asset->{
+                    url
+                }
+            }
+        }[],
+    }`);
+
+    return product[0];
+}
