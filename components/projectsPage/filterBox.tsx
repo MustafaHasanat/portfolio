@@ -1,26 +1,27 @@
-import {
-    Divider,
-    Stack,
-    Typography,
-    useTheme,
-} from "@mui/material";
-import { Dispatch, SetStateAction } from "react";
+import { Divider, Stack, Typography, useTheme } from "@mui/material";
 import YearSelectionBox from "./yearSelectionBox";
+import { AttributeListsProps } from "./cardsContainer";
+import TypeSelectionBox from "./typeSelectionBox";
+import IconicButton from "../shared/iconicButton";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+import ToolsSelectionBox from "./toolsSelectionBox";
+import { Project } from "@/types/project";
 
 interface FilterBoxProps {
     filterIsOpened: boolean;
-    yearsList: number[];
-    yearSelect: number;
-    setYearSelect: Dispatch<SetStateAction<number>>;
+    attributeLists: AttributeListsProps;
+    projectsCards: Project[];
+    clearFilter: () => void;
 }
 
 const FilterBox = ({
     filterIsOpened,
-    yearsList,
-    yearSelect,
-    setYearSelect,
+    attributeLists,
+    projectsCards,
+    clearFilter,
 }: FilterBoxProps) => {
     const theme = useTheme();
+    const {} = attributeLists;
 
     return (
         <Stack
@@ -46,7 +47,9 @@ const FilterBox = ({
             />
 
             <Stack alignItems="center" width="100%">
-                <Typography variant="h4">Filter</Typography>
+                <Typography variant="h5">
+                    Filter ({projectsCards.length} results)
+                </Typography>
 
                 <Divider
                     orientation="vertical"
@@ -56,15 +59,39 @@ const FilterBox = ({
                         height: "1px",
                         opacity: 0.2,
                         mt: 1,
-                        mb: 3,
+                        mb: 5,
                     }}
                 />
 
-                <YearSelectionBox
-                    yearSelect={yearSelect}
-                    setYearSelect={setYearSelect}
-                    yearsList={yearsList}
-                />
+                <Stack spacing={7}>
+                    <YearSelectionBox attributeLists={attributeLists} />
+                    <TypeSelectionBox attributeLists={attributeLists} />
+                    <ToolsSelectionBox attributeLists={attributeLists} />
+                </Stack>
+
+                <IconicButton
+                    icon={
+                        <HighlightOffIcon
+                            sx={{
+                                color: theme.palette.error.main,
+                                height: "60%",
+                                width: "auto",
+                            }}
+                        />
+                    }
+                    color={theme.palette.text.primary}
+                    hoverColor={theme.palette.error.main}
+                    onClick={clearFilter}
+                    extraSX={{
+                        width: "90%",
+                        height: "8vh",
+                        mt: 5,
+                    }}
+                >
+                    <Typography textTransform="uppercase" letterSpacing={2}>
+                        clear filters
+                    </Typography>
+                </IconicButton>
             </Stack>
         </Stack>
     );

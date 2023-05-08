@@ -3,7 +3,7 @@ export type FooterSocial = {
     title: string;
     text: string;
     bgColor: string;
-    url: string;
+    link: string;
     transform: string;
     image: {
         asset: {

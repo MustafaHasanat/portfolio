@@ -8,7 +8,7 @@ export async function getAllFooterSocials(): Promise<FooterSocial[]> {
         title,
         text,
         bgColor,
-        url,
+        link,
         transform,
         image {
             asset->{

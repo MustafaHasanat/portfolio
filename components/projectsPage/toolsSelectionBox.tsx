@@ -4,40 +4,32 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { motion } from "framer-motion";
 import { AttributeListsProps } from "./cardsContainer";
 
-interface YearSelectionBoxProps {
+interface ToolsSelectionBoxProps {
     attributeLists: AttributeListsProps;
 }
 
-const YearSelectionBox = ({ attributeLists }: YearSelectionBoxProps) => {
+const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
     const theme = useTheme();
     const [selectListIsOpened, setSelectListIsOpened] = useState(false);
 
     const {
-        year: { yearSelect, setYearSelect, yearsList },
+        tools: { toolsList, toolsSelect, setToolsSelect },
     } = attributeLists;
 
-    const customMenuItem = ({ value, key }: { key: string; value: number }) => {
+    const customMenuItem = ({ value, key }: { key: string; value: string }) => {
         return (
             <Box
                 component={motion.div}
-                initial={{
-                    height: "0vh",
-                    color: theme.palette.secondary.main,
-                    backgroundColor: theme.palette.text.primary,
-                }}
-                animate={{
-                    height: selectListIsOpened ? "6vh" : "0vh",
-                    color:
-                        value === yearSelect
-                            ? theme.palette.primary.main
-                            : theme.palette.secondary.main,
-                }}
+                initial={{ height: "0vh" }}
+                animate={{ height: selectListIsOpened ? "6vh" : "0vh" }}
                 whileHover={{
-                    backgroundColor: `${theme.palette.text.primary}EE`,
                     color: theme.palette.primary.main,
+                    opacity: 0.8,
                 }}
                 key={key}
                 sx={{
+                    color: theme.palette.secondary.main,
+                    bgcolor: theme.palette.text.primary,
                     width: "100%",
                     cursor: "pointer",
                     borderRadius: 1,
@@ -46,12 +38,12 @@ const YearSelectionBox = ({ attributeLists }: YearSelectionBoxProps) => {
                     overflow: "hidden",
                 }}
                 onClick={() => {
-                    setYearSelect(value);
+                    // setToolsSelect(value);
                     setSelectListIsOpened(false);
                 }}
             >
                 <Typography p={1} width="100%" textAlign="center">
-                    {value === 0 ? "clear" : value}
+                    {value}
                 </Typography>
             </Box>
         );
@@ -66,7 +58,7 @@ const YearSelectionBox = ({ attributeLists }: YearSelectionBoxProps) => {
             justifyContent="flex-"
             alignItems="center"
         >
-            <Typography width="40%">Launching year</Typography>
+            <Typography width="40%">Tools</Typography>
 
             <Stack
                 sx={{
@@ -84,7 +76,7 @@ const YearSelectionBox = ({ attributeLists }: YearSelectionBoxProps) => {
                         width="70%"
                         textAlign="center"
                     >
-                        {yearSelect === 0 ? "cleared" : yearSelect}
+                        toolsSelect
                     </Typography>
 
                     <Box
@@ -121,21 +113,16 @@ const YearSelectionBox = ({ attributeLists }: YearSelectionBoxProps) => {
                         zIndex: 10,
                     }}
                 >
-                    {yearsList.map((year, index) => {
+                    {/* {toolsList.map((tool, index) => {
                         return customMenuItem({
-                            key: `year ${year} number ${index}`,
-                            value: year,
+                            key: `year ${tool} number ${index}`,
+                            value: tool,
                         });
-                    })}
-
-                    {customMenuItem({
-                        key: `year 0 number 00`,
-                        value: 0,
-                    })}
+                    })} */}
                 </Stack>
             </Stack>
         </Stack>
     );
 };
 
-export default YearSelectionBox;
+export default ToolsSelectionBox;

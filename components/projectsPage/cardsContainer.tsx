@@ -1,11 +1,35 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Project } from "@/types/project";
 import { Stack, useTheme } from "@mui/material";
-import { Fragment, useEffect, useState } from "react";
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import Card from "./card";
 import SearchField from "./searchField";
 import FilterBox from "./filterBox";
 import getDateInfo from "@/utils/helpers/getDateInfo";
+
+export interface CheckboxesStatesProps {
+    "web application": boolean;
+    "desktop application": boolean;
+}
+
+export interface AttributeListsProps {
+    year: {
+        yearsList: number[];
+        yearSelect: number;
+        setYearSelect: Dispatch<SetStateAction<number>>;
+    };
+    tools: {
+        toolsList: string[];
+        toolsSelect: string[];
+        setToolsSelect: Dispatch<SetStateAction<string[]>>;
+    };
+    type: {
+        typesList: string[];
+        typeSelected: string[];
+        setTypeSelected: Dispatch<SetStateAction<string[]>>;
+        checkboxesStates: CheckboxesStatesProps;
+        setCheckboxesStates: Dispatch<SetStateAction<CheckboxesStatesProps>>;
+    };
+}
 
 interface CardsContainerProps {
     projects: Project[];
@@ -13,12 +37,53 @@ interface CardsContainerProps {
 
 const CardsContainer = ({ projects }: CardsContainerProps) => {
     const theme = useTheme();
+
     const [projectsCards, setProjectsCards] = useState<Project[]>(projects);
     const [filterIsOpened, setFilterIsOpened] = useState(false);
-    const [yearsList, setYearsList] = useState<number[]>([]);
 
     const [searchTerm, setSearchTerm] = useState<string>("");
+
+    const [yearsList, setYearsList] = useState<number[]>([]);
     const [yearSelect, setYearSelect] = useState<number>(0);
+
+    const [toolsList, setToolsList] = useState<string[]>([]);
+    const [toolsSelect, setToolsSelect] = useState<string[]>([]);
+
+    const [typesList, setTypesList] = useState<string[]>([]);
+    const [typeSelected, setTypeSelected] = useState<string[]>([]);
+    const checkboxesInitialState = {
+        "web application": true,
+        "desktop application": true,
+    };
+    const [checkboxesStates, setCheckboxesStates] = useState(
+        checkboxesInitialState
+    );
+
+    const clearFilter = () => {
+        setSearchTerm("");
+        setYearSelect(0);
+        setTypeSelected(typesList);
+        setCheckboxesStates(checkboxesInitialState);
+    };
+
+    useEffect(() => {
+        const years = new Set<number>();
+        const types = new Set<string>();
+        const tools = new Set<string>();
+
+        projects.map((project) => {
+            years.add(getDateInfo(project?.launchedAt).year);
+            types.add(project?.type);
+            project?.tools.map((tool) => {
+                tools.add(tool);
+            });
+        });
+
+        setYearsList(Array.from(years));
+        setTypesList(Array.from(types));
+        setTypeSelected(Array.from(types));
+        setToolsList(Array.from(tools));
+    }, [projects]);
 
     useEffect(() => {
         const filteredProjects = projects.filter((project) => {
@@ -26,29 +91,20 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
 
             if (
                 project.title.toLowerCase().includes(searchTerm || "") &&
-                (yearSelect === 0 || yearSelect === projectYear)
+                (yearSelect === 0 || yearSelect === projectYear) &&
+                typeSelected.includes(project.type)
             ) {
                 return project;
             }
         });
 
         setProjectsCards(filteredProjects);
-    }, [searchTerm, yearSelect]);
-
-    useEffect(() => {
-        const years = new Set<number>();
-
-        projects.map((project) => {
-            years.add(getDateInfo(project?.launchedAt).year);
-        });
-
-        setYearsList(Array.from(years));
-    }, []);
+    }, [projects, searchTerm, typeSelected, yearSelect]);
 
     return (
         <Stack direction="row" justifyContent="center" px={12}>
             <Stack
-                justifyContent="center"
+                justifyContent="flex-start"
                 alignItems="center"
                 spacing={8}
                 p={2}
@@ -74,9 +130,27 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
 
             <FilterBox
                 filterIsOpened={filterIsOpened}
-                yearsList={yearsList}
-                yearSelect={yearSelect}
-                setYearSelect={setYearSelect}
+                clearFilter={clearFilter}
+                projectsCards={projectsCards}
+                attributeLists={{
+                    year: {
+                        yearsList,
+                        yearSelect,
+                        setYearSelect,
+                    },
+                    tools: {
+                        toolsList,
+                        toolsSelect,
+                        setToolsSelect,
+                    },
+                    type: {
+                        typesList,
+                        typeSelected,
+                        setTypeSelected,
+                        checkboxesStates,
+                        setCheckboxesStates,
+                    },
+                }}
             />
         </Stack>
     );

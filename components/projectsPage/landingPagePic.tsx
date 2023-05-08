@@ -4,9 +4,11 @@ import { Avatar, Box, useTheme, Link } from "@mui/material";
 const LandingPagePic = ({
     href,
     project,
+    filterIsOpened,
 }: {
     href: string;
     project: Project;
+    filterIsOpened: boolean;
 }) => {
     const theme = useTheme();
 
@@ -25,8 +27,8 @@ const LandingPagePic = ({
     );
 
     const sx = {
-        width: "50%",
-        height: "85%",
+        width: filterIsOpened ? "100%" : "50%",
+        height: filterIsOpened ? "auto" : "85%",
     };
 
     return href ? (

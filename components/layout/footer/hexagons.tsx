@@ -73,7 +73,7 @@ const Hexagons = () => {
                                 }}
                             >
                                 <Link
-                                    href={website.url}
+                                    href={website.link}
                                     title={website.title}
                                     target="_blank"
                                 >

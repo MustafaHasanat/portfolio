@@ -35,25 +35,32 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
 
     return (
         <Stack
-            direction="row"
+            direction={filterIsOpened ? "column" : "row"}
             justifyContent="space-between"
             alignItems="center"
+            py={filterIsOpened ? 4 : 0}
             px={4}
             sx={{
-                height: filterIsOpened ? "50vh" : "40vh",
+                height: filterIsOpened ? "auto" : "40vh",
                 bgcolor: theme.palette.text.primary,
                 overflow: "hidden",
                 borderRadius: 3,
-                transition: "height 0.3s ease"
+                transition: "height 0.3s ease",
             }}
         >
-            <LandingPagePic href={project.website} project={project} />
+            <LandingPagePic
+                href={project.website}
+                project={project}
+                filterIsOpened={filterIsOpened}
+            />
 
             <Divider
-                orientation="vertical"
+                orientation={filterIsOpened ? "vertical" : "horizontal"}
                 sx={{
                     bgcolor: theme.palette.secondary.main,
-                    height: "80%",
+                    width: filterIsOpened ? "80%" : "1px",
+                    height: filterIsOpened ? "1px" : "80%",
+                    my: filterIsOpened ? 3 : 0,
                     opacity: 0.4,
                 }}
             />
@@ -62,8 +69,8 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 spacing={1}
-                width="45%"
-                height="85%"
+                width={filterIsOpened ? "100%" : "45%"}
+                height={filterIsOpened ? "auto" : "85%"}
             >
                 <Link
                     href={"/projects/" + project._id}
