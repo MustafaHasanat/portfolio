@@ -1,27 +1,19 @@
-import {
-    Button,
-    TextField,
-    useTheme,
-} from "@mui/material";
+import { Button, TextField, useTheme } from "@mui/material";
 import { Stack } from "@mui/material";
 import FilterAltSharpIcon from "@mui/icons-material/FilterAltSharp";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
-import { Dispatch, MutableRefObject, SetStateAction } from "react";
+import { Dispatch, MutableRefObject, SetStateAction, useState } from "react";
 
 interface SearchFieldProps {
-    searchFieldRef: MutableRefObject<HTMLInputElement | null>;
-    filterCardsSearch: () => void;
+    setFilterIsOpened: Dispatch<SetStateAction<boolean>>;
     searchTerm: string;
     setSearchTerm: Dispatch<SetStateAction<string>>;
-    setFilterIsOpened: Dispatch<SetStateAction<boolean>>;
 }
 
 const SearchField = ({
-    searchFieldRef,
-    filterCardsSearch,
+    setFilterIsOpened,
     searchTerm,
     setSearchTerm,
-    setFilterIsOpened,
 }: SearchFieldProps) => {
     const theme = useTheme();
 
@@ -64,15 +56,13 @@ const SearchField = ({
                 </Stack>
 
                 <TextField
-                    inputRef={searchFieldRef}
                     label="Search by title"
                     variant="filled"
                     type="text"
                     color="primary"
                     value={searchTerm}
-                    onChange={(event) => {
-                        setSearchTerm(event.target.value);
-                        filterCardsSearch();
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
                     }}
                     sx={{
                         width: "100%",

@@ -1,10 +1,25 @@
-import { Divider, Stack, Typography, useTheme } from "@mui/material";
+import {
+    Divider,
+    Stack,
+    Typography,
+    useTheme,
+} from "@mui/material";
+import { Dispatch, SetStateAction } from "react";
+import YearSelectionBox from "./yearSelectionBox";
 
-interface FilterBox {
+interface FilterBoxProps {
     filterIsOpened: boolean;
+    yearsList: number[];
+    yearSelect: number;
+    setYearSelect: Dispatch<SetStateAction<number>>;
 }
 
-const FilterBox = ({ filterIsOpened }: FilterBox) => {
+const FilterBox = ({
+    filterIsOpened,
+    yearsList,
+    yearSelect,
+    setYearSelect,
+}: FilterBoxProps) => {
     const theme = useTheme();
 
     return (
@@ -13,7 +28,7 @@ const FilterBox = ({ filterIsOpened }: FilterBox) => {
             sx={{
                 overflow: "hidden",
                 py: "20px",
-                width: filterIsOpened ? "40%" : 0,
+                width: filterIsOpened ? "50%" : 0,
                 pl: filterIsOpened ? "20px" : "0px",
                 pr: filterIsOpened ? "20px" : "0px",
                 transition: "width 0.3s ease, padding 0.3s ease",
@@ -40,8 +55,15 @@ const FilterBox = ({ filterIsOpened }: FilterBox) => {
                         width: "60%",
                         height: "1px",
                         opacity: 0.2,
-                        my: 1,
+                        mt: 1,
+                        mb: 3,
                     }}
+                />
+
+                <YearSelectionBox
+                    yearSelect={yearSelect}
+                    setYearSelect={setYearSelect}
+                    yearsList={yearsList}
                 />
             </Stack>
         </Stack>

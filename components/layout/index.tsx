@@ -41,7 +41,7 @@ const Layout = ({ children }: LayoutProps) => {
         const getGlobalAssets = async () => {
             const sanityBackgrounds: Background[] = await getAllBackgrounds();
             const footerSocials: FooterSocial[] = await getAllFooterSocials();
-            
+
             let backgrounds: BackgroundsProps = {};
 
             sanityBackgrounds.map((bg) => {

@@ -2,7 +2,7 @@ export type Project = {
     _id: string;
     title: string;
     description: string;
-    launchedAt: Date;
+    launchedAt: string;
     type: string;
     role: string;
     website: string;
