@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import GlassBox from "@/components/shared/glassBox";
-import LayoutConstants from "@/utils/constants/global/layout";
+import constants from "@/utils/constants";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import React, {
     Dispatch,
@@ -85,7 +85,7 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
 
                 <MessageBox isReset={isReset} handleChange={handleChange} />
 
-                {LayoutConstants.footerFormFields.map((field, index) => {
+                {constants.footer.footerFormFields.map((field, index) => {
                     return (
                         <Fragment key={`footer form field number: ${index}`}>
                             <InputField

@@ -1,5 +1,6 @@
 import { Project } from "@/types/project";
 import { Avatar, Box, useTheme, Link } from "@mui/material";
+import { motion } from "framer-motion";
 
 const LandingPagePic = ({
     href,
@@ -26,28 +27,38 @@ const LandingPagePic = ({
         />
     );
 
-    const sx = {
+    const initialSX = {
+        width: "50%",
+        height: "85%",
+    };
+
+    const animatedSX = {
         width: filterIsOpened ? "100%" : "50%",
-        height: filterIsOpened ? "auto" : "85%",
+        height: filterIsOpened ? "100%" : "85%",
     };
 
     return href ? (
         <Link
             href={project.website}
+            component={motion.a}
+            initial={initialSX}
+            animate={animatedSX}
+            whileHover={{ opacity: 0.7 }}
+            transition={{ duration: 0.2 }}
             target="_blank"
-            sx={{
-                ...sx,
-                transition: "opacity 0.3s ease",
-
-                "&:hover": {
-                    opacity: 0.7,
-                },
-            }}
         >
             {avatarPhoto}
         </Link>
     ) : (
-        <Box sx={sx}>{avatarPhoto}</Box>
+        <Box
+            component={motion.div}
+            initial={initialSX}
+            animate={animatedSX}
+            whileHover={{ opacity: 0.7 }}
+            transition={{ duration: 0.2 }}
+        >
+            {avatarPhoto}
+        </Box>
     );
 };
 

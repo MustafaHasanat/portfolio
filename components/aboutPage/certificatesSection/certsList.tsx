@@ -3,7 +3,7 @@ import { Divider, Stack, Typography, useTheme } from "@mui/material";
 import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import ChartController from "./chartController";
 import CourseCard from "./courseCard";
-import { certificates } from "@/utils/constants/aboutPageConstants";
+import constants from "@/utils/constants";
 import useMultiControl from "@/hooks/useMultiControl";
 
 interface CertsListProps {
@@ -22,7 +22,7 @@ const CertsList = ({ courses, chartType, setChartType }: CertsListProps) => {
     return (
         <Stack width="40%" height="70vh" position="relative">
             <ChartController
-                values={certificates.chartTypes.names}
+                values={constants.about.chartTypes.names}
                 value={chartType}
                 setValue={setChartType}
                 extraSX={{ top: 50, bgcolor: theme.palette.primary.main }}

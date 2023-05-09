@@ -2,6 +2,7 @@ import { Project } from "@/types/project";
 import { Divider, Link, Stack, Typography, useTheme } from "@mui/material";
 import SlidingTitle from "../shared/slidingTitle";
 import LandingPagePic from "./landingPagePic";
+import getDateInfo from "@/utils/helpers/getDateInfo";
 
 interface CardProps {
     project: Project;
@@ -89,7 +90,7 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
                 </Link>
 
                 {textPair("Type:", project.type)}
-                {textPair("Launched at:", project.launchedAt.toString())}
+                {textPair("Launched on:", getDateInfo(project.launchedAt).readableForm)}
 
                 <Typography
                     color={theme.palette.secondary.main}

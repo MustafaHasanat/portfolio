@@ -1,5 +1,6 @@
 import {
     AboutPageProps,
+    DocsPageProps,
     HomePageProps,
 } from "@/utils/store/navigationBarSlice";
 import { Box, Stack } from "@mui/material";
@@ -21,16 +22,18 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
             state.navigationBarReducer.bars
     );
 
-    const { homePage, aboutPage } = useSelector(
+    const { homePage, aboutPage, docsPage } = useSelector(
         (state: {
             navigationBarReducer: {
                 homePage: HomePageProps;
                 aboutPage: AboutPageProps;
+                docsPage: DocsPageProps;
             };
         }) => {
             return {
                 homePage: state.navigationBarReducer.homePage,
                 aboutPage: state.navigationBarReducer.aboutPage,
+                docsPage: state.navigationBarReducer.docsPage,
             };
         }
     );
@@ -42,7 +45,7 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
     };
 
     const getView = (bar: string) =>
-        getViewDetails(bar, { homePage, aboutPage });
+        getViewDetails(bar, { homePage, aboutPage, docsPage });
 
     return (
         <Stack

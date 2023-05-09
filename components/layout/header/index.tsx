@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useAnimation, motion } from "framer-motion";
 import { useTheme } from "@mui/material";
 import { headerBoxStyles, titleStyles, titleCloneStyles } from "./styles";
-import { urls } from "@/utils/constants/global/global";
+import { urls } from "@/utils/constants/global";
 import { useSelector } from "react-redux";
 import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
 import SlidingTitle from "@/components/shared/slidingTitle";
