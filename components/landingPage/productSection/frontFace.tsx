@@ -3,7 +3,6 @@ import { Stack, Typography, Button, Divider, Chip, Link } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Fragment } from "react";
 import FlipButton from "./flipButton";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import IconicButton from "@/components/shared/iconicButton";
 import { Product } from "@/types/product";
 import DvrRoundedIcon from "@mui/icons-material/DvrRounded";
@@ -11,6 +10,7 @@ import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
 import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import { useRouter } from "next/router";
+import TextsmsIcon from '@mui/icons-material/Textsms';
 
 interface FrontFaceProps {
     index: number;
@@ -95,7 +95,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
             <Stack direction="row" justifyContent="space-between" width="100%">
                 <IconicButton
                     icon={
-                        <LocalShippingIcon
+                        <TextsmsIcon
                             sx={{
                                 color: theme.palette.primary.main,
                                 height: "100%",
@@ -105,15 +105,15 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                     color={theme.palette.text.primary}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {
-                        router.push("/products/" + product._id);
+                        router.push("/products/" + product.title);
                     }}
                     extraSX={{
-                        width: "40%",
+                        width: "55%",
                         height: "80%",
                     }}
                 >
                     <Typography fontSize="1.3vw" textTransform="uppercase">
-                        order
+                        learn more
                     </Typography>
                 </IconicButton>
 

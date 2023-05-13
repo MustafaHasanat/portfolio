@@ -1,5 +1,5 @@
 import { Project } from "@/types/project";
-import { Avatar, Box, useTheme, Link } from "@mui/material";
+import { Avatar, Box, useTheme, Link, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 const LandingPagePic = ({
@@ -7,7 +7,7 @@ const LandingPagePic = ({
     project,
     filterIsOpened,
 }: {
-    href: string;
+    href?: string;
     project: Project;
     filterIsOpened: boolean;
 }) => {
@@ -16,15 +16,42 @@ const LandingPagePic = ({
     const avatarPhoto = (
         <Avatar
             variant="square"
-            alt={project.title}
+            alt={project.alt}
             src={project.landingPage.asset.url}
             sx={{
-                borderRadius: 3,
                 width: "auto",
                 height: "100%",
                 border: `1px solid ${theme.palette.secondary.main}`,
             }}
         />
+    );
+
+    const backlight = (
+        <Box
+            component={motion.div}
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            sx={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                top: 0,
+                left: 0,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                background:
+                    "linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.6))",
+            }}
+        >
+            <Typography
+                variant="h2"
+                letterSpacing={4}
+                color={theme.palette.secondary.main}
+            >
+                visit
+            </Typography>
+        </Box>
     );
 
     const initialSX = {
@@ -43,18 +70,22 @@ const LandingPagePic = ({
             component={motion.a}
             initial={initialSX}
             animate={animatedSX}
-            whileHover={{ opacity: 0.7 }}
             transition={{ duration: 0.2 }}
             target="_blank"
+            sx={{
+                borderRadius: 3,
+                position: "relative",
+                overflow: "hidden",
+            }}
         >
             {avatarPhoto}
+            {backlight}
         </Link>
     ) : (
         <Box
             component={motion.div}
             initial={initialSX}
             animate={animatedSX}
-            whileHover={{ opacity: 0.7 }}
             transition={{ duration: 0.2 }}
         >
             {avatarPhoto}

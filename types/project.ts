@@ -1,9 +1,12 @@
+import { Product } from "./product";
+
 export type Project = {
     _id: string;
     title: string;
     description: string;
     launchedAt: string;
-    type: string;
+    alt: string;
+    productType: Product;
     role: string;
     website: string;
     githubFrontend: string;

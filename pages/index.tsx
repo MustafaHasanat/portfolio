@@ -16,6 +16,7 @@ import { getAllProducts } from "@/utils/sanity/product";
 import { Product } from "@/types/product";
 import { SkillSet } from "@/types/skillSet";
 import { getAllSkillSets } from "@/utils/sanity/skillSet";
+import TestimonialSection from "@/components/landingPage/successStoriesSection";
 
 export const getStaticProps = async (): Promise<{
     props: {
@@ -92,6 +93,7 @@ export default function Home({
             <MainSection inViewRef={mainSecRef} avatarIcons={avatarIcons} />
             <ProductSection inViewRef={productSecRef} products={products} />
             <SkillsSection inViewRef={skillsSecRef} skillSets={skillSets} />
+            <TestimonialSection />
             <QuotesSection inViewRef={quotesSecRef} quotes={quotes} />
         </Stack>
     );

@@ -42,7 +42,7 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
             py={filterIsOpened ? 4 : 0}
             px={4}
             sx={{
-                height: filterIsOpened ? "auto" : "40vh",
+                height: filterIsOpened ? "auto" : "45vh",
                 bgcolor: theme.palette.text.primary,
                 overflow: "hidden",
                 borderRadius: 3,
@@ -74,7 +74,7 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
                 height={filterIsOpened ? "auto" : "85%"}
             >
                 <Link
-                    href={"/projects/" + project._id}
+                    href={"/projects/" + project.alt}
                     sx={{
                         textDecoration: "none",
                     }}
@@ -89,9 +89,6 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
                     />
                 </Link>
 
-                {textPair("Type:", project.type)}
-                {textPair("Launched on:", getDateInfo(project.launchedAt).readableForm)}
-
                 <Typography
                     color={theme.palette.secondary.main}
                     textAlign="justify"
@@ -101,6 +98,12 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
                 >
                     {project.description}
                 </Typography>
+
+                {textPair("Type:", project.productType.title)}
+                {textPair(
+                    "Launched on:",
+                    getDateInfo(project.launchedAt).readableForm
+                )}
             </Stack>
         </Stack>
     );

@@ -10,11 +10,12 @@ const ButtonSet = () => {
         <Stack
             spacing={2}
             ml={3}
+            mt={3}
             sx={{
-                float: "right",
+                float: "left",
             }}
         >
-            <Link href="/about/story" title="Go to my resume page">
+            <Link href="/about/story" title="Read more about me ...">
                 <IconicButton
                     icon={
                         <AutoStoriesSharpIcon
@@ -38,7 +39,7 @@ const ButtonSet = () => {
                         textTransform="uppercase"
                         letterSpacing={2}
                     >
-                        read full story
+                        read more
                     </Typography>
                 </IconicButton>
             </Link>

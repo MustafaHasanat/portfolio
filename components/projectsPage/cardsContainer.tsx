@@ -7,8 +7,8 @@ import FilterBox from "./filterBox";
 import getDateInfo from "@/utils/helpers/getDateInfo";
 
 export interface CheckboxesStatesProps {
-    "web application": boolean;
-    "desktop application": boolean;
+    web: boolean;
+    desktop: boolean;
 }
 
 export interface AttributeListsProps {
@@ -52,8 +52,8 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
     const [typesList, setTypesList] = useState<string[]>([]);
     const [typeSelected, setTypeSelected] = useState<string[]>([]);
     const checkboxesInitialState = {
-        "web application": true,
-        "desktop application": true,
+        web: true,
+        desktop: true,
     };
     const [checkboxesStates, setCheckboxesStates] = useState(
         checkboxesInitialState
@@ -73,7 +73,7 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
 
         projects.map((project) => {
             years.add(getDateInfo(project?.launchedAt).year);
-            types.add(project?.type);
+            types.add(project?.productType.title);
             project?.tools.map((tool) => {
                 tools.add(tool);
             });
@@ -92,7 +92,7 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
             if (
                 project.title.toLowerCase().includes(searchTerm || "") &&
                 (yearSelect === 0 || yearSelect === projectYear) &&
-                typeSelected.includes(project.type)
+                typeSelected.includes(project.productType.title)
             ) {
                 return project;
             }

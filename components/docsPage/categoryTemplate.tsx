@@ -14,7 +14,7 @@ const CategoryTemplate = ({ doc, docs, inViewRef }: CategoryTemplateProps) => {
     const theme = useTheme();
 
     return (
-        <Stack id={`docs-${doc}`} height="80vh" position="relative">
+        <Stack id={`docs-${doc}`} position="relative">
             <Box
                 ref={inViewRef}
                 sx={{
@@ -31,13 +31,23 @@ const CategoryTemplate = ({ doc, docs, inViewRef }: CategoryTemplateProps) => {
                 shadowColor={theme.palette.primary.main}
             />
 
-            {docs.map((curDoc) => {
-                return (
-                    <Fragment key={`docs category card ${curDoc._id}`}>
-                        <DocCard doc={curDoc} />
-                    </Fragment>
-                );
-            })}
+            <Stack
+                direction="row"
+                gap={10}
+                mt="10vh"
+                mb="20vh"
+                justifyContent="center"
+                alignItems="center"
+                flexWrap="wrap"
+            >
+                {docs.map((curDoc) => {
+                    return (
+                        <Fragment key={`docs category card ${curDoc._id}`}>
+                            <DocCard doc={curDoc} />
+                        </Fragment>
+                    );
+                })}
+            </Stack>
         </Stack>
     );
 };
