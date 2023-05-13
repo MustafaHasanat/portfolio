@@ -17,7 +17,7 @@ export const urls = {
         "https://drive.google.com/file/d/1JI0T4S14lpNuumdhuR9K9PLJaAUySMCe/view?usp=sharing",
 };
 
-const globalConstants = {
+const global = {
     contacts: [
         {
             text: "send me an email",
@@ -54,4 +54,4 @@ const globalConstants = {
     ],
 };
 
-export default globalConstants;
+export default global;

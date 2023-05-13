@@ -15,7 +15,7 @@ import {
     mainButtonStyles,
 } from "./styles";
 import Link from "next/link";
-import globalConstants from "@/utils/constants/global/global";
+import constants from "@/utils/constants";
 
 interface ContactsProps {
     landingSectionInView: boolean;
@@ -84,7 +84,7 @@ const Contacts = ({
                 </Box>
             </Button>
 
-            {globalConstants.contacts.map((item, index) => {
+            {constants.global.contacts.map((item, index) => {
                 return (
                     <Fragment key={`contact item number: ${index}`}>
                         <Box

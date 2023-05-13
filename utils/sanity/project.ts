@@ -8,12 +8,15 @@ export async function getAllProjects(): Promise<Project[]> {
         title,
         description,
         launchedAt,
-        type,
+        productType->{
+            title,
+        },
         role,
         website,
         githubFrontend,
         githubBackend,
         tools,
+        alt,
         landingPage {
             asset->{
                 url
@@ -22,19 +25,22 @@ export async function getAllProjects(): Promise<Project[]> {
     }`);
 }
 
-export async function getProjectById(id: string): Promise<Project> {
+export async function getProjectByAlt(alt: string): Promise<Project> {
     const project =
-        await client.fetch(groq`*[_type == "project" && _id == "${id}"]{
+        await client.fetch(groq`*[_type == "project" && alt == "${alt}"]{
         _id,
         title,
         description,
         launchedAt,
-        type,
+        productType->{
+            title,
+        },
         role,
         website,
         githubFrontend,
         githubBackend,
         tools,
+        alt,
         landingPage {
             asset->{
                 url

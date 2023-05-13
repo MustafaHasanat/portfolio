@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Stack } from "@mui/material";
-import LayoutConstants from "@/utils/constants/global/layout";
+import constants from "@/utils/constants";
 import { Fragment, useEffect } from "react";
 import NavbarButton from "@/components/layout/navbar/navbarButton";
 import { AnimationControls } from "framer-motion";
@@ -22,14 +22,14 @@ const Navbar = ({ animation, landingSectionInView }: NavbarProps) => {
             navigationBarActions.setBars(
                 pathNumber === -1
                     ? []
-                    : LayoutConstants.navbarItems[pathNumber].navigationBars
+                    : constants.header.navbarItems[pathNumber].navigationBars
             )
         );
     }, [path]);
 
     return (
         <Stack direction="row" spacing={2}>
-            {LayoutConstants.navbarItems.map((item, index) => (
+            {constants.header.navbarItems.map((item, index) => (
                 <Fragment key={`${index}`}>
                     <NavbarButton
                         animation={animation}

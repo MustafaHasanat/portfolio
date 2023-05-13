@@ -1,5 +1,6 @@
+import ProjectPage from "@/components/projectsPage/projectPage";
 import { Project } from "@/types/project";
-import { getAllProjects, getProjectById } from "@/utils/sanity/project";
+import { getAllProjects, getProjectByAlt } from "@/utils/sanity/project";
 import { Stack, useTheme } from "@mui/material";
 
 interface ProjectProps {
@@ -11,7 +12,7 @@ export const getStaticPaths = async () => {
 
     const paths = projects.map((project) => {
         return {
-            params: { id: project._id.toString() },
+            params: { title: project?.alt.toString() },
         };
     });
 
@@ -26,8 +27,8 @@ export const getStaticProps = async (
 ): Promise<{
     props: ProjectProps;
 }> => {
-    const id = context.params.id;
-    const project = await getProjectById(id);
+    const altText = context.params.title;
+    const project = await getProjectByAlt(altText);
 
     return {
         props: { project },
@@ -39,14 +40,14 @@ export default function ProjectDetails({ project }: ProjectProps) {
 
     return (
         <Stack
-            height="100vh"
             sx={{
                 color: "white",
                 bgcolor: theme.palette.secondary.main,
-                p: 30,
+                px: 25,
+                py: "20vh",
             }}
         >
-            {project._id}
+            <ProjectPage project={project} />
         </Stack>
     );
 }

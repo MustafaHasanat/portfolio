@@ -8,7 +8,7 @@ import {
 import { useAnimation, motion } from "framer-motion";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import Link from "next/link";
-import { urls } from "@/utils/constants/global/global";
+import { urls } from "@/utils/constants/global";
 
 const DownloadButton = () => {
     const theme = useTheme();

@@ -1,9 +1,7 @@
-const SuccessStoriesSection = () => {
-    return (
-        <div>
-            SuccessStoriesSection
-        </div>
-    );
-}
+import { Stack } from "@mui/material";
 
-export default SuccessStoriesSection;
+const TestimonialSection = () => {
+    return <Stack>Testimonial</Stack>;
+};
+
+export default TestimonialSection;

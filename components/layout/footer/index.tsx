@@ -5,10 +5,11 @@ import React, { useEffect, useRef } from "react";
 // import sendEmailEmailJS from "@/utils/helpers/sendEmail";
 import Form from "./form";
 import { snackbarActions, navigationBarActions } from "@/utils/store/store";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Hexagons from "./hexagons";
 import theme from "@/styles/theme";
 import { useInView } from "framer-motion";
+import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
 
 const Footer = () => {
     const formRef = useRef();
@@ -27,6 +28,11 @@ const Footer = () => {
         dispatch(snackbarActions.setMessage(snackbarMessage));
         dispatch(snackbarActions.setActive(true));
     };
+
+    const backgrounds = useSelector(
+        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
+            state.globalAssetsReducer.backgrounds
+    );
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -79,7 +85,7 @@ const Footer = () => {
                     linear-gradient(
                         rgba(0, 0, 0, 0.6), 
                         rgba(0, 0, 0, 1)), 
-                    url("images/footerWP.jpg")`,
+                        url("${backgrounds?.footerBG?.src}")`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top",

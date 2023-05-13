@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import BioSection from "@/components/aboutPage/bioSection";
 import CertificatesSection from "@/components/aboutPage/certificatesSection";
 import EducationSection from "@/components/aboutPage/educationSection";
@@ -49,6 +48,8 @@ export default function About({
     languages,
     experiences,
 }: AboutProps) {
+    const dispatch = useDispatch();
+
     const currentView = useSelector(
         (state: { navigationBarReducer: { currentView: string } }) =>
             state.navigationBarReducer.currentView
@@ -66,8 +67,6 @@ export default function About({
     const certificatesSecInView = useInView(certificatesSecRef);
     const languagesSecInView = useInView(languagesSecRef);
 
-    const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(
             navigationBarActions.setAboutView({
@@ -79,7 +78,7 @@ export default function About({
                 languages: currentView === "about-languages" ? true : false,
             })
         );
-    }, [currentView]);
+    }, [currentView, dispatch]);
 
     useEffect(() => {
         if (bioSecInView)
@@ -98,6 +97,7 @@ export default function About({
         experienceSecInView,
         certificatesSecInView,
         languagesSecInView,
+        dispatch,
     ]);
 
     return (

@@ -7,8 +7,14 @@ export async function getAllProducts(): Promise<Product[]> {
         _id,
         title,
         description,
+        bullets,
         tags,
         order,
+        landingPage {
+            asset->{
+                url
+            }
+        },
         cards {
             name,
             projects,
@@ -21,14 +27,20 @@ export async function getAllProducts(): Promise<Product[]> {
     }`);
 }
 
-export async function getProductById(id: string): Promise<Product> {
+export async function getProductByTitle(title: string): Promise<Product> {
     const product =
-        await client.fetch(groq`*[_type == "product" && _id == "${id}"]{
+        await client.fetch(groq`*[_type == "product" && title == "${title}"]{
         _id,
         title,
         description,
+        bullets,
         tags,
         order,
+        landingPage {
+            asset->{
+                url
+            }
+        },
         cards {
             name,
             projects,

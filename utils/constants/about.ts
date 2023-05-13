@@ -1,4 +1,4 @@
-export const certificates = {
+const about = {
     categories: [
         "web",
         "data science",
@@ -28,3 +28,5 @@ export const certificates = {
         ],
     },
 };
+
+export default about;

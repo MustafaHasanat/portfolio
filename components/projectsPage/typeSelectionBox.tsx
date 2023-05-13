@@ -6,7 +6,7 @@ import {
     Typography,
     useTheme,
 } from "@mui/material";
-import { AttributeListsProps, CheckboxesStatesProps } from "./cardsContainer";
+import { AttributeListsProps } from "./cardsContainer";
 
 interface TypeSelectionBoxProps {
     attributeLists: AttributeListsProps;
@@ -28,15 +28,15 @@ const TypeSelectionBox = ({ attributeLists }: TypeSelectionBoxProps) => {
         value: string
     ): { name: string; value: boolean } => {
         switch (value) {
-            case "web application":
+            case "web":
                 return {
-                    name: "web application",
-                    value: checkboxesStates["web application"],
+                    name: "web",
+                    value: checkboxesStates.web,
                 };
-            case "desktop application":
+            case "desktop":
                 return {
-                    name: "desktop application",
-                    value: checkboxesStates["desktop application"],
+                    name: "desktop",
+                    value: checkboxesStates.desktop,
                 };
             default:
                 return {
