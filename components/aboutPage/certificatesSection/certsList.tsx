@@ -1,23 +1,45 @@
 import { Course } from "@/types/course";
 import { Divider, Stack, Typography, useTheme } from "@mui/material";
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 import ChartController from "./chartController";
 import CourseCard from "./courseCard";
 import constants from "@/utils/constants";
-import useMultiControl from "@/hooks/useMultiControl";
 
 interface CertsListProps {
     courses: Course[];
     chartType: string;
+    filterPhrase: string;
+    toggleCard: (currentIndex: number) => void;
+    isCardOpened: (index: number) => boolean;
     setChartType: Dispatch<SetStateAction<string>>;
+    setModalPhoto: Dispatch<SetStateAction<string>>;
 }
 
-const CertsList = ({ courses, chartType, setChartType }: CertsListProps) => {
+const CertsList = ({
+    courses,
+    chartType,
+    setChartType,
+    filterPhrase,
+    toggleCard,
+    isCardOpened,
+    setModalPhoto,
+}: CertsListProps) => {
     const theme = useTheme();
     const [filteredCourses, setFilteredCourses] = useState(courses);
 
-    const { updateState: toggleCard, isActive: isCardOpened } =
-        useMultiControl();
+    useEffect(() => {
+        if (!filterPhrase) {
+            setFilteredCourses(courses);
+        } else {
+            setFilteredCourses(
+                courses.filter((course) => {
+                    if (course.category === filterPhrase) {
+                        return course;
+                    }
+                })
+            );
+        }
+    }, [courses, filterPhrase]);
 
     return (
         <Stack width="40%" height="70vh" position="relative">
@@ -38,7 +60,8 @@ const CertsList = ({ courses, chartType, setChartType }: CertsListProps) => {
                 zIndex={2}
             >
                 <Typography variant="h5" color={theme.palette.text.primary}>
-                    Results: {filteredCourses.length}
+                    Results: {filteredCourses.length}{" "}
+                    {filterPhrase && `(${filterPhrase})`}
                 </Typography>
 
                 <Divider
@@ -57,7 +80,7 @@ const CertsList = ({ courses, chartType, setChartType }: CertsListProps) => {
                         overflow: "scroll",
                     }}
                 >
-                    {courses.map((course, index) => {
+                    {filteredCourses.map((course, index) => {
                         return (
                             <Fragment key={`course card number: ${index}`}>
                                 <CourseCard
@@ -65,6 +88,7 @@ const CertsList = ({ courses, chartType, setChartType }: CertsListProps) => {
                                     index={index}
                                     toggleCard={toggleCard}
                                     isCardOpened={isCardOpened}
+                                    setModalPhoto={setModalPhoto}
                                 />
                             </Fragment>
                         );

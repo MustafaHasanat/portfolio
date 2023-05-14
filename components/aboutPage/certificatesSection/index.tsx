@@ -1,9 +1,14 @@
-import { MutableRefObject, useState } from "react";
-import { Box, Stack, useTheme } from "@mui/material";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { MutableRefObject, ReactNode, useState } from "react";
+import { Avatar, Box, Stack, useTheme } from "@mui/material";
 import AnimatedTitle from "@/components/shared/animatedTitle";
 import CertsChart from "./certsChart";
 import CertsList from "./certsList";
 import { Course } from "@/types/course";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { modalActions } from "@/utils/store/store";
+import useMultiControl from "@/hooks/useMultiControl";
 
 interface CertificatesSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -15,7 +20,51 @@ const CertificatesSection = ({
     courses,
 }: CertificatesSectionProps) => {
     const theme = useTheme();
+
     const [chartType, setChartType] = useState("radar");
+    const [filterPhrase, setFilterPhrase] = useState("");
+    const [modalPhoto, setModalPhoto] = useState("");
+
+    const dispatch = useDispatch();
+    const setModalContent = (state: ReactNode) =>
+        dispatch(modalActions.setModalContent(state));
+
+    const isModalActive = useSelector(
+        (state: { modalReducer: { isActive: boolean } }) =>
+            state.modalReducer.isActive
+    );
+
+    const {
+        updateState: toggleCard,
+        isActive: isCardOpened,
+        setGlobalIndex,
+    } = useMultiControl();
+
+    const modalBox = modalPhoto && (
+        <Avatar
+            src={modalPhoto}
+            alt={modalPhoto}
+            variant="rounded"
+            sx={{
+                width: "auto",
+                height: "80vh",
+                bgcolor: theme.palette.text.primary,
+                zIndex: 200,
+            }}
+        />
+    );
+
+    useEffect(() => {
+        if (!isModalActive) {
+            setModalPhoto("");
+        } else {
+            if (modalPhoto) {
+                setModalContent(modalBox);
+            } else {
+                setModalContent(<div></div>);
+            }
+        }
+    }, [modalPhoto, isModalActive, modalBox, setModalContent]);
 
     return (
         <Stack
@@ -48,11 +97,21 @@ const CertificatesSection = ({
                 alignItems="center"
                 width="100%"
             >
-                <CertsChart courses={courses} chartType={chartType} />
+                <CertsChart
+                    courses={courses}
+                    chartType={chartType}
+                    setFilterPhrase={setFilterPhrase}
+                    setGlobalIndex={setGlobalIndex}
+                />
+
                 <CertsList
                     courses={courses}
                     chartType={chartType}
                     setChartType={setChartType}
+                    filterPhrase={filterPhrase}
+                    setModalPhoto={setModalPhoto}
+                    toggleCard={toggleCard}
+                    isCardOpened={isCardOpened}
                 />
             </Stack>
         </Stack>

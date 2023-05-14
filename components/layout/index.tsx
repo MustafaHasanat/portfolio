@@ -71,7 +71,7 @@ const Layout = ({ children }: LayoutProps) => {
             <Header landingSectionInView={landingSectionInView} />
             <Main>{children}</Main>
 
-            <Contacts landingSectionInView={landingSectionInView} />
+            <Contacts />
             <SnackBar />
             <NavigationBar landingSectionInView={landingSectionInView} />
 

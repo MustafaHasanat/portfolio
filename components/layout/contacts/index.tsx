@@ -8,7 +8,7 @@ import QuestionAnswerRoundedIcon from "@mui/icons-material/QuestionAnswerRounded
 import {
     buttonVariants,
     contactItemStyles,
-    contatcsContainerStyles,
+    contactsContainerStyles,
     floatingListStyles,
     itemTextVariants,
     itemsVariants,
@@ -17,18 +17,14 @@ import {
 import Link from "next/link";
 import constants from "@/utils/constants";
 
-interface ContactsProps {
-    landingSectionInView: boolean;
-}
+interface ContactsProps {}
 
-const Contacts = ({
-    landingSectionInView: switchPointInView,
-}: ContactsProps) => {
+const Contacts = ({}: ContactsProps) => {
     const theme = useTheme();
-    const buttonAnimations = useAnimation();
-    const itemsAnimations = useAnimation();
+    const animationController = useAnimation();
 
     const [hoveredContact, setHoveredContact] = useState(0);
+    const [isButtonActive, setIsButtonActive] = useState(false);
 
     const dispatch = useDispatch();
     const setActive = (state: boolean) =>
@@ -40,23 +36,25 @@ const Contacts = ({
     );
 
     useEffect(() => {
-        if (!isModalActive) buttonAnimations.start("hidden");
-        if (!isModalActive) itemsAnimations.start("hidden");
-    }, [isModalActive, buttonAnimations, itemsAnimations]);
+        if (!isModalActive) {
+            animationController.start("hidden");
+            setIsButtonActive(false);
+        }
+    }, [isModalActive, animationController]);
 
     useEffect(() => {}, [hoveredContact]);
 
     return (
-        <Stack sx={contatcsContainerStyles}>
+        <Stack sx={contactsContainerStyles(isModalActive && isButtonActive)}>
             <Button
                 component={motion.button}
-                animate={buttonAnimations}
+                animate={animationController}
                 initial="hidden"
                 variants={buttonVariants}
                 title="contact-button"
                 onClick={() => {
-                    buttonAnimations.start("visible");
-                    itemsAnimations.start("visible");
+                    setIsButtonActive(true);
+                    animationController.start("visible");
                     setActive(!isModalActive);
                 }}
                 sx={mainButtonStyles(
@@ -89,7 +87,7 @@ const Contacts = ({
                     <Fragment key={`contact item number: ${index}`}>
                         <Box
                             component={motion.div}
-                            animate={itemsAnimations}
+                            animate={animationController}
                             initial="hidden"
                             onMouseEnter={() => {
                                 setHoveredContact(index + 1);

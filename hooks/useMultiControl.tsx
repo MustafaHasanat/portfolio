@@ -29,6 +29,7 @@ const useMultiControl = () => {
         globalIndex,
         updateState,
         isActive,
+        setGlobalIndex,
     };
 };
 

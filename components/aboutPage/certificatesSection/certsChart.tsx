@@ -1,24 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Course } from "@/types/course";
 import { Stack, useTheme } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import {
+    Dispatch,
+    MouseEvent,
+    SetStateAction,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import constants from "@/utils/constants";
+import { InteractionItem } from "chart.js/dist/core/core.interaction";
 import {
     Radar,
     Doughnut,
     Pie,
     PolarArea,
-    getDatasetAtEvent,
     getElementAtEvent,
-    getElementsAtEvent,
 } from "react-chartjs-2";
 
 interface CertsChartProps {
     courses: Course[];
     chartType: string;
+    setFilterPhrase: Dispatch<SetStateAction<string>>;
+    setGlobalIndex: (currentIndex: number) => void;
 }
 
-const CertsChart = ({ courses, chartType }: CertsChartProps) => {
+const CertsChart = ({
+    courses,
+    chartType,
+    setFilterPhrase,
+    setGlobalIndex,
+}: CertsChartProps) => {
     const theme = useTheme();
     const chartRef = useRef(null);
 
@@ -97,10 +110,20 @@ const CertsChart = ({ courses, chartType }: CertsChartProps) => {
         }
     };
 
-    const handleClick = (event: any) => {
+    const handleClick = (event: MouseEvent<HTMLCanvasElement>) => {
         const { current: chart } = chartRef;
         if (!chart) return;
-        // console.log(getElementAtEvent(chart, event));
+
+        const element: InteractionItem[] = getElementAtEvent(chart, event);
+        if (!element.length) return;
+
+        const { datasetIndex, index } = element[0];
+        const category = chartData.labels[index];
+        const categoryIndex = chartData.datasets[datasetIndex].data[index];
+
+        setGlobalIndex(0);
+
+        setFilterPhrase((prev) => (prev === category ? "" : category));
     };
 
     useEffect(() => {
@@ -108,7 +131,9 @@ const CertsChart = ({ courses, chartType }: CertsChartProps) => {
 
         courses.map((course) => {
             setCoursesData((prev) => {
-                const index = constants.about.categories.indexOf(course.category);
+                const index = constants.about.categories.indexOf(
+                    course.category
+                );
                 prev[index] += 1;
                 return prev;
             });
