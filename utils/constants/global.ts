@@ -18,40 +18,36 @@ export const urls = {
 };
 
 const global = {
-    contacts: [
-        {
+    contacts: {
+        "gmailContact": {
             text: "send me an email",
             distance: 400,
             delayVisible: 0,
             delayHidden: 0.3,
-            src: String.raw`\icons\contacts\gmailIcon.png`,
             link: `mailto:${urls.myEmail}?Subject=Setting a meeting&body=Hello Mustafa, I would like to set a meeting with you.`,
         },
-        {
+        "messengerContact": {
             text: "contact me via LinkedIn",
             distance: 300,
             delayVisible: 0.1,
             delayHidden: 0.2,
-            src: String.raw`\icons\websites\linkedInIcon.png`,
             link: urls.myLinkedInURL,
         },
-        {
+        "callContact": {
             text: "call me",
             distance: 200,
             delayVisible: 0.2,
             delayHidden: 0.1,
-            src: String.raw`\icons\contacts\phoneIcon.png`,
             link: `tel:${urls.myPhoneNumber}`,
         },
-        {
+        "whatsappContact": {
             text: "chat with me via Whatsapp",
             distance: 100,
             delayVisible: 0.3,
             delayHidden: 0,
-            src: String.raw`\icons\contacts\whatsappIcon.png`,
             link: `http://wa.me/${urls.myPhoneNumber}`,
         },
-    ],
+    },
 };
 
 export default global;

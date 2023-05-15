@@ -1,7 +1,7 @@
 import { FooterSocial } from "@/types/footerSocial";
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface BackgroundsProps {
+export interface GlobalAssetProps {
     [key: string]: {
         src: string;
         alt: string;
@@ -9,10 +9,10 @@ export interface BackgroundsProps {
 }
 
 const initialGlobalAssetsState: {
-    backgrounds: BackgroundsProps;
+    globalAssets: GlobalAssetProps;
     footerSocials: FooterSocial[];
 } = {
-    backgrounds: {
+    globalAssets: {
         example: {
             src: "",
             alt: "",
@@ -25,8 +25,8 @@ export const globalAssetsSlice = createSlice({
     name: "globalAssets",
     initialState: initialGlobalAssetsState,
     reducers: {
-        setBackgrounds(state, action) {
-            state.backgrounds = action.payload;
+        setGlobalAssets(state, action) {
+            state.globalAssets = action.payload;
         },
         setFooterSocials(state, action) {
             state.footerSocials = action.payload;

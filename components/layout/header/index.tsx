@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material";
 import { headerBoxStyles, titleStyles, titleCloneStyles } from "./styles";
 import { urls } from "@/utils/constants/global";
 import { useSelector } from "react-redux";
-import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import SlidingTitle from "@/components/shared/slidingTitle";
 
 interface HeaderProps {
@@ -19,9 +19,9 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
     const bmcAnimations = useAnimation();
     const [headerPosition, setHeaderPosition] = useState("0vh");
 
-    const backgrounds = useSelector(
-        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
-            state.globalAssetsReducer.backgrounds
+    const globalAssets = useSelector(
+        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
+            state.globalAssetsReducer.globalAssets
     );
 
     useEffect(() => {
@@ -78,7 +78,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                 >
                     <Avatar
                         variant="square"
-                        src={backgrounds?.websiteLogo?.src}
+                        src={globalAssets?.websiteLogo?.src}
                         alt="logo"
                         sx={{
                             width: "3rem",
@@ -107,7 +107,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                     >
                         <Link href={urls.myBMCURL} title="bmc" target="_blank">
                             <Avatar
-                                src={backgrounds?.bmcLogo?.src}
+                                src={globalAssets?.bmcLogo?.src}
                                 component="div"
                                 onMouseEnter={() => {
                                     bmcAnimations.start("visible");
@@ -143,7 +143,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                                     transition: { duration: 0.3 },
                                 },
                             }}
-                            src={backgrounds?.bmcSlogan?.src}
+                            src={globalAssets?.bmcSlogan?.src}
                             sx={{
                                 padding: 1,
                                 bgcolor: theme.palette.secondary.light,

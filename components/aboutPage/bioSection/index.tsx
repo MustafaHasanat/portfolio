@@ -2,7 +2,7 @@ import { Box, useTheme } from "@mui/material";
 import { MutableRefObject } from "react";
 import ButtonSet from "./buttonSet";
 import { useSelector } from "react-redux";
-import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import { title } from "./blocks";
 import ImageBox from "./imageBox";
 import ParagraphBox from "./paragraphBox";
@@ -14,9 +14,9 @@ interface BioSectionProps {
 const BioSection = ({ inViewRef }: BioSectionProps) => {
     const theme = useTheme();
 
-    const backgrounds = useSelector(
-        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
-            state.globalAssetsReducer.backgrounds
+    const globalAssets = useSelector(
+        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
+            state.globalAssetsReducer.globalAssets
     );
 
     return (
@@ -39,7 +39,7 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
             />
 
             {ImageBox({
-                src: backgrounds?.mySecondAvatar?.src,
+                src: globalAssets?.mySecondAvatar?.src,
                 alt: "avatar",
                 width: "30vw",
                 height: "30vw",

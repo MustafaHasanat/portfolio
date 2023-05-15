@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import Link from "next/link";
 import constants from "@/utils/constants";
+import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 interface ContactsProps {}
 
@@ -25,6 +26,16 @@ const Contacts = ({}: ContactsProps) => {
 
     const [hoveredContact, setHoveredContact] = useState(0);
     const [isButtonActive, setIsButtonActive] = useState(false);
+    const [contacts, setContacts] = useState<
+        {
+            name:
+                | "gmailContact"
+                | "messengerContact"
+                | "callContact"
+                | "whatsappContact";
+            asset: { src: string; alt: string };
+        }[]
+    >([]);
 
     const dispatch = useDispatch();
     const setActive = (state: boolean) =>
@@ -35,6 +46,11 @@ const Contacts = ({}: ContactsProps) => {
             state.modalReducer.isActive
     );
 
+    const globalAssets = useSelector(
+        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
+            state.globalAssetsReducer.globalAssets
+    );
+
     useEffect(() => {
         if (!isModalActive) {
             animationController.start("hidden");
@@ -42,7 +58,19 @@ const Contacts = ({}: ContactsProps) => {
         }
     }, [isModalActive, animationController]);
 
-    useEffect(() => {}, [hoveredContact]);
+    useEffect(() => {
+        setContacts([
+            { name: "gmailContact", asset: globalAssets?.gmailContact },
+            { name: "messengerContact", asset: globalAssets?.messengerContact },
+            { name: "callContact", asset: globalAssets?.callContact },
+            { name: "whatsappContact", asset: globalAssets?.whatsappContact },
+        ]);
+    }, [
+        globalAssets?.callContact,
+        globalAssets?.gmailContact,
+        globalAssets?.messengerContact,
+        globalAssets?.whatsappContact,
+    ]);
 
     return (
         <Stack sx={contactsContainerStyles(isModalActive && isButtonActive)}>
@@ -82,7 +110,16 @@ const Contacts = ({}: ContactsProps) => {
                 </Box>
             </Button>
 
-            {constants.global.contacts.map((item, index) => {
+            {contacts.map((contact, index) => {
+                const item: {
+                    text: string;
+                    distance: number;
+                    delayVisible: number;
+                    delayHidden: number;
+                    src: string;
+                    link: string;
+                } = constants.global.contacts[contact.name];
+
                 return (
                     <Fragment key={`contact item number: ${index}`}>
                         <Box
@@ -124,7 +161,7 @@ const Contacts = ({}: ContactsProps) => {
                             >
                                 <Avatar
                                     variant="square"
-                                    src={item.src}
+                                    src={contact?.asset?.src}
                                     alt="contact"
                                     sx={{
                                         width: "80%",

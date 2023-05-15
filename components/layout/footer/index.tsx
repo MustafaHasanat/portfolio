@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Hexagons from "./hexagons";
 import theme from "@/styles/theme";
 import { useInView } from "framer-motion";
-import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 const Footer = () => {
     const formRef = useRef();
@@ -29,10 +29,11 @@ const Footer = () => {
         dispatch(snackbarActions.setActive(true));
     };
 
-    const backgrounds = useSelector(
-        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
-            state.globalAssetsReducer.backgrounds
+    const globalAssets = useSelector(
+        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
+            state.globalAssetsReducer.globalAssets
     );
+    
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -85,7 +86,7 @@ const Footer = () => {
                     linear-gradient(
                         rgba(0, 0, 0, 0.6), 
                         rgba(0, 0, 0, 1)), 
-                        url("${backgrounds?.footerBG?.src}")`,
+                        url("${globalAssets?.footerBG?.src}")`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top",

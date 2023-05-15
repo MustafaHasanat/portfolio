@@ -12,11 +12,11 @@ import { useInView } from "framer-motion";
 import ModalBackLight from "./contacts/modalBackLight";
 import SnackBar from "../shared/snackbar";
 import NavigationBar from "./navigationBar";
-import { Background } from "@/types/background";
-import { getAllBackgrounds } from "@/utils/sanity/background";
 import { getAllFooterSocials } from "@/utils/sanity/footerSocial";
 import { FooterSocial } from "@/types/footerSocial";
-import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
+import { getAllGlobalAssets } from "@/utils/sanity/globalAsset";
+import { GlobalAsset } from "@/types/globalAsset";
 
 interface LayoutProps {
     children: JSX.Element;
@@ -39,19 +39,19 @@ const Layout = ({ children }: LayoutProps) => {
 
     useEffect(() => {
         const getGlobalAssets = async () => {
-            const sanityBackgrounds: Background[] = await getAllBackgrounds();
+            const sanityGlobalAssets: GlobalAsset[] = await getAllGlobalAssets();
             const footerSocials: FooterSocial[] = await getAllFooterSocials();
 
-            let backgrounds: BackgroundsProps = {};
+            let gGlobalAssets: GlobalAssetProps = {};
 
-            sanityBackgrounds.map((bg) => {
-                backgrounds[bg.alt] = {
+            sanityGlobalAssets.map((bg) => {
+                gGlobalAssets[bg.alt] = {
                     alt: bg.alt,
                     src: bg.src.asset.url,
                 };
             });
 
-            dispatch(globalAssetsActions.setBackgrounds(backgrounds));
+            dispatch(globalAssetsActions.setGlobalAssets(gGlobalAssets));
             dispatch(globalAssetsActions.setFooterSocials(footerSocials));
         };
         getGlobalAssets();
