@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Avatar, Box, CircularProgress } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import { Fragment, useState } from "react";
 import {
     avatarStyles,

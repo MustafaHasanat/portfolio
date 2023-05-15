@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./metadata/headTag";
 import Main from "./main";
-import { Stack, Box, useTheme } from "@mui/material";
+import { Stack, Box, useTheme, CircularProgress } from "@mui/material";
 import Contacts from "./contacts";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions, globalAssetsActions } from "@/utils/store/store";
@@ -39,23 +38,24 @@ const Layout = ({ children }: LayoutProps) => {
 
     useEffect(() => {
         const getGlobalAssets = async () => {
-            const sanityGlobalAssets: GlobalAsset[] = await getAllGlobalAssets();
+            const sanityGlobalAssets: GlobalAsset[] =
+                await getAllGlobalAssets();
             const footerSocials: FooterSocial[] = await getAllFooterSocials();
 
-            let gGlobalAssets: GlobalAssetProps = {};
+            let globalAssets: GlobalAssetProps = {};
 
             sanityGlobalAssets.map((bg) => {
-                gGlobalAssets[bg.alt] = {
+                globalAssets[bg.alt] = {
                     alt: bg.alt,
                     src: bg.src.asset.url,
                 };
             });
 
-            dispatch(globalAssetsActions.setGlobalAssets(gGlobalAssets));
+            dispatch(globalAssetsActions.setGlobalAssets(globalAssets));
             dispatch(globalAssetsActions.setFooterSocials(footerSocials));
         };
         getGlobalAssets();
-    }, []);
+    }, [dispatch]);
 
     return (
         <Stack>
