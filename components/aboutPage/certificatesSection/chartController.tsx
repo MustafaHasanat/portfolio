@@ -1,15 +1,14 @@
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
-import { Dispatch, Fragment, SetStateAction } from "react";
+import { Fragment } from "react";
+import { ChartControllerProps, ChartControllerStyles } from "./styles";
 
-interface ChartControllerProps {
-    values: string[];
-    value: string;
-    setValue: Dispatch<SetStateAction<string>>;
-    extraSX: any;
-}
-
-const ChartController = ({ values, value, setValue, extraSX }: ChartControllerProps) => {
+const ChartController = ({
+    values,
+    value,
+    setValue,
+    extraSX,
+}: ChartControllerProps) => {
     const theme = useTheme();
 
     return (
@@ -17,16 +16,7 @@ const ChartController = ({ values, value, setValue, extraSX }: ChartControllerPr
             component={motion.div}
             initial={{ x: 0 }}
             whileHover={{ x: 110 }}
-            alignItems="flex-end"
-            position="absolute"
-            right={-20}
-            borderRadius={2}
-            py={1}
-            pr={2}
-            spacing={1}
-            width={200}
-            zIndex={1}
-            sx={extraSX}
+            sx={ChartControllerStyles(extraSX)}
         >
             {values.map((constantChartType, index) => {
                 return (

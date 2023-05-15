@@ -3,15 +3,12 @@ import { MutableRefObject } from "react";
 import ButtonSet from "./buttonSet";
 import { useSelector } from "react-redux";
 import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
-import { title } from "./blocks";
+import Title from "./title";
 import ImageBox from "./imageBox";
 import ParagraphBox from "./paragraphBox";
+import { BioSectionProps, MainBoxStyles } from "./styles";
 
-interface BioSectionProps {
-    inViewRef: MutableRefObject<null>;
-}
-
-const BioSection = ({ inViewRef }: BioSectionProps) => {
+const BioSection = ({}: BioSectionProps) => {
     const theme = useTheme();
 
     const globalAssets = useSelector(
@@ -20,17 +17,8 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
     );
 
     return (
-        <Box
-            id="about-bio"
-            pt="20vh"
-            pb={10}
-            px={18}
-            position="relative"
-            bgcolor={theme.palette.secondary.main}
-            height="100vh"
-        >
+        <Box sx={MainBoxStyles(theme.palette.secondary.main)}>
             <Box
-                ref={inViewRef}
                 sx={{
                     position: "absolute",
                     top: "50%",
@@ -51,17 +39,17 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
                 },
             })}
 
-            {title({
+            {Title({
                 text: "a little about me",
                 color: theme.palette.text.primary,
-                variant: "h3"
+                variant: "h3",
             })}
 
             {ParagraphBox({
                 text: "My name is Mustafa Alhasanat, I'm a software engineer with a background in electronics engineering. I build web applications, mobile applications, and robotic prototypes.",
                 color: theme.palette.text.primary,
             })}
-            
+
             {ParagraphBox({
                 text: "After spending two years of self-learning and taking various bootcamps in the technical field, I knows what is truly needed to keep improving my skills constantly. I had gained a set of skills during the process including problem-solving, efficient self-learning and time management.",
                 color: theme.palette.text.primary,

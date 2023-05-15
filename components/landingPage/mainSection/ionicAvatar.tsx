@@ -13,6 +13,7 @@ import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     const [scaleValue, setScaleValue] = useState(1);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>

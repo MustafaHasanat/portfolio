@@ -1,5 +1,6 @@
 import useBoxSize from "@/hooks/useBoxSize";
 import { Avatar, Box } from "@mui/material";
+import { ImageBoxProps } from "./styles";
 
 const ImageBox = ({
     src,
@@ -8,14 +9,7 @@ const ImageBox = ({
     height,
     shadowColor,
     extraSX,
-}: {
-    src: string;
-    alt: string;
-    width: string;
-    height: string;
-    shadowColor: string;
-    extraSX?: any;
-}) => {
+}: ImageBoxProps) => {
     const { ref: boxRef, width: boxWidth, height: boxHeight } = useBoxSize();
 
     return (

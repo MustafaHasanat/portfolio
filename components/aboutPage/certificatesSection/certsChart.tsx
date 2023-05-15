@@ -1,10 +1,6 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { Course } from "@/types/course";
 import { Stack, useTheme } from "@mui/material";
 import {
-    Dispatch,
     MouseEvent,
-    SetStateAction,
     useEffect,
     useRef,
     useState,
@@ -18,13 +14,7 @@ import {
     PolarArea,
     getElementAtEvent,
 } from "react-chartjs-2";
-
-interface CertsChartProps {
-    courses: Course[];
-    chartType: string;
-    setFilterPhrase: Dispatch<SetStateAction<string>>;
-    setGlobalIndex: (currentIndex: number) => void;
-}
+import { CertsChartProps, chartDataConfig, chartStyles, radialChartOptions } from "./styles";
 
 const CertsChart = ({
     courses,
@@ -39,33 +29,7 @@ const CertsChart = ({
         Array(constants.about.categories.length).fill(0)
     );
 
-    const chartData = {
-        labels: constants.about.categories,
-        datasets: [
-            {
-                label: "courses",
-                data: coursesData,
-                backgroundColor: constants.about.chartTypes.colors,
-            },
-        ],
-    };
-
-    const radialChartOptions = {
-        scales: {
-            r: {
-                beginAtZero: true,
-                ticks: {
-                    display: false,
-                },
-            },
-        },
-    };
-
-    const chartStyles = {
-        width: "100%",
-        height: "auto",
-        backgroundColor: theme.palette.text.primary,
-    };
+    const chartData = chartDataConfig(coursesData)
 
     const chartComponent = (chartType: string) => {
         switch (chartType) {
@@ -76,7 +40,7 @@ const CertsChart = ({
                         onClick={handleClick}
                         data={chartData}
                         options={radialChartOptions}
-                        style={chartStyles}
+                        style={chartStyles(theme.palette.text.primary)}
                     />
                 );
             case "polar":
@@ -86,7 +50,7 @@ const CertsChart = ({
                         onClick={handleClick}
                         data={chartData}
                         options={radialChartOptions}
-                        style={chartStyles}
+                        style={chartStyles(theme.palette.text.primary)}
                     />
                 );
             case "doughnut":
@@ -95,7 +59,7 @@ const CertsChart = ({
                         ref={chartRef}
                         onClick={handleClick}
                         data={chartData}
-                        style={chartStyles}
+                        style={chartStyles(theme.palette.text.primary)}
                     />
                 );
             case "pie":
@@ -104,7 +68,7 @@ const CertsChart = ({
                         ref={chartRef}
                         onClick={handleClick}
                         data={chartData}
-                        style={chartStyles}
+                        style={chartStyles(theme.palette.text.primary)}
                     />
                 );
         }
@@ -138,7 +102,7 @@ const CertsChart = ({
                 return prev;
             });
         });
-    }, []);
+    }, [courses]);
 
     return <Stack width="40%">{chartComponent(chartType)}</Stack>;
 };
