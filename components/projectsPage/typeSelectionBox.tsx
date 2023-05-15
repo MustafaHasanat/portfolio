@@ -80,6 +80,7 @@ const TypeSelectionBox = ({ attributeLists }: TypeSelectionBoxProps) => {
                         }}
                         sx={{
                             color: theme.palette.text.primary,
+                            
                             "&.Mui-checked": {
                                 color: theme.palette.primary.main,
                             },

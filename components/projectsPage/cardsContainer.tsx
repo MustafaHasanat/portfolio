@@ -19,8 +19,10 @@ export interface AttributeListsProps {
     };
     tools: {
         toolsList: string[];
-        toolsSelect: string[];
-        setToolsSelect: Dispatch<SetStateAction<string[]>>;
+        toolsSelect: { tool: string; state: boolean }[];
+        setToolsSelect: Dispatch<
+            SetStateAction<{ tool: string; state: boolean }[]>
+        >;
     };
     type: {
         typesList: string[];
@@ -47,7 +49,9 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
     const [yearSelect, setYearSelect] = useState<number>(0);
 
     const [toolsList, setToolsList] = useState<string[]>([]);
-    const [toolsSelect, setToolsSelect] = useState<string[]>([]);
+    const [toolsSelect, setToolsSelect] = useState<
+        { tool: string; state: boolean }[]
+    >([]);
 
     const [typesList, setTypesList] = useState<string[]>([]);
     const [typeSelected, setTypeSelected] = useState<string[]>([]);
@@ -64,6 +68,11 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
         setYearSelect(0);
         setTypeSelected(typesList);
         setCheckboxesStates(checkboxesInitialState);
+        setToolsSelect((prev) =>
+            prev.map((toolObj) => {
+                return { ...toolObj, state: true };
+            })
+        );
     };
 
     useEffect(() => {
@@ -81,25 +90,49 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
 
         setYearsList(Array.from(years));
         setTypesList(Array.from(types));
+
         setTypeSelected(Array.from(types));
-        setToolsList(Array.from(tools));
+
+        let newToolsList: string[] = [];
+        let newToolsSelect: { tool: string; state: boolean }[] = [];
+        Array.from(tools).map((tool) => {
+            newToolsList.push(tool);
+            newToolsSelect.push({
+                tool: tool,
+                state: true,
+            });
+        });
+
+        setToolsList(newToolsList);
+        setToolsSelect(newToolsSelect);
     }, [projects]);
 
     useEffect(() => {
         const filteredProjects = projects.filter((project) => {
             const projectYear = getDateInfo(project?.launchedAt).year;
 
+            const filteredTools = toolsSelect.filter((toolObj) => {
+                if (toolObj.state) {
+                    return toolObj.tool;
+                }
+            });
+
+            const intersectedTools = filteredTools
+                .map((tool) => tool.tool)
+                .filter((value) => project.tools.includes(value));
+
             if (
                 project.title.toLowerCase().includes(searchTerm || "") &&
                 (yearSelect === 0 || yearSelect === projectYear) &&
-                typeSelected.includes(project.productType.title)
+                typeSelected.includes(project.productType.title) &&
+                intersectedTools.length !== 0
             ) {
                 return project;
             }
         });
 
         setProjectsCards(filteredProjects);
-    }, [projects, searchTerm, typeSelected, yearSelect]);
+    }, [projects, searchTerm, toolsSelect, typeSelected, yearSelect]);
 
     return (
         <Stack direction="row" justifyContent="center" px={12}>

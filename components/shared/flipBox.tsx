@@ -10,6 +10,7 @@ interface FlipBoxProps {
     transform: string;
     width: string;
     height: string;
+    isActive: boolean;
     frontSX: any;
     backSX: any;
 }
@@ -19,12 +20,13 @@ interface FlipBoxProps {
  *
  * @param {JSX.Element} frontChildren children of the front face
  * @param {JSX.Element} backChildren children of the back face
- * @param {string} id nuique id for the card
+ * @param {string} id unique id for the card
  * @param {string} transform transform value to control flipping the card ==> either "rotateY(180deg)" or "none"
  * @param {string} width width of the card
  * @param {string} height height of the card
- * @param {any} frontSX extra syles for the front face
- * @param {any} backSX extra syles for the back face
+ * @param {boolean} isActive does the current product available?
+ * @param {any} frontSX extra styles for the front face
+ * @param {any} backSX extra styles for the back face
  *
  * @returns {JSX.Element}
  */
@@ -37,6 +39,7 @@ const FlipBox = ({
     transform,
     width,
     height,
+    isActive,
 }: FlipBoxProps): JSX.Element => {
     const theme = useTheme();
     const cardRef = useRef(null);
@@ -61,13 +64,25 @@ const FlipBox = ({
                 transformStyle: "preserve-3d",
             }}
         >
-            <Stack sx={frontSX}>
-                {frontChildren}
-            </Stack>
+            {!isActive && (
+                <Box
+                    sx={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        bgcolor: theme.palette.text.primary,
+                        opacity: 0.7,
+                        zIndex: 50,
+                        borderRadius: 3,
+                    }}
+                />
+            )}
 
-            <Stack
-                sx={{ ...backSX, transform: "rotateY(180deg)" }}
-            >
+            <Stack sx={frontSX}>{frontChildren}</Stack>
+
+            <Stack sx={{ ...backSX, transform: "rotateY(180deg)" }}>
                 {backChildren}
             </Stack>
         </Stack>

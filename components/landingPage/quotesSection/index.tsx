@@ -33,7 +33,29 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
     };
 
     return (
-        <Stack id="home-quotes" py={10} position="relative" bgcolor={theme.palette.text.primary}>
+        <Stack
+            id="home-quotes"
+            py={10}
+            position="relative"
+            bgcolor={theme.palette.text.primary}
+            sx={{
+                "&::before": {
+                    content: `""`,
+                    display: "block",
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    width: "100%",
+                    height: "100%",
+                    opacity: 0.3,
+                    backgroundImage: `url("bg2.jpg")`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    backdropFilter: "blur(10px)",
+                },
+            }}
+        >
             <Box
                 ref={inViewRef}
                 sx={{

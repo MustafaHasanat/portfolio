@@ -1,6 +1,6 @@
 import { Box, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
-import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import { title } from "@/components/aboutPage/bioSection/blocks";
 import ImageBox from "@/components/aboutPage/bioSection/imageBox";
 import ParagraphBox from "@/components/aboutPage/bioSection/paragraphBox";
@@ -8,9 +8,9 @@ import ParagraphBox from "@/components/aboutPage/bioSection/paragraphBox";
 export default function Story() {
     const theme = useTheme();
 
-    const backgrounds = useSelector(
-        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
-            state.globalAssetsReducer.backgrounds
+    const globalAssets = useSelector(
+        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
+            state.globalAssetsReducer.globalAssets
     );
 
     return (
@@ -22,7 +22,7 @@ export default function Story() {
             bgcolor={theme.palette.secondary.main}
         >
             {ImageBox({
-                src: backgrounds?.mySecondAvatar?.src,
+                src: globalAssets?.mySecondAvatar?.src,
                 alt: "avatar",
                 width: "25vw",
                 height: "25vw",
@@ -58,7 +58,7 @@ export default function Story() {
                 color: theme.palette.text.primary,
             })}
             {ImageBox({
-                src: backgrounds?.graduationPhoto?.src,
+                src: globalAssets?.graduationPhoto?.src,
                 alt: "avatar",
                 width: "25vw",
                 height: "70vh",
@@ -90,7 +90,7 @@ export default function Story() {
                 color: theme.palette.text.primary,
             })}
             {ImageBox({
-                src: backgrounds?.ltucPhoto?.src,
+                src: globalAssets?.ltucPhoto?.src,
                 alt: "avatar",
                 width: "35vw",
                 height: "45vh",
@@ -118,7 +118,7 @@ export default function Story() {
                 color: theme.palette.text.primary,
             })}
             {ImageBox({
-                src: backgrounds?.workPhoto?.src,
+                src: globalAssets?.workPhoto?.src,
                 alt: "avatar",
                 width: "30vw",
                 height: "50vh",

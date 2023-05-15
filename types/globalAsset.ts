@@ -1,4 +1,4 @@
-export type Background = {
+export type GlobalAsset = {
     _id: string;
     usage: string;
     alt: string;

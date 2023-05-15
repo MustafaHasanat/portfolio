@@ -9,20 +9,20 @@ import {
 } from "./styles";
 import { AvatarIcon } from "@/types/avatarIcon";
 import { useSelector } from "react-redux";
-import { BackgroundsProps } from "@/utils/store/globalAssetsSlice";
+import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     const [scaleValue, setScaleValue] = useState(1);
 
-    const backgrounds = useSelector(
-        (state: { globalAssetsReducer: { backgrounds: BackgroundsProps } }) =>
-            state.globalAssetsReducer.backgrounds
+    const globalAssets = useSelector(
+        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
+            state.globalAssetsReducer.globalAssets
     );
 
     return (
         <Box sx={ionicContainerStyles(scaleValue)}>
             <Avatar
-                src={backgrounds?.myMainAvatar?.src}
+                src={globalAssets?.myMainAvatar?.src}
                 alt="avatar"
                 sx={avatarStyles(scaleValue)}
             />

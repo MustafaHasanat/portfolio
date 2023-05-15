@@ -1,7 +1,12 @@
-import { Box, Stack, Typography, useTheme } from "@mui/material";
-import { useState } from "react";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { motion } from "framer-motion";
+import {
+    Checkbox,
+    Chip,
+    FormControlLabel,
+    Stack,
+    Typography,
+    useTheme,
+} from "@mui/material";
+import { Fragment } from "react";
 import { AttributeListsProps } from "./cardsContainer";
 
 interface ToolsSelectionBoxProps {
@@ -10,116 +15,98 @@ interface ToolsSelectionBoxProps {
 
 const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
     const theme = useTheme();
-    const [selectListIsOpened, setSelectListIsOpened] = useState(false);
 
     const {
         tools: { toolsList, toolsSelect, setToolsSelect },
     } = attributeLists;
 
-    const customMenuItem = ({ value, key }: { key: string; value: string }) => {
-        return (
-            <Box
-                component={motion.div}
-                initial={{ height: "0vh" }}
-                animate={{ height: selectListIsOpened ? "6vh" : "0vh" }}
-                whileHover={{
-                    color: theme.palette.primary.main,
-                    opacity: 0.8,
-                }}
-                key={key}
-                sx={{
-                    color: theme.palette.secondary.main,
-                    bgcolor: theme.palette.text.primary,
-                    width: "100%",
-                    cursor: "pointer",
-                    borderRadius: 1,
-                    display: "flex",
-                    alignItems: "center",
-                    overflow: "hidden",
-                }}
-                onClick={() => {
-                    // setToolsSelect(value);
-                    setSelectListIsOpened(false);
-                }}
-            >
-                <Typography p={1} width="100%" textAlign="center">
-                    {value}
-                </Typography>
-            </Box>
-        );
-    };
-
     return (
-        <Stack
-            direction="row"
-            spacing={1}
-            px={2}
-            width="100%"
-            justifyContent="flex-"
-            alignItems="center"
-        >
-            <Typography width="40%">Tools</Typography>
-
+        <Stack spacing={1} px={2} alignItems="start">
             <Stack
-                sx={{
-                    position: "relative",
-                    width: "50%",
-                    height: "100%",
-                    bgcolor: theme.palette.text.primary,
-                    borderRadius: 1,
-                }}
+                mb={2}
+                direction="row"
+                width="100%"
+                justifyContent="space-between"
+                alignItems="center"
             >
-                <Stack direction="row" px={1} alignItems="center">
-                    <Typography
-                        p={1}
-                        color={theme.palette.secondary.main}
-                        width="70%"
-                        textAlign="center"
-                    >
-                        toolsSelect
-                    </Typography>
+                <Typography>Tools</Typography>
 
-                    <Box
-                        component="div"
-                        sx={{
-                            width: "30%",
-                            height: "auto",
-                            cursor: "pointer",
-                            transform: selectListIsOpened
-                                ? "rotate(180deg)"
-                                : "rotate(0deg)",
-                            transition: "0.3s ease",
-                        }}
-                        onClick={() => {
-                            setSelectListIsOpened((prev) => !prev);
-                        }}
-                    >
-                        <ArrowDropDownIcon
+                <FormControlLabel
+                    label="select all"
+                    control={
+                        <Checkbox
+                        defaultChecked
+                            name="select all"
                             sx={{
-                                width: "100%",
-                                height: "100%",
-                                color: theme.palette.secondary.main,
+                                color: theme.palette.text.primary,
+
+                                "&.Mui-checked": {
+                                    color: theme.palette.primary.main,
+                                },
+                            }}
+                            onChange={(e) => {
+                                if (e.target.checked) {
+                                    setToolsSelect((prev) =>
+                                        prev.map((toolObj) => {
+                                            return { ...toolObj, state: true };
+                                        })
+                                    );
+                                } else {
+                                    setToolsSelect((prev) =>
+                                        prev.map((toolObj) => {
+                                            return { ...toolObj, state: false };
+                                        })
+                                    );
+                                }
                             }}
                         />
-                    </Box>
-                </Stack>
+                    }
+                />
+            </Stack>
 
-                <Stack
-                    spacing={1}
-                    sx={{
-                        position: "absolute",
-                        top: "calc(100% + 10px)",
-                        width: "100%",
-                        zIndex: 10,
-                    }}
-                >
-                    {/* {toolsList.map((tool, index) => {
-                        return customMenuItem({
-                            key: `year ${tool} number ${index}`,
-                            value: tool,
-                        });
-                    })} */}
-                </Stack>
+            <Stack
+                direction="row"
+                justifyContent="center"
+                flexWrap="wrap"
+                gap={1.5}
+            >
+                {toolsList.map((tool, index) => {
+                    return (
+                        <Fragment key={`projects filter tool number: ${index}`}>
+                            <Chip
+                                label={tool}
+                                onClick={() => {
+                                    setToolsSelect((prev) => {
+                                        const newToolsList = [...prev];
+                                        newToolsList[index] = {
+                                            ...newToolsList[index],
+                                            state: !newToolsList[index].state,
+                                        };
+
+                                        return newToolsList;
+                                    });
+                                }}
+                                sx={{
+                                    color: toolsSelect[index].state
+                                        ? theme.palette.secondary.main
+                                        : theme.palette.text.primary,
+                                    bgcolor: toolsSelect[index].state
+                                        ? theme.palette.primary.main
+                                        : theme.palette.secondary.main,
+                                    boxShadow: toolsSelect[index].state
+                                        ? `0 0 6px 1px ${theme.palette.primary.main}`
+                                        : `0 0 2px ${theme.palette.text.primary}`,
+
+                                    "&:hover": {
+                                        bgcolor: toolsSelect[index].state
+                                            ? theme.palette.primary.main
+                                            : theme.palette.secondary.main,
+                                    },
+                                }}
+                            />
+                        </Fragment>
+                    );
+                })}
             </Stack>
         </Stack>
     );

@@ -50,11 +50,13 @@ export const mainButtonStyles = (
     };
 };
 
-export const contatcsContainerStyles = {
-    position: "fixed",
-    bottom: "10%",
-    right: 100,
-    zIndex: 200,
+export const contactsContainerStyles = (isModalActive: boolean) => {
+    return {
+        position: "fixed",
+        bottom: "10%",
+        right: 100,
+        zIndex: isModalActive ? 200 : 10,
+    };
 };
 
 export const itemsVariants = (

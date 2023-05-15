@@ -2,6 +2,7 @@ export type Product = {
     _id: string;
     title: string;
     description: string;
+    isActive: boolean;
     bullets: string[];
     order: number;
     tags: string[];

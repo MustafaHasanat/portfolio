@@ -1,4 +1,3 @@
-import GlassBox from "@/components/shared/glassBox";
 import { Quote } from "@/types/quote";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
@@ -21,7 +20,7 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
         <Box
             sx={{
                 position: "relative",
-                height: "80%",
+                height: "100%",
                 width: "70vw",
                 overflow: "hidden",
                 zIndex: 4,
@@ -46,7 +45,7 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                     direction="row"
                     spacing={`calc(${cardsSpacing} / 2)`}
                     sx={{
-                        height: "40%",
+                        height: "30%",
                         width: "fit-content",
                         color: theme.palette.text.primary,
                     }}
@@ -78,15 +77,15 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                                             width: cardWidth,
                                             height: "100%",
                                             borderRadius: 3,
-                                            boxShadow: `0 0 10px 10px ${theme.palette.text.primary}`,
+                                            boxShadow: `0 0 10px 10px white`,
                                             backgroundImage: `
-                                                                linear-gradient(
-                                                                    rgba(0, 0, 0, 0.8), 
-                                                                    rgba(0, 0, 0, 0.3)), 
-                                                                ${
-                                                                    quote.background &&
-                                                                    `url("${quote.background.asset.url}")`
-                                                                }`,
+                                                linear-gradient(
+                                                    rgba(0, 0, 0, 0.8), 
+                                                    rgba(0, 0, 0, 0.3)), 
+                                                ${
+                                                    quote.author.hImage &&
+                                                    `url("${quote.author.hImage.asset.url}")`
+                                                }`,
                                             backgroundRepeat: "no-repeat",
                                             backgroundPositionY: "center",
                                             backgroundPositionX: "center",
@@ -115,7 +114,7 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                                                 right: 15,
                                             }}
                                         >
-                                            {"~ " + quote.author}
+                                            {"~ " + quote.author.author}
                                         </Typography>
                                     </Box>
                                 </Box>

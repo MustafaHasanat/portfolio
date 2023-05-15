@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import MainSection from "@/components/landingPage/mainSection";
 import ProductSection from "@/components/landingPage/productSection";
 import QuotesSection from "@/components/landingPage/quotesSection";
@@ -17,6 +16,7 @@ import { Product } from "@/types/product";
 import { SkillSet } from "@/types/skillSet";
 import { getAllSkillSets } from "@/utils/sanity/skillSet";
 import TestimonialSection from "@/components/landingPage/successStoriesSection";
+import sortByOrder from "@/utils/helpers/sortByOrder";
 
 export const getStaticProps = async (): Promise<{
     props: {
@@ -75,7 +75,7 @@ export default function Home({
                 quotes: currentView === "home-quotes" ? true : false,
             })
         );
-    }, [currentView]);
+    }, [currentView, dispatch]);
 
     useEffect(() => {
         if (mainSecInView)
@@ -86,12 +86,12 @@ export default function Home({
             dispatch(navigationBarActions.setCurrentView("home-skills"));
         if (quotesSecInView)
             dispatch(navigationBarActions.setCurrentView("home-quotes"));
-    }, [mainSecInView, productSecInView, skillsSecInView, quotesSecInView]);
+    }, [mainSecInView, productSecInView, skillsSecInView, quotesSecInView, dispatch]);
 
     return (
         <Stack>
             <MainSection inViewRef={mainSecRef} avatarIcons={avatarIcons} />
-            <ProductSection inViewRef={productSecRef} products={products} />
+            <ProductSection inViewRef={productSecRef} products={sortByOrder(products)} />
             <SkillsSection inViewRef={skillsSecRef} skillSets={skillSets} />
             <TestimonialSection />
             <QuotesSection inViewRef={quotesSecRef} quotes={quotes} />

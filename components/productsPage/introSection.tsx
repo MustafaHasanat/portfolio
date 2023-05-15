@@ -12,7 +12,7 @@ const IntroSection = ({ product }: IntroSectionProps) => {
     const theme = useTheme();
 
     return (
-        <Stack>
+        <Stack color={theme.palette.text.primary}>
             <AnimatedTitle
                 buttonWidth="30%"
                 buttonCuttingRatio={0.25}

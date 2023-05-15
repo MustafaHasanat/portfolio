@@ -6,7 +6,7 @@ interface GlitchedTextProps {
     fontSize: string;
     shadowColor1: string;
     shadowColor2: string;
-    shiftScal: number;
+    shiftScale: number;
 }
 
 const GlitchedText = ({
@@ -15,7 +15,7 @@ const GlitchedText = ({
     fontSize,
     shadowColor1,
     shadowColor2,
-    shiftScal
+    shiftScale
 }: GlitchedTextProps) => {
     const slices = {
         slice_0: "inset(50% 50% 50% 50%)",
@@ -29,52 +29,52 @@ const GlitchedText = ({
     const glitch = keyframes`
         0% {
         clip-path: ${slices.slice_1};
-        transform: translate(${-20 * shiftScal}px, ${-10 * shiftScal}px);
+        transform: translate(${-20 * shiftScale}px, ${-10 * shiftScale}px);
         }
     
         5% {
         clip-path: ${slices.slice_0};
-        transform: translate(${10 * shiftScal}px, ${10 * shiftScal}px);
+        transform: translate(${10 * shiftScale}px, ${10 * shiftScale}px);
         }
     
         10% {
         clip-path: ${slices.slice_1};
-        transform: translate(${-10 * shiftScal}px, ${10 * shiftScal}px);
+        transform: translate(${-10 * shiftScale}px, ${10 * shiftScale}px);
         }
     
         15% {
         clip-path: ${slices.slice_3};
-        transform: translate(0px, ${5 * shiftScal}px);
+        transform: translate(0px, ${5 * shiftScale}px);
         }
     
         20% {
         clip-path: ${slices.slice_2};
-        transform: translate(${-5 * shiftScal}px, 0px);
+        transform: translate(${-5 * shiftScale}px, 0px);
         }
     
         25% {
         clip-path: ${slices.slice_3};
-        transform: translate(${5 * shiftScal}px, 0px);
+        transform: translate(${5 * shiftScale}px, 0px);
         }
     
         30% {
         clip-path: ${slices.slice_4};
-        transform: translate(${5 * shiftScal}px, ${10 * shiftScal}px);
+        transform: translate(${5 * shiftScale}px, ${10 * shiftScale}px);
         }
     
         35% {
         clip-path: ${slices.slice_2};
-        transform: translate(${-10 * shiftScal}px, ${10 * shiftScal}px);
+        transform: translate(${-10 * shiftScale}px, ${10 * shiftScale}px);
         }
     
         40% {
         clip-path: ${slices.slice_5};
-        transform: translate(${20 * shiftScal}px, ${-10 * shiftScal}px);
+        transform: translate(${20 * shiftScale}px, ${-10 * shiftScale}px);
         }
     
         45% {
         clip-path: ${slices.slice_0};
-        transform: translate(${-10 * shiftScal}px, 0px);
+        transform: translate(${-10 * shiftScale}px, 0px);
         }
     
         50%, 100% {

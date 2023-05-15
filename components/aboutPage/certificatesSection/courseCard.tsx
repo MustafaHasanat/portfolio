@@ -1,18 +1,23 @@
 import { Course } from "@/types/course";
+import { modalActions } from "@/utils/store/store";
 import {
     Avatar,
+    Box,
     Divider,
     Stack,
     Typography,
     useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
+import { Dispatch, SetStateAction } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 interface CourseCardProps {
     course: Course;
     index: number;
     toggleCard: (currentIndex: number) => void;
     isCardOpened: (index: number) => boolean;
+    setModalPhoto: Dispatch<SetStateAction<string>>;
 }
 
 const CourseCard = ({
@@ -20,9 +25,15 @@ const CourseCard = ({
     index,
     toggleCard,
     isCardOpened,
+    setModalPhoto,
 }: CourseCardProps) => {
     const theme = useTheme();
     const isVisible = isCardOpened(index);
+
+    const dispatch = useDispatch();
+    const toggleModalVisibility = (state: boolean) => {
+        dispatch(modalActions.setActive(state));
+    };
 
     const detailsBox = (key: string, value: string | Date) => {
         return (
@@ -42,9 +53,10 @@ const CourseCard = ({
             component={motion.div}
             borderRadius={2}
             overflow="hidden"
-            initial={{ minHeight: "10vh" }}
+            initial={{ minHeight: "10vh", height: "10vh" }}
             animate={{
                 minHeight: isVisible ? "30vh" : "10vh",
+                height: isVisible ? "30vh" : "10vh",
             }}
             width="100%"
             bgcolor={theme.palette.text.primary}
@@ -64,6 +76,7 @@ const CourseCard = ({
                     transition: "opacity 0.3s ease",
                     minHeight: "10vh",
                     maxHeight: "10vh",
+                    position: "relative",
 
                     ":hover": {
                         opacity: 0.5,
@@ -82,7 +95,7 @@ const CourseCard = ({
                 </Stack>
 
                 <Avatar
-                    variant="square"
+                    variant="rounded"
                     src={course.issuer.image.asset.url}
                     sx={{
                         height: "100%",
@@ -112,11 +125,29 @@ const CourseCard = ({
                     {detailsBox("date:", course.date)}
                 </Stack>
 
-                <Avatar
-                    variant="square"
-                    src={course.image.asset.url}
-                    sx={{ width: "auto", height: "auto" }}
-                />
+                <Box
+                    component="div"
+                    sx={{
+                        width: "auto",
+                        height: "auto",
+                        cursor: "pointer",
+                        transition: "transform 0.3s ease",
+
+                        "&:hover": {
+                            transform: "scale(1.1)",
+                        },
+                    }}
+                    onClick={() => {
+                        setModalPhoto(course.image.asset.url);
+                        toggleModalVisibility(true);
+                    }}
+                >
+                    <Avatar
+                        variant="rounded"
+                        src={course.image.asset.url}
+                        sx={{ width: "100%", height: "100%" }}
+                    />
+                </Box>
             </Stack>
         </Stack>
     );

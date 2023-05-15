@@ -3,7 +3,22 @@ export const ProductBox = (bgcolor: string) => {
         position: "relative",
         alignItems: "center",
         paddingY: 10,
-        background: `${bgcolor}`,
+
+        "&::before": {
+            content: `""`,
+            display: "block",
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: "100%",
+            height: "100%",
+            opacity: 0.3,
+            backgroundImage: `url("bg2.jpg")`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backdropFilter: "blur(10px)",
+        }
     };
 };
 
