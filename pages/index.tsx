@@ -3,7 +3,7 @@ import ProductSection from "@/components/landingPage/productSection";
 import QuotesSection from "@/components/landingPage/quotesSection";
 import SkillsSection from "@/components/landingPage/skillsSection";
 import { navigationBarActions } from "@/utils/store/store";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -86,14 +86,41 @@ export default function Home({
             dispatch(navigationBarActions.setCurrentView("home-skills"));
         if (quotesSecInView)
             dispatch(navigationBarActions.setCurrentView("home-quotes"));
-    }, [mainSecInView, productSecInView, skillsSecInView, quotesSecInView, dispatch]);
+    }, [
+        mainSecInView,
+        productSecInView,
+        skillsSecInView,
+        quotesSecInView,
+        dispatch,
+    ]);
 
     return (
         <Stack>
-            <MainSection inViewRef={mainSecRef} avatarIcons={avatarIcons} />
-            <ProductSection inViewRef={productSecRef} products={sortByOrder(products)} />
+            <Box
+                id="home-main"
+                ref={mainSecRef}
+                sx={{
+                    position: "relative",
+                    height: "101vh",
+                    width: " 100%",
+                }}
+            >
+                <Box
+                    sx={{
+                        position: "absolute",
+                        top: "30%",
+                        width: " 100%",
+                    }}
+                />
+            </Box>
+
+            <MainSection avatarIcons={avatarIcons} />
+            <ProductSection
+                inViewRef={productSecRef}
+                products={sortByOrder(products)}
+            />
             <SkillsSection inViewRef={skillsSecRef} skillSets={skillSets} />
-            <TestimonialSection />
+            {/* <TestimonialSection /> */}
             <QuotesSection inViewRef={quotesSecRef} quotes={quotes} />
         </Stack>
     );

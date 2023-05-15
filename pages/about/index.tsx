@@ -12,7 +12,7 @@ import { getAllCourses } from "@/utils/sanity/course";
 import { getAllExperiences } from "@/utils/sanity/experience";
 import { getAllLanguages } from "@/utils/sanity/language";
 import { navigationBarActions } from "@/utils/store/store";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -102,7 +102,25 @@ export default function About({
 
     return (
         <Stack>
-            <BioSection inViewRef={bioSecRef} />
+            <Box
+                 id="about-bio"
+                ref={bioSecRef}
+                sx={{
+                    position: "relative",
+                    height: "101vh",
+                    width: " 100%",
+                }}
+            >
+                <Box
+                    sx={{
+                        position: "absolute",
+                        top: "30%",
+                        width: " 100%",
+                    }}
+                />
+            </Box>
+
+            <BioSection />
             <EducationSection
                 inViewRef={educationSecRef}
                 certificates={certificates}

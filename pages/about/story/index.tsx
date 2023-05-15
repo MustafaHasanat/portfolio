@@ -1,7 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
-import { title } from "@/components/aboutPage/bioSection/blocks";
+import Title from "@/components/aboutPage/bioSection/title";
 import ImageBox from "@/components/aboutPage/bioSection/imageBox";
 import ParagraphBox from "@/components/aboutPage/bioSection/paragraphBox";
 
@@ -32,7 +32,7 @@ export default function Story() {
                     ml: 5,
                 },
             })}
-            {title({
+            {Title({
                 text: "about me",
                 color: theme.palette.text.primary,
                 variant: "h3",
@@ -69,7 +69,7 @@ export default function Story() {
                     mt: 5,
                 },
             })}
-            {title({
+            {Title({
                 text: "college",
                 color: theme.palette.text.primary,
                 variant: "h4",
@@ -101,7 +101,7 @@ export default function Story() {
                     mt: 5,
                 },
             })}
-            {title({
+            {Title({
                 text: "career shift",
                 color: theme.palette.text.primary,
                 variant: "h4",
@@ -129,7 +129,7 @@ export default function Story() {
                     mt: 5,
                 },
             })}
-            {title({
+            {Title({
                 text: "first job in the field",
                 color: theme.palette.text.primary,
                 variant: "h4",

@@ -1,16 +1,7 @@
 import { Typography } from "@mui/material";
+import { TitleProps } from "./styles";
 
-export const title = ({
-    text,
-    color,
-    variant,
-    extraSX,
-}: {
-    text: string;
-    color: string;
-    variant: any;
-    extraSX?: any;
-}) => {
+const Title = ({ text, color, variant, extraSX }: TitleProps) => {
     return (
         <Typography
             color={color}
@@ -24,3 +15,5 @@ export const title = ({
         </Typography>
     );
 };
+
+export default Title;

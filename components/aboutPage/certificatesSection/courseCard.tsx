@@ -1,4 +1,3 @@
-import { Course } from "@/types/course";
 import { modalActions } from "@/utils/store/store";
 import {
     Avatar,
@@ -9,16 +8,13 @@ import {
     useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { Dispatch, SetStateAction } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-interface CourseCardProps {
-    course: Course;
-    index: number;
-    toggleCard: (currentIndex: number) => void;
-    isCardOpened: (index: number) => boolean;
-    setModalPhoto: Dispatch<SetStateAction<string>>;
-}
+import { useDispatch } from "react-redux";
+import {
+    CourseCardImageStyles,
+    CourseCardProps,
+    CourseCardStyles,
+    CourseCardUpperBoxStyles,
+} from "./styles";
 
 const CourseCard = ({
     course,
@@ -51,37 +47,19 @@ const CourseCard = ({
     return (
         <Stack
             component={motion.div}
-            borderRadius={2}
-            overflow="hidden"
             initial={{ minHeight: "10vh", height: "10vh" }}
             animate={{
                 minHeight: isVisible ? "30vh" : "10vh",
                 height: isVisible ? "30vh" : "10vh",
             }}
-            width="100%"
-            bgcolor={theme.palette.text.primary}
-            alignItems="center"
+            sx={CourseCardStyles(theme.palette.text.primary)}
         >
             <Stack
-                justifyContent="space-between"
-                alignItems="center"
                 direction="row"
-                width="100%"
-                bgcolor={theme.palette.text.primary}
                 onClick={() => {
                     toggleCard(index);
                 }}
-                sx={{
-                    cursor: "pointer",
-                    transition: "opacity 0.3s ease",
-                    minHeight: "10vh",
-                    maxHeight: "10vh",
-                    position: "relative",
-
-                    ":hover": {
-                        opacity: 0.5,
-                    },
-                }}
+                sx={CourseCardUpperBoxStyles(theme.palette.text.primary)}
             >
                 <Stack justifyContent="center" height="100%" width="85%">
                     <Typography
@@ -127,16 +105,7 @@ const CourseCard = ({
 
                 <Box
                     component="div"
-                    sx={{
-                        width: "auto",
-                        height: "auto",
-                        cursor: "pointer",
-                        transition: "transform 0.3s ease",
-
-                        "&:hover": {
-                            transform: "scale(1.1)",
-                        },
-                    }}
+                    sx={CourseCardImageStyles}
                     onClick={() => {
                         setModalPhoto(course.image.asset.url);
                         toggleModalVisibility(true);

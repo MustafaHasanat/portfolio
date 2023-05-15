@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Avatar, Box } from "@mui/material";
+import { Avatar, Box, CircularProgress } from "@mui/material";
 import { Fragment, useState } from "react";
 import {
     avatarStyles,
@@ -13,6 +13,7 @@ import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     const [scaleValue, setScaleValue] = useState(1);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>

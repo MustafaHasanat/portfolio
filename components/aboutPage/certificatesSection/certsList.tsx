@@ -1,19 +1,9 @@
-import { Course } from "@/types/course";
 import { Divider, Stack, Typography, useTheme } from "@mui/material";
-import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import ChartController from "./chartController";
 import CourseCard from "./courseCard";
 import constants from "@/utils/constants";
-
-interface CertsListProps {
-    courses: Course[];
-    chartType: string;
-    filterPhrase: string;
-    toggleCard: (currentIndex: number) => void;
-    isCardOpened: (index: number) => boolean;
-    setChartType: Dispatch<SetStateAction<string>>;
-    setModalPhoto: Dispatch<SetStateAction<string>>;
-}
+import { CertsListProps, ListBoxStyles } from "./styles";
 
 const CertsList = ({
     courses,
@@ -50,15 +40,7 @@ const CertsList = ({
                 extraSX={{ top: 50, bgcolor: theme.palette.primary.main }}
             />
 
-            <Stack
-                bgcolor={theme.palette.secondary.main}
-                width="100%"
-                height="70vh"
-                alignItems="center"
-                borderRadius={3}
-                p={4}
-                zIndex={2}
-            >
+            <Stack sx={ListBoxStyles(theme.palette.secondary.main)}>
                 <Typography variant="h5" color={theme.palette.text.primary}>
                     Results: {filteredCourses.length}{" "}
                     {filterPhrase && `(${filterPhrase})`}
