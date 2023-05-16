@@ -30,7 +30,7 @@ const Contacts = ({}: ContactsProps) => {
         {
             name:
                 | "gmailContact"
-                | "messengerContact"
+                | "linkedInContact"
                 | "callContact"
                 | "whatsappContact";
             asset: { src: string; alt: string };
@@ -61,14 +61,14 @@ const Contacts = ({}: ContactsProps) => {
     useEffect(() => {
         setContacts([
             { name: "gmailContact", asset: globalAssets?.gmailContact },
-            { name: "messengerContact", asset: globalAssets?.messengerContact },
+            { name: "linkedInContact", asset: globalAssets?.linkedInContact },
             { name: "callContact", asset: globalAssets?.callContact },
             { name: "whatsappContact", asset: globalAssets?.whatsappContact },
         ]);
     }, [
         globalAssets?.callContact,
         globalAssets?.gmailContact,
-        globalAssets?.messengerContact,
+        globalAssets?.linkedInContact,
         globalAssets?.whatsappContact,
     ]);
 
@@ -116,7 +116,6 @@ const Contacts = ({}: ContactsProps) => {
                     distance: number;
                     delayVisible: number;
                     delayHidden: number;
-                    src: string;
                     link: string;
                 } = constants.global.contacts[contact.name];
 

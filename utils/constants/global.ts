@@ -26,7 +26,7 @@ const global = {
             delayHidden: 0.3,
             link: `mailto:${urls.myEmail}?Subject=Setting a meeting&body=Hello Mustafa, I would like to set a meeting with you.`,
         },
-        "messengerContact": {
+        "linkedInContact": {
             text: "contact me via LinkedIn",
             distance: 300,
             delayVisible: 0.1,

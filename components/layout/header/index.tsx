@@ -1,23 +1,32 @@
 import Navbar from "../navbar";
-import { Stack, Avatar, Box, Link } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useAnimation, motion } from "framer-motion";
+import { Stack, Avatar, Box, Link, useMediaQuery } from "@mui/material";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { motion, AnimationControls } from "framer-motion";
 import { useTheme } from "@mui/material";
-import { headerBoxStyles, titleStyles, titleCloneStyles } from "./styles";
-import { urls } from "@/utils/constants/global";
+import { headerBoxStyles } from "./styles";
 import { useSelector } from "react-redux";
 import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import SlidingTitle from "@/components/shared/slidingTitle";
+import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
+import BMCBox from "./bmcBox";
 
 interface HeaderProps {
     landingSectionInView: boolean;
+    headerAnimations: AnimationControls;
+    setDrawerIsOpened: Dispatch<SetStateAction<boolean>>;
+    drawerIsOpened: boolean;
 }
 
-const Header = ({ landingSectionInView }: HeaderProps) => {
+const Header = ({
+    landingSectionInView,
+    headerAnimations,
+    setDrawerIsOpened,
+    drawerIsOpened,
+}: HeaderProps) => {
     const theme = useTheme();
-    const headerAnimations = useAnimation();
-    const bmcAnimations = useAnimation();
     const [headerPosition, setHeaderPosition] = useState("0vh");
+    const lgScreen = useMediaQuery("(min-width:1200px)");
+    const smScreen = useMediaQuery("(min-width:600px)");
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
@@ -32,13 +41,14 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
 
             if (currentScroll >= lastScroll) {
                 setHeaderPosition("-16vh");
+                setDrawerIsOpened(false);
             } else if (currentScroll < lastScroll) {
                 setHeaderPosition("0vh");
             }
 
             lastScroll = currentScroll;
         });
-    }, []);
+    }, [setDrawerIsOpened]);
 
     useEffect(() => {
         landingSectionInView
@@ -49,7 +59,7 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
     return (
         <Box
             component="header"
-            width="100vw"
+            width="100%"
             sx={{
                 position: "relative",
                 zIndex: 40,
@@ -86,83 +96,46 @@ const Header = ({ landingSectionInView }: HeaderProps) => {
                         }}
                     />
 
-                    <Link href="/" sx={{ textDecoration: "none" }}>
-                        <SlidingTitle
-                            text={"Mustafa Alhasanat"}
-                            primary={theme.palette.primary.main}
-                            secondary={theme.palette.text.primary}
-                        />
-                    </Link>
-
-                    <Box
-                        sx={{
-                            position: "relative",
-                            bgcolor: theme.palette.secondary.light,
-                            width: "6vh",
-                            height: "6vh",
-                            borderRadius: 2,
-                            display: "flex",
-                            justifyContent: "center",
-                        }}
-                    >
-                        <Link href={urls.myBMCURL} title="bmc" target="_blank">
-                            <Avatar
-                                src={globalAssets?.bmcLogo?.src}
-                                component="div"
-                                onMouseEnter={() => {
-                                    bmcAnimations.start("visible");
-                                }}
-                                onMouseLeave={() => {
-                                    bmcAnimations.start("hidden");
-                                }}
-                                sx={{
-                                    position: "relative",
-                                    width: "auto",
-                                    height: "80%",
-                                    top: "50%",
-                                    transform: "translateY(-50%)",
-                                }}
+                    {(lgScreen || smScreen) && (
+                        <Link href="/" sx={{ textDecoration: "none" }}>
+                            <SlidingTitle
+                                text={"Mustafa Alhasanat"}
+                                primary={theme.palette.primary.main}
+                                secondary={theme.palette.text.primary}
                             />
                         </Link>
+                    )}
 
-                        <Avatar
-                            component={motion.div}
-                            animate={bmcAnimations}
-                            initial="hidden"
-                            variants={{
-                                visible: {
-                                    scale: 1,
-                                    x: "-50%",
-                                    opacity: 1,
-                                    transition: { duration: 0.2 },
-                                },
-                                hidden: {
-                                    scale: 0,
-                                    x: "-50%",
-                                    opacity: 0,
-                                    transition: { duration: 0.3 },
-                                },
-                            }}
-                            src={globalAssets?.bmcSlogan?.src}
+                    {smScreen && <BMCBox />}
+                </Stack>
+
+                {!lgScreen && (
+                    <Box
+                        component={motion.div}
+                        initial={{ rotate: 0, opacity: 0 }}
+                        animate={{
+                            rotate: drawerIsOpened ? 90 : 0,
+                            opacity: !lgScreen ? 1 : 0,
+                        }}
+                        onClick={() => {
+                            setDrawerIsOpened((prev) => !prev);
+                        }}
+                        sx={{
+                            width: "3rem",
+                            height: "auto",
+                        }}
+                    >
+                        <MenuRoundedIcon
                             sx={{
-                                padding: 1,
-                                bgcolor: theme.palette.secondary.light,
-                                border: `2px solid ${theme.palette.secondary.dark}`,
-                                width: "200px",
-                                height: "auto",
-                                top: 80,
-                                position: "absolute",
-                                borderRadius: 2,
-                                left: "50%",
+                                color: theme.palette.text.primary,
+                                width: "100%",
+                                height: "100%",
                             }}
                         />
                     </Box>
-                </Stack>
+                )}
 
-                <Navbar
-                    animation={headerAnimations}
-                    landingSectionInView={landingSectionInView}
-                />
+                {lgScreen && <Navbar animation={headerAnimations} />}
             </Stack>
         </Box>
     );

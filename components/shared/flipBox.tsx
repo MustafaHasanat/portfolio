@@ -8,11 +8,12 @@ interface FlipBoxProps {
     backChildren: JSX.Element;
     id: string;
     transform: string;
-    width: string;
-    height: string;
+    width: any;
+    height: any;
     isActive: boolean;
     frontSX: any;
     backSX: any;
+    extraSX?: any;
 }
 
 /**
@@ -22,11 +23,12 @@ interface FlipBoxProps {
  * @param {JSX.Element} backChildren children of the back face
  * @param {string} id unique id for the card
  * @param {string} transform transform value to control flipping the card ==> either "rotateY(180deg)" or "none"
- * @param {string} width width of the card
- * @param {string} height height of the card
+ * @param {any} width width of the card
+ * @param {any} height height of the card
  * @param {boolean} isActive does the current product available?
  * @param {any} frontSX extra styles for the front face
  * @param {any} backSX extra styles for the back face
+ * @param {any} extraSX extra styles
  *
  * @returns {JSX.Element}
  */
@@ -40,6 +42,7 @@ const FlipBox = ({
     width,
     height,
     isActive,
+    extraSX,
 }: FlipBoxProps): JSX.Element => {
     const theme = useTheme();
     const cardRef = useRef(null);
@@ -62,6 +65,7 @@ const FlipBox = ({
                 width: width,
                 height: height,
                 transformStyle: "preserve-3d",
+                ...extraSX,
             }}
         >
             {!isActive && (

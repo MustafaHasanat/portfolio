@@ -95,7 +95,7 @@ export default function Home({
     ]);
 
     return (
-        <Stack>
+        <Stack p={0} m={0} width="100%">
             <Box
                 id="home-main"
                 ref={mainSecRef}

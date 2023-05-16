@@ -1,5 +1,4 @@
-import { useTheme } from "@mui/material";
-import { Typography, Button } from "@mui/material";
+import { Box, useTheme, Typography, Button } from "@mui/material";
 import { motion, AnimationControls } from "framer-motion";
 import { navButtonStyles, navTextStyles } from "./styles";
 import Link from "next/link";
@@ -27,18 +26,21 @@ const NavbarButton = ({ item, animation }: ItemProps) => {
                 scale: 1.2,
             }}
         >
-            <Link href={link}>
-                <Typography
-                    component={motion.div}
-                    whileHover={{
-                        opacity: 1,
-                        color: theme.palette.secondary.main,
-                    }}
-                    sx={navTextStyles(theme.palette.text.primary)}
-                >
-                    {title}
-                </Typography>
-            </Link>
+            <Box>
+                <Link href={link}>
+                    <Typography
+                        component={motion.div}
+                        whileHover={{
+                            opacity: 1,
+                            color: theme.palette.secondary.main,
+                        }}
+                        fontSize={{ xs: "1.6rem", sm: "1.4rem", lg: "0.9rem" }}
+                        sx={navTextStyles(theme.palette.text.primary)}
+                    >
+                        {title}
+                    </Typography>
+                </Link>
+            </Box>
         </Button>
     );
 };

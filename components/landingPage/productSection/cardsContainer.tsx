@@ -87,8 +87,8 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
                                     ? cardTransform
                                     : "rotateY(0deg)"
                             }
-                            width="25vw"
-                            height="65vh"
+                            width={{ xs: "65vw", lg: "25vw" }}
+                            height={{ xs: "90vh", sm: "80vh", lg: "65vh" }}
                         />
                     </Fragment>
                 );

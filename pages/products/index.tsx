@@ -24,7 +24,6 @@ export default function Products({ products }: ProductsProps) {
         <Stack
             sx={{
                 bgcolor: theme.palette.secondary.main,
-                color: "white",
                 px: 12,
                 py: "25vh",
             }}

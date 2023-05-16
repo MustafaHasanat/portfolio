@@ -1,5 +1,13 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { Stack, Typography, Button, Divider, Chip, Link } from "@mui/material";
+import {
+    Stack,
+    Typography,
+    Button,
+    Divider,
+    Chip,
+    Link,
+    useMediaQuery,
+} from "@mui/material";
 import { useTheme } from "@mui/material";
 import { Fragment } from "react";
 import FlipButton from "./flipButton";
@@ -10,7 +18,7 @@ import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
 import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import { useRouter } from "next/router";
-import TextsmsIcon from '@mui/icons-material/Textsms';
+import TextsmsIcon from "@mui/icons-material/Textsms";
 
 interface FrontFaceProps {
     index: number;
@@ -20,14 +28,15 @@ interface FrontFaceProps {
 
 const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     const { title, description, tags } = product;
+    const lgScreen = useMediaQuery("(min-width:1200px)");
     const theme = useTheme();
     const router = useRouter();
 
     const getIcon = (iconTitle: string) => {
         const sx = {
             color: theme.palette.primary.main,
-            width: "auto",
-            height: "20%",
+            width: { xs: "70%", lg: "auto" },
+            height: { xs: "auto", sm: "30%", lg: "20%" },
         };
 
         switch (iconTitle) {
@@ -48,21 +57,29 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
 
             <Typography
                 p={1}
-                variant="h4"
+                variant={lgScreen ? "h4" : "h3"}
                 textTransform="uppercase"
                 color={theme.palette.text.primary}
             >
                 {title}
             </Typography>
 
-            <Typography textAlign="center" color={theme.palette.text.primary}>
+            <Typography
+                textAlign="center"
+                color={theme.palette.text.primary}
+                fontSize={{
+                    xs: "1.4rem",
+                    sm: "1.8rem",
+                    lg: "1rem",
+                }}
+            >
                 {description}
             </Typography>
 
             <Stack
                 justifyContent="center"
                 direction="row"
-                spacing={3}
+                gap={1}
                 mt={4}
                 flexWrap="wrap"
             >
@@ -72,7 +89,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                             <Chip
                                 label={tag}
                                 sx={{
-                                    fontSize: "1.1vw",
+                                    fontSize: { xs: "1.5rem", lg: "1rem" },
                                     mb: 1,
                                     color: theme.palette.secondary.main,
                                     bgcolor: theme.palette.primary.main,
@@ -92,7 +109,12 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                 }}
             />
 
-            <Stack direction="row" justifyContent="space-between" width="100%">
+            <Stack
+                direction={{ xs: "column", sm: "row" }}
+                justifyContent="space-between"
+                alignItems="center"
+                width="100%"
+            >
                 <IconicButton
                     icon={
                         <TextsmsIcon
@@ -108,11 +130,14 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                         router.push("/products/" + product.title);
                     }}
                     extraSX={{
-                        width: "55%",
-                        height: "80%",
+                        width: { xs: "80%", sm: "60%", lg: "55%" },
+                        height: {xs: "3.5rem", sm: "80%"},
                     }}
                 >
-                    <Typography fontSize="1.3vw" textTransform="uppercase">
+                    <Typography
+                        fontSize={{ xs: "1.3rem", lg: "1rem" }}
+                        textTransform="uppercase"
+                    >
                         learn more
                     </Typography>
                 </IconicButton>
