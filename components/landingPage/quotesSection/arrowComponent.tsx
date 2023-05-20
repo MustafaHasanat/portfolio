@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 
@@ -7,6 +7,7 @@ interface ArrowComponentProps {
     positionPair: { left: string } | { right: string };
     direction: string;
     handleArrowClick: (arrow: string) => void;
+    size: string;
 }
 
 const ArrowComponent = ({
@@ -14,9 +15,11 @@ const ArrowComponent = ({
     positionPair,
     direction,
     handleArrowClick,
+    size,
 }: ArrowComponentProps) => {
-    const newTransform = "translateY(-50%) " + transform;
     const theme = useTheme();
+    const newTransform = "translateY(-50%) " + transform;
+    const mdScreen = useMediaQuery("(min-width:768px)");
 
     return (
         <Box
@@ -36,11 +39,16 @@ const ArrowComponent = ({
             sx={{
                 position: "absolute",
                 top: "50%",
-                width: "7vw",
-                height: "7vw",
+                width: size,
+                height: size,
                 cursor: "pointer",
-                opacity: 0.5,
+                opacity: mdScreen ? 0.8 : 0.5,
                 zIndex: 5,
+                bgcolor: mdScreen
+                    ? "transparent"
+                    : theme.palette.secondary.main,
+                borderRadius: mdScreen ? 0 : "100%",
+                p: mdScreen ? 0 : 1,
                 ...positionPair,
             }}
         >

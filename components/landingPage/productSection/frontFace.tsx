@@ -1,7 +1,16 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
-import { Stack, Typography, Button, Divider, Chip, Link } from "@mui/material";
+import {
+    Stack,
+    Typography,
+    Button,
+    Divider,
+    Chip,
+    Link,
+    useMediaQuery,
+    Box,
+} from "@mui/material";
 import { useTheme } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, RefObject } from "react";
 import FlipButton from "./flipButton";
 import IconicButton from "@/components/shared/iconicButton";
 import { Product } from "@/types/product";
@@ -10,7 +19,7 @@ import PhoneIphoneRoundedIcon from "@mui/icons-material/PhoneIphoneRounded";
 import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import { useRouter } from "next/router";
-import TextsmsIcon from '@mui/icons-material/Textsms';
+import TextsmsIcon from "@mui/icons-material/Textsms";
 
 interface FrontFaceProps {
     index: number;
@@ -20,14 +29,17 @@ interface FrontFaceProps {
 
 const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     const { title, description, tags } = product;
+    const fourKScreen = useMediaQuery("(min-width:2560px)");
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const smScreen = useMediaQuery("(min-width:425px)");
     const theme = useTheme();
     const router = useRouter();
 
     const getIcon = (iconTitle: string) => {
         const sx = {
             color: theme.palette.primary.main,
-            width: "auto",
-            height: "20%",
+            width: { xs: "70%", lg: "auto" },
+            height: { xs: "auto", sm: "10rem", lg: "10rem" },
         };
 
         switch (iconTitle) {
@@ -43,26 +55,43 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     };
 
     return (
-        <Fragment>
+        <Stack alignItems="center" height="auto" p={3} spacing={2}>
             {getIcon(title)}
 
             <Typography
                 p={1}
-                variant="h4"
+                variant={
+                    fourKScreen
+                        ? "h3"
+                        : lgScreen
+                        ? "h4"
+                        : smScreen
+                        ? "h3"
+                        : "h4"
+                }
                 textTransform="uppercase"
                 color={theme.palette.text.primary}
             >
                 {title}
             </Typography>
 
-            <Typography textAlign="center" color={theme.palette.text.primary}>
+            <Typography
+                textAlign="center"
+                color={theme.palette.text.primary}
+                fontSize={{
+                    xs: "1.4rem",
+                    sm: "1.5rem",
+                    lg: "1rem",
+                    xl: "1.8rem",
+                }}
+            >
                 {description}
             </Typography>
 
             <Stack
                 justifyContent="center"
                 direction="row"
-                spacing={3}
+                gap={1}
                 mt={4}
                 flexWrap="wrap"
             >
@@ -72,7 +101,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                             <Chip
                                 label={tag}
                                 sx={{
-                                    fontSize: "1.1vw",
+                                    fontSize: { xs: "1.5rem", lg: "1rem" },
                                     mb: 1,
                                     color: theme.palette.secondary.main,
                                     bgcolor: theme.palette.primary.main,
@@ -92,7 +121,12 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                 }}
             />
 
-            <Stack direction="row" justifyContent="space-between" width="100%">
+            <Stack
+                direction={{ xs: "column", md: "row" }}
+                justifyContent="space-between"
+                alignItems="center"
+                width="100%"
+            >
                 <IconicButton
                     icon={
                         <TextsmsIcon
@@ -108,18 +142,21 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                         router.push("/products/" + product.title);
                     }}
                     extraSX={{
-                        width: "55%",
-                        height: "80%",
+                        width: { xs: "100%", md: "60%", lg: "55%" },
+                        height: { xs: "3.5rem", sm: "3rem" },
                     }}
                 >
-                    <Typography fontSize="1.3vw" textTransform="uppercase">
+                    <Typography
+                        fontSize={{ xs: "1rem", sm: "1.3rem", lg: "1rem" }}
+                        textTransform="uppercase"
+                    >
                         learn more
                     </Typography>
                 </IconicButton>
 
                 <FlipButton index={index} face="front" flipCard={flipCard} />
             </Stack>
-        </Fragment>
+        </Stack>
     );
 };
 

@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { MutableRefObject } from "react";
 import { ProductBox } from "./styles";
@@ -13,6 +13,8 @@ interface ProductSectionProps {
 
 const ProductSection = ({ inViewRef, products }: ProductSectionProps) => {
     const theme = useTheme();
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const smScreen = useMediaQuery("(min-width:425px)");
 
     return (
         <Stack id="home-product" sx={ProductBox(theme.palette.text.primary)}>
@@ -25,12 +27,18 @@ const ProductSection = ({ inViewRef, products }: ProductSectionProps) => {
                 }}
             />
 
-            <AnimatedTitle
-                buttonWidth="40%"
-                text="What Do I do"
-                tertiary={theme.palette.secondary.main}
-                shadowColor={theme.palette.primary.main}
-            />
+            <Box
+                sx={{
+                    width: { xs: "70%", sm: "70%", lg: "40%", xl: "30%" },
+                    height: { xs: "11rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="What Do I do"
+                    tertiary={theme.palette.secondary.main}
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <CardsContainer products={products} />
         </Stack>

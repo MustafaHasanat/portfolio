@@ -1,30 +1,42 @@
-import { Stack, Typography, Button, Box } from "@mui/material";
+import { Stack, Typography, Button, Box, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material";
 import {
     downloadButtonStyles,
     buttonVariants,
-    downloadButtonWraperStyles,
+    downloadButtonWrapperStyles,
 } from "./styles";
 import { useAnimation, motion } from "framer-motion";
-import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import Link from "next/link";
 import { urls } from "@/utils/constants/global";
+import DescriptionIcon from '@mui/icons-material/Description';
 
 const DownloadButton = () => {
     const theme = useTheme();
     const buttonAnimations = useAnimation();
 
-    const buttonWidth = "13vw";
-    const buttonHeight = "4vw";
+    const mdScreen = useMediaQuery("(min-width:768px)");
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const fourKScreen = useMediaQuery("(min-width:2560px)");
+
+    const buttonWidth = { xs: "12rem", md: "15rem" };
+    const buttonHeight = fourKScreen
+        ? "4rem"
+        : lgScreen
+        ? "4rem"
+        : mdScreen
+        ? "3rem"
+        : "4rem";
 
     return (
         <Button
             component={motion.button}
             initial={{
                 opacity: 0,
+                x: -150,
             }}
             animate={{
                 opacity: 1,
+                x: lgScreen ? 0 : "-50%",
             }}
             transition={{
                 ease: "easeIn",
@@ -67,7 +79,7 @@ const DownloadButton = () => {
                     letterSpacing={3}
                     color={theme.palette.secondary.main}
                 >
-                    Download CV
+                    check my resume
                 </Typography>
 
                 <Link
@@ -76,15 +88,15 @@ const DownloadButton = () => {
                     target="_blank"
                 >
                     <Box
-                        sx={downloadButtonWraperStyles(
+                        sx={downloadButtonWrapperStyles(
                             buttonWidth,
                             buttonHeight
                         )}
                     >
-                        <FileDownloadOutlinedIcon
+                        <DescriptionIcon
                             sx={{
                                 width: "auto",
-                                height: "90%",
+                                height: "50%",
                                 color: theme.palette.primary.main,
                             }}
                         />

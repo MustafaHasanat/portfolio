@@ -1,5 +1,5 @@
 import { Project } from "@/types/project";
-import { Stack, useTheme } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
 import { Fragment } from "react";
 import Card from "../projectsPage/card";
 import AnimatedTitle from "../shared/animatedTitle";
@@ -9,17 +9,21 @@ interface ProjectsSectionProps {
 }
 
 const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
-    const theme = useTheme()
+    const theme = useTheme();
 
     return (
-        <Stack>
-            <AnimatedTitle
-                buttonWidth="55%"
-                text="previous projects"
-                buttonCuttingRatio={0.15}
-                tertiary={theme.palette.primary.main}
-                shadowColor={theme.palette.primary.main}
-            />
+        <Stack alignItems="center">
+            <Box
+                sx={{
+                    width: { xs: "70%", lg: "60%" },
+                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="previous projects"
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <Stack spacing={5}>
                 {projects.map((project, index) => {

@@ -29,7 +29,7 @@ const titleStyles = (color: string, shadowColor: string) => {
         zIndex: 10,
         position: "relative",
         fontSize: {
-            xs: "1.3vw",
+            xs: "1.5rem",
         },
 
         "&:hover #shadow-title": {

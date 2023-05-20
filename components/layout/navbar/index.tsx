@@ -10,10 +10,9 @@ import useGetRoute from "@/hooks/useGetRoute";
 
 interface NavbarProps {
     animation: AnimationControls;
-    landingSectionInView: boolean;
 }
 
-const Navbar = ({ animation, landingSectionInView }: NavbarProps) => {
+const Navbar = ({ animation }: NavbarProps) => {
     const dispatch = useDispatch();
     const { path, number: pathNumber } = useGetRoute();
 
@@ -28,7 +27,10 @@ const Navbar = ({ animation, landingSectionInView }: NavbarProps) => {
     }, [path]);
 
     return (
-        <Stack direction="row" spacing={2}>
+        <Stack
+            direction={{ xs: "column", lg: "row" }}
+            spacing={{ xs: 4, lg: 2 }}
+        >
             {constants.header.navbarItems.map((item, index) => (
                 <Fragment key={`${index}`}>
                     <NavbarButton

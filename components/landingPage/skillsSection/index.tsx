@@ -1,12 +1,11 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import AnimatedTitle from "@/components/shared/animatedTitle";
 import { Box, useTheme } from "@mui/material";
 import { Stack } from "@mui/material";
-import { Fragment, MutableRefObject, useEffect } from "react";
-import SkillSetBox from "./skillSetBox";
-import useMultiControl from "@/hooks/useMultiControl";
+import { MutableRefObject, useEffect, useState } from "react";
 import { SkillSet } from "@/types/skillSet";
 import sortByOrder from "@/utils/helpers/sortByOrder";
+import SkillsBox from "./skillsBox";
+import ControlBox from "./controlBox";
 
 interface SkillsSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -15,56 +14,64 @@ interface SkillsSectionProps {
 
 const SkillsSection = ({ inViewRef, skillSets }: SkillsSectionProps) => {
     const theme = useTheme();
-
-    const { updateState: toggleDrawer, isActive: isDrawerActive } =
-        useMultiControl();
+    const [currentSkillSet, setCurrentSkillSet] = useState(skillSets[0]);
+    const [hoveredSkillSet, setHoveredSkillSet] = useState<SkillSet | null>(
+        null
+    );
 
     useEffect(() => {
         sortByOrder(skillSets);
-    }, []);
+    }, [skillSets]);
 
     return (
         <Stack
             id="home-skills"
             position="relative"
             bgcolor={theme.palette.secondary.main}
-            py={10}
+            alignItems="center"
+            py={{ xs: 15, md: 10 }}
         >
             <Box
                 ref={inViewRef}
                 sx={{
                     position: "absolute",
-                    top: "50%",
+                    top: "20%",
                     width: " 100%",
                 }}
             />
 
-            <AnimatedTitle
-                buttonWidth="40%"
-                text="My Skills"
-                shadowColor={theme.palette.primary.main}
-            />
+            <Box
+                sx={{
+                    width: { xs: "70%", lg: "40%" },
+                    height: { xs: "11rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="My Skills"
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <Stack
-                direction="row"
-                justifyContent="center"
-                flexWrap="wrap"
-                px={15}
-                my={10}
-                gap={10}
+                direction={{ xs: "column-reverse", md: "row" }}
+                alignItems={{ xs: "start", md: "center" }}
+                justifyContent={{ xs: "start", md: "center" }}
+                px={{ xs: 10, md: 15 }}
+                my={3}
+                spacing={5}
+                height={{ xs: "auto", md: "75vh" }}
+                width="100%"
             >
-                {skillSets.map((skillSet, index) => {
-                    return (
-                        <Fragment key={`skill category number: ${index}`}>
-                            <SkillSetBox
-                                index={index}
-                                skillSet={skillSet}
-                                toggleDrawer={toggleDrawer}
-                                isDrawerActive={isDrawerActive}
-                            />
-                        </Fragment>
-                    );
-                })}
+                <SkillsBox
+                    hoveredSkillSet={hoveredSkillSet}
+                    currentSkillSet={currentSkillSet}
+                />
+                <ControlBox
+                    skillSets={skillSets}
+                    setHoveredSkillSet={setHoveredSkillSet}
+                    currentSkillSet={currentSkillSet}
+                    setCurrentSkillSet={setCurrentSkillSet}
+                />
             </Stack>
         </Stack>
     );

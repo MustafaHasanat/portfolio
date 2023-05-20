@@ -3,7 +3,7 @@ import AnimatedTitle from "@/components/shared/animatedTitle";
 import { Product } from "@/types/product";
 import sortByOrder from "@/utils/helpers/sortByOrder";
 import { getAllProducts } from "@/utils/sanity/product";
-import { Stack, useTheme } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
 
 interface ProductsProps {
     products: Product[];
@@ -23,18 +23,23 @@ export default function Products({ products }: ProductsProps) {
     return (
         <Stack
             sx={{
+                alignItems: "center",
                 bgcolor: theme.palette.secondary.main,
-                color: "white",
                 px: 12,
                 py: "25vh",
             }}
         >
-            <AnimatedTitle
-                buttonWidth="40%"
-                text="My Products"
-                tertiary={theme.palette.primary.main}
-                shadowColor={theme.palette.primary.main}
-            />
+            <Box
+                sx={{
+                    width: { xs: "70%", lg: "40%" },
+                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="my products"
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <CardsContainer products={sortByOrder(products)} />
         </Stack>

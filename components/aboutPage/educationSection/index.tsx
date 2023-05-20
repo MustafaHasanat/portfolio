@@ -26,6 +26,7 @@ const EducationSection = ({
             px={12}
             py={10}
             position="relative"
+            alignItems="center"
             bgcolor={theme.palette.text.primary}
         >
             <Box
@@ -37,12 +38,18 @@ const EducationSection = ({
                 }}
             />
 
-            <AnimatedTitle
-                buttonWidth="40%"
-                text="education"
-                tertiary={theme.palette.secondary.main}
-                shadowColor={theme.palette.primary.main}
-            />
+            <Box
+                sx={{
+                    width: { xs: "70%", sm: "70%", lg: "40%", xl: "30%" },
+                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="education"
+                    tertiary={theme.palette.secondary.main}
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <Stack
                 justifyContent="center"

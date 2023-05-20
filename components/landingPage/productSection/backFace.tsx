@@ -27,7 +27,7 @@ const BackFace = ({ index, product, flipCard }: BackFaceProps) => {
     const [hoveredCard, setHoveredCard] = useState(0);
 
     return (
-        <Fragment>
+        <Stack alignItems="center" height="100%">
             <Stack direction="row" gap={3} sx={BackBox}>
                 {cards.map((card, cardIndex) => {
                     return (
@@ -113,7 +113,7 @@ const BackFace = ({ index, product, flipCard }: BackFaceProps) => {
             </Stack>
 
             <FlipButton index={index} face="back" flipCard={flipCard} />
-        </Fragment>
+        </Stack>
     );
 };
 

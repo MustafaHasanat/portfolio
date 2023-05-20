@@ -2,7 +2,7 @@ export const ProductBox = (bgcolor: string) => {
     return {
         position: "relative",
         alignItems: "center",
-        paddingY: 10,
+        py: 10,
 
         "&::before": {
             content: `""`,
@@ -16,7 +16,7 @@ export const ProductBox = (bgcolor: string) => {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             backgroundSize: "cover",
-        }
+        },
     };
 };
 
@@ -36,6 +36,7 @@ export const BackBox = {
     height: "90%",
     position: "relative",
     justifyContent: "center",
+    alignItems: "start",
     flexWrap: "wrap",
     paddingY: 2,
     overflowY: "scroll",
@@ -49,7 +50,7 @@ export const MiniCardBox = (
     return {
         display: "flex",
         position: "relative",
-        width: "25%",
+        width: { xs: "80%", sm: "30%", md: "25%" },
         height: height * 1.5,
         borderRadius: 3,
         boxShadow: "0 0 10px rgba(0,0,0,0.25)",

@@ -53,8 +53,8 @@ export const mainButtonStyles = (
 export const contactsContainerStyles = (isModalActive: boolean) => {
     return {
         position: "fixed",
-        bottom: "10%",
-        right: 100,
+        bottom: { xs: 30, md: "10%" },
+        right: { xs: 30, md: 100 },
         zIndex: isModalActive ? 200 : 10,
     };
 };

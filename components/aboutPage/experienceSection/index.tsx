@@ -27,6 +27,8 @@ const ExperienceSection = ({
             px={12}
             py={10}
             position="relative"
+            alignItems="center"
+            width="100%"
             bgcolor={theme.palette.secondary.main}
         >
             <Box
@@ -38,9 +40,19 @@ const ExperienceSection = ({
                 }}
             />
 
-            <AnimatedTitle buttonWidth="40%" text="experiences" />
+            <Box
+                sx={{
+                    width: { xs: "70%", lg: "40%" },
+                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="experiences"
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
-            <Stack spacing={5} position="relative">
+            <Stack spacing={5} position="relative" width="100%">
                 {experiences.map((experience, index) => {
                     return (
                         <Fragment key={`experience box number: ${index}`}>

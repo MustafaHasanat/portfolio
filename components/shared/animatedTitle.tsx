@@ -3,15 +3,16 @@ import { useRef } from "react";
 import { useTheme } from "@mui/material";
 import useBoxSize from "@/hooks/useBoxSize";
 import { useInView } from "framer-motion";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 interface AnimatedTitleProps {
-    buttonWidth: string;
     text: string;
 
     containerWidth?: string;
     containerHeight?: string;
+    buttonWidth?: string;
     buttonHeight?: string;
-    buttonCuttingRatio?: number;
+    cuttingRatio?: number;
     buttonGap?: number;
     buttonLimit?: number;
     primary?: string;
@@ -21,6 +22,8 @@ interface AnimatedTitleProps {
     tertiary?: string;
     thickness?: number;
     shadowColor?: string;
+
+    extraSX?: any;
 }
 const AnimatedTitle = (props: AnimatedTitleProps) => {
     const theme = useTheme();
@@ -38,15 +41,17 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
         shadowColor = theme.palette.primary.main,
         // sizes
         containerWidth = "100%",
-        containerHeight = "30vh",
-        buttonWidth,
+        containerHeight = "100%",
+        buttonWidth = "100%",
         buttonHeight = "60%",
         // button and lines values
-        buttonCuttingRatio = 0.17,
-        buttonGap = 18,
+        cuttingRatio = 0.65,
+        buttonGap = 15,
         buttonLimit = 15,
         // text
         text = "title placeholder",
+
+        extraSX,
     } = props;
 
     const {
@@ -65,6 +70,7 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                 alignItems: "center",
                 width: containerWidth,
                 height: containerHeight,
+                ...extraSX,
             }}
         >
             <Box
@@ -91,21 +97,14 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                     <path
                         d={`
                             M ${buttonRefWidth - buttonLimit} ${buttonLimit} 
-                            L ${
-                                buttonRefWidth * buttonCuttingRatio
-                            } ${buttonLimit}
-                            L ${buttonLimit} ${
-                            buttonRefWidth * buttonCuttingRatio
-                        }
+                            L ${buttonRefHeight * cuttingRatio} ${buttonLimit}
+                            L ${buttonLimit} ${buttonRefHeight * cuttingRatio}
                             L ${buttonLimit} ${buttonRefHeight - buttonLimit}
-
-
-                            L ${buttonRefWidth * (1 - buttonCuttingRatio)} ${
-                            buttonRefHeight - buttonLimit
-                        }
+                            L ${
+                                buttonRefWidth - buttonRefHeight * cuttingRatio
+                            } ${buttonRefHeight - buttonLimit}
                             L ${buttonRefWidth - buttonLimit} ${
-                            buttonRefHeight -
-                            buttonRefWidth * buttonCuttingRatio
+                            buttonRefHeight * (1 - cuttingRatio)
                         }
                             Z
                         `}
@@ -131,10 +130,10 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                         d={`
                             M ${buttonLimit} ${buttonLimit}
                             L ${
-                                buttonRefWidth * buttonCuttingRatio - buttonGap
+                                buttonRefHeight * cuttingRatio - buttonGap
                             } ${buttonLimit}
                             L ${buttonLimit} ${
-                            buttonRefWidth * buttonCuttingRatio - buttonGap
+                            buttonRefHeight * cuttingRatio - buttonGap
                         }
                             Z
                         `}
@@ -159,16 +158,15 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                     <path
                         d={`
                             M ${buttonRefWidth - buttonLimit} ${
-                            buttonRefHeight -
-                            buttonRefWidth * buttonCuttingRatio +
-                            buttonGap
-                        }
-                            L ${buttonRefWidth - buttonLimit} ${
                             buttonRefHeight - buttonLimit
                         }
+                            L ${buttonRefWidth - buttonLimit} ${
+                            buttonRefHeight * (1 - cuttingRatio) + buttonGap
+                        }
                             L ${
-                                buttonRefWidth * (1 - buttonCuttingRatio) +
-                                buttonGap
+                                buttonRefWidth +
+                                buttonGap -
+                                buttonRefHeight * cuttingRatio
                             } ${buttonRefHeight - buttonLimit}
                             Z
                         `}
@@ -184,7 +182,11 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    width: buttonWidth,
+                    width: {
+                        xs: `calc(${buttonWidth} * 0.4)`,
+                        sm: `calc(${buttonWidth} * 0.45)`,
+                        md: buttonWidth,
+                    },
                     height: buttonHeight,
                     zIndex: 6,
                     fontWeight: "bold",
@@ -196,11 +198,12 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                 }}
             >
                 <Typography
-                    variant="h4"
                     color={secondary}
                     textTransform="uppercase"
                     letterSpacing={3}
                     fontWeight="bold"
+                    fontSize={{ xs: "1rem", sm: "1.2rem", md: "1.7rem" }}
+                    textAlign="center"
                 >
                     {text}
                 </Typography>

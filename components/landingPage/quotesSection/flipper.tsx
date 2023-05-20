@@ -1,5 +1,6 @@
+import { Author } from "@/types/author";
 import { Quote } from "@/types/quote";
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { Fragment } from "react";
 
@@ -10,11 +11,18 @@ interface FlipperProps {
 
 const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
     const theme = useTheme();
+    const mdScreen = useMediaQuery("(min-width:768px)");
 
     const cardWidth = "20vw";
     const cardsSpacing = "10vw";
     const cardsBoxWidth = `calc(${cardWidth} * 3 + ${cardsSpacing})`;
     const shiftFactor = `calc((${cardWidth} + ${cardsSpacing} / 2) * ${shiftIndex})`;
+
+    const getImage = (author: Author) => {
+        return mdScreen
+            ? author.hImage && `url("${author.hImage.asset.url}")`
+            : author.vImage && `url("${author.vImage.asset.url}")`;
+    };
 
     return (
         <Box
@@ -82,10 +90,7 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                                                 linear-gradient(
                                                     rgba(0, 0, 0, 0.8), 
                                                     rgba(0, 0, 0, 0.3)), 
-                                                ${
-                                                    quote.author.hImage &&
-                                                    `url("${quote.author.hImage.asset.url}")`
-                                                }`,
+                                                ${getImage(quote.author)}`,
                                             backgroundRepeat: "no-repeat",
                                             backgroundPositionY: "center",
                                             backgroundPositionX: "center",
@@ -94,11 +99,14 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                                     >
                                         <Typography
                                             textTransform="capitalize"
-                                            fontSize="1vw"
+                                            fontSize={{
+                                                xs: "0.4rem",
+                                                md: "1vw",
+                                            }}
                                             sx={{
                                                 position: "absolute",
-                                                top: 15,
-                                                left: 15,
+                                                top: mdScreen ? 15 : 10,
+                                                left: mdScreen ? 15 : 10,
                                                 width: "80%",
                                             }}
                                         >
@@ -107,11 +115,21 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
 
                                         <Typography
                                             textTransform="uppercase"
-                                            fontSize="0.6vw"
+                                            textAlign="center"
+                                            fontSize={{
+                                                xs: "0.3rem",
+                                                md: "0.6vw",
+                                            }}
                                             sx={{
                                                 position: "absolute",
-                                                bottom: 15,
-                                                right: 15,
+                                                width: mdScreen
+                                                    ? "auto"
+                                                    : "100%",
+                                                bottom: mdScreen ? 15 : 10,
+                                                right: mdScreen ? 15 : "-50%",
+                                                transform: mdScreen
+                                                    ? "unset"
+                                                    : "translateX(-50%)",
                                             }}
                                         >
                                             {"~ " + quote.author.author}

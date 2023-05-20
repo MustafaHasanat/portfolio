@@ -6,7 +6,7 @@ import {
     Typography,
     useTheme,
 } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { AttributeListsProps } from "./cardsContainer";
 
 interface ToolsSelectionBoxProps {
@@ -15,10 +15,17 @@ interface ToolsSelectionBoxProps {
 
 const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
     const theme = useTheme();
+    const [isAllSelected, setIsAllSelected] = useState(false);
 
     const {
         tools: { toolsList, toolsSelect, setToolsSelect },
     } = attributeLists;
+
+    useEffect(() => {
+        setIsAllSelected(
+            toolsSelect.map((obj) => obj.state).every((cur) => cur)
+        );
+    }, [toolsSelect]);
 
     return (
         <Stack spacing={1} px={2} alignItems="start">
@@ -29,13 +36,13 @@ const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
                 justifyContent="space-between"
                 alignItems="center"
             >
-                <Typography>Tools</Typography>
+                <Typography>Tools {isAllSelected ? "(all)" : ""}</Typography>
 
                 <FormControlLabel
                     label="select all"
                     control={
                         <Checkbox
-                        defaultChecked
+                            defaultChecked
                             name="select all"
                             sx={{
                                 color: theme.palette.text.primary,
@@ -51,12 +58,14 @@ const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
                                             return { ...toolObj, state: true };
                                         })
                                     );
+                                    setIsAllSelected(true);
                                 } else {
                                     setToolsSelect((prev) =>
                                         prev.map((toolObj) => {
                                             return { ...toolObj, state: false };
                                         })
                                     );
+                                    setIsAllSelected(false);
                                 }
                             }}
                         />

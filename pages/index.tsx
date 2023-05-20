@@ -15,7 +15,6 @@ import { getAllProducts } from "@/utils/sanity/product";
 import { Product } from "@/types/product";
 import { SkillSet } from "@/types/skillSet";
 import { getAllSkillSets } from "@/utils/sanity/skillSet";
-import TestimonialSection from "@/components/landingPage/successStoriesSection";
 import sortByOrder from "@/utils/helpers/sortByOrder";
 
 export const getStaticProps = async (): Promise<{
@@ -95,7 +94,7 @@ export default function Home({
     ]);
 
     return (
-        <Stack>
+        <Stack p={0} m={0} width="100%">
             <Box
                 id="home-main"
                 ref={mainSecRef}
@@ -108,7 +107,7 @@ export default function Home({
                 <Box
                     sx={{
                         position: "absolute",
-                        top: "30%",
+                        top: "10%",
                         width: " 100%",
                     }}
                 />

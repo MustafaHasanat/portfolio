@@ -9,7 +9,7 @@ export const headerBoxStyles = (
         justifyContent: "space-between",
         alignItems: "center",
         height: switchPointInView ? "16vh" : "10vh",
-        paddingX: 12,
+        paddingX: { xs: 5, lg: 12 },
         width: "100%",
         position: "fixed",
         top: headerPosition,

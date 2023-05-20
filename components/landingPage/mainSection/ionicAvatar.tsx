@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { Avatar, Box } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Avatar, Box, useMediaQuery } from "@mui/material";
+import { Fragment, useEffect, useState } from "react";
 import {
     avatarStyles,
     ionicContainerStyles,
@@ -13,12 +12,29 @@ import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     const [scaleValue, setScaleValue] = useState(1);
-    const [imageLoaded, setImageLoaded] = useState(false);
+    const smScreen = useMediaQuery("(min-width:425px)");
+    const mdScreen = useMediaQuery("(min-width:768px)");
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const fourKScreen = useMediaQuery("(min-width:2560px)");
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
             state.globalAssetsReducer.globalAssets
     );
+
+    useEffect(() => {
+        if (fourKScreen) {
+            setScaleValue(1.5);
+        } else if (lgScreen) {
+            setScaleValue(1);
+        } else if (mdScreen) {
+            setScaleValue(0.8);
+        } else if (smScreen) {
+            setScaleValue(0.7);
+        } else {
+            setScaleValue(0.6);
+        }
+    }, [smScreen, mdScreen, lgScreen, fourKScreen]);
 
     return (
         <Box sx={ionicContainerStyles(scaleValue)}>
