@@ -25,8 +25,9 @@ const Header = ({
 }: HeaderProps) => {
     const theme = useTheme();
     const [headerPosition, setHeaderPosition] = useState("0vh");
-    const lgScreen = useMediaQuery("(min-width:1200px)");
-    const smScreen = useMediaQuery("(min-width:600px)");
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const mdScreen = useMediaQuery("(min-width:768px)");
+    const smScreen = useMediaQuery("(min-width:425px)");
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
@@ -96,7 +97,7 @@ const Header = ({
                         }}
                     />
 
-                    {(lgScreen || smScreen) && (
+                    {mdScreen && (
                         <Link href="/" sx={{ textDecoration: "none" }}>
                             <SlidingTitle
                                 text={"Mustafa Alhasanat"}
@@ -106,7 +107,7 @@ const Header = ({
                         </Link>
                     )}
 
-                    {smScreen && <BMCBox />}
+                    {mdScreen && <BMCBox />}
                 </Stack>
 
                 {!lgScreen && (

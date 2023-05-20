@@ -2,6 +2,7 @@ import { Box, Stack, useTheme } from "@mui/material";
 import GlassBox from "./glassBox";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import useBoxSize from "@/hooks/useBoxSize";
 
 interface FlipBoxProps {
     frontChildren: JSX.Element;
@@ -9,7 +10,6 @@ interface FlipBoxProps {
     id: string;
     transform: string;
     width: any;
-    height: any;
     isActive: boolean;
     frontSX: any;
     backSX: any;
@@ -24,7 +24,6 @@ interface FlipBoxProps {
  * @param {string} id unique id for the card
  * @param {string} transform transform value to control flipping the card ==> either "rotateY(180deg)" or "none"
  * @param {any} width width of the card
- * @param {any} height height of the card
  * @param {boolean} isActive does the current product available?
  * @param {any} frontSX extra styles for the front face
  * @param {any} backSX extra styles for the back face
@@ -40,13 +39,13 @@ const FlipBox = ({
     id,
     transform,
     width,
-    height,
     isActive,
     extraSX,
 }: FlipBoxProps): JSX.Element => {
     const theme = useTheme();
     const cardRef = useRef(null);
     const cardInView = useInView(cardRef);
+    const { ref: boxRef, height: boxHeight } = useBoxSize();
 
     return (
         <Stack
@@ -63,12 +62,11 @@ const FlipBox = ({
             sx={{
                 position: "relative",
                 width: width,
-                height: height,
                 transformStyle: "preserve-3d",
                 ...extraSX,
             }}
         >
-            {!isActive && (
+            {/* {!isActive && (
                 <Box
                     sx={{
                         position: "absolute",
@@ -82,11 +80,19 @@ const FlipBox = ({
                         borderRadius: 3,
                     }}
                 />
-            )}
+            )} */}
 
-            <Stack sx={frontSX}>{frontChildren}</Stack>
+            <Stack sx={frontSX} ref={boxRef}>
+                {frontChildren}
+            </Stack>
 
-            <Stack sx={{ ...backSX, transform: "rotateY(180deg)" }}>
+            <Stack
+                sx={{
+                    ...backSX,
+                    transform: "rotateY(180deg)",
+                    height: boxHeight,
+                }}
+            >
                 {backChildren}
             </Stack>
         </Stack>

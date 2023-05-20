@@ -8,7 +8,7 @@ import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 const BMCBox = () => {
     const theme = useTheme();
     const bmcAnimations = useAnimation();
-    const smScreen = useMediaQuery("(min-width:600px)");
+    const mdScreen = useMediaQuery("(min-width:768px)");
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
@@ -47,7 +47,7 @@ const BMCBox = () => {
                 />
             </Link>
 
-            {smScreen && (
+            {mdScreen && (
                 <Avatar
                     component={motion.div}
                     animate={bmcAnimations}

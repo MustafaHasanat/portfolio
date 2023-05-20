@@ -34,7 +34,7 @@ const Layout = ({ children }: LayoutProps) => {
     const landingSectionInView = useInView(landingSectionRef);
     const headerAnimations = useAnimation();
     const [drawerIsOpened, setDrawerIsOpened] = useState(false);
-    const lgScreen = useMediaQuery("(min-width:1200px)");
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     const dispatch = useDispatch();
     const isModalActive = useSelector(

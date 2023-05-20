@@ -7,9 +7,10 @@ import {
     Chip,
     Link,
     useMediaQuery,
+    Box,
 } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { Fragment } from "react";
+import { Fragment, RefObject } from "react";
 import FlipButton from "./flipButton";
 import IconicButton from "@/components/shared/iconicButton";
 import { Product } from "@/types/product";
@@ -28,7 +29,9 @@ interface FrontFaceProps {
 
 const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     const { title, description, tags } = product;
-    const lgScreen = useMediaQuery("(min-width:1200px)");
+    const fourKScreen = useMediaQuery("(min-width:2560px)");
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const smScreen = useMediaQuery("(min-width:425px)");
     const theme = useTheme();
     const router = useRouter();
 
@@ -36,7 +39,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
         const sx = {
             color: theme.palette.primary.main,
             width: { xs: "70%", lg: "auto" },
-            height: { xs: "auto", sm: "30%", lg: "20%" },
+            height: { xs: "auto", sm: "10rem", lg: "10rem" },
         };
 
         switch (iconTitle) {
@@ -52,12 +55,20 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     };
 
     return (
-        <Fragment>
+        <Stack alignItems="center" height="auto" p={3} spacing={2}>
             {getIcon(title)}
 
             <Typography
                 p={1}
-                variant={lgScreen ? "h4" : "h3"}
+                variant={
+                    fourKScreen
+                        ? "h3"
+                        : lgScreen
+                        ? "h4"
+                        : smScreen
+                        ? "h3"
+                        : "h4"
+                }
                 textTransform="uppercase"
                 color={theme.palette.text.primary}
             >
@@ -69,8 +80,9 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                 color={theme.palette.text.primary}
                 fontSize={{
                     xs: "1.4rem",
-                    sm: "1.8rem",
+                    sm: "1.5rem",
                     lg: "1rem",
+                    xl: "1.8rem",
                 }}
             >
                 {description}
@@ -110,7 +122,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
             />
 
             <Stack
-                direction={{ xs: "column", sm: "row" }}
+                direction={{ xs: "column", md: "row" }}
                 justifyContent="space-between"
                 alignItems="center"
                 width="100%"
@@ -130,12 +142,12 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                         router.push("/products/" + product.title);
                     }}
                     extraSX={{
-                        width: { xs: "80%", sm: "60%", lg: "55%" },
-                        height: {xs: "3.5rem", sm: "80%"},
+                        width: { xs: "100%", md: "60%", lg: "55%" },
+                        height: { xs: "3.5rem", sm: "3rem" },
                     }}
                 >
                     <Typography
-                        fontSize={{ xs: "1.3rem", lg: "1rem" }}
+                        fontSize={{ xs: "1rem", sm: "1.3rem", lg: "1rem" }}
                         textTransform="uppercase"
                     >
                         learn more
@@ -144,7 +156,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
 
                 <FlipButton index={index} face="front" flipCard={flipCard} />
             </Stack>
-        </Fragment>
+        </Stack>
     );
 };
 

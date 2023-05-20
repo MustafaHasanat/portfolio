@@ -2,8 +2,7 @@ export const ProductBox = (bgcolor: string) => {
     return {
         position: "relative",
         alignItems: "center",
-        paddingY: 10,
-        width: "100%",
+        py: 10,
 
         "&::before": {
             content: `""`,
@@ -51,7 +50,7 @@ export const MiniCardBox = (
     return {
         display: "flex",
         position: "relative",
-        width: { xs: "40%", sm: "25%" },
+        width: { xs: "80%", sm: "30%", md: "25%" },
         height: height * 1.5,
         borderRadius: 3,
         boxShadow: "0 0 10px rgba(0,0,0,0.25)",

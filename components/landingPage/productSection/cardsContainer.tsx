@@ -18,8 +18,6 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
 
     const faceSX = {
         width: "100%",
-        height: "100%",
-        position: "absolute",
         backfaceVisibility: "hidden",
         background: theme.palette.secondary.main,
         boxShadow: "0 0 5px rgb(255, 255, 255)",
@@ -80,6 +78,7 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
                                 paddingTop: 2,
                                 paddingBottom: 3,
                                 borderRadius: 3,
+                                position: "absolute",
                             }}
                             id={`card-${index}`}
                             transform={
@@ -87,8 +86,7 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
                                     ? cardTransform
                                     : "rotateY(0deg)"
                             }
-                            width={{ xs: "65vw", lg: "25vw" }}
-                            height={{ xs: "90vh", sm: "80vh", lg: "65vh" }}
+                            width={{ xs: "65vw", lg: "25vw", xl: "20vw" }}
                         />
                     </Fragment>
                 );

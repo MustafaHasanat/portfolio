@@ -99,17 +99,18 @@ export const orbitalObjectStyles = (
     };
 };
 
-export const downloadButtonStyles = (width: string, height: string) => {
+export const downloadButtonStyles = (width: any, height: any) => {
     return {
         position: "absolute",
         overflow: "hidden",
         borderRadius: 1,
         justifyContent: "center",
         alignItems: "center",
-        left: 100,
+        left: { xs: "50%", lg: 100 },
         bottom: "calc(10% + 1vh)",
         width: width,
         height: height,
+        zIndex: 31,
 
         "&:hover": {
             boxShadow: "0 0 5px",
@@ -120,7 +121,7 @@ export const downloadButtonStyles = (width: string, height: string) => {
 export const buttonVariants = (
     bgColorVisible: string,
     bgColorHidden: string,
-    buttonHeight: string
+    buttonHeight: any
 ) => {
     return {
         visible: {
@@ -142,7 +143,7 @@ export const buttonVariants = (
     };
 };
 
-export const downloadButtonWraperStyles = (width: string, height: string) => {
+export const downloadButtonWrapperStyles = (width: any, height: any) => {
     return {
         width: width,
         height: height,

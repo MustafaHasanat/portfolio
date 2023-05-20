@@ -1,27 +1,20 @@
 import { AnimationControls, motion } from "framer-motion";
 import Navbar from "../navbar";
 import {
-    Avatar,
-    Container,
     Stack,
     Typography,
     useMediaQuery,
     useTheme,
 } from "@mui/material";
 import BMCBox from "./bmcBox";
-import { useSelector } from "react-redux";
-import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 interface LeftDrawerProps {
     animation: AnimationControls;
     drawerIsOpened: boolean;
 }
-const LeftDrawer = ({
-    animation,
-    drawerIsOpened,
-}: LeftDrawerProps) => {
+const LeftDrawer = ({ animation, drawerIsOpened }: LeftDrawerProps) => {
     const theme = useTheme();
-    const smScreen = useMediaQuery("(min-width:600px)");
+    const mdScreen = useMediaQuery("(min-width:768px)");
 
     return (
         <Stack
@@ -40,7 +33,7 @@ const LeftDrawer = ({
                 pt: { xs: "20vh", sm: "16vh" },
                 px: { xs: 0, sm: 7 },
                 width: { xs: "100%", sm: "auto" },
-                height: { xs: "80%", sm: "100%" },
+                height: "100%",
                 bgcolor: theme.palette.secondary.main,
                 borderLeft: {
                     xs: "unset",
@@ -55,7 +48,7 @@ const LeftDrawer = ({
         >
             <Navbar animation={animation} />
 
-            {!smScreen && (
+            {!mdScreen && (
                 <Stack
                     direction="row"
                     p={3}

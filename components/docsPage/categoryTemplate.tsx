@@ -14,7 +14,7 @@ const CategoryTemplate = ({ doc, docs, inViewRef }: CategoryTemplateProps) => {
     const theme = useTheme();
 
     return (
-        <Stack id={`docs-${doc}`} position="relative">
+        <Stack id={`docs-${doc}`} position="relative" alignItems="center">
             <Box
                 ref={inViewRef}
                 sx={{
@@ -24,12 +24,17 @@ const CategoryTemplate = ({ doc, docs, inViewRef }: CategoryTemplateProps) => {
                 }}
             />
 
-            <AnimatedTitle
-                buttonWidth="40%"
-                text={doc}
-                tertiary={theme.palette.primary.main}
-                shadowColor={theme.palette.primary.main}
-            />
+            <Box
+                sx={{
+                    width: { xs: "70%", lg: "40%" },
+                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text={doc}
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <Stack
                 direction="row"

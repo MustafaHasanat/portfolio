@@ -39,6 +39,7 @@ const LanguagesSection = ({ inViewRef, languages }: LanguagesSectionProps) => {
             id="about-languages"
             px={12}
             position="relative"
+            alignItems="center"
             bgcolor={theme.palette.secondary.main}
             py={10}
         >
@@ -51,7 +52,17 @@ const LanguagesSection = ({ inViewRef, languages }: LanguagesSectionProps) => {
                 }}
             />
 
-            <AnimatedTitle buttonWidth="40%" text="languages" />
+            <Box
+                sx={{
+                    width: { xs: "70%", lg: "40%" },
+                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="languages"
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <Stack
                 justifyContent="center"
@@ -119,7 +130,10 @@ const LanguagesSection = ({ inViewRef, languages }: LanguagesSectionProps) => {
                                                     key={`${language.name} start number: ${i}`}
                                                 >
                                                     <StarRoundedIcon
-                                                        sx={{ color: "gold", opacity: 0.8 }}
+                                                        sx={{
+                                                            color: "gold",
+                                                            opacity: 0.8,
+                                                        }}
                                                     />
                                                 </Fragment>
                                             );

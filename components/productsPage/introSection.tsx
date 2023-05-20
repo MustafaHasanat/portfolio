@@ -1,5 +1,5 @@
 import { Product } from "@/types/product";
-import { Avatar, Stack, Typography, useTheme } from "@mui/material";
+import { Avatar, Box, Stack, Typography, useTheme } from "@mui/material";
 import AnimatedTitle from "../shared/animatedTitle";
 import { Fragment } from "react";
 import ProductBullet from "./productBullet";
@@ -12,14 +12,18 @@ const IntroSection = ({ product }: IntroSectionProps) => {
     const theme = useTheme();
 
     return (
-        <Stack color={theme.palette.text.primary}>
-            <AnimatedTitle
-                buttonWidth="30%"
-                buttonCuttingRatio={0.25}
-                text={product?.title}
-                tertiary={theme.palette.primary.main}
-                shadowColor={theme.palette.primary.main}
-            />
+        <Stack color={theme.palette.text.primary} alignItems="center">
+            <Box
+                sx={{
+                    width: { xs: "70%", lg: "40%" },
+                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text={product?.title}
+                    shadowColor={theme.palette.primary.main}
+                />
+            </Box>
 
             <Stack direction="row" justifyContent="space-between" my={3}>
                 <Stack width="60%" spacing={4}>
