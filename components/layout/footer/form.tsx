@@ -45,8 +45,8 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
         <GlassBox
             id={"footer-form-box"}
             extraSX={{
-                width: "60%",
-                height: "80%",
+                width: { xs: "100%", lg: "60%" },
+                height: { xs: "auto", lg: "80%" },
                 position: "relative",
                 borderRadius: 3,
             }}
@@ -58,16 +58,23 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
                 onSubmit={handleSubmit}
                 sx={{
                     height: "100%",
+                    width: "100%",
                     display: "grid",
-                    gridTemplateRows: "repeat(5, 1ft)",
-                    gridTemplateColumns: "repeat(2, 1ft)",
+                    gridTemplateRows: {
+                        xs: "repeat(11, 1ft)",
+                        lg: "repeat(5, 1ft)",
+                    },
+                    gridTemplateColumns: {
+                        xs: "repeat(1, 1ft)",
+                        lg: "repeat(2, 1ft)",
+                    },
                     gap: 3,
                 }}
             >
                 <Box
                     sx={{
-                        gridRow: "1 / 3",
-                        gridColumn: "2 / 3",
+                        gridRow: { xs: "1 / 2", lg: "1 / 3" },
+                        gridColumn: { xs: "1 / 2", lg: "2 / 3" },
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
@@ -76,7 +83,7 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
                     <Typography
                         textAlign="center"
                         color={theme.palette.text.primary}
-                        fontSize="2vw"
+                        fontSize={{ xs: "1.2rem", md: "1.7rem", lg: "2rem" }}
                         width="70%"
                     >
                         Send me a quick message:

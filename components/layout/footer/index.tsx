@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Box, Stack } from "@mui/material";
 import React, { useEffect, useRef } from "react";
-// import sendEmailEmailJS from "@/utils/helpers/sendEmail";
 import Form from "./form";
 import { snackbarActions, navigationBarActions } from "@/utils/store/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +18,7 @@ const Footer = () => {
     useEffect(() => {
         if (footerInView)
             dispatch(navigationBarActions.setCurrentView("footer"));
-    }, [footerInView]);
+    }, [dispatch, footerInView]);
 
     const handleClick = (snackbarMessage: string, color: string) => {
         dispatch(snackbarActions.setColorScheme(color));
@@ -33,7 +30,6 @@ const Footer = () => {
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
             state.globalAssetsReducer.globalAssets
     );
-    
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -41,10 +37,9 @@ const Footer = () => {
         const message = `
             A new message from your portfolio:<br/><br/>
             
-            Sender: <br/>
-                Name: ${e.target.name.value}<br/>
-                Email: ${e.target.email.value}<br/>
-                Phone: ${e.target.phone.value}<br/><br/>
+            Name: ${e.target.name.value || "not specified"}<br/>
+            Email: ${e.target.email.value || "not specified"}<br/>
+            Phone: ${e.target.phone.value || "not specified"}<br/><br/>
 
             Message:<br/>
             ${e.target.message.value}
@@ -76,12 +71,14 @@ const Footer = () => {
         <Stack
             id="layout-footer"
             component="footer"
-            direction="row"
-            justifyContent="space-between"
+            direction={{ xs: "column-reverse", lg: "row" }}
+            justifyContent={{ xs: "space-evenly", lg: "space-between" }}
             alignItems="center"
-            px={12}
+            px={{ xs: 8, md: 12 }}
+            pb={{ xs: 5, lg: 0 }}
             sx={{
-                height: "100vh",
+                position: "relative",
+                height: { xs: "auto", lg: "100vh" },
                 background: `
                     linear-gradient(
                         rgba(0, 0, 0, 0.6), 
@@ -91,7 +88,6 @@ const Footer = () => {
                 backgroundSize: "cover",
                 backgroundPosition: "top",
                 borderTop: `1px solid ${theme.palette.primary.main}`,
-                position: "relative",
             }}
         >
             <Box

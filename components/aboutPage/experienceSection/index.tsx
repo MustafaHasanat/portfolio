@@ -42,13 +42,19 @@ const ExperienceSection = ({
 
             <Box
                 sx={{
-                    width: { xs: "70%", lg: "40%" },
-                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                    width: { xs: "100%", md: "80%", lg: "40%", xl: "30%" },
+                    height: { xs: "11rem", lg: "13rem" },
                 }}
             >
                 <AnimatedTitle
                     text="experiences"
                     shadowColor={theme.palette.primary.main}
+                    fontSize={{
+                        xs: "0.8rem",
+                        sm: "1rem",
+                        md: "1.2rem",
+                        lg: "1.7rem",
+                    }}
                 />
             </Box>
 

@@ -46,8 +46,8 @@ const CertificatesSection = ({
             alt={modalPhoto}
             variant="rounded"
             sx={{
-                width: "auto",
-                height: "80vh",
+                width: { xs: "80vw", lg: "auto" },
+                height: { xs: "auto", lg: "80vh" },
                 bgcolor: theme.palette.text.primary,
                 zIndex: 200,
             }}
@@ -86,23 +86,30 @@ const CertificatesSection = ({
 
             <Box
                 sx={{
-                    width: { xs: "70%", sm: "70%", lg: "40%", xl: "30%" },
-                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                    width: { xs: "100%", md: "80%", lg: "40%", xl: "30%" },
+                    height: { xs: "11rem", lg: "13rem" },
                 }}
             >
                 <AnimatedTitle
                     text="courses"
                     tertiary={theme.palette.secondary.main}
                     shadowColor={theme.palette.primary.main}
+                    fontSize={{
+                        xs: "0.8rem",
+                        sm: "1rem",
+                        md: "1.2rem",
+                        lg: "1.7rem",
+                    }}
                 />
             </Box>
 
             <Stack
-                direction="row"
-                p={5}
+                direction={{ xs: "column", lg: "row" }}
                 justifyContent="space-evenly"
                 alignItems="center"
                 width="100%"
+                spacing={{ xs: 5, lg: 0 }}
+                p={5}
             >
                 <CertsChart
                     courses={courses}

@@ -36,7 +36,7 @@ const LowerSection = ({ cert }: LowerSectionProps) => {
                             <Chip
                                 label={skill}
                                 sx={{
-                                    fontSize: "1.2vw",
+                                    fontSize: { xs: "1rem", lg: "1.2rem" },
                                     color: theme.palette.secondary.main,
                                     bgcolor: theme.palette.primary.main,
                                 }}

@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { Fragment } from "react";
 import { ChartControllerProps, ChartControllerStyles } from "./styles";
@@ -10,19 +10,20 @@ const ChartController = ({
     extraSX,
 }: ChartControllerProps) => {
     const theme = useTheme();
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     return (
         <Stack
             component={motion.div}
             initial={{ x: 0 }}
-            whileHover={{ x: 110 }}
+            whileHover={{ x: lgScreen ? 110 : 0 }}
             sx={ChartControllerStyles(extraSX)}
         >
             {values.map((constantChartType, index) => {
                 return (
                     <Fragment key={`chart type number: ${index}`}>
-                        <Box
-                            component={motion.button}
+                        <Stack
+                            component={motion.div}
                             animate={{
                                 color:
                                     constantChartType === value
@@ -36,16 +37,21 @@ const ChartController = ({
                                 setValue(constantChartType);
                             }}
                             sx={{
+                                width: "100%",
                                 bgcolor: "transparent",
                                 border: 0,
                                 cursor: "pointer",
                                 padding: 1,
                             }}
                         >
-                            <Typography textTransform="capitalize">
+                            <Typography
+                                width="auto"
+                                textTransform="capitalize"
+                                textAlign={{ xs: "center", lg: "right" }}
+                            >
                                 {constantChartType}
                             </Typography>
-                        </Box>
+                        </Stack>
                     </Fragment>
                 );
             })}

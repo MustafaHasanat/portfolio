@@ -12,7 +12,7 @@ const ButtonSet = () => {
             ml={3}
             mt={3}
             sx={{
-                float: "left",
+                float: { xs: "right", md: "left" },
             }}
         >
             <Link href="/about/story" title="Read more about me ...">
@@ -29,13 +29,13 @@ const ButtonSet = () => {
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {}}
                     extraSX={{
-                        width: "18vw",
+                        width: { xs: "15rem", md: "18rem" },
                         height: "8vh",
                         zIndex: 3,
                     }}
                 >
                     <Typography
-                        fontSize="1.3vw"
+                        fontSize={{ xs: "1.2rem", md: "1.3rem" }}
                         textTransform="uppercase"
                         letterSpacing={2}
                     >

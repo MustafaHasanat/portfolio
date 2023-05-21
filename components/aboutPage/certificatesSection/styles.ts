@@ -38,7 +38,7 @@ export const ListBoxStyles = (bgcolor: string) => {
     return {
         bgcolor: bgcolor,
         width: "100%",
-        height: "70vh",
+        height: { xs: "auto", md: "28rem" },
         alignItems: "center",
         borderRadius: 3,
         p: 4,
@@ -49,13 +49,14 @@ export const ListBoxStyles = (bgcolor: string) => {
 export const ChartControllerStyles = (extraSX: any) => {
     return {
         alignItems: "flex-end",
-        position: "absolute",
-        right: -20,
+        position: { xs: "relative", lg: "absolute" },
+        right: { xs: 0, lg: -20 },
         borderRadius: 2,
         py: 1,
-        pr: 2,
+        px: 2,
+        my: { xs: 2, lg: 0 },
         spacing: 1,
-        width: 200,
+        width: { xs: "100%", sm: "50%", md: "30%", lg: 200 },
         zIndex: 1,
         ...extraSX,
     };
@@ -79,8 +80,8 @@ export const CourseCardUpperBoxStyles = (bgcolor: string) => {
         bgcolor: bgcolor,
         cursor: "pointer",
         transition: "opacity 0.3s ease",
-        minHeight: "10vh",
-        maxHeight: "10vh",
+        minHeight: "4rem",
+        maxHeight: "4rem",
         position: "relative",
 
         ":hover": {
@@ -94,6 +95,8 @@ export const CourseCardImageStyles = {
     height: "auto",
     cursor: "pointer",
     transition: "transform 0.3s ease",
+    display: "flex",
+    justifyContent: "center",
 
     "&:hover": {
         transform: "scale(1.1)",

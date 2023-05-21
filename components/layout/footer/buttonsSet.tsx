@@ -15,11 +15,12 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
 
     return (
         <Stack
-            direction="row"
+            direction={{ xs: "column", md: "row" }}
             justifyContent="space-between"
             sx={{
-                gridRow: "5 / 6",
-                gridColumn: "1 / 3",
+                height: { xs: "6rem", md: "3rem", lg: "auto" },
+                gridRow: { xs: "span 1", lg: "5 / 6" },
+                gridColumn: { xs: "1 / 2", lg: "1 / 3" },
             }}
         >
             <Button
@@ -33,7 +34,8 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                     setSendHovered(false);
                 }}
                 sx={{
-                    width: "87%",
+                    width: { xs: "100%", md: "75%", lg: "87%" },
+                    height: { xs: "45%", md: "100%" },
                     color: theme.palette.text.primary,
                     border: `1px solid ${theme.palette.text.primary}`,
                 }}
@@ -41,7 +43,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 <Typography
                     component={motion.p}
                     animate={{ x: sendHovered ? 0 : 30 }}
-                    fontSize="1.5vw"
+                    fontSize={{ xs: "1rem", lg: "1.5rem" }}
                     mr={3}
                     color={
                         sendHovered
@@ -68,8 +70,8 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                             color: sendHovered
                                 ? theme.palette.success.main
                                 : theme.palette.text.primary,
-                            width: "100%",
-                            height: "100%",
+                            width: "1rem",
+                            height: "auto",
                             transition: "0.3s ease",
                         }}
                     />
@@ -88,6 +90,10 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 onClick={clearForm}
                 color={theme.palette.text.primary}
                 hoverColor={theme.palette.error.main}
+                extraSX={{
+                    width: { xs: "100%", md: "20%", lg: "10%" },
+                    height: { xs: "45%", md: "100%" },
+                }}
             >
                 <Typography>clear</Typography>
             </IconicButton>

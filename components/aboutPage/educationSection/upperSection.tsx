@@ -28,19 +28,25 @@ const UpperSection = ({ cert }: UpperSectionProps) => {
     };
 
     return (
-        <Stack direction="row" justifyContent="start" alignItems="center">
+        <Stack
+            direction={{ xs: "column", lg: "row" }}
+            justifyContent="start"
+            alignItems="center"
+        >
             <Avatar
                 variant="square"
                 src={cert.logo.asset.url}
                 sx={{
-                    width: "25%",
+                    width: { xs: "50%", lg: "25%" },
                     height: "fit-content",
+                    mb: { xs: 3, lg: 0 },
                 }}
             />
 
             <Stack
                 ml={3}
                 justifyContent="space-between"
+                spacing={{ xs: 2, lg: 0 }}
                 sx={{
                     width: "fit-content",
                 }}

@@ -3,11 +3,11 @@ import { useRef } from "react";
 import { useTheme } from "@mui/material";
 import useBoxSize from "@/hooks/useBoxSize";
 import { useInView } from "framer-motion";
-import SettingsIcon from "@mui/icons-material/Settings";
 
 interface AnimatedTitleProps {
     text: string;
 
+    fontSize?: any;
     containerWidth?: string;
     containerHeight?: string;
     buttonWidth?: string;
@@ -50,6 +50,7 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
         buttonLimit = 15,
         // text
         text = "title placeholder",
+        fontSize = { xs: "1rem", sm: "1.2rem", md: "1.7rem" },
 
         extraSX,
     } = props;
@@ -202,7 +203,7 @@ const AnimatedTitle = (props: AnimatedTitleProps) => {
                     textTransform="uppercase"
                     letterSpacing={3}
                     fontWeight="bold"
-                    fontSize={{ xs: "1rem", sm: "1.2rem", md: "1.7rem" }}
+                    fontSize={fontSize}
                     textAlign="center"
                 >
                     {text}
