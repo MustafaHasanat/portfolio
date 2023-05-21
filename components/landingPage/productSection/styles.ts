@@ -45,6 +45,7 @@ export const BackBox = {
 export const MiniCardBox = (
     height: number,
     bgcolor: string,
+    shadowColor: string,
     transform: string
 ) => {
     return {
@@ -53,7 +54,7 @@ export const MiniCardBox = (
         width: { xs: "80%", sm: "30%", md: "25%" },
         height: height * 1.5,
         borderRadius: 3,
-        boxShadow: "0 0 10px rgba(0,0,0,0.25)",
+        boxShadow: `0 0 5px ${shadowColor}`,
         background: `${bgcolor}11`,
         justifyContent: "center",
         alignItems: "center",

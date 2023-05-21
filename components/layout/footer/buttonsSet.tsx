@@ -18,8 +18,9 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
             direction="row"
             justifyContent="space-between"
             sx={{
-                gridRow: "5 / 6",
-                gridColumn: "1 / 3",
+                height: { xs: "3rem", lg: "auto" },
+                gridRow: { xs: "span 1", lg: "5 / 6" },
+                gridColumn: { xs: "1 / 2", lg: "1 / 3" },
             }}
         >
             <Button
@@ -33,7 +34,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                     setSendHovered(false);
                 }}
                 sx={{
-                    width: "87%",
+                    width: { xs: "75%", lg: "87%" },
                     color: theme.palette.text.primary,
                     border: `1px solid ${theme.palette.text.primary}`,
                 }}
@@ -41,7 +42,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 <Typography
                     component={motion.p}
                     animate={{ x: sendHovered ? 0 : 30 }}
-                    fontSize="1.5vw"
+                    fontSize={{ xs: "1rem", lg: "1.5rem" }}
                     mr={3}
                     color={
                         sendHovered
@@ -88,6 +89,9 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 onClick={clearForm}
                 color={theme.palette.text.primary}
                 hoverColor={theme.palette.error.main}
+                extraSX={{
+                    width: { xs: "20%", lg: "10%" },
+                }}
             >
                 <Typography>clear</Typography>
             </IconicButton>

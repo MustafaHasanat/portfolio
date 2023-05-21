@@ -43,7 +43,7 @@ const ExperienceSection = ({
             <Box
                 sx={{
                     width: { xs: "70%", lg: "40%" },
-                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                    height: { xs: "11rem", lg: "13rem" },
                 }}
             >
                 <AnimatedTitle

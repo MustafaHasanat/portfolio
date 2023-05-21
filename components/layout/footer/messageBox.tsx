@@ -33,8 +33,8 @@ const MessageBox = ({ handleChange, isReset }: MessageBoxProps) => {
             justifyContent="space-between"
             alignItems="flex-start"
             sx={{
-                gridRow: "3 / 5",
-                gridColumn: "2 / 3",
+                gridRow: { xs: "2 / 5", lg: "3 / 5" },
+                gridColumn: { xs: "1 / 2", lg: "2 / 3" },
             }}
         >
             <Box

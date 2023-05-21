@@ -3,13 +3,7 @@ import Footer from "./footer";
 import Header from "./header";
 import HeadTag from "./metadata/headTag";
 import Main from "./main";
-import {
-    Stack,
-    Box,
-    useTheme,
-    CircularProgress,
-    useMediaQuery,
-} from "@mui/material";
+import { Stack, Box, useMediaQuery } from "@mui/material";
 import Contacts from "./contacts";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions, globalAssetsActions } from "@/utils/store/store";
@@ -23,13 +17,14 @@ import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import { getAllGlobalAssets } from "@/utils/sanity/globalAsset";
 import { GlobalAsset } from "@/types/globalAsset";
 import LeftDrawer from "./header/leftDrawer";
+import { useRouter } from "next/router";
 
 interface LayoutProps {
     children: JSX.Element;
 }
 
 const Layout = ({ children }: LayoutProps) => {
-    const theme = useTheme();
+    const router = useRouter();
     const landingSectionRef = useRef(null);
     const landingSectionInView = useInView(landingSectionRef);
     const headerAnimations = useAnimation();
@@ -66,6 +61,10 @@ const Layout = ({ children }: LayoutProps) => {
         };
         getGlobalAssets();
     }, [dispatch]);
+
+    useEffect(() => {
+        setDrawerIsOpened(false);
+    }, [router.asPath]);
 
     return (
         <Stack id="landing page box">

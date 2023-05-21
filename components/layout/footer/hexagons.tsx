@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar, Box, Link, Stack, Typography, useTheme } from "@mui/material";
-import LayoutConstants from "@/utils/constants/global/layout";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import HexagonRoundedIcon from "@mui/icons-material/HexagonRounded";
 import { useSelector } from "react-redux";
 import { FooterSocial } from "@/types/footerSocial";
@@ -25,14 +24,14 @@ const Hexagons = () => {
             justifyContent="space-evenly"
             alignItems="center"
             position="relative"
-            width="40%"
-            height="100%"
+            width={{ xs: "100%", lg: "40%" }}
+            height="90vh"
         >
             <Typography
-                width="80%"
+                width={{ xs: "100%", lg: "80%" }}
                 textAlign="center"
                 color={theme.palette.text.primary}
-                fontSize="1.5vw"
+                fontSize={{ xs: "1.8rem", lg: "1.4rem" }}
             >
                 {title}
             </Typography>
