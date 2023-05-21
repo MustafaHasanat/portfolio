@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Avatar, Box, Stack } from "@mui/material";
+import { Avatar, Box, Stack, useMediaQuery } from "@mui/material";
 import { Experience } from "@/types/experience";
 import theme from "@/styles/theme";
 import SwitchBox from "./switchBox";
@@ -13,6 +13,7 @@ interface RoleBoxProps {
 
 const RoleBox = ({ experience, index }: RoleBoxProps) => {
     const cardRef = useRef(null);
+    const lgScreen = useMediaQuery("(min-width:1440px)");
     const cardInView = useInView(cardRef);
 
     return (
@@ -21,31 +22,43 @@ const RoleBox = ({ experience, index }: RoleBoxProps) => {
                 ref={cardRef}
                 component={motion.div}
                 initial={{ x: 0 }}
-                animate={{ x: cardInView ? (index % 2 === 0 ? -70 : 70) : 0 }}
-                direction="row"
+                animate={{
+                    x: !lgScreen
+                        ? 0
+                        : cardInView
+                        ? index % 2 === 0
+                            ? -70
+                            : 70
+                        : 0,
+                }}
+                direction={{ xs: "column", lg: "row" }}
                 sx={{
-                    width: { xs: "65%" },
-                    height: "15rem",
+                    width: { xs: "20rem", md: "30rem", lg: "65%" },
+                    height: { xs: "auto", lg: "15rem" },
                     bgcolor: theme.palette.text.primary,
                     overflow: "hidden",
                     borderRadius: 3,
+                    alignItems: "start",
                 }}
             >
-                <Box
+                <Stack
                     sx={{
-                        width: "auto",
-                        height: "100%",
+                        width: { xs: "100%", lg: "auto" },
+                        height: { xs: "auto", lg: "100%" },
+                        alignItems: { xs: "center", lg: "start" },
                     }}
                 >
                     <Avatar
                         variant="square"
                         src={experience.logo.asset.url}
                         sx={{
-                            width: "100%",
-                            height: "100%",
+                            width: { xs: "10rem", lg: "auto" },
+                            height: { xs: "auto", lg: "100%" },
+                            borderRadius: { xs: 3, lg: 0 },
+                            my: { xs: 3, lg: 0 },
                         }}
                     />
-                </Box>
+                </Stack>
 
                 <SwitchBox experience={experience} />
             </Stack>

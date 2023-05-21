@@ -103,11 +103,11 @@ export default function About({
     return (
         <Stack>
             <Box
-                 id="about-bio"
+                id="about-bio"
                 ref={bioSecRef}
                 sx={{
                     position: "relative",
-                    height: "101vh",
+                    height: { xs: 0, lg: "101vh" },
                     width: " 100%",
                 }}
             >

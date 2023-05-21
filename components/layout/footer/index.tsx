@@ -74,7 +74,7 @@ const Footer = () => {
             direction={{ xs: "column-reverse", lg: "row" }}
             justifyContent={{ xs: "space-evenly", lg: "space-between" }}
             alignItems="center"
-            px={12}
+            px={{ xs: 8, md: 12 }}
             pb={{ xs: 5, lg: 0 }}
             sx={{
                 position: "relative",

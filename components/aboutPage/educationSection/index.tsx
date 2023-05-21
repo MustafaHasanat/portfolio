@@ -40,14 +40,20 @@ const EducationSection = ({
 
             <Box
                 sx={{
-                    width: { xs: "70%", sm: "70%", lg: "40%", xl: "30%" },
-                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                    width: { xs: "100%", md: "80%", lg: "40%", xl: "30%" },
+                    height: { xs: "11rem", lg: "13rem" },
                 }}
             >
                 <AnimatedTitle
                     text="education"
                     tertiary={theme.palette.secondary.main}
                     shadowColor={theme.palette.primary.main}
+                    fontSize={{
+                        xs: "0.8rem",
+                        sm: "1rem",
+                        md: "1.2rem",
+                        lg: "1.7rem",
+                    }}
                 />
             </Box>
 
@@ -55,8 +61,8 @@ const EducationSection = ({
                 justifyContent="center"
                 gap={15}
                 my={5}
-                flexWrap="wrap"
-                direction="row"
+                flexWrap={{ xs: "nowrap", md: "wrap" }}
+                direction={{ xs: "column", md: "row" }}
             >
                 {certificates.map((cert, index) => {
                     return (
@@ -72,8 +78,8 @@ const EducationSection = ({
                                 },
                             }}
                             sx={{
-                                width: "25vw",
-                                height: "80vh",
+                                width: { xs: "100%", lg: "25vw" },
+                                height: { xs: "auto", lg: "80vh" },
                                 position: "relative",
                                 padding: 3,
                                 justifyContent: "space-evenly",

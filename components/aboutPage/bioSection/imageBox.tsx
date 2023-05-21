@@ -13,7 +13,17 @@ const ImageBox = ({
     const { ref: boxRef, width: boxWidth, height: boxHeight } = useBoxSize();
 
     return (
-        <Box position="relative" my={2} sx={extraSX}>
+        <Box
+            position="relative"
+            my={2}
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+
+                ...extraSX,
+            }}
+        >
             <Box
                 sx={{
                     width: boxWidth,

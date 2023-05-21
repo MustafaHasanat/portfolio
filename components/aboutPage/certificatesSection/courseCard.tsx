@@ -5,6 +5,7 @@ import {
     Divider,
     Stack,
     Typography,
+    useMediaQuery,
     useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
@@ -25,6 +26,8 @@ const CourseCard = ({
 }: CourseCardProps) => {
     const theme = useTheme();
     const isVisible = isCardOpened(index);
+    const mdScreen = useMediaQuery("(min-width:768px)");
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     const dispatch = useDispatch();
     const toggleModalVisibility = (state: boolean) => {
@@ -47,10 +50,10 @@ const CourseCard = ({
     return (
         <Stack
             component={motion.div}
-            initial={{ minHeight: "10vh", height: "10vh" }}
+            initial={{ minHeight: "4rem", height: "4rem" }}
             animate={{
-                minHeight: isVisible ? "30vh" : "10vh",
-                height: isVisible ? "30vh" : "10vh",
+                minHeight: !isVisible ? "4rem" : !lgScreen ? "24rem" : "12rem",
+                height: !isVisible ? "4rem" : !lgScreen ? "24rem" : "12rem",
             }}
             sx={CourseCardStyles(theme.palette.text.primary)}
         >
@@ -67,6 +70,7 @@ const CourseCard = ({
                         textTransform="capitalize"
                         fontWeight="bold"
                         width="90%"
+                        fontSize={{ xs: "0.7rem", md: "1.2rem" }}
                     >
                         {course.title}
                     </Typography>
@@ -76,8 +80,8 @@ const CourseCard = ({
                     variant="rounded"
                     src={course.issuer.image.asset.url}
                     sx={{
-                        height: "100%",
-                        width: "15%",
+                        height: { xs: "4rem", lg: "100%" },
+                        width: { xs: "4rem", lg: "15%" },
                     }}
                 />
             </Stack>
@@ -91,13 +95,16 @@ const CourseCard = ({
             />
 
             <Stack
-                direction="row"
+                direction={{ xs: "column", lg: "row" }}
                 width="100%"
-                height="15vh"
+                height={{ xs: "24rem", lg: "6rem" }}
                 p={1}
                 justifyContent="space-evenly"
             >
-                <Stack width="50%" justifyContent="space-evenly">
+                <Stack
+                    width={{ xs: "100%", lg: "50%" }}
+                    justifyContent="space-evenly"
+                >
                     {detailsBox("category:", course.category)}
                     {detailsBox("issuer:", course.issuer.issuer)}
                     {detailsBox("date:", course.date)}
@@ -114,7 +121,10 @@ const CourseCard = ({
                     <Avatar
                         variant="rounded"
                         src={course.image.asset.url}
-                        sx={{ width: "100%", height: "100%" }}
+                        sx={{
+                            width: { xs: "auto", lg: "100%" },
+                            height: { xs: "8.5rem", lg: "100%" },
+                        }}
                     />
                 </Box>
             </Stack>

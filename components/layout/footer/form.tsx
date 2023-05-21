@@ -83,7 +83,7 @@ const Form = ({ formRef, handleSubmit }: FormProps) => {
                     <Typography
                         textAlign="center"
                         color={theme.palette.text.primary}
-                        fontSize={{ xs: "1.8rem", lg: "2rem" }}
+                        fontSize={{ xs: "1.2rem", md: "1.7rem", lg: "2rem" }}
                         width="70%"
                     >
                         Send me a quick message:

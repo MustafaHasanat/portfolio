@@ -1,11 +1,12 @@
 export const MainBoxStyles = (bgcolor: string) => {
     return {
-        position: "fixed",
+        position: { xs: "relative", lg: "fixed" },
         bgcolor: bgcolor,
-        height: "100vh",
-        pt: "20vh",
-        pb: 10,
-        px: 18,
+        height: { xs: "auto", lg: "100vh" },
+        pt: { xs: "10vh", lg: "20vh" },
+        pb: { xs: 5, lg: 10 },
+        pl: { xs: 10, lg: 18 },
+        pr: { xs: 5, lg: 18 },
     };
 };
 
@@ -16,8 +17,8 @@ export interface BioSectionProps {}
 export interface ImageBoxProps {
     src: string;
     alt: string;
-    width: string;
-    height: string;
+    width: any;
+    height: any;
     shadowColor: string;
     extraSX?: any;
 }
@@ -25,6 +26,5 @@ export interface ImageBoxProps {
 export interface TitleProps {
     text: string;
     color: string;
-    variant: any;
     extraSX?: any;
 }

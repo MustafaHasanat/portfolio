@@ -17,7 +17,7 @@ const BioSection = ({}: BioSectionProps) => {
     );
 
     return (
-        <Box sx={MainBoxStyles(theme.palette.secondary.main)}>
+        <Box p={0} sx={MainBoxStyles(theme.palette.secondary.main)}>
             <Box
                 sx={{
                     position: "absolute",
@@ -29,12 +29,12 @@ const BioSection = ({}: BioSectionProps) => {
             {ImageBox({
                 src: globalAssets?.mySecondAvatar?.src,
                 alt: "avatar",
-                width: "30vw",
-                height: "30vw",
+                width: { xs: "50vw", lg: "30vw" },
+                height: { xs: "50vw", lg: "30vw" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
-                    float: "right",
-                    ml: 5,
+                    float: { xs: "unset", lg: "right" },
+                    ml: { xs: 0, lg: 5 },
                     mb: 2,
                 },
             })}
@@ -42,7 +42,6 @@ const BioSection = ({}: BioSectionProps) => {
             {Title({
                 text: "a little about me",
                 color: theme.palette.text.primary,
-                variant: "h3",
             })}
 
             {ParagraphBox({

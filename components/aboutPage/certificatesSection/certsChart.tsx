@@ -1,10 +1,5 @@
 import { Stack, useTheme } from "@mui/material";
-import {
-    MouseEvent,
-    useEffect,
-    useRef,
-    useState,
-} from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 import constants from "@/utils/constants";
 import { InteractionItem } from "chart.js/dist/core/core.interaction";
 import {
@@ -14,7 +9,12 @@ import {
     PolarArea,
     getElementAtEvent,
 } from "react-chartjs-2";
-import { CertsChartProps, chartDataConfig, chartStyles, radialChartOptions } from "./styles";
+import {
+    CertsChartProps,
+    chartDataConfig,
+    chartStyles,
+    radialChartOptions,
+} from "./styles";
 
 const CertsChart = ({
     courses,
@@ -29,7 +29,7 @@ const CertsChart = ({
         Array(constants.about.categories.length).fill(0)
     );
 
-    const chartData = chartDataConfig(coursesData)
+    const chartData = chartDataConfig(coursesData);
 
     const chartComponent = (chartType: string) => {
         switch (chartType) {
@@ -104,7 +104,11 @@ const CertsChart = ({
         });
     }, [courses]);
 
-    return <Stack width="40%">{chartComponent(chartType)}</Stack>;
+    return (
+        <Stack width={{ xs: "70vw", lg: "40%" }}>
+            {chartComponent(chartType)}
+        </Stack>
+    );
 };
 
 export default CertsChart;

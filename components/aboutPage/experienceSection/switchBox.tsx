@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, useMediaQuery } from "@mui/material";
 import theme from "@/styles/theme";
 import IconicButton from "@/components/shared/iconicButton";
 import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
@@ -13,6 +13,7 @@ interface SwitchBoxProps {
 }
 
 const SwitchBox = ({ experience }: SwitchBoxProps) => {
+    const lgScreen = useMediaQuery("(min-width:1440px)");
     const [bulletsIsVisible, setBulletsIsVisible] = useState(false);
 
     const pairBox = (title: string, text: string) => {
@@ -39,27 +40,37 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
 
     return (
         <Stack
+            direction={{ xs: "row", lg: "column" }}
             component={motion.div}
-            initial={{ y: 0 }}
-            animate={{ y: bulletsIsVisible ? "-50%" : 0 }}
+            initial={{ y: 0, x: 0 }}
+            animate={{
+                y: !lgScreen ? 0 : bulletsIsVisible ? "-50%" : 0,
+                x: lgScreen ? 0 : bulletsIsVisible ? "-50%" : 0,
+            }}
             sx={{
-                width: "calc(100% - 15rem)",
-                height: "30rem",
+                width: { xs: "40rem", md: "60rem", lg: "calc(100% - 15rem)" },
+                height: { xs: "auto", lg: "30rem" },
                 overflow: "hidden",
-                py: 1,
+                justifyContent: { xs: "start", lg: "start" },
+                py: { xs: 3, lg: 1 },
                 px: 3,
             }}
         >
             <Stack
-                direction="row"
+                direction={{ xs: "column", lg: "row" }}
+                spacing={{ xs: 3, lg: 0 }}
                 sx={{
-                    width: "100%",
+                    width: { xs: "20rem", md: "30rem", lg: "100%" },
                     height: "100%",
                     justifyContent: "space-between",
                     alignItems: "center",
                 }}
             >
-                <Stack justifyContent="space-evenly" height="100%">
+                <Stack
+                    justifyContent="space-evenly"
+                    spacing={{ xs: 2, lg: 0 }}
+                    height={{ xs: "50%", lg: "100%" }}
+                >
                     {pairBox("Role:", experience.role)}
                     {pairBox("Employment Type:", experience.employmentType)}
                     {pairBox(
@@ -105,16 +116,22 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
             </Stack>
 
             <Stack
-                direction="row"
+                direction={{ xs: "column", lg: "row" }}
+                spacing={{ xs: 3, lg: 0 }}
                 sx={{
-                    width: "100%",
+                    width: { xs: "20rem", md: "30rem", lg: "100%" },
                     height: "100%",
                     justifyContent: "space-between",
                     alignItems: "center",
                     pt: 1,
                 }}
             >
-                <Stack height="100%" justifyContent="space-evenly" width="70%">
+                <Stack
+                    height="100%"
+                    justifyContent="space-evenly"
+                    width={{ xs: "60%", lg: "70%" }}
+                    spacing={{ xs: 2, lg: 0 }}
+                >
                     {experience.bullets.map((bullet, bulletIndex) => {
                         return (
                             <Stack

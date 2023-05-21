@@ -1,4 +1,10 @@
-import { Divider, Stack, Typography, useTheme } from "@mui/material";
+import {
+    Divider,
+    Stack,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import ChartController from "./chartController";
 import CourseCard from "./courseCard";
@@ -16,6 +22,7 @@ const CertsList = ({
 }: CertsListProps) => {
     const theme = useTheme();
     const [filteredCourses, setFilteredCourses] = useState(courses);
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     useEffect(() => {
         if (!filterPhrase) {
@@ -32,16 +39,27 @@ const CertsList = ({
     }, [courses, filterPhrase]);
 
     return (
-        <Stack width="40%" height="70vh" position="relative">
+        <Stack
+            width={{ xs: "70vw", lg: "40%" }}
+            height={{ xs: "auto", lg: "70vh" }}
+            alignItems="center"
+            position="relative"
+        >
             <ChartController
                 values={constants.about.chartTypes.names}
                 value={chartType}
                 setValue={setChartType}
-                extraSX={{ top: 50, bgcolor: theme.palette.primary.main }}
+                extraSX={{
+                    top: { xs: "unset", lg: 50 },
+                    bgcolor: theme.palette.primary.main,
+                }}
             />
 
             <Stack sx={ListBoxStyles(theme.palette.secondary.main)}>
-                <Typography variant="h5" color={theme.palette.text.primary}>
+                <Typography
+                    fontSize={{ xs: "1.3rem", md: "1.8rem" }}
+                    color={theme.palette.text.primary}
+                >
                     Results: {filteredCourses.length}{" "}
                     {filterPhrase && `(${filterPhrase})`}
                 </Typography>
@@ -56,7 +74,7 @@ const CertsList = ({
 
                 <Stack
                     width="100%"
-                    height="55vh"
+                    height={{ xs: "28rem", lg: "55vh" }}
                     spacing={2}
                     sx={{
                         overflow: "scroll",

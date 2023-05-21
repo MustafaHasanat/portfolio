@@ -1,14 +1,14 @@
 import { Typography } from "@mui/material";
 import { TitleProps } from "./styles";
 
-const Title = ({ text, color, variant, extraSX }: TitleProps) => {
+const Title = ({ text, color, extraSX }: TitleProps) => {
     return (
         <Typography
             color={color}
-            variant={variant}
             textTransform="capitalize"
             my={3}
             fontWeight="bold"
+            fontSize={{ xs: "1.7rem", md: "3rem" }}
             sx={extraSX}
         >
             {text}
