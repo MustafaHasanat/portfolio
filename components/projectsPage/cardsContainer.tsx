@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, useMediaQuery } from "@mui/material";
 import { Fragment, useEffect, useReducer } from "react";
 import Card from "./card";
 import SearchField from "./searchField";
@@ -9,6 +9,8 @@ import { ReducerProps } from "./styles";
 import { projectsReducer } from "./projectsReducer";
 
 const CardsContainer = ({ projects }: CardsContainerProps) => {
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+
     const reducerInitialValues: ReducerProps = {
         projectsCards: projects,
         filterIsOpened: false,
@@ -127,11 +129,11 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
     ]);
 
     return (
-        <Stack direction="row" justifyContent="center" px={12}>
+        <Stack direction="row" justifyContent="center" px={{ xs: 3, lg: 12 }}>
             <Stack
                 justifyContent="flex-start"
                 alignItems="center"
-                spacing={8}
+                spacing={{xs: 3, lg: 8}}
                 p={2}
                 width="100%"
             >
@@ -139,6 +141,14 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
                     projectsState={projectsState}
                     dispatchProject={dispatchProject}
                 />
+
+                {!lgScreen && (
+                    <FilterBox
+                        projectsState={projectsState}
+                        dispatchProject={dispatchProject}
+                        clearFilter={clearFilter}
+                    />
+                )}
 
                 {projectsState.projectsCards.map((project, index) => {
                     return (
@@ -153,11 +163,13 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
                 })}
             </Stack>
 
-            <FilterBox
-                projectsState={projectsState}
-                dispatchProject={dispatchProject}
-                clearFilter={clearFilter}
-            />
+            {lgScreen && (
+                <FilterBox
+                    projectsState={projectsState}
+                    dispatchProject={dispatchProject}
+                    clearFilter={clearFilter}
+                />
+            )}
         </Stack>
     );
 };

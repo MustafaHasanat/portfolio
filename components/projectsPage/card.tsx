@@ -1,17 +1,23 @@
 import { Project } from "@/types/project";
-import { Divider, Link, Stack, Typography, useTheme } from "@mui/material";
+import {
+    Divider,
+    Link,
+    Stack,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import SlidingTitle from "../shared/slidingTitle";
 import LandingPagePic from "./landingPagePic";
 import getDateInfo from "@/utils/helpers/getDateInfo";
 import { Dispatch } from "react";
 import { CardProps } from "./styles";
 
-const Card = ({
-    projectsState,
-    dispatchProject,
-    project,
-}: CardProps) => {
+const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
     const theme = useTheme();
+    const lgScreen = useMediaQuery("(min-width:1440px)");
+
+    const filterIsOpened = projectsState?.filterIsOpened || false;
 
     const textPair = (key: string, value: string) => {
         return (
@@ -37,13 +43,19 @@ const Card = ({
 
     return (
         <Stack
-            direction={projectsState.filterIsOpened ? "column" : "row"}
+            direction={{
+                xs: "column",
+                lg: filterIsOpened ? "column" : "row",
+            }}
             justifyContent="space-between"
             alignItems="center"
-            py={projectsState.filterIsOpened ? 4 : 0}
+            py={{ xs: 4, lg: filterIsOpened ? 4 : 0 }}
             px={4}
             sx={{
-                height: projectsState.filterIsOpened ? "auto" : "45vh",
+                height: {
+                    xs: "auto",
+                    lg: filterIsOpened ? "auto" : "45vh",
+                },
                 bgcolor: theme.palette.text.primary,
                 overflow: "hidden",
                 borderRadius: 3,
@@ -53,16 +65,18 @@ const Card = ({
             <LandingPagePic
                 href={project.website}
                 project={project}
-                filterIsOpened={projectsState.filterIsOpened}
+                filterIsOpened={filterIsOpened}
             />
 
             <Divider
-                orientation={projectsState.filterIsOpened ? "vertical" : "horizontal"}
+                orientation={
+                    lgScreen || filterIsOpened ? "vertical" : "horizontal"
+                }
                 sx={{
                     bgcolor: theme.palette.secondary.main,
-                    width: projectsState.filterIsOpened ? "80%" : "1px",
-                    height: projectsState.filterIsOpened ? "1px" : "80%",
-                    my: projectsState.filterIsOpened ? 3 : 0,
+                    width: !lgScreen || filterIsOpened ? "80%" : "1px",
+                    height: !lgScreen || filterIsOpened ? "1px" : "80%",
+                    my: !lgScreen || filterIsOpened ? 3 : 0,
                     opacity: 0.4,
                 }}
             />
@@ -71,8 +85,8 @@ const Card = ({
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 spacing={1}
-                width={projectsState.filterIsOpened ? "100%" : "45%"}
-                height={projectsState.filterIsOpened ? "auto" : "85%"}
+                width={!lgScreen || filterIsOpened ? "100%" : "45%"}
+                height={!lgScreen || filterIsOpened ? "auto" : "85%"}
             >
                 <Link
                     href={"/projects/" + project.alt}
@@ -85,7 +99,7 @@ const Card = ({
                         primary={theme.palette.primary.main}
                         secondary={theme.palette.secondary.main}
                         extraSX={{
-                            fontSize: "3.5vh",
+                            fontSize: { xs: "1.3rem", lg: "1.5rem" },
                         }}
                     />
                 </Link>

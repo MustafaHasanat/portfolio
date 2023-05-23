@@ -1,13 +1,10 @@
 import { Doc } from "@/types/doc";
 import { getAllDocs } from "@/utils/sanity/doc";
-import { Stack, useTheme } from "@mui/material";
-import { useInView } from "framer-motion";
-import { Fragment, MutableRefObject, useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { navigationBarActions } from "@/utils/store/store";
-import ManagementBox from "@/components/docsPage/managementBox";
-import constants from "@/utils/constants";
-import CategoryTemplate from "@/components/docsPage/categoryTemplate";
+import { Box, Stack, useTheme } from "@mui/material";
+import { useEffect, useState } from "react";
+import AnimatedTitle from "@/components/shared/animatedTitle";
+import SearchBox from "@/components/docsPage/searchBox";
+import DocsList from "@/components/docsPage/docsList";
 
 interface DocsProps {
     docs: Doc[];
@@ -23,109 +20,49 @@ export const getStaticProps = async (): Promise<{ props: DocsProps }> => {
 
 export default function Docs({ docs }: DocsProps) {
     const theme = useTheme();
-    const dispatch = useDispatch();
 
-    const currentView = useSelector(
-        (state: { navigationBarReducer: { currentView: string } }) =>
-            state.navigationBarReducer.currentView
-    );
-
-    const fundamentalsRef = useRef(null);
-    const frontendRef = useRef(null);
-    const backendRef = useRef(null);
-    const toolsRef = useRef(null);
-
-    const fundamentalsRefInView = useInView(fundamentalsRef);
-    const frontendRefInView = useInView(frontendRef);
-    const backendRefInView = useInView(backendRef);
-    const toolsRefInView = useInView(toolsRef);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredDocs, setFilteredDocs] = useState<Doc[]>([]);
 
     useEffect(() => {
-        dispatch(
-            navigationBarActions.setDocsView({
-                fundamentals: currentView === "fundamentals" ? true : false,
-                frontend: currentView === "frontend" ? true : false,
-                backend: currentView === "backend" ? true : false,
-                tools: currentView === "tools" ? true : false,
+        setFilteredDocs(
+            docs.filter((doc) => {
+                if (doc.title.toLowerCase().includes(searchTerm || "")) {
+                    return doc;
+                }
             })
         );
-    }, [currentView, dispatch]);
-
-    useEffect(() => {
-        if (fundamentalsRefInView)
-            dispatch(navigationBarActions.setCurrentView("fundamentals"));
-        if (frontendRefInView)
-            dispatch(navigationBarActions.setCurrentView("frontend"));
-        if (backendRefInView)
-            dispatch(navigationBarActions.setCurrentView("backend"));
-        if (toolsRefInView)
-            dispatch(navigationBarActions.setCurrentView("tools"));
-    }, [
-        fundamentalsRefInView,
-        dispatch,
-        frontendRefInView,
-        backendRefInView,
-        toolsRefInView,
-    ]);
-
-    const getFilteredData = (
-        currentDoc: string
-    ):
-        | {
-              docs: Doc[];
-              inView: MutableRefObject<null>;
-          }
-        | undefined => {
-        const docsArray = docs.filter((doc) => {
-            return doc.category === currentDoc && doc;
-        });
-
-        if (currentDoc === "fundamentals")
-            return {
-                docs: docsArray,
-                inView: fundamentalsRef,
-            };
-        else if (currentDoc === "frontend")
-            return {
-                docs: docsArray,
-                inView: frontendRef,
-            };
-        else if (currentDoc === "backend")
-            return {
-                docs: docsArray,
-                inView: backendRef,
-            };
-        else if (currentDoc === "tools")
-            return {
-                docs: docsArray,
-                inView: toolsRef,
-            };
-    };
+    }, [docs, searchTerm]);
 
     return (
         <Stack
             sx={{
                 bgcolor: theme.palette.secondary.main,
-                px: 12,
+                alignItems: "center",
+                px: { xs: 3, lg: 12 },
                 py: "25vh",
             }}
         >
-            <ManagementBox />
+            <Box
+                sx={{
+                    width: { xs: "100%", md: "80%", lg: "40%", xl: "30%" },
+                    height: { xs: "11rem", lg: "13rem" },
+                }}
+            >
+                <AnimatedTitle
+                    text="my documents"
+                    shadowColor={theme.palette.primary.main}
+                    fontSize={{
+                        xs: "0.8rem",
+                        sm: "1rem",
+                        md: "1.2rem",
+                        lg: "1.7rem",
+                    }}
+                />
+            </Box>
 
-            {constants.docs.categories.map((doc, index) => {
-                const filteredDocs = getFilteredData(doc)?.docs;
-                const inViewObj = getFilteredData(doc)?.inView;
-
-                return (
-                    <Fragment key={`docs category number: ${index}`}>
-                        <CategoryTemplate
-                            doc={doc}
-                            docs={filteredDocs || []}
-                            inViewRef={inViewObj || null}
-                        />
-                    </Fragment>
-                );
-            })}
+            <SearchBox searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <DocsList docs={filteredDocs} />
         </Stack>
     );
 }

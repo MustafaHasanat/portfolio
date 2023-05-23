@@ -27,24 +27,26 @@ const SearchField = ({ projectsState, dispatchProject }: SearchFieldProps) => {
                     height: "100%",
                 }}
             >
-                <Stack
-                    justifyContent="center"
-                    alignItems="center"
-                    sx={{
-                        borderRadius: 3,
-                        p: 1,
-                        mr: 2,
-                        height: "100%",
-                        width: "auto",
-                    }}
-                >
-                    <SearchSharpIcon
+                {lgScreen && (
+                    <Stack
+                        justifyContent="center"
+                        alignItems="center"
                         sx={{
-                            height: "70%",
-                            width: "100%",
+                            borderRadius: 3,
+                            p: 1,
+                            mr: 2,
+                            height: "100%",
+                            width: "auto",
                         }}
-                    />
-                </Stack>
+                    >
+                        <SearchSharpIcon
+                            sx={{
+                                height: "70%",
+                                width: "100%",
+                            }}
+                        />
+                    </Stack>
+                )}
 
                 <TextField
                     label="Search by title"
@@ -60,7 +62,7 @@ const SearchField = ({ projectsState, dispatchProject }: SearchFieldProps) => {
                     }}
                     sx={{
                         width: "100%",
-                        mr: 2,
+                        mr: { xs: 0, lg: 2 },
                         borderRadius: 1,
                         bgcolor: theme.palette.text.primary,
 

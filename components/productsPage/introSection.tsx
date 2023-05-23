@@ -39,9 +39,11 @@ const IntroSection = ({ product }: IntroSectionProps) => {
             <Stack
                 direction={{ xs: "column-reverse", lg: "row" }}
                 justifyContent={{ xs: "center", lg: "space-between" }}
+                alignItems={"center"}
                 my={3}
+                px={{ xs: 3, md: 10, lg: 0 }}
             >
-                <Stack width="60%" spacing={4}>
+                <Stack width={{ xs: "100%", lg: "60%" }} spacing={4}>
                     <Typography variant="h5">{product.description}</Typography>
 
                     {product?.bullets.map((bullet, index) => {
@@ -60,8 +62,9 @@ const IntroSection = ({ product }: IntroSectionProps) => {
                     src={product?.landingPage?.asset?.url}
                     alt={product?.title}
                     sx={{
-                        width: { xs: "100%", lg: "30%" },
+                        width: { xs: "100%", md: "80%", lg: "30%" },
                         height: "auto",
+                        mb: { xs: 5, lg: 0 },
                     }}
                 />
             </Stack>

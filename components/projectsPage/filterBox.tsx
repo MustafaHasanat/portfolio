@@ -1,4 +1,10 @@
-import { Divider, Stack, Typography, useTheme } from "@mui/material";
+import {
+    Divider,
+    Stack,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import YearSelectionBox from "./yearSelectionBox";
 import TypeSelectionBox from "./typeSelectionBox";
 import IconicButton from "../shared/iconicButton";
@@ -12,29 +18,41 @@ const FilterBox = ({
     clearFilter,
 }: FilterBoxProps) => {
     const theme = useTheme();
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     return (
         <Stack
             direction="row"
             sx={{
                 overflow: "hidden",
-                py: "20px",
-                width: projectsState.filterIsOpened ? "50%" : 0,
+                py: { xs: projectsState.filterIsOpened ? 3 : 0, lg: "20px" },
+                height: lgScreen
+                    ? "100%"
+                    : projectsState.filterIsOpened
+                    ? "auto"
+                    : 0,
+                width: lgScreen
+                    ? projectsState.filterIsOpened
+                        ? "50%"
+                        : 0
+                    : "100%",
                 pl: projectsState.filterIsOpened ? "20px" : "0px",
                 pr: projectsState.filterIsOpened ? "20px" : "0px",
                 transition: "width 0.3s ease, padding 0.3s ease",
             }}
         >
-            <Divider
-                orientation="vertical"
-                sx={{
-                    bgcolor: theme.palette.primary.main,
-                    height: "100%",
-                    width: "1px",
-                    opacity: 0.4,
-                    mr: 2,
-                }}
-            />
+            {lgScreen && (
+                <Divider
+                    orientation="vertical"
+                    sx={{
+                        bgcolor: theme.palette.primary.main,
+                        height: "100%",
+                        width: "1px",
+                        opacity: 0.4,
+                        mr: 2,
+                    }}
+                />
+            )}
 
             <Stack alignItems="center" width="100%">
                 <Typography variant="h5">
@@ -83,7 +101,7 @@ const FilterBox = ({
                     onClick={clearFilter}
                     extraSX={{
                         width: "90%",
-                        height: "8vh",
+                        height: "3rem",
                         mt: 5,
                     }}
                 >

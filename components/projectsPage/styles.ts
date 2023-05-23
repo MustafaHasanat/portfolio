@@ -54,8 +54,8 @@ export interface CardsContainerProps {
 }
 
 export interface CardProps {
-    projectsState: ReducerProps;
-    dispatchProject: Dispatch<ReducerActionProps>;
+    projectsState?: ReducerProps;
+    dispatchProject?: Dispatch<ReducerActionProps>;
     project: Project;
 }
 
