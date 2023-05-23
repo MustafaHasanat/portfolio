@@ -1,27 +1,17 @@
 import { Divider, Stack, Typography, useTheme } from "@mui/material";
 import YearSelectionBox from "./yearSelectionBox";
-import { AttributeListsProps } from "./cardsContainer";
 import TypeSelectionBox from "./typeSelectionBox";
 import IconicButton from "../shared/iconicButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ToolsSelectionBox from "./toolsSelectionBox";
-import { Project } from "@/types/project";
-
-interface FilterBoxProps {
-    filterIsOpened: boolean;
-    attributeLists: AttributeListsProps;
-    projectsCards: Project[];
-    clearFilter: () => void;
-}
+import { FilterBoxProps } from "./styles";
 
 const FilterBox = ({
-    filterIsOpened,
-    attributeLists,
-    projectsCards,
+    projectsState,
+    dispatchProject,
     clearFilter,
 }: FilterBoxProps) => {
     const theme = useTheme();
-    const {} = attributeLists;
 
     return (
         <Stack
@@ -29,9 +19,9 @@ const FilterBox = ({
             sx={{
                 overflow: "hidden",
                 py: "20px",
-                width: filterIsOpened ? "50%" : 0,
-                pl: filterIsOpened ? "20px" : "0px",
-                pr: filterIsOpened ? "20px" : "0px",
+                width: projectsState.filterIsOpened ? "50%" : 0,
+                pl: projectsState.filterIsOpened ? "20px" : "0px",
+                pr: projectsState.filterIsOpened ? "20px" : "0px",
                 transition: "width 0.3s ease, padding 0.3s ease",
             }}
         >
@@ -48,7 +38,7 @@ const FilterBox = ({
 
             <Stack alignItems="center" width="100%">
                 <Typography variant="h5">
-                    Filter ({projectsCards.length} results)
+                    Filter ({projectsState.projectsCards.length} results)
                 </Typography>
 
                 <Divider
@@ -64,9 +54,18 @@ const FilterBox = ({
                 />
 
                 <Stack spacing={7}>
-                    <YearSelectionBox attributeLists={attributeLists} />
-                    <TypeSelectionBox attributeLists={attributeLists} />
-                    <ToolsSelectionBox attributeLists={attributeLists} />
+                    <YearSelectionBox
+                        projectsState={projectsState}
+                        dispatchProject={dispatchProject}
+                    />
+                    <TypeSelectionBox
+                        projectsState={projectsState}
+                        dispatchProject={dispatchProject}
+                    />
+                    <ToolsSelectionBox
+                        projectsState={projectsState}
+                        dispatchProject={dispatchProject}
+                    />
                 </Stack>
 
                 <IconicButton

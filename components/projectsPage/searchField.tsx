@@ -1,20 +1,11 @@
-import { Button, TextField, useTheme } from "@mui/material";
+import { Button, TextField, useMediaQuery, useTheme } from "@mui/material";
 import { Stack } from "@mui/material";
 import FilterAltSharpIcon from "@mui/icons-material/FilterAltSharp";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
-import { Dispatch, MutableRefObject, SetStateAction, useState } from "react";
+import { SearchFieldProps } from "./styles";
 
-interface SearchFieldProps {
-    setFilterIsOpened: Dispatch<SetStateAction<boolean>>;
-    searchTerm: string;
-    setSearchTerm: Dispatch<SetStateAction<string>>;
-}
-
-const SearchField = ({
-    setFilterIsOpened,
-    searchTerm,
-    setSearchTerm,
-}: SearchFieldProps) => {
+const SearchField = ({ projectsState, dispatchProject }: SearchFieldProps) => {
+    const lgScreen = useMediaQuery("(min-width:1440px)");
     const theme = useTheme();
 
     return (
@@ -60,9 +51,12 @@ const SearchField = ({
                     variant="filled"
                     type="text"
                     color="primary"
-                    value={searchTerm}
+                    value={projectsState.searchTerm}
                     onChange={(e) => {
-                        setSearchTerm(e.target.value);
+                        dispatchProject({
+                            type: "searchTerm",
+                            payload: e.target.value,
+                        });
                     }}
                     sx={{
                         width: "100%",
@@ -85,7 +79,10 @@ const SearchField = ({
                     width: "auto",
                 }}
                 onClick={() => {
-                    setFilterIsOpened((prev) => !prev);
+                    dispatchProject({
+                        type: "filterIsOpened",
+                        payload: !projectsState.filterIsOpened,
+                    });
                 }}
             >
                 <FilterAltSharpIcon

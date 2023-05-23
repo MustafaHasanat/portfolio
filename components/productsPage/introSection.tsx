@@ -12,20 +12,35 @@ const IntroSection = ({ product }: IntroSectionProps) => {
     const theme = useTheme();
 
     return (
-        <Stack color={theme.palette.text.primary} alignItems="center">
+        <Stack
+            color={theme.palette.text.primary}
+            alignItems="center"
+            justifyContent="center"
+            width="100%"
+        >
             <Box
                 sx={{
-                    width: { xs: "70%", lg: "40%" },
-                    height: { xs: "12rem", sm: "15rem", lg: "13rem" },
+                    width: { xs: "100%", md: "80%", lg: "40%", xl: "30%" },
+                    height: { xs: "11rem", lg: "13rem" },
                 }}
             >
                 <AnimatedTitle
                     text={product?.title}
                     shadowColor={theme.palette.primary.main}
+                    fontSize={{
+                        xs: "0.8rem",
+                        sm: "1rem",
+                        md: "1.2rem",
+                        lg: "1.7rem",
+                    }}
                 />
             </Box>
 
-            <Stack direction="row" justifyContent="space-between" my={3}>
+            <Stack
+                direction={{ xs: "column-reverse", lg: "row" }}
+                justifyContent={{ xs: "center", lg: "space-between" }}
+                my={3}
+            >
                 <Stack width="60%" spacing={4}>
                     <Typography variant="h5">{product.description}</Typography>
 
@@ -45,7 +60,7 @@ const IntroSection = ({ product }: IntroSectionProps) => {
                     src={product?.landingPage?.asset?.url}
                     alt={product?.title}
                     sx={{
-                        width: "30%",
+                        width: { xs: "100%", lg: "30%" },
                         height: "auto",
                     }}
                 />

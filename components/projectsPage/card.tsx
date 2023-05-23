@@ -3,13 +3,14 @@ import { Divider, Link, Stack, Typography, useTheme } from "@mui/material";
 import SlidingTitle from "../shared/slidingTitle";
 import LandingPagePic from "./landingPagePic";
 import getDateInfo from "@/utils/helpers/getDateInfo";
+import { Dispatch } from "react";
+import { CardProps } from "./styles";
 
-interface CardProps {
-    project: Project;
-    filterIsOpened: boolean;
-}
-
-const Card = ({ project, filterIsOpened }: CardProps) => {
+const Card = ({
+    projectsState,
+    dispatchProject,
+    project,
+}: CardProps) => {
     const theme = useTheme();
 
     const textPair = (key: string, value: string) => {
@@ -36,13 +37,13 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
 
     return (
         <Stack
-            direction={filterIsOpened ? "column" : "row"}
+            direction={projectsState.filterIsOpened ? "column" : "row"}
             justifyContent="space-between"
             alignItems="center"
-            py={filterIsOpened ? 4 : 0}
+            py={projectsState.filterIsOpened ? 4 : 0}
             px={4}
             sx={{
-                height: filterIsOpened ? "auto" : "45vh",
+                height: projectsState.filterIsOpened ? "auto" : "45vh",
                 bgcolor: theme.palette.text.primary,
                 overflow: "hidden",
                 borderRadius: 3,
@@ -52,16 +53,16 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
             <LandingPagePic
                 href={project.website}
                 project={project}
-                filterIsOpened={filterIsOpened}
+                filterIsOpened={projectsState.filterIsOpened}
             />
 
             <Divider
-                orientation={filterIsOpened ? "vertical" : "horizontal"}
+                orientation={projectsState.filterIsOpened ? "vertical" : "horizontal"}
                 sx={{
                     bgcolor: theme.palette.secondary.main,
-                    width: filterIsOpened ? "80%" : "1px",
-                    height: filterIsOpened ? "1px" : "80%",
-                    my: filterIsOpened ? 3 : 0,
+                    width: projectsState.filterIsOpened ? "80%" : "1px",
+                    height: projectsState.filterIsOpened ? "1px" : "80%",
+                    my: projectsState.filterIsOpened ? 3 : 0,
                     opacity: 0.4,
                 }}
             />
@@ -70,8 +71,8 @@ const Card = ({ project, filterIsOpened }: CardProps) => {
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 spacing={1}
-                width={filterIsOpened ? "100%" : "45%"}
-                height={filterIsOpened ? "auto" : "85%"}
+                width={projectsState.filterIsOpened ? "100%" : "45%"}
+                height={projectsState.filterIsOpened ? "auto" : "85%"}
             >
                 <Link
                     href={"/projects/" + project.alt}

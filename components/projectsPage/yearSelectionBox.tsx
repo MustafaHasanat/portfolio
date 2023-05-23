@@ -2,19 +2,16 @@ import { Box, Stack, Typography, useTheme } from "@mui/material";
 import { useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { motion } from "framer-motion";
-import { AttributeListsProps } from "./cardsContainer";
+import { YearSelectionBoxProps } from "./styles";
 
-interface YearSelectionBoxProps {
-    attributeLists: AttributeListsProps;
-}
-
-const YearSelectionBox = ({ attributeLists }: YearSelectionBoxProps) => {
+const YearSelectionBox = ({
+    projectsState,
+    dispatchProject,
+}: YearSelectionBoxProps) => {
     const theme = useTheme();
     const [selectListIsOpened, setSelectListIsOpened] = useState(false);
 
-    const {
-        year: { yearSelect, setYearSelect, yearsList },
-    } = attributeLists;
+    const { yearSelect, yearsList } = projectsState;
 
     const customMenuItem = ({ value, key }: { key: string; value: number }) => {
         return (
@@ -46,7 +43,7 @@ const YearSelectionBox = ({ attributeLists }: YearSelectionBoxProps) => {
                     overflow: "hidden",
                 }}
                 onClick={() => {
-                    setYearSelect(value);
+                    dispatchProject({ type: "yearSelect", payload: value });
                     setSelectListIsOpened(false);
                 }}
             >

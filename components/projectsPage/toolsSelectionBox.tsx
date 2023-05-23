@@ -7,19 +7,16 @@ import {
     useTheme,
 } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
-import { AttributeListsProps } from "./cardsContainer";
+import { ToolsSelectionBoxProps } from "./styles";
 
-interface ToolsSelectionBoxProps {
-    attributeLists: AttributeListsProps;
-}
-
-const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
+const ToolsSelectionBox = ({
+    projectsState,
+    dispatchProject,
+}: ToolsSelectionBoxProps) => {
     const theme = useTheme();
     const [isAllSelected, setIsAllSelected] = useState(false);
 
-    const {
-        tools: { toolsList, toolsSelect, setToolsSelect },
-    } = attributeLists;
+    const { toolsList, toolsSelect } = projectsState;
 
     useEffect(() => {
         setIsAllSelected(
@@ -53,18 +50,31 @@ const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
                             }}
                             onChange={(e) => {
                                 if (e.target.checked) {
-                                    setToolsSelect((prev) =>
-                                        prev.map((toolObj) => {
-                                            return { ...toolObj, state: true };
-                                        })
-                                    );
+                                    dispatchProject({
+                                        type: "toolsSelect",
+                                        payload: projectsState.toolsSelect.map(
+                                            (toolObj) => {
+                                                return {
+                                                    ...toolObj,
+                                                    state: true,
+                                                };
+                                            }
+                                        ),
+                                    });
                                     setIsAllSelected(true);
                                 } else {
-                                    setToolsSelect((prev) =>
-                                        prev.map((toolObj) => {
-                                            return { ...toolObj, state: false };
-                                        })
-                                    );
+                                    dispatchProject({
+                                        type: "toolsSelect",
+                                        payload: projectsState.toolsSelect.map(
+                                            (toolObj) => {
+                                                return {
+                                                    ...toolObj,
+                                                    state: false,
+                                                };
+                                            }
+                                        ),
+                                    });
+
                                     setIsAllSelected(false);
                                 }
                             }}
@@ -85,14 +95,17 @@ const ToolsSelectionBox = ({ attributeLists }: ToolsSelectionBoxProps) => {
                             <Chip
                                 label={tool}
                                 onClick={() => {
-                                    setToolsSelect((prev) => {
-                                        const newToolsList = [...prev];
-                                        newToolsList[index] = {
-                                            ...newToolsList[index],
-                                            state: !newToolsList[index].state,
-                                        };
+                                    const newToolsList = [
+                                        ...projectsState.toolsSelect,
+                                    ];
+                                    newToolsList[index] = {
+                                        ...newToolsList[index],
+                                        state: !newToolsList[index].state,
+                                    };
 
-                                        return newToolsList;
+                                    dispatchProject({
+                                        type: "toolsSelect",
+                                        payload: newToolsList,
                                     });
                                 }}
                                 sx={{
