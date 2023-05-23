@@ -23,7 +23,7 @@ export default function Projects({ projects }: ProjectsProps) {
             sx={{
                 bgcolor: theme.palette.secondary.main,
                 color: "white",
-                px: 12,
+                px: { xs: 0, lg: 12 },
                 py: "25vh",
             }}
         >

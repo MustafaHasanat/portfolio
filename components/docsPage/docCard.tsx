@@ -1,7 +1,6 @@
 import { Doc } from "@/types/doc";
 import { Avatar, Box, Stack, Typography, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 interface DocCardProps {
     doc: Doc;
@@ -11,56 +10,45 @@ const DocCard = ({ doc }: DocCardProps) => {
     const theme = useTheme();
 
     return (
-        <Link href={doc.link} target="_blank">
-            <Stack
-                direction="row"
-                component={motion.div}
-                initial={{
-                    width: "10vw",
-                    height: "10vw",
-                    background: theme.palette.secondary.main,
-                    boxShadow: "none",
-                    scale: 1,
-                }}
-                whileHover={{
-                    width: "30vw",
-                    height: "10vw",
-                    boxShadow: `0 0 5px ${theme.palette.primary.main}`,
-                    scale: 1.1,
-                }}
-                justifyContent="space-between"
-                alignItems="center"
-                p="1vw"
+        <Stack
+            direction="row"
+            component={motion.div}
+            initial={{
+                backgroundColor: theme.palette.text.primary,
+            }}
+            transition={{
+                type: "spring",
+                duration: 0.7,
+            }}
+            whileHover={{
+                scale: 1.1,
+                backgroundColor: theme.palette.primary.main,
+            }}
+            onClick={() => {
+                window.open(doc.link, "_blank");
+            }}
+            sx={{
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: { xs: "100%", md: "15rem" },
+                height: "5rem",
+                overflow: "hidden",
+                borderRadius: 2,
+                cursor: "pointer",
+                px: 3,
+            }}
+        >
+            <Avatar
+                alt={doc.title}
+                src={doc.icon.asset.url}
+                variant="rounded"
                 sx={{
-                    overflow: "hidden",
+                    width: "auto",
+                    height: "4rem",
                 }}
-            >
-                <Avatar
-                    variant="rounded"
-                    alt={doc.title}
-                    src={doc.icon.asset.url}
-                    sx={{
-                        width: "8vw",
-                        height: "auto",
-                    }}
-                />
-
-                <Box
-                    sx={{
-                        width: "18vw",
-                        ml: "1.1vw",
-                    }}
-                >
-                    <Typography
-                        color={theme.palette.text.primary}
-                        textAlign="center"
-                        variant="h4"
-                    >
-                        {doc.title}
-                    </Typography>
-                </Box>
-            </Stack>
-        </Link>
+            />
+            <Typography>{doc.title}</Typography>
+        </Stack>
     );
 };
 

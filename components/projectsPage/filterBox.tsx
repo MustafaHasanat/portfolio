@@ -1,54 +1,62 @@
-import { Divider, Stack, Typography, useTheme } from "@mui/material";
+import {
+    Divider,
+    Stack,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import YearSelectionBox from "./yearSelectionBox";
-import { AttributeListsProps } from "./cardsContainer";
 import TypeSelectionBox from "./typeSelectionBox";
 import IconicButton from "../shared/iconicButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ToolsSelectionBox from "./toolsSelectionBox";
-import { Project } from "@/types/project";
-
-interface FilterBoxProps {
-    filterIsOpened: boolean;
-    attributeLists: AttributeListsProps;
-    projectsCards: Project[];
-    clearFilter: () => void;
-}
+import { FilterBoxProps } from "./styles";
 
 const FilterBox = ({
-    filterIsOpened,
-    attributeLists,
-    projectsCards,
+    projectsState,
+    dispatchProject,
     clearFilter,
 }: FilterBoxProps) => {
     const theme = useTheme();
-    const {} = attributeLists;
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     return (
         <Stack
             direction="row"
             sx={{
                 overflow: "hidden",
-                py: "20px",
-                width: filterIsOpened ? "50%" : 0,
-                pl: filterIsOpened ? "20px" : "0px",
-                pr: filterIsOpened ? "20px" : "0px",
+                py: { xs: projectsState.filterIsOpened ? 3 : 0, lg: "20px" },
+                height: lgScreen
+                    ? "100%"
+                    : projectsState.filterIsOpened
+                    ? "auto"
+                    : 0,
+                width: lgScreen
+                    ? projectsState.filterIsOpened
+                        ? "50%"
+                        : 0
+                    : "100%",
+                pl: projectsState.filterIsOpened ? "20px" : "0px",
+                pr: projectsState.filterIsOpened ? "20px" : "0px",
                 transition: "width 0.3s ease, padding 0.3s ease",
             }}
         >
-            <Divider
-                orientation="vertical"
-                sx={{
-                    bgcolor: theme.palette.primary.main,
-                    height: "100%",
-                    width: "1px",
-                    opacity: 0.4,
-                    mr: 2,
-                }}
-            />
+            {lgScreen && (
+                <Divider
+                    orientation="vertical"
+                    sx={{
+                        bgcolor: theme.palette.primary.main,
+                        height: "100%",
+                        width: "1px",
+                        opacity: 0.4,
+                        mr: 2,
+                    }}
+                />
+            )}
 
             <Stack alignItems="center" width="100%">
                 <Typography variant="h5">
-                    Filter ({projectsCards.length} results)
+                    Filter ({projectsState.projectsCards.length} results)
                 </Typography>
 
                 <Divider
@@ -64,9 +72,18 @@ const FilterBox = ({
                 />
 
                 <Stack spacing={7}>
-                    <YearSelectionBox attributeLists={attributeLists} />
-                    <TypeSelectionBox attributeLists={attributeLists} />
-                    <ToolsSelectionBox attributeLists={attributeLists} />
+                    <YearSelectionBox
+                        projectsState={projectsState}
+                        dispatchProject={dispatchProject}
+                    />
+                    <TypeSelectionBox
+                        projectsState={projectsState}
+                        dispatchProject={dispatchProject}
+                    />
+                    <ToolsSelectionBox
+                        projectsState={projectsState}
+                        dispatchProject={dispatchProject}
+                    />
                 </Stack>
 
                 <IconicButton
@@ -84,7 +101,7 @@ const FilterBox = ({
                     onClick={clearFilter}
                     extraSX={{
                         width: "90%",
-                        height: "8vh",
+                        height: "3rem",
                         mt: 5,
                     }}
                 >

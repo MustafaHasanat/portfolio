@@ -6,23 +6,15 @@ import {
     Typography,
     useTheme,
 } from "@mui/material";
-import { AttributeListsProps } from "./cardsContainer";
+import { TypeSelectionBoxProps } from "./styles";
 
-interface TypeSelectionBoxProps {
-    attributeLists: AttributeListsProps;
-}
-
-const TypeSelectionBox = ({ attributeLists }: TypeSelectionBoxProps) => {
+const TypeSelectionBox = ({
+    projectsState,
+    dispatchProject,
+}: TypeSelectionBoxProps) => {
     const theme = useTheme();
 
-    const {
-        type: {
-            typesList,
-            setTypeSelected,
-            checkboxesStates,
-            setCheckboxesStates,
-        },
-    } = attributeLists;
+    const { typesList, checkboxesStates } = projectsState;
 
     const getCheckedStatus = (
         value: string
@@ -56,31 +48,38 @@ const TypeSelectionBox = ({ attributeLists }: TypeSelectionBoxProps) => {
                         name={value}
                         checked={getCheckedStatus(value).value}
                         onChange={(e) => {
-                            setTypeSelected((prev) => {
-                                const set = new Set(prev);
+                            const set = new Set(projectsState.typeSelected);
 
-                                if (e.target.checked) {
-                                    set.add(e.target.name);
+                            if (e.target.checked) {
+                                set.add(e.target.name);
 
-                                    setCheckboxesStates({
+                                dispatchProject({
+                                    type: "checkboxesStates",
+                                    payload: {
                                         ...checkboxesStates,
                                         [getCheckedStatus(value).name]: true,
-                                    });
-                                } else {
-                                    set.delete(e.target.name);
+                                    },
+                                });
+                            } else {
+                                set.delete(e.target.name);
 
-                                    setCheckboxesStates({
+                                dispatchProject({
+                                    type: "checkboxesStates",
+                                    payload: {
                                         ...checkboxesStates,
                                         [getCheckedStatus(value).name]: false,
-                                    });
-                                }
+                                    },
+                                });
+                            }
 
-                                return Array.from(set);
+                            dispatchProject({
+                                type: "typeSelected",
+                                payload: Array.from(set),
                             });
                         }}
                         sx={{
                             color: theme.palette.text.primary,
-                            
+
                             "&.Mui-checked": {
                                 color: theme.palette.primary.main,
                             },

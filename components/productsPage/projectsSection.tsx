@@ -31,7 +31,7 @@ const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
                         <Fragment
                             key={`product: project card number: ${index}`}
                         >
-                            <Card project={project} filterIsOpened={false} />
+                            <Card project={project} />
                         </Fragment>
                     );
                 })}

@@ -1,5 +1,5 @@
 import { Project } from "@/types/project";
-import { Avatar, Box, Chip, Stack, Typography, useTheme } from "@mui/material";
+import { Chip, Stack, Typography, useTheme } from "@mui/material";
 import { GitHub } from "@mui/icons-material";
 import { Fragment } from "react";
 import Link from "next/link";
@@ -41,7 +41,10 @@ const ProjectPage = ({ project }: ProjectProps) => {
                     component={motion.div}
                     initial={{ color: theme.palette.text.primary }}
                     whileHover={{ color: theme.palette.primary.main }}
-                    sx={{ width: 50, height: 50 }}
+                    sx={{
+                        width: { xs: 40, md: 60, lg: 50 },
+                        height: { xs: 40, md: 60, lg: 50 },
+                    }}
                 >
                     <GitHub
                         sx={{
@@ -59,10 +62,10 @@ const ProjectPage = ({ project }: ProjectProps) => {
     return (
         <Stack>
             <Typography
-                variant="h2"
-                mb={5}
-                ml="30px"
                 sx={{
+                    mb: 5,
+                    ml: "30px",
+                    fontSize: { xs: "2rem", lg: "3rem" },
                     position: "relative",
 
                     "&::before": {
@@ -79,8 +82,11 @@ const ProjectPage = ({ project }: ProjectProps) => {
                 {project.title}
             </Typography>
 
-            <Stack direction="row" spacing={5}>
-                <Stack spacing={3} width="50%">
+            <Stack
+                direction={{ xs: "column-reverse", lg: "row" }}
+                spacing={{ xs: 10, lg: 5 }}
+            >
+                <Stack spacing={3} width={{ xs: "100%", lg: "50%" }}>
                     <Typography variant="h5" textAlign="justify">
                         {project.description}
                     </Typography>
@@ -91,10 +97,11 @@ const ProjectPage = ({ project }: ProjectProps) => {
                 </Stack>
 
                 <Stack
-                    alignItems="flex-end"
+                    direction={{ xs: "column", md: "row", lg: "column" }}
+                    alignItems={{ xs: "center", md: "start", lg: "end" }}
                     spacing={3}
                     sx={{
-                        width: "50%",
+                        width: { xs: "100%", lg: "50%" },
                     }}
                 >
                     {project.website ? (
@@ -110,7 +117,12 @@ const ProjectPage = ({ project }: ProjectProps) => {
                         />
                     )}
 
-                    <Stack direction="row" spacing={5}>
+                    <Stack
+                        direction={{ xs: "row", md: "column", lg: "row" }}
+                        spacing={{ xs: 10, lg: 5 }}
+                        height={{ xs: "100%", lg: "auto" }}
+                        justifyContent={{ xs: "center" }}
+                    >
                         {project.githubFrontend &&
                             githubButton(project.githubFrontend, "frontend")}
                         {project.githubBackend &&
@@ -123,7 +135,13 @@ const ProjectPage = ({ project }: ProjectProps) => {
                 Tools
             </Typography>
 
-            <Stack direction="row" width="50%" gap={3} p={3} flexWrap="wrap">
+            <Stack
+                direction="row"
+                width={{ xs: "100%", lg: "50%" }}
+                gap={3}
+                p={3}
+                flexWrap="wrap"
+            >
                 {project.tools.map((tool, index) => {
                     return (
                         <Fragment

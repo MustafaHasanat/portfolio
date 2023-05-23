@@ -1,6 +1,15 @@
 import { Project } from "@/types/project";
-import { Avatar, Box, useTheme, Link, Typography } from "@mui/material";
+import {
+    Avatar,
+    Box,
+    useTheme,
+    Link,
+    Typography,
+    useMediaQuery,
+    Stack,
+} from "@mui/material";
 import { motion } from "framer-motion";
+import LaunchIcon from "@mui/icons-material/Launch";
 
 const LandingPagePic = ({
     href,
@@ -11,6 +20,7 @@ const LandingPagePic = ({
     project: Project;
     filterIsOpened: boolean;
 }) => {
+    const lgScreen = useMediaQuery("(min-width:1440px)");
     const theme = useTheme();
 
     const avatarPhoto = (
@@ -27,10 +37,12 @@ const LandingPagePic = ({
     );
 
     const backlight = (
-        <Box
+        <Stack
             component={motion.div}
             initial={{ opacity: 0 }}
             whileHover={{ opacity: 1 }}
+            spacing={3}
+            direction="row"
             sx={{
                 position: "absolute",
                 width: "100%",
@@ -45,13 +57,20 @@ const LandingPagePic = ({
             }}
         >
             <Typography
-                variant="h2"
+                variant="h3"
                 letterSpacing={4}
                 color={theme.palette.secondary.main}
             >
                 visit
             </Typography>
-        </Box>
+            <LaunchIcon
+                sx={{
+                    color: theme.palette.secondary.main,
+                    height: "15%",
+                    width: "auto",
+                }}
+            />
+        </Stack>
     );
 
     const initialSX = {
@@ -60,8 +79,8 @@ const LandingPagePic = ({
     };
 
     const animatedSX = {
-        width: filterIsOpened ? "100%" : "50%",
-        height: filterIsOpened ? "100%" : "85%",
+        width: !lgScreen || filterIsOpened ? "100%" : "50%",
+        height: !lgScreen || filterIsOpened ? "100%" : "85%",
     };
 
     return href ? (

@@ -43,7 +43,7 @@ export default function ProjectDetails({ project }: ProjectProps) {
             sx={{
                 color: "white",
                 bgcolor: theme.palette.secondary.main,
-                px: 25,
+                px: { xs: 3, md: 10, lg: 25 },
                 py: "20vh",
             }}
         >

@@ -38,13 +38,17 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                     height: { xs: "45%", md: "100%" },
                     color: theme.palette.text.primary,
                     border: `1px solid ${theme.palette.text.primary}`,
+                    position: "relative",
                 }}
             >
                 <Typography
                     component={motion.p}
-                    animate={{ x: sendHovered ? 0 : 30 }}
+                    animate={{ x: sendHovered ? "-100%" : "-50%" }}
                     fontSize={{ xs: "1rem", lg: "1.5rem" }}
-                    mr={3}
+                    sx={{
+                        position: "absolute",
+                        left: "50%",
+                    }}
                     color={
                         sendHovered
                             ? theme.palette.success.main
@@ -56,12 +60,13 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
 
                 <Stack
                     component={motion.div}
+                    initial={{ opacity: 0 }}
                     animate={{
-                        x: sendHovered ? 0 : -30,
+                        x: sendHovered ? 30 : -20,
                         opacity: sendHovered ? 1 : 0,
                     }}
                     sx={{
-                        width: "4%",
+                        width: "auto",
                         height: "auto",
                     }}
                 >
@@ -70,7 +75,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                             color: sendHovered
                                 ? theme.palette.success.main
                                 : theme.palette.text.primary,
-                            width: "1rem",
+                            width: { xs: "1rem", md: "1.5rem" },
                             height: "auto",
                             transition: "0.3s ease",
                         }}
