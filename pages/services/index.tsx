@@ -17,7 +17,7 @@ export const getStaticProps = async (): Promise<{ props: ProductsProps }> => {
     };
 };
 
-export default function Products({ products }: ProductsProps) {
+export default function Services({ products }: ProductsProps) {
     const theme = useTheme();
 
     return (
@@ -36,7 +36,7 @@ export default function Products({ products }: ProductsProps) {
                 }}
             >
                 <AnimatedTitle
-                    text="my products"
+                    text="my services"
                     shadowColor={theme.palette.primary.main}
                     fontSize={{
                         xs: "0.8rem",

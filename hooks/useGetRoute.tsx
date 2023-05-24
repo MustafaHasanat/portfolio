@@ -11,8 +11,8 @@ const useGetRoute = () => {
             return { path: "/about", number: 1 };
         case "/projects":
             return { path: "/projects", number: 2 };
-        case "/products":
-            return { path: "/products", number: 3 };
+        case "/services":
+            return { path: "/services", number: 3 };
         case "/docs":
             return { path: "/docs", number: 4 };
         default:

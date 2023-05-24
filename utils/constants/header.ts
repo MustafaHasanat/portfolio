@@ -27,8 +27,8 @@ const header = {
             navigationBars: [],
         },
         {
-            title: "products",
-            link: String.raw`/products`,
+            title: "services",
+            link: String.raw`/services`,
             navigationBars: [],
         },
         {
