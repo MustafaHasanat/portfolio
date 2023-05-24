@@ -1,4 +1,4 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import Title from "@/components/aboutPage/bioSection/title";
@@ -7,6 +7,7 @@ import ParagraphBox from "@/components/aboutPage/bioSection/paragraphBox";
 
 export default function Story() {
     const theme = useTheme();
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
@@ -17,25 +18,24 @@ export default function Story() {
         <Box
             pt="20vh"
             pb={10}
-            px={18}
+            px={{ xs: 3, lg: 18 }}
             position="relative"
             bgcolor={theme.palette.secondary.main}
         >
             {ImageBox({
                 src: globalAssets?.mySecondAvatar?.src,
                 alt: "avatar",
-                width: "25vw",
-                height: "25vw",
+                width: { xs: "18rem", lg: "25vw" },
+                height: { xs: "18rem", lg: "25vw" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
-                    float: "right",
+                    float: { xs: "unset", md: "right" },
                     ml: 5,
                 },
             })}
             {Title({
                 text: "about me",
                 color: theme.palette.text.primary,
-                variant: "h3",
             })}
             {ParagraphBox({
                 text: "My name is Mustafa Alhasanat, I'm a software engineer with a background in electronics engineering. I build web applications, mobile applications, and robotic prototypes.",
@@ -57,26 +57,35 @@ export default function Story() {
                 text: "I value affiliation, and loves being in a group of colleagues whom I can exchange knowledge and experiences with them. I also prioritizes precision, discipline, and the value of time. At my free time, I enjoy drawing and learning new languages.",
                 color: theme.palette.text.primary,
             })}
+
+            {!lgScreen &&
+                Title({
+                    text: "college",
+                    color: theme.palette.text.primary,
+                    extraSX: {
+                        mt: 5,
+                    },
+                })}
             {ImageBox({
                 src: globalAssets?.graduationPhoto?.src,
                 alt: "avatar",
-                width: "25vw",
-                height: "70vh",
+                width: { xs: "95vw", lg: "25vw" },
+                height: { xs: "auto", lg: "70vh" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
                     float: "left",
                     mr: 5,
-                    mt: 5,
+                    mt: { xs: 0, lg: 5 },
                 },
             })}
-            {Title({
-                text: "college",
-                color: theme.palette.text.primary,
-                variant: "h4",
-                extraSX: {
-                    mt: 5,
-                },
-            })}
+            {lgScreen &&
+                Title({
+                    text: "college",
+                    color: theme.palette.text.primary,
+                    extraSX: {
+                        mt: 5,
+                    },
+                })}
             {ParagraphBox({
                 text: "In September 2021, I have graduated with a Bachelor's degree in Telecommunications and Electronics Engineering from Tafila Technical University located in Jordan with an excellent grade. During those four years, I got the opportunity to learn the various types of telecommunication systems and how they work together. I also learned the basics of the electronics and their relations to the communication systems.",
                 color: theme.palette.text.primary,
@@ -89,26 +98,35 @@ export default function Story() {
                 text: "Using this set of skills I have developed, I was able to be a valuable member of many small clubs in college like IEEE. I had the chance to present workshops, make courses, and share my knowledge with others. In addition, I was able to work as a freelancer wth a small local company to build robotic projects, design wooden objects using teh CNC laser machine, and create small parts for projects using a 3D printer",
                 color: theme.palette.text.primary,
             })}
+
+            {!lgScreen &&
+                Title({
+                    text: "career shift",
+                    color: theme.palette.text.primary,
+                    extraSX: {
+                        mt: 5,
+                    },
+                })}
             {ImageBox({
                 src: globalAssets?.ltucPhoto?.src,
                 alt: "avatar",
-                width: "35vw",
-                height: "45vh",
+                width: { xs: "95vw", lg: "35vw" },
+                height: { xs: "auto", lg: "45vh" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
                     float: "right",
                     ml: 5,
-                    mt: 5,
+                    mt: { xs: 0, lg: 5 },
                 },
             })}
-            {Title({
-                text: "career shift",
-                color: theme.palette.text.primary,
-                variant: "h4",
-                extraSX: {
-                    mt: 5,
-                },
-            })}
+            {lgScreen &&
+                Title({
+                    text: "career shift",
+                    color: theme.palette.text.primary,
+                    extraSX: {
+                        mt: 5,
+                    },
+                })}
             {ParagraphBox({
                 text: "After one year of graduation from college with an Excellent grade, I found my true passion in programming. I was already familiar with this field, so I only needed a boost to my programming skills -which I was considering it as a hobby back then- to become my life career.",
                 color: theme.palette.text.primary,
@@ -117,26 +135,35 @@ export default function Story() {
                 text: "For six months, I had attended a bootcamp in web development at LTUC (Luminous Technical University College) in Jordan. The curriculum was build by a international company called Code Fellows. It covers the process of building a whole website including building the frontend using React, the backend with Django, unit tests with Jest, and finally, deploying on Vercel or Heroku servers.",
                 color: theme.palette.text.primary,
             })}
+
+            {!lgScreen &&
+                Title({
+                    text: "first job in the field",
+                    color: theme.palette.text.primary,
+                    extraSX: {
+                        mt: 5,
+                    },
+                })}
             {ImageBox({
                 src: globalAssets?.workPhoto?.src,
                 alt: "avatar",
-                width: "30vw",
-                height: "50vh",
+                width: { xs: "95vw", lg: "30vw" },
+                height: { xs: "auto", lg: "50vh" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
                     float: "left",
                     mr: 5,
-                    mt: 5,
+                    mt: { xs: 0, lg: 5 },
                 },
             })}
-            {Title({
-                text: "first job in the field",
-                color: theme.palette.text.primary,
-                variant: "h4",
-                extraSX: {
-                    mt: 5,
-                },
-            })}
+            {lgScreen &&
+                Title({
+                    text: "first job in the field",
+                    color: theme.palette.text.primary,
+                    extraSX: {
+                        mt: 5,
+                    },
+                })}
             {ParagraphBox({
                 text: "Just after finishing the bootcamp, I had got hired as a Software and Quality Engineer in SociumTech, an international mid-sized company with US clients located in Jordan.",
                 color: theme.palette.text.primary,

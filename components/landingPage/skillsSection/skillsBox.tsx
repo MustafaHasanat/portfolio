@@ -14,7 +14,7 @@ const SkillsBox = ({ hoveredSkillSet, currentSkillSet }: SkillsBoxProps) => {
         <Stack
             spacing={4}
             sx={{
-                width: { xs: "100%", md: "60%", lg: "50vw" },
+                width: { xs: "100%", md: "60%", lg: "35vw" },
                 p: 3,
                 borderRadius: 3,
                 boxShadow: `0 0 15px ${theme.palette.primary.main}`,

@@ -2,7 +2,6 @@ import { Fragment, MutableRefObject, useRef } from "react";
 import { Box, Stack, useTheme } from "@mui/material";
 import AnimatedTitle from "@/components/shared/animatedTitle";
 import { Language } from "@/types/language";
-import { useInView } from "framer-motion";
 import FlagBox from "./flagBox";
 
 interface LanguagesSectionProps {
@@ -12,13 +11,11 @@ interface LanguagesSectionProps {
 
 const LanguagesSection = ({ inViewRef, languages }: LanguagesSectionProps) => {
     const theme = useTheme();
-    const cardRef = useRef(null);
-    const cardInView = useInView(cardRef);
 
     return (
         <Stack
             id="about-languages"
-            px={12}
+            px={{ xs: 5, md: 12 }}
             position="relative"
             alignItems="center"
             bgcolor={theme.palette.secondary.main}
@@ -53,7 +50,7 @@ const LanguagesSection = ({ inViewRef, languages }: LanguagesSectionProps) => {
 
             <Stack
                 justifyContent="center"
-                gap={15}
+                gap={{ xs: 5, md: 15 }}
                 my={5}
                 flexWrap="wrap"
                 direction={{ xs: "column", md: "row" }}

@@ -21,9 +21,9 @@ export const ProductBox = (bgcolor: string) => {
 };
 
 export const CardsBox = {
-    gap: 20,
+    gap: { xs: 5, md: 15 },
     my: 5,
-    px: 15,
+    px: { xs: 5, md: 15 },
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
@@ -51,8 +51,8 @@ export const MiniCardBox = (
     return {
         display: "flex",
         position: "relative",
-        width: { xs: "80%", sm: "30%", md: "25%" },
-        height: height * 1.5,
+        width: { xs: "8rem", sm: "10rem", md: "5rem" },
+        height: { xs: "12rem", sm: "15rem", md: "8rem" },
         borderRadius: 3,
         boxShadow: `0 0 5px ${shadowColor}`,
         background: `${bgcolor}11`,

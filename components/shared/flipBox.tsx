@@ -66,22 +66,6 @@ const FlipBox = ({
                 ...extraSX,
             }}
         >
-            {/* {!isActive && (
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        width: "100%",
-                        height: "100%",
-                        bgcolor: theme.palette.text.primary,
-                        opacity: 0.7,
-                        zIndex: 50,
-                        borderRadius: 3,
-                    }}
-                />
-            )} */}
-
             <Stack sx={frontSX} ref={boxRef}>
                 {frontChildren}
             </Stack>

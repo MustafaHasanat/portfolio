@@ -1,4 +1,4 @@
-import { Button, Stack, Typography, useTheme } from "@mui/material";
+import { Button, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
@@ -11,6 +11,7 @@ interface ButtonsSetProps {
 
 const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
     const theme = useTheme();
+    const mdScreen = useMediaQuery("(min-width:425px)");
     const [sendHovered, setSendHovered] = useState(false);
 
     return (
@@ -18,7 +19,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
             direction={{ xs: "column", md: "row" }}
             justifyContent="space-between"
             sx={{
-                height: { xs: "6rem", md: "3rem", lg: "auto" },
+                height: { xs: "7.5rem", md: "3.5rem" },
                 gridRow: { xs: "span 1", lg: "5 / 6" },
                 gridColumn: { xs: "1 / 2", lg: "1 / 3" },
             }}
@@ -35,7 +36,7 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                 }}
                 sx={{
                     width: { xs: "100%", md: "75%", lg: "87%" },
-                    height: { xs: "45%", md: "100%" },
+                    height: { xs: "3rem", md: "3.5rem" },
                     color: theme.palette.text.primary,
                     border: `1px solid ${theme.palette.text.primary}`,
                     position: "relative",
@@ -92,12 +93,12 @@ const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
                         }}
                     />
                 }
+                buttonHeight={mdScreen ? "3.5rem" : "3rem"}
                 onClick={clearForm}
                 color={theme.palette.text.primary}
                 hoverColor={theme.palette.error.main}
                 extraSX={{
                     width: { xs: "100%", md: "20%", lg: "10%" },
-                    height: { xs: "45%", md: "100%" },
                 }}
             >
                 <Typography>clear</Typography>

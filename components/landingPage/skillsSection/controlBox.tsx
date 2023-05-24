@@ -27,8 +27,8 @@ const ControlBox = ({
     return (
         <Stack
             sx={{
-                height: { xs: "auto", md: "100%" },
-                width: { xs: "100%", md: "15vw" },
+                height: "auto",
+                width: { xs: "100%", md: "15rem" },
             }}
         >
             {mdScreen ? (

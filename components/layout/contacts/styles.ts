@@ -56,11 +56,7 @@ export const contactsContainerStyles = (isModalActive: boolean) => {
         width: "4rem",
         height: "4rem",
         bottom: { xs: 30, md: "10%" },
-        left: {
-            xs: "calc(100% - 4rem - 100px)",
-            md: "calc(100% - 4rem - 50px )",
-            lg: "calc(100% - 4rem - 100px )",
-        },
+        right: { xs: 30, md: 100 },
         zIndex: isModalActive ? 200 : 10,
     };
 };

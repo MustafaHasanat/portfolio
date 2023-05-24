@@ -51,7 +51,7 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
         <Stack
             spacing={3}
             sx={{
-                padding: 4,
+                padding: { xs: 1, md: 4 },
                 position: "fixed",
                 bottom: "50%",
                 left: 0,

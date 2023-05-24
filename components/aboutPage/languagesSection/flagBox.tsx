@@ -41,7 +41,7 @@ const FlagBox = ({ language }: FlagBoxProps) => {
                 scale: cardInView ? 1 : 0.9,
             }}
             sx={{
-                width: { xs: "60vw", md: "30vw" },
+                width: { xs: "80vw", md: "30vw" },
                 height: { xs: "15rem", md: "30vh" },
                 position: "relative",
                 padding: 3,

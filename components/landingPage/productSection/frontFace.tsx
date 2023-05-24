@@ -136,6 +136,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                             }}
                         />
                     }
+                    buttonHeight={smScreen ? "3rem" : "3.5rem"}
                     color={theme.palette.text.primary}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {
@@ -143,7 +144,6 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                     }}
                     extraSX={{
                         width: { xs: "100%", md: "60%", lg: "55%" },
-                        height: { xs: "3.5rem", sm: "3rem" },
                     }}
                 >
                     <Typography

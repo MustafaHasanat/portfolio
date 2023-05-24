@@ -1,5 +1,4 @@
-import useBoxSize from "@/hooks/useBoxSize";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { motion } from "framer-motion";
 import { ReactNode, useState } from "react";
 
@@ -9,6 +8,7 @@ interface IconicButtonProps {
     color: string;
     hoverColor: string;
     onClick: () => any;
+    buttonHeight: string;
     extraSX?: any;
 }
 
@@ -18,15 +18,14 @@ const IconicButton = ({
     color,
     hoverColor,
     onClick,
+    buttonHeight,
     extraSX,
 }: IconicButtonProps) => {
     const [clearHovered, setClearHovered] = useState(false);
-    const { ref: buttonRef, height: buttonHeight } = useBoxSize();
 
     return (
         <Box
             component="div"
-            ref={buttonRef}
             onClick={onClick}
             onMouseEnter={() => {
                 setClearHovered(true);
@@ -47,13 +46,14 @@ const IconicButton = ({
                 borderColor: clearHovered ? hoverColor : color,
                 overflow: "hidden",
                 cursor: "pointer",
+                height: buttonHeight,
                 ...extraSX,
             }}
         >
             <Stack
                 component={motion.div}
                 initial={{ y: 0 }}
-                whileHover={{ y: -buttonHeight }}
+                whileHover={{ y: `-${buttonHeight}` }}
                 sx={{
                     width: "100%",
                     position: "absolute",

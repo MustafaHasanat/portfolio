@@ -9,10 +9,10 @@ const ButtonSet = () => {
     return (
         <Stack
             spacing={2}
-            ml={3}
+            ml={{ xs: 0, md: 3 }}
             mt={3}
             sx={{
-                float: { xs: "right", md: "left" },
+                float: { xs: "revert", md: "right", lg: "left" },
             }}
         >
             <Link href="/about/story" title="Read more about me ...">
@@ -25,12 +25,12 @@ const ButtonSet = () => {
                             }}
                         />
                     }
+                    buttonHeight="4rem"
                     color={theme.palette.text.primary}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {}}
                     extraSX={{
                         width: { xs: "15rem", md: "18rem" },
-                        height: "8vh",
                         zIndex: 3,
                     }}
                 >
