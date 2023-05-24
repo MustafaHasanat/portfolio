@@ -102,25 +102,7 @@ export default function About({
 
     return (
         <Stack>
-            <Box
-                id="about-bio"
-                ref={bioSecRef}
-                sx={{
-                    position: "relative",
-                    height: { xs: 0, lg: "101vh" },
-                    width: " 100%",
-                }}
-            >
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: "30%",
-                        width: " 100%",
-                    }}
-                />
-            </Box>
-
-            <BioSection />
+            <BioSection inViewRef={educationSecRef} />
             <EducationSection
                 inViewRef={educationSecRef}
                 certificates={certificates}

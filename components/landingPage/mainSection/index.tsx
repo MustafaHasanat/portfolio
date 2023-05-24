@@ -1,16 +1,18 @@
 import IonicAvatar from "./ionicAvatar";
-import {  Stack, useTheme } from "@mui/material";
+import {  Box, Stack, useTheme } from "@mui/material";
 import { mainSectionStyles } from "./styles";
 import DownloadButton from "./downloadButton";
 import { AvatarIcon } from "@/types/avatarIcon";
 import { useSelector } from "react-redux";
 import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
+import { MutableRefObject } from "react";
 
 interface MainSectionProps {
+    inViewRef: MutableRefObject<null>;
     avatarIcons: AvatarIcon[];
 }
 
-const MainSection = ({ avatarIcons }: MainSectionProps) => {
+const MainSection = ({ avatarIcons, inViewRef }: MainSectionProps) => {
     const theme = useTheme();
 
     const globalAssets = useSelector(
@@ -26,6 +28,15 @@ const MainSection = ({ avatarIcons }: MainSectionProps) => {
             )}
             direction="row"
         >
+             <Box
+                ref={inViewRef}
+                sx={{
+                    position: "absolute",
+                    top: "30%",
+                    width: " 100%",
+                }}
+            />
+
             <DownloadButton />
             <IonicAvatar avatarIcons={avatarIcons} />
         </Stack>

@@ -94,32 +94,13 @@ export default function Home({
     ]);
 
     return (
-        <Stack p={0} m={0} width="100%">
-            <Box
-                id="home-main"
-                ref={mainSecRef}
-                sx={{
-                    position: "relative",
-                    height: "101vh",
-                    width: " 100%",
-                }}
-            >
-                <Box
-                    sx={{
-                        position: "absolute",
-                        top: "10%",
-                        width: " 100%",
-                    }}
-                />
-            </Box>
-
-            <MainSection avatarIcons={avatarIcons} />
+        <Stack p={0} m={0} width="100%" id="home-main">
+            <MainSection avatarIcons={avatarIcons} inViewRef={productSecRef} />
             <ProductSection
                 inViewRef={productSecRef}
                 products={sortByOrder(products)}
             />
             <SkillsSection inViewRef={skillsSecRef} skillSets={skillSets} />
-            {/* <TestimonialSection /> */}
             <QuotesSection inViewRef={quotesSecRef} quotes={quotes} />
         </Stack>
     );

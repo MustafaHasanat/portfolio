@@ -11,7 +11,7 @@ const Hexagons = () => {
     const defaultTitle = "Check my profiles!";
     const [title, setTitle] = useState(defaultTitle);
 
-    const hexagonSize = "90px";
+    const hexagonSize = { xs: "70px", sm: "90px", md: "130px", lg: "100px" };
 
     let footerSocials = useSelector(
         (state: { globalAssetsReducer: { footerSocials: FooterSocial[] } }) =>
@@ -25,7 +25,7 @@ const Hexagons = () => {
             alignItems="center"
             position="relative"
             width={{ xs: "100%", lg: "40%" }}
-            height="90vh"
+            height={{ xs: "30rem", sm: "40rem", md: "50rem", lg: "38rem" }}
         >
             <Typography
                 width={{ xs: "100%", lg: "80%" }}

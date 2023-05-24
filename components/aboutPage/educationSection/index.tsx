@@ -23,7 +23,7 @@ const EducationSection = ({
     return (
         <Stack
             id="about-education"
-            px={12}
+            px={{ xs: 5, md: 12 }}
             py={10}
             position="relative"
             alignItems="center"
@@ -58,9 +58,10 @@ const EducationSection = ({
             </Box>
 
             <Stack
+                width="100%"
                 justifyContent="center"
-                gap={15}
-                my={5}
+                gap={{ xs: 5, md: 15 }}
+                my={{ xs: 0, md: 5 }}
                 flexWrap={{ xs: "nowrap", md: "wrap" }}
                 direction={{ xs: "column", md: "row" }}
             >

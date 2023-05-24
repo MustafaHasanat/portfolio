@@ -33,7 +33,7 @@ const RoleBox = ({ experience, index }: RoleBoxProps) => {
                 }}
                 direction={{ xs: "column", lg: "row" }}
                 sx={{
-                    width: { xs: "20rem", md: "30rem", lg: "65%" },
+                    width: { xs: "100%", md: "30rem", lg: "65%" },
                     height: { xs: "auto", lg: "15rem" },
                     bgcolor: theme.palette.text.primary,
                     overflow: "hidden",

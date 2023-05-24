@@ -8,7 +8,7 @@ import ImageBox from "./imageBox";
 import ParagraphBox from "./paragraphBox";
 import { BioSectionProps, MainBoxStyles } from "./styles";
 
-const BioSection = ({}: BioSectionProps) => {
+const BioSection = ({ inViewRef }: BioSectionProps) => {
     const theme = useTheme();
 
     const globalAssets = useSelector(
@@ -17,8 +17,9 @@ const BioSection = ({}: BioSectionProps) => {
     );
 
     return (
-        <Box p={0} sx={MainBoxStyles(theme.palette.secondary.main)}>
+        <Box sx={MainBoxStyles(theme.palette.secondary.main)} id="about-bio">
             <Box
+                ref={inViewRef}
                 sx={{
                     position: "absolute",
                     top: "50%",

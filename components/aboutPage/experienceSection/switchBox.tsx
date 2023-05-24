@@ -95,6 +95,7 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
                             }}
                         />
                     }
+                    buttonHeight="4rem"
                     color={theme.palette.secondary.main}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {
@@ -102,7 +103,6 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
                     }}
                     extraSX={{
                         width: "15rem",
-                        height: "4rem",
                     }}
                 >
                     <Typography
@@ -162,6 +162,7 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
                             }}
                         />
                     }
+                    buttonHeight="4rem"
                     color={theme.palette.secondary.main}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {

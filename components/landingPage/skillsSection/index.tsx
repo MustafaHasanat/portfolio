@@ -54,12 +54,12 @@ const SkillsSection = ({ inViewRef, skillSets }: SkillsSectionProps) => {
 
             <Stack
                 direction={{ xs: "column-reverse", md: "row" }}
-                alignItems={{ xs: "start", md: "center" }}
+                alignItems="start"
                 justifyContent={{ xs: "start", md: "center" }}
                 px={{ xs: 10, md: 15 }}
                 my={3}
                 spacing={5}
-                height={{ xs: "auto", md: "75vh" }}
+                height="auto"
                 width="100%"
             >
                 <SkillsBox

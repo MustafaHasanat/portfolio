@@ -73,7 +73,6 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
                             backSX={{
                                 ...faceSX,
                                 justifyContent: "flex-start",
-                                alignItems: "flex-end",
                                 paddingX: 3,
                                 paddingTop: 2,
                                 paddingBottom: 3,
@@ -86,7 +85,7 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
                                     ? cardTransform
                                     : "rotateY(0deg)"
                             }
-                            width={{ xs: "65vw", lg: "25vw", xl: "20vw" }}
+                            width={{ xs: "80vw", lg: "25vw", xl: "20vw" }}
                         />
                     </Fragment>
                 );

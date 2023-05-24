@@ -1,10 +1,4 @@
-import {
-    Divider,
-    Stack,
-    Typography,
-    useMediaQuery,
-    useTheme,
-} from "@mui/material";
+import { Divider, Stack, Typography, useTheme } from "@mui/material";
 import { Fragment, useEffect, useState } from "react";
 import ChartController from "./chartController";
 import CourseCard from "./courseCard";
@@ -22,7 +16,6 @@ const CertsList = ({
 }: CertsListProps) => {
     const theme = useTheme();
     const [filteredCourses, setFilteredCourses] = useState(courses);
-    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     useEffect(() => {
         if (!filterPhrase) {
@@ -40,7 +33,7 @@ const CertsList = ({
 
     return (
         <Stack
-            width={{ xs: "70vw", lg: "40%" }}
+            width={{ xs: "80vw", lg: "40%" }}
             height={{ xs: "auto", lg: "70vh" }}
             alignItems="center"
             position="relative"

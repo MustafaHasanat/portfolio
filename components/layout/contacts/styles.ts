@@ -32,8 +32,8 @@ export const mainButtonStyles = (
         position: "absolute",
         bottom: 0,
         right: 0,
-        width: "4rem",
-        height: "4rem",
+        width: "100%",
+        height: "100%",
         borderRadius: "100%",
         display: "flex",
         justifyContent: "center",
@@ -53,6 +53,8 @@ export const mainButtonStyles = (
 export const contactsContainerStyles = (isModalActive: boolean) => {
     return {
         position: "fixed",
+        width: "4rem",
+        height: "4rem",
         bottom: { xs: 30, md: "10%" },
         right: { xs: 30, md: 100 },
         zIndex: isModalActive ? 200 : 10,

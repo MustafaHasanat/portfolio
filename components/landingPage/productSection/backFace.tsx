@@ -28,7 +28,7 @@ const BackFace = ({ index, product, flipCard }: BackFaceProps) => {
 
     return (
         <Stack alignItems="center" height="100%">
-            <Stack direction="row" gap={3} sx={BackBox}>
+            <Stack direction="row" gap={{ xs: 8, md: 3 }} sx={BackBox}>
                 {cards.map((card, cardIndex) => {
                     return (
                         <Fragment key={`back card number: ${cardIndex}`}>

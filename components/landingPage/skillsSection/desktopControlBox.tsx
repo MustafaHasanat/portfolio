@@ -22,7 +22,7 @@ const DesktopControlBox = ({
     return (
         <Stack
             sx={{
-                height: "100%",
+                height: "30rem",
                 width: "15vw",
                 justifyContent: "space-evenly",
                 alignItems: "center",

@@ -1,18 +1,21 @@
+import { MutableRefObject } from "react";
+
 export const MainBoxStyles = (bgcolor: string) => {
     return {
-        position: { xs: "relative", lg: "fixed" },
+        position: "relative",
         bgcolor: bgcolor,
         height: { xs: "auto", lg: "100vh" },
         pt: { xs: "10vh", lg: "20vh" },
         pb: { xs: 5, lg: 10 },
-        pl: { xs: 10, lg: 18 },
-        pr: { xs: 5, lg: 18 },
+        px: { xs: 5, md: 10, lg: 18 },
     };
 };
 
 // interfaces
 
-export interface BioSectionProps {}
+export interface BioSectionProps {
+    inViewRef: MutableRefObject<null>;
+}
 
 export interface ImageBoxProps {
     src: string;

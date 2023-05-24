@@ -4,7 +4,7 @@ export const mainSectionStyles = (borderColor: string, bgImage: string) => {
     return {
         alignItems: "center",
         justifyContent: "center",
-        position: "fixed",
+        position: "relative",
         width: "100%",
         height: "101vh",
         background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("${bgImage}")`,
@@ -16,13 +16,11 @@ export const mainSectionStyles = (borderColor: string, bgImage: string) => {
 
 const orbital = (scale: number) => keyframes`
   0% {
-    opacity: 0;
     transform: rotateZ(0) translateX(${
         12 * scale
     }rem) rotateZ(0) rotateY(-70deg) rotateZ(0deg);
   }
   20% {
-    opacity: 1;
   }
   100% {
     transform: rotateZ(360deg) translateX(${
@@ -75,7 +73,7 @@ export const orbitalPathStyles = (
         left: "50%",
         transformStyle: "preserve-3d",
         transform: `translateX(-50%) translateY(-50%) rotateZ(${rotateZ}deg) rotateY(${rotateY}deg)`,
-        animation: `${hidden} 4s ease-in ${delay}s infinite`,
+        animation: `${hidden} 6s ease-in ${delay}s infinite`,
     };
 };
 
@@ -86,7 +84,7 @@ export const orbitalObjectStyles = (
 ) => {
     return {
         margin: "auto",
-        animation: `${orbital(scale)} 4s linear ${delay}s infinite`,
+        animation: `${orbital(scale)} 6s linear ${delay}s infinite`,
         position: "absolute",
         borderRadius: "50%",
         width: `${3 * scale}rem`,
