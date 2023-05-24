@@ -100,7 +100,7 @@ export default function Home({
                 ref={mainSecRef}
                 sx={{
                     position: "relative",
-                    height: "101vh",
+                    height: { xs: 0, md: "101vh" },
                     width: " 100%",
                 }}
             >

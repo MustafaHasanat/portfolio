@@ -27,6 +27,7 @@ const IconicButton = ({
         <Box
             component="div"
             ref={buttonRef}
+            onClick={onClick}
             onMouseEnter={() => {
                 setClearHovered(true);
             }}
@@ -70,7 +71,6 @@ const IconicButton = ({
                 </Box>
 
                 <Box
-                    onClick={onClick}
                     sx={{
                         display: "flex",
                         justifyContent: "center",

@@ -34,7 +34,7 @@ const NavbarButton = ({ item, animation }: ItemProps) => {
                             opacity: 1,
                             color: theme.palette.secondary.main,
                         }}
-                        fontSize={{ xs: "1.6rem", sm: "1.1rem", lg: "0.9rem" }}
+                        fontSize={{ xs: "1.3rem", sm: "1.1rem", lg: "0.9rem" }}
                         sx={navTextStyles(theme.palette.text.primary)}
                     >
                         {title}

@@ -27,7 +27,6 @@ const Header = ({
     const [headerPosition, setHeaderPosition] = useState("0vh");
     const lgScreen = useMediaQuery("(min-width:1440px)");
     const mdScreen = useMediaQuery("(min-width:768px)");
-    const smScreen = useMediaQuery("(min-width:425px)");
 
     const globalAssets = useSelector(
         (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
@@ -58,87 +57,79 @@ const Header = ({
     }, [headerAnimations, landingSectionInView]);
 
     return (
-        <Box
+        <Stack
             component="header"
-            width="100%"
-            sx={{
-                position: "relative",
-                zIndex: 40,
-            }}
+            id="header-box"
+            direction="row"
+            sx={headerBoxStyles(
+                landingSectionInView,
+                headerPosition,
+                landingSectionInView
+                    ? "transparent"
+                    : theme.palette.primary.main,
+                theme.palette.secondary.main
+            )}
         >
             <Stack
-                id="header-box"
+                id="header-logo-box"
                 direction="row"
-                sx={headerBoxStyles(
-                    landingSectionInView,
-                    headerPosition,
-                    landingSectionInView
-                        ? "transparent"
-                        : theme.palette.primary.main,
-                    theme.palette.secondary.main
-                )}
+                alignItems="center"
+                spacing={2}
+                sx={{
+                    cursor: "pointer",
+                }}
             >
-                <Stack
-                    id="header-logo-box"
-                    direction="row"
-                    alignItems="center"
-                    spacing={2}
+                <Avatar
+                    variant="square"
+                    src={globalAssets?.websiteLogo?.src}
+                    alt="logo"
                     sx={{
-                        cursor: "pointer",
+                        width: "3rem",
+                        height: "auto",
+                    }}
+                />
+
+                {mdScreen && (
+                    <Link href="/" sx={{ textDecoration: "none" }}>
+                        <SlidingTitle
+                            text={"Mustafa Alhasanat"}
+                            primary={theme.palette.primary.main}
+                            secondary={theme.palette.text.primary}
+                        />
+                    </Link>
+                )}
+
+                {mdScreen && <BMCBox />}
+            </Stack>
+
+            {!lgScreen && (
+                <Box
+                    component={motion.div}
+                    initial={{ rotate: 0, opacity: 0 }}
+                    animate={{
+                        rotate: drawerIsOpened ? 90 : 0,
+                        opacity: !lgScreen ? 1 : 0,
+                    }}
+                    onClick={() => {
+                        setDrawerIsOpened((prev) => !prev);
+                    }}
+                    sx={{
+                        width: "3rem",
+                        height: "auto",
                     }}
                 >
-                    <Avatar
-                        variant="square"
-                        src={globalAssets?.websiteLogo?.src}
-                        alt="logo"
+                    <MenuRoundedIcon
                         sx={{
-                            width: "3rem",
-                            height: "auto",
+                            color: theme.palette.text.primary,
+                            width: "100%",
+                            height: "100%",
                         }}
                     />
+                </Box>
+            )}
 
-                    {mdScreen && (
-                        <Link href="/" sx={{ textDecoration: "none" }}>
-                            <SlidingTitle
-                                text={"Mustafa Alhasanat"}
-                                primary={theme.palette.primary.main}
-                                secondary={theme.palette.text.primary}
-                            />
-                        </Link>
-                    )}
-
-                    {mdScreen && <BMCBox />}
-                </Stack>
-
-                {!lgScreen && (
-                    <Box
-                        component={motion.div}
-                        initial={{ rotate: 0, opacity: 0 }}
-                        animate={{
-                            rotate: drawerIsOpened ? 90 : 0,
-                            opacity: !lgScreen ? 1 : 0,
-                        }}
-                        onClick={() => {
-                            setDrawerIsOpened((prev) => !prev);
-                        }}
-                        sx={{
-                            width: "3rem",
-                            height: "auto",
-                        }}
-                    >
-                        <MenuRoundedIcon
-                            sx={{
-                                color: theme.palette.text.primary,
-                                width: "100%",
-                                height: "100%",
-                            }}
-                        />
-                    </Box>
-                )}
-
-                {lgScreen && <Navbar animation={headerAnimations} />}
-            </Stack>
-        </Box>
+            {lgScreen && <Navbar animation={headerAnimations} />}
+        </Stack>
     );
 };
 

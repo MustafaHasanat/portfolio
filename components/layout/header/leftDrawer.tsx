@@ -1,11 +1,6 @@
 import { AnimationControls, motion } from "framer-motion";
 import Navbar from "../navbar";
-import {
-    Stack,
-    Typography,
-    useMediaQuery,
-    useTheme,
-} from "@mui/material";
+import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import BMCBox from "./bmcBox";
 
 interface LeftDrawerProps {
@@ -43,7 +38,7 @@ const LeftDrawer = ({ animation, drawerIsOpened }: LeftDrawerProps) => {
                     xs: `3px solid ${theme.palette.primary.main}`,
                     sm: "unset",
                 },
-                zIndex: 30,
+                zIndex: 35,
             }}
         >
             <Navbar animation={animation} />

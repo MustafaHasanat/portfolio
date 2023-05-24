@@ -10,13 +10,14 @@ export const headerBoxStyles = (
         alignItems: "center",
         height: switchPointInView ? "16vh" : "10vh",
         paddingX: { xs: 5, lg: 12 },
-        width: "100%",
+        width: "100vw",
         position: "fixed",
         top: headerPosition,
         transition: "0.7s ease",
         borderBottom: `2px solid ${borderColor}`,
         boxShadow: switchPointInView ? "none" : `0 0 5px ${borderColor}`,
         backdropFilter: switchPointInView ? "blur(0px)" : "blur(10px)",
+        zIndex: 40,
     };
 };
 

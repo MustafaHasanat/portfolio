@@ -85,7 +85,7 @@ const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 spacing={1}
-                width={!lgScreen || filterIsOpened ? "100%" : "45%"}
+                width={{ xs: "60vw", sm: filterIsOpened ? "100%" : "45%" }}
                 height={!lgScreen || filterIsOpened ? "auto" : "85%"}
             >
                 <Link
@@ -99,7 +99,11 @@ const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
                         primary={theme.palette.primary.main}
                         secondary={theme.palette.secondary.main}
                         extraSX={{
-                            fontSize: { xs: "1.3rem", lg: "1.5rem" },
+                            fontSize: {
+                                xs: "3.5vw",
+                                md: "1.2rem",
+                                lg: "1.4rem",
+                            },
                         }}
                     />
                 </Link>

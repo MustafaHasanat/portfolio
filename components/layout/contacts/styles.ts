@@ -32,8 +32,8 @@ export const mainButtonStyles = (
         position: "absolute",
         bottom: 0,
         right: 0,
-        width: "4rem",
-        height: "4rem",
+        width: "100%",
+        height: "100%",
         borderRadius: "100%",
         display: "flex",
         justifyContent: "center",
@@ -53,8 +53,14 @@ export const mainButtonStyles = (
 export const contactsContainerStyles = (isModalActive: boolean) => {
     return {
         position: "fixed",
+        width: "4rem",
+        height: "4rem",
         bottom: { xs: 30, md: "10%" },
-        right: { xs: 30, md: 100 },
+        left: {
+            xs: "calc(100% - 4rem - 100px)",
+            md: "calc(100% - 4rem - 50px )",
+            lg: "calc(100% - 4rem - 100px )",
+        },
         zIndex: isModalActive ? 200 : 10,
     };
 };

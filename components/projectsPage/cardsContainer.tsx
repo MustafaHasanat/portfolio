@@ -129,11 +129,16 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
     ]);
 
     return (
-        <Stack direction="row" justifyContent="center" px={{ xs: 3, lg: 12 }}>
+        <Stack
+            direction="row"
+            justifyContent="center"
+            px={{ xs: 3, lg: 12 }}
+            width="100%"
+        >
             <Stack
                 justifyContent="flex-start"
                 alignItems="center"
-                spacing={{xs: 3, lg: 8}}
+                spacing={{ xs: 3, lg: 8 }}
                 p={2}
                 width="100%"
             >

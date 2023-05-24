@@ -24,7 +24,7 @@ const ExperienceSection = ({
     return (
         <Stack
             id="about-experience"
-            px={12}
+            px={{ xs: 5, md: 12 }}
             py={10}
             position="relative"
             alignItems="center"

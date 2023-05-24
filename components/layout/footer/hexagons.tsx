@@ -11,7 +11,7 @@ const Hexagons = () => {
     const defaultTitle = "Check my profiles!";
     const [title, setTitle] = useState(defaultTitle);
 
-    const hexagonSize = "90px";
+    const hexagonSize = { xs: "40px", sm: "70px", md: "90px" };
 
     let footerSocials = useSelector(
         (state: { globalAssetsReducer: { footerSocials: FooterSocial[] } }) =>

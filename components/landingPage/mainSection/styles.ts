@@ -4,7 +4,7 @@ export const mainSectionStyles = (borderColor: string, bgImage: string) => {
     return {
         alignItems: "center",
         justifyContent: "center",
-        position: "fixed",
+        position: { xs: "relative", md: "fixed" },
         width: "100%",
         height: "101vh",
         background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("${bgImage}")`,
