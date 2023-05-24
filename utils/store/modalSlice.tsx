@@ -1,8 +1,9 @@
+import { Stack } from "@mui/material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialModalState = {
     isActive: false,
-    modalContent: <div></div>,
+    modalContent: <Stack></Stack>,
 };
 
 export const modalSlice = createSlice({

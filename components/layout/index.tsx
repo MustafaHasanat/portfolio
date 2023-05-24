@@ -25,8 +25,13 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
     const router = useRouter();
+
     const landingSectionRef = useRef(null);
     const landingSectionInView = useInView(landingSectionRef);
+
+    const footerRef = useRef(null);
+    const footerInView = useInView(footerRef);
+
     const headerAnimations = useAnimation();
     const [drawerIsOpened, setDrawerIsOpened] = useState(false);
     const lgScreen = useMediaQuery("(min-width:1440px)");
@@ -64,10 +69,13 @@ const Layout = ({ children }: LayoutProps) => {
 
     useEffect(() => {
         setDrawerIsOpened(false);
+        document.getElementById("layout-box")?.scrollIntoView({
+            behavior: "smooth",
+        });
     }, [router.asPath]);
 
     return (
-        <Stack id="landing page box">
+        <Stack id="layout-box">
             <HeadTag />
 
             <ModalBackLight
@@ -96,7 +104,7 @@ const Layout = ({ children }: LayoutProps) => {
             <SnackBar />
             <NavigationBar landingSectionInView={landingSectionInView} />
 
-            <Footer />
+            <Footer footerRef={footerRef} footerInView={footerInView} />
         </Stack>
     );
 };

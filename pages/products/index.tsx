@@ -25,8 +25,8 @@ export default function Products({ products }: ProductsProps) {
             sx={{
                 alignItems: "center",
                 bgcolor: theme.palette.secondary.main,
-                px: 12,
-                py: "25vh",
+                px: {xs: 3, md: 12},
+                py: { xs: "12vh", lg: "25vh" },
             }}
         >
             <Box

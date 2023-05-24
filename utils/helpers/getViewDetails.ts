@@ -1,6 +1,5 @@
 import {
     AboutPageProps,
-    DocsPageProps,
     HomePageProps,
 } from "@/utils/store/navigationBarSlice";
 
@@ -9,7 +8,6 @@ const getViewDetails = (
     states: {
         homePage: HomePageProps;
         aboutPage: AboutPageProps;
-        docsPage: DocsPageProps;
     }
 ) => {
     switch (bar) {
@@ -32,15 +30,6 @@ const getViewDetails = (
             return states.aboutPage.certificates;
         case "about-languages":
             return states.aboutPage.languages;
-
-        case "docs-fundamentals":
-            return states.docsPage.fundamentals;
-        case "docs-frontend":
-            return states.docsPage.frontend;
-        case "docs-backend":
-            return states.docsPage.backend;
-        case "docs-tools":
-            return states.docsPage.tools;
 
         default:
             return false;

@@ -94,8 +94,8 @@ export default function Home({
     ]);
 
     return (
-        <Stack p={0} m={0} width="100%" id="home-main">
-            <MainSection avatarIcons={avatarIcons} inViewRef={productSecRef} />
+        <Stack p={0} m={0} width="100%">
+            <MainSection avatarIcons={avatarIcons} inViewRef={mainSecRef} />
             <ProductSection
                 inViewRef={productSecRef}
                 products={sortByOrder(products)}

@@ -1,4 +1,11 @@
-import { Button, Box, Stack, Avatar, Typography } from "@mui/material";
+import {
+    Button,
+    Box,
+    Stack,
+    Avatar,
+    Typography,
+    useMediaQuery,
+} from "@mui/material";
 import { useTheme } from "@mui/material";
 import { useAnimation, motion } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,6 +30,7 @@ interface ContactsProps {}
 const Contacts = ({}: ContactsProps) => {
     const theme = useTheme();
     const animationController = useAnimation();
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     const [hoveredContact, setHoveredContact] = useState(0);
     const [isButtonActive, setIsButtonActive] = useState(false);
@@ -172,7 +180,7 @@ const Contacts = ({}: ContactsProps) => {
                             <Typography
                                 component={motion.p}
                                 animate={
-                                    hoveredContact === index + 1
+                                    hoveredContact === index + 1 || !lgScreen
                                         ? "visible"
                                         : "hidden"
                                 }

@@ -36,18 +36,23 @@ const Header = ({
     useEffect(() => {
         var lastScroll = 0;
 
-        window.addEventListener("scroll", () => {
-            const currentScroll = window.scrollY;
+        document
+            .getElementById("layout-box")
+            ?.addEventListener("scroll", () => {
+                const currentScroll = window.scrollY;
+                console.log(currentScroll);
 
-            if (currentScroll >= lastScroll) {
-                setHeaderPosition("-16vh");
-                setDrawerIsOpened(false);
-            } else if (currentScroll < lastScroll) {
-                setHeaderPosition("0vh");
-            }
+                if (currentScroll >= lastScroll) {
+                    setHeaderPosition("-16vh");
+                    setDrawerIsOpened(false);
+                    console.log("down");
+                } else if (currentScroll < lastScroll) {
+                    setHeaderPosition("0vh");
+                    console.log("up");
+                }
 
-            lastScroll = currentScroll;
-        });
+                lastScroll = currentScroll;
+            });
     }, [setDrawerIsOpened]);
 
     useEffect(() => {
@@ -128,7 +133,11 @@ const Header = ({
                 </Box>
             )}
 
-            {lgScreen && <Navbar animation={headerAnimations} />}
+            {lgScreen && (
+                <Navbar
+                    animation={headerAnimations}
+                />
+            )}
         </Stack>
     );
 };

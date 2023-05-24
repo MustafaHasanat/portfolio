@@ -34,12 +34,7 @@ const header = {
         {
             title: "documents",
             link: String.raw`/docs`,
-            navigationBars: [
-                "docs-fundamentals",
-                "docs-frontend",
-                "docs-backend",
-                "docs-tools",
-            ],
+            navigationBars: [],
         },
     ],
 };

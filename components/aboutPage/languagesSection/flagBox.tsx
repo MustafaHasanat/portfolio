@@ -51,6 +51,7 @@ const FlagBox = ({ language }: FlagBoxProps) => {
                 background: `linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.7)), url("${language.flag.asset.url}")`,
                 backgroundPosition: "center",
                 backgroundSize: "cover",
+                boxShadow: `0 0 10px 1px ${theme.palette.primary.main}`,
             }}
         >
             <Avatar

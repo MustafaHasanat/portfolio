@@ -1,5 +1,5 @@
 import IonicAvatar from "./ionicAvatar";
-import {  Box, Stack, useTheme } from "@mui/material";
+import { Box, Stack, useTheme } from "@mui/material";
 import { mainSectionStyles } from "./styles";
 import DownloadButton from "./downloadButton";
 import { AvatarIcon } from "@/types/avatarIcon";
@@ -22,13 +22,14 @@ const MainSection = ({ avatarIcons, inViewRef }: MainSectionProps) => {
 
     return (
         <Stack
+            id="home-main"
             sx={mainSectionStyles(
                 theme.palette.primary.main,
                 globalAssets?.landingPageWP?.src
             )}
             direction="row"
         >
-             <Box
+            <Box
                 ref={inViewRef}
                 sx={{
                     position: "absolute",

@@ -2,8 +2,8 @@ import { keyframes } from "@mui/material";
 
 export const mainSectionStyles = (borderColor: string, bgImage: string) => {
     return {
-        alignItems: "center",
         justifyContent: "center",
+        alignItems: { xs: "start", md: "center" },
         position: "relative",
         width: "100%",
         height: "101vh",
@@ -11,6 +11,7 @@ export const mainSectionStyles = (borderColor: string, bgImage: string) => {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         borderBottom: `1px solid ${borderColor}`,
+        pt: { xs: 40, md: 0 },
     };
 };
 
@@ -38,7 +39,7 @@ const hidden = keyframes`
 export const ionicContainerStyles = (scale: number) => {
     return {
         width: "50%",
-        height: "100%",
+        height: { xs: "auto", md: "100%" },
         position: "relative",
         zIndex: 30,
         bgcolor: "transparent",
@@ -105,7 +106,7 @@ export const downloadButtonStyles = (width: any, height: any) => {
         justifyContent: "center",
         alignItems: "center",
         left: { xs: "50%", lg: 100 },
-        bottom: "calc(10% + 1vh)",
+        bottom: { xs: "25vh", md: "calc(10% + 1vh)" },
         width: width,
         height: height,
         zIndex: 31,

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Stack } from "@mui/material";
 import constants from "@/utils/constants";
 import { Fragment, useEffect } from "react";
@@ -24,7 +23,7 @@ const Navbar = ({ animation }: NavbarProps) => {
                     : constants.header.navbarItems[pathNumber].navigationBars
             )
         );
-    }, [path]);
+    }, [dispatch, path, pathNumber]);
 
     return (
         <Stack

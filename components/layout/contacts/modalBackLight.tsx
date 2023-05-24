@@ -1,5 +1,4 @@
 import { Box, Stack } from "@mui/material";
-import { ReactNode } from "react";
 import { useSelector } from "react-redux";
 
 interface ModalBackLightProps {
@@ -11,7 +10,7 @@ const ModalBackLight = ({
     toggleModalVisibility,
 }: ModalBackLightProps) => {
     const modalContent = useSelector(
-        (state: { modalReducer: { modalContent: ReactNode } }) =>
+        (state: { modalReducer: { modalContent: JSX.Element } }) =>
             state.modalReducer.modalContent
     );
 

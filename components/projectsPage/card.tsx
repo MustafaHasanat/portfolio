@@ -10,7 +10,6 @@ import {
 import SlidingTitle from "../shared/slidingTitle";
 import LandingPagePic from "./landingPagePic";
 import getDateInfo from "@/utils/helpers/getDateInfo";
-import { Dispatch } from "react";
 import { CardProps } from "./styles";
 
 const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
@@ -85,7 +84,7 @@ const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
                 justifyContent="flex-start"
                 alignItems="flex-start"
                 spacing={1}
-                width={{ xs: "60vw", sm: filterIsOpened ? "100%" : "45%" }}
+                width={{ xs: "100%", lg: filterIsOpened ? "100%" : "45%" }}
                 height={!lgScreen || filterIsOpened ? "auto" : "85%"}
             >
                 <Link
