@@ -61,7 +61,8 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                     {shuffledQuotes.map((quote, index) => {
                         return (
                             <Fragment key={`quote number: ${index}`}>
-                                <Box
+                                <Stack
+                                    justifyContent="center"
                                     component={motion.div}
                                     initial={{
                                         scale: 1,
@@ -135,7 +136,7 @@ const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
                                             {"~ " + quote.author.author}
                                         </Typography>
                                     </Box>
-                                </Box>
+                                </Stack>
                             </Fragment>
                         );
                     })}

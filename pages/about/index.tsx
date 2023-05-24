@@ -102,7 +102,7 @@ export default function About({
 
     return (
         <Stack>
-            <BioSection inViewRef={educationSecRef} />
+            <BioSection inViewRef={bioSecRef} />
             <EducationSection
                 inViewRef={educationSecRef}
                 certificates={certificates}

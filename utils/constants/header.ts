@@ -27,19 +27,14 @@ const header = {
             navigationBars: [],
         },
         {
-            title: "products",
-            link: String.raw`/products`,
+            title: "services",
+            link: String.raw`/services`,
             navigationBars: [],
         },
         {
             title: "documents",
             link: String.raw`/docs`,
-            navigationBars: [
-                "docs-fundamentals",
-                "docs-frontend",
-                "docs-backend",
-                "docs-tools",
-            ],
+            navigationBars: [],
         },
     ],
 };

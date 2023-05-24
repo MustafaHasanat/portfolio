@@ -59,8 +59,8 @@ export default function ProjectDetails({ product, projects }: ProductProps) {
         <Stack
             sx={{
                 bgcolor: theme.palette.secondary.main,
-                px: { xs: 5, lg: 25 },
-                py: "20vh",
+                px: { xs: 3, lg: 25 },
+                py: { xs: "12vh", lg: "20vh" },
             }}
         >
             <IntroSection product={product} />

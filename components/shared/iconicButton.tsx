@@ -1,4 +1,4 @@
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { ReactNode, useState } from "react";
 
@@ -21,17 +21,18 @@ const IconicButton = ({
     buttonHeight,
     extraSX,
 }: IconicButtonProps) => {
-    const [clearHovered, setClearHovered] = useState(false);
+    const [buttonHovered, setButtonHovered] = useState(false);
+    const lgScreen = useMediaQuery("(min-width:1440px)");
 
     return (
         <Box
             component="div"
             onClick={onClick}
             onMouseEnter={() => {
-                setClearHovered(true);
+                setButtonHovered(true);
             }}
             onMouseLeave={() => {
-                setClearHovered(false);
+                setButtonHovered(false);
             }}
             sx={{
                 position: "relative",
@@ -43,7 +44,7 @@ const IconicButton = ({
                 border: `1px solid`,
                 borderRadius: 1,
                 transition: "0.2s ease",
-                borderColor: clearHovered ? hoverColor : color,
+                borderColor: buttonHovered ? hoverColor : color,
                 overflow: "hidden",
                 cursor: "pointer",
                 height: buttonHeight,
@@ -53,7 +54,7 @@ const IconicButton = ({
             <Stack
                 component={motion.div}
                 initial={{ y: 0 }}
-                whileHover={{ y: `-${buttonHeight}` }}
+                whileHover={{ y: lgScreen ? `-${buttonHeight}` : 0 }}
                 sx={{
                     width: "100%",
                     position: "absolute",

@@ -96,12 +96,12 @@ const FilterBox = ({
                             }}
                         />
                     }
+                    buttonHeight="3rem"
                     color={theme.palette.text.primary}
                     hoverColor={theme.palette.error.main}
                     onClick={clearFilter}
                     extraSX={{
                         width: "90%",
-                        height: "3rem",
                         mt: 5,
                     }}
                 >

@@ -57,7 +57,7 @@ const LandingPagePic = ({
             }}
         >
             <Typography
-                variant="h3"
+                fontSize={{ xs: "2.5rem", md: "4.5rem", lg: "3rem" }}
                 letterSpacing={4}
                 color={theme.palette.secondary.main}
             >
@@ -66,7 +66,7 @@ const LandingPagePic = ({
             <LaunchIcon
                 sx={{
                     color: theme.palette.secondary.main,
-                    height: "15%",
+                    height: { xs: "2rem", md: "4rem", lg: "2.5rem" },
                     width: "auto",
                 }}
             />

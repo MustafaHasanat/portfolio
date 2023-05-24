@@ -140,7 +140,7 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
                     color={theme.palette.text.primary}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {
-                        router.push("/products/" + product.title);
+                        router.push("/services/" + product.title);
                     }}
                     extraSX={{
                         width: { xs: "100%", md: "60%", lg: "55%" },

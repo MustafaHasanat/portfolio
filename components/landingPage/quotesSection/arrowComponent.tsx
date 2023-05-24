@@ -18,8 +18,8 @@ const ArrowComponent = ({
     size,
 }: ArrowComponentProps) => {
     const theme = useTheme();
-    const newTransform = "translateY(-50%) " + transform;
     const mdScreen = useMediaQuery("(min-width:768px)");
+    const newTransform = "translateY(-50%) " + transform;
 
     return (
         <Box

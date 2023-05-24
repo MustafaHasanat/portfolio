@@ -15,19 +15,11 @@ export interface AboutPageProps {
     languages: boolean;
 }
 
-export interface DocsPageProps {
-    fundamentals: boolean;
-    frontend: boolean;
-    backend: boolean;
-    tools: boolean;
-}
-
 const initialNavigationBarState: {
     bars: string[];
     currentView: string;
     homePage: HomePageProps;
     aboutPage: AboutPageProps;
-    docsPage: DocsPageProps;
 } = {
     bars: [],
     currentView: "",
@@ -44,12 +36,6 @@ const initialNavigationBarState: {
         experience: false,
         certificates: false,
         languages: false,
-    },
-    docsPage: {
-        fundamentals: true,
-        frontend: false,
-        backend: false,
-        tools: false,
     },
 };
 
@@ -68,9 +54,6 @@ export const navigationBarSlice = createSlice({
         },
         setAboutView(state, action: { payload: AboutPageProps }) {
             state.aboutPage = action.payload;
-        },
-        setDocsView(state, action: { payload: DocsPageProps }) {
-            state.docsPage = action.payload;
         },
     },
 });

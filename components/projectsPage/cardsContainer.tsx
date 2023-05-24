@@ -107,7 +107,7 @@ const CardsContainer = ({ projects }: CardsContainerProps) => {
             if (
                 project.title
                     .toLowerCase()
-                    .includes(projectsState.searchTerm || "") &&
+                    .includes(projectsState.searchTerm.toLowerCase() || "") &&
                 (projectsState.yearSelect === 0 ||
                     projectsState.yearSelect === projectYear) &&
                 projectsState.typeSelected.includes(

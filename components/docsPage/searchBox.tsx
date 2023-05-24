@@ -1,6 +1,7 @@
-import { Stack, TextField, useTheme } from "@mui/material";
+import { Button, Stack, TextField, useTheme } from "@mui/material";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { Dispatch, SetStateAction } from "react";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 interface SearchBoxProps {
     searchTerm: string;
@@ -16,9 +17,9 @@ const SearchBox = ({ searchTerm, setSearchTerm }: SearchBoxProps) => {
             alignItems="center"
             sx={{
                 justifyContent: "center",
-                width: { xs: "80%", lg: "100%" },
+                width: "100%",
                 height: "100%",
-                px: { xs: 0, lg: 25 },
+                px: { xs: 0, md: 5, lg: 15 },
                 mb: { xs: 3, lg: 5 },
             }}
         >
@@ -50,7 +51,7 @@ const SearchBox = ({ searchTerm, setSearchTerm }: SearchBoxProps) => {
                     setSearchTerm(e.target.value);
                 }}
                 sx={{
-                    width: "80%",
+                    width: "calc(100%)",
                     borderRadius: 1,
                     bgcolor: theme.palette.text.primary,
 
@@ -59,6 +60,25 @@ const SearchBox = ({ searchTerm, setSearchTerm }: SearchBoxProps) => {
                     },
                 }}
             />
+
+            <Button
+                sx={{
+                    ml: 1,
+                    height: "auto",
+                    width: "3rem",
+                }}
+                onClick={() => {
+                    setSearchTerm("");
+                }}
+            >
+                <HighlightOffIcon
+                    sx={{
+                        color: theme.palette.error.main,
+                        height: "70%",
+                        width: "100%",
+                    }}
+                />
+            </Button>
         </Stack>
     );
 };

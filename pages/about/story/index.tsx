@@ -16,7 +16,7 @@ export default function Story() {
 
     return (
         <Box
-            pt="20vh"
+            pt={{ xs: "12vh", md: "20vh" }}
             pb={10}
             px={{ xs: 3, lg: 18 }}
             position="relative"
@@ -25,12 +25,12 @@ export default function Story() {
             {ImageBox({
                 src: globalAssets?.mySecondAvatar?.src,
                 alt: "avatar",
-                width: { xs: "18rem", lg: "25vw" },
-                height: { xs: "18rem", lg: "25vw" },
+                width: { xs: "90vw", lg: "25vw" },
+                height: { xs: "90vw", lg: "25vw" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
                     float: { xs: "unset", md: "right" },
-                    ml: 5,
+                    ml: { xs: 0, lg: 5 },
                 },
             })}
             {Title({
@@ -69,12 +69,12 @@ export default function Story() {
             {ImageBox({
                 src: globalAssets?.graduationPhoto?.src,
                 alt: "avatar",
-                width: { xs: "95vw", lg: "25vw" },
-                height: { xs: "auto", lg: "70vh" },
+                width: { xs: "90vw", lg: "25vw" },
+                height: { xs: "30rem", lg: "70vh" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
-                    float: "left",
-                    mr: 5,
+                    float: { xs: "none", lg: "left" },
+                    mr: { xs: 0, lg: 5 },
                     mt: { xs: 0, lg: 5 },
                 },
             })}
@@ -110,12 +110,12 @@ export default function Story() {
             {ImageBox({
                 src: globalAssets?.ltucPhoto?.src,
                 alt: "avatar",
-                width: { xs: "95vw", lg: "35vw" },
-                height: { xs: "auto", lg: "45vh" },
+                width: { xs: "90vw", lg: "35vw" },
+                height: { xs: "13rem", lg: "45vh" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
-                    float: "right",
-                    ml: 5,
+                    float: { xs: "none", lg: "right" },
+                    ml: { xs: 0, lg: 5 },
                     mt: { xs: 0, lg: 5 },
                 },
             })}
@@ -147,12 +147,12 @@ export default function Story() {
             {ImageBox({
                 src: globalAssets?.workPhoto?.src,
                 alt: "avatar",
-                width: { xs: "95vw", lg: "30vw" },
-                height: { xs: "auto", lg: "50vh" },
+                width: { xs: "90vw", lg: "30vw" },
+                height: { xs: "17rem", lg: "50vh" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
-                    float: "left",
-                    mr: 5,
+                    float: { xs: "none", lg: "left" },
+                    mr: { xs: 0, lg: 5 },
                     mt: { xs: 0, lg: 5 },
                 },
             })}

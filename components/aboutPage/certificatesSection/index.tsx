@@ -61,7 +61,7 @@ const CertificatesSection = ({
             if (modalPhoto) {
                 setModalContent(modalBox);
             } else {
-                setModalContent(<div></div>);
+                setModalContent(<Stack></Stack>);
             }
         }
     }, [modalPhoto, isModalActive, modalBox, setModalContent]);

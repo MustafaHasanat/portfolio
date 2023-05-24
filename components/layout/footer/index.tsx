@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import React, { MutableRefObject, useEffect, useRef } from "react";
 import Form from "./form";
 import { snackbarActions, navigationBarActions } from "@/utils/store/store";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,12 +8,14 @@ import theme from "@/styles/theme";
 import { useInView } from "framer-motion";
 import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
-const Footer = () => {
+interface FooterProps {
+    footerInView: boolean;
+    footerRef: MutableRefObject<null>;
+}
+
+const Footer = ({ footerRef, footerInView }: FooterProps) => {
     const formRef = useRef();
     const dispatch = useDispatch();
-
-    const footerRef = useRef(null);
-    const footerInView = useInView(footerRef);
 
     useEffect(() => {
         if (footerInView)
@@ -74,8 +76,7 @@ const Footer = () => {
             direction={{ xs: "column-reverse", lg: "row" }}
             justifyContent={{ xs: "space-evenly", lg: "space-between" }}
             alignItems="center"
-            pl={{ xs: 5, md: 12 }}
-            pr={{ xs: 2, md: 12 }}
+            px={{ xs: 2, md: 12 }}
             pb={{ xs: 5, lg: 0 }}
             sx={{
                 position: "relative",

@@ -15,7 +15,7 @@ const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
         <Stack alignItems="center">
             <Box
                 sx={{
-                    width: { xs: "70%", lg: "60%" },
+                    width: { xs: "100%", lg: "60%" },
                     height: { xs: "12rem", sm: "15rem", lg: "13rem" },
                 }}
             >

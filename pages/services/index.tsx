@@ -17,7 +17,7 @@ export const getStaticProps = async (): Promise<{ props: ProductsProps }> => {
     };
 };
 
-export default function Products({ products }: ProductsProps) {
+export default function Services({ products }: ProductsProps) {
     const theme = useTheme();
 
     return (
@@ -25,8 +25,8 @@ export default function Products({ products }: ProductsProps) {
             sx={{
                 alignItems: "center",
                 bgcolor: theme.palette.secondary.main,
-                px: 12,
-                py: "25vh",
+                px: {xs: 3, md: 12},
+                py: { xs: "12vh", lg: "25vh" },
             }}
         >
             <Box
@@ -36,7 +36,7 @@ export default function Products({ products }: ProductsProps) {
                 }}
             >
                 <AnimatedTitle
-                    text="my products"
+                    text="my services"
                     shadowColor={theme.palette.primary.main}
                     fontSize={{
                         xs: "0.8rem",

@@ -18,7 +18,7 @@ const SkillsBox = ({ hoveredSkillSet, currentSkillSet }: SkillsBoxProps) => {
                 p: 3,
                 borderRadius: 3,
                 boxShadow: `0 0 15px ${theme.palette.primary.main}`,
-                height: { xs: "70vh", md: "100%" },
+                height: "100%",
                 alignItems: "center",
             }}
         >

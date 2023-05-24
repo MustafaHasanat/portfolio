@@ -27,7 +27,11 @@ export default function Docs({ docs }: DocsProps) {
     useEffect(() => {
         setFilteredDocs(
             docs.filter((doc) => {
-                if (doc.title.toLowerCase().includes(searchTerm || "")) {
+                if (
+                    doc.title
+                        .toLowerCase()
+                        .includes(searchTerm.toLowerCase() || "")
+                ) {
                     return doc;
                 }
             })
@@ -40,7 +44,7 @@ export default function Docs({ docs }: DocsProps) {
                 bgcolor: theme.palette.secondary.main,
                 alignItems: "center",
                 px: { xs: 3, lg: 12 },
-                py: "25vh",
+                py: { xs: "12vh", lg: "25vh" },
             }}
         >
             <Box

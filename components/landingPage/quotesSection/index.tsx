@@ -108,7 +108,7 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
                 direction={{ xs: "column", md: "row" }}
                 justifyContent="space-evenly"
                 alignItems="center"
-                height="90vh"
+                height="50vh"
                 color={theme.palette.text.primary}
                 position="relative"
                 width="100%"
