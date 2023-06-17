@@ -1,7 +1,5 @@
-import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { motion } from "framer-motion";
-import { Dispatch, Fragment, SetStateAction, useState } from "react";
-import WorkspacesIcon from "@mui/icons-material/Workspaces";
+import { Stack, useMediaQuery } from "@mui/material";
+import { Dispatch, SetStateAction, useState } from "react";
 import { SkillSet } from "@/types/skillSet";
 import DesktopControlBox from "./desktopControlBox";
 import MobileControlBox from "./mobileControlBox";
@@ -20,7 +18,6 @@ const ControlBox = ({
     currentSkillSet,
     setCurrentSkillSet,
 }: ControlBoxProps) => {
-    const theme = useTheme();
     const mdScreen = useMediaQuery("(min-width:768px)");
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
@@ -28,7 +25,7 @@ const ControlBox = ({
         <Stack
             sx={{
                 height: "auto",
-                width: { xs: "100%", md: "15rem" },
+                width: { xs: "100%", md: "100%", lg: "80%" },
             }}
         >
             {mdScreen ? (

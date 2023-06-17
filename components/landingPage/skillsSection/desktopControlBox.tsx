@@ -21,105 +21,103 @@ const DesktopControlBox = ({
 
     return (
         <Stack
+            direction="row"
             sx={{
-                height: "30rem",
-                width: "15vw",
-                justifyContent: "space-evenly",
+                flexWrap: "wrap",
+                justifyContent: "center",
                 alignItems: "center",
+                gap: 3,
             }}
         >
             {skillSets.map((skillSetItem, skillIndex) => {
                 return (
-                    <Fragment key={`skill set number:${skillIndex}`}>
-                        <Stack
+                    <Stack
+                        key={`skill set number:${skillIndex}`}
+                        sx={{
+                            bgcolor: theme.palette.text.primary,
+                            borderRadius: 3,
+                            position: "relative",
+                            width: "10rem",
+                            aspectRatio: "3 / 1",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <Box
+                            component={motion.div}
+                            initial={{ scale: 0, opacity: 0.5 }}
+                            animate={{
+                                scale:
+                                    skillSetItem.title === currentSkillSet.title
+                                        ? 0
+                                        : 1,
+                                rotate: 0,
+                            }}
+                            whileHover={{
+                                opacity: 1,
+                                scale:
+                                    skillSetItem.title === currentSkillSet.title
+                                        ? 0
+                                        : 1.5,
+                                rotate:
+                                    skillSetItem.title === currentSkillSet.title
+                                        ? -180
+                                        : 180,
+                            }}
                             sx={{
-                                position: "relative",
-                                width: "100%",
-                                height: `calc(100% / ${skillSets.length})`,
-                                alignItems: "center",
-                                justifyContent: "center",
+                                width: { xs: "1.7rem" },
+                                height: "auto",
+                                cursor: "pointer",
+                            }}
+                            onClick={() => {
+                                setCurrentSkillSet(skillSetItem);
+                                setHoveredSkillSet(null);
+                            }}
+                            onMouseEnter={() => {
+                                setHoveredSkillSet(skillSetItem);
+                            }}
+                            onMouseLeave={() => {
+                                setHoveredSkillSet(null);
                             }}
                         >
-                            <Box
-                                component={motion.div}
-                                initial={{ scale: 0, opacity: 0.5 }}
-                                animate={{
-                                    scale:
-                                        skillSetItem.title ===
-                                        currentSkillSet.title
-                                            ? 0
-                                            : 1,
-                                    rotate: 0,
-                                }}
-                                whileHover={{
-                                    opacity: 1,
-                                    scale:
-                                        skillSetItem.title ===
-                                        currentSkillSet.title
-                                            ? 0
-                                            : 1.5,
-                                    rotate:
-                                        skillSetItem.title ===
-                                        currentSkillSet.title
-                                            ? -180
-                                            : 180,
-                                }}
+                            <WorkspacesIcon
                                 sx={{
-                                    width: { xs: "1.7rem" },
-                                    height: "auto",
-                                    cursor: "pointer",
-                                }}
-                                onClick={() => {
-                                    setCurrentSkillSet(skillSetItem);
-                                    setHoveredSkillSet(null);
-                                }}
-                                onMouseEnter={() => {
-                                    setHoveredSkillSet(skillSetItem);
-                                }}
-                                onMouseLeave={() => {
-                                    setHoveredSkillSet(null);
-                                }}
-                            >
-                                <WorkspacesIcon
-                                    sx={{
-                                        color: theme.palette.primary.main,
-                                        width: "100%",
-                                        height: "100%",
-                                    }}
-                                />
-                            </Box>
-
-                            <Box
-                                component={motion.div}
-                                initial={{
-                                    top: "50%",
-                                    left: "50%",
+                                    color: theme.palette.primary.main,
                                     width: "100%",
-                                    transform:
-                                        "translateX(-50%) translateY(-50%) scale(0)",
+                                    height: "100%",
                                 }}
-                                animate={{
-                                    transform:
-                                        skillSetItem.title ===
-                                        currentSkillSet.title
-                                            ? "translateX(-50%) translateY(-50%) scale(1)"
-                                            : "translateX(-50%) translateY(-50%) scale(0)",
-                                }}
-                                sx={{
-                                    position: "absolute",
-                                }}
+                            />
+                        </Box>
+
+                        <Box
+                            component={motion.div}
+                            initial={{
+                                top: "50%",
+                                left: "50%",
+                                width: "100%",
+                                transform:
+                                    "translateX(-50%) translateY(-50%) scale(0)",
+                            }}
+                            animate={{
+                                transform:
+                                    skillSetItem.title === currentSkillSet.title
+                                        ? "translateX(-50%) translateY(-50%) scale(1)"
+                                        : "translateX(-50%) translateY(-50%) scale(0)",
+                            }}
+                            sx={{
+                                position: "absolute",
+                            }}
+                        >
+                            <Typography
+                                color={theme.palette.secondary.main}
+                                fontSize={{ xs: "1.3rem" }}
+                                textTransform="capitalize"
+                                textAlign="center"
                             >
-                                <Typography
-                                    color={theme.palette.text.primary}
-                                    fontSize={{ xs: "1.5rem" }}
-                                    textTransform="capitalize"
-                                    textAlign="center"
-                                >
-                                    {skillSetItem.title}
-                                </Typography>
-                            </Box>
-                        </Stack>
-                    </Fragment>
+                                {skillSetItem.title}
+                            </Typography>
+                        </Box>
+                    </Stack>
                 );
             })}
         </Stack>

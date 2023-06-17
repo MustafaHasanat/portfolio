@@ -4,8 +4,6 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { motion, AnimationControls } from "framer-motion";
 import { useTheme } from "@mui/material";
 import { headerBoxStyles } from "./styles";
-import { useSelector } from "react-redux";
-import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import SlidingTitle from "@/components/shared/slidingTitle";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import BMCBox from "./bmcBox";
@@ -27,11 +25,6 @@ const Header = ({
     const [headerPosition, setHeaderPosition] = useState("0vh");
     const lgScreen = useMediaQuery("(min-width:1440px)");
     const mdScreen = useMediaQuery("(min-width:768px)");
-
-    const globalAssets = useSelector(
-        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
-            state.globalAssetsReducer.globalAssets
-    );
 
     useEffect(() => {
         var lastScroll = 0;
@@ -86,11 +79,12 @@ const Header = ({
             >
                 <Avatar
                     variant="square"
-                    src={globalAssets?.websiteLogo?.src}
+                    src={"/icons/logo.png"}
                     alt="logo"
                     sx={{
                         width: "3rem",
                         height: "auto",
+                        filter: `drop-shadow(0px 0px 2px ${theme.palette.primary.main})`,
                     }}
                 />
 
@@ -133,11 +127,7 @@ const Header = ({
                 </Box>
             )}
 
-            {lgScreen && (
-                <Navbar
-                    animation={headerAnimations}
-                />
-            )}
+            {lgScreen && <Navbar animation={headerAnimations} />}
         </Stack>
     );
 };

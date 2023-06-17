@@ -1,10 +1,6 @@
 import theme from "@/styles/theme";
 import { SkillSet } from "@/types/skillSet";
 import {
-    Box,
-    ListItem,
-    ListItemButton,
-    ListItemText,
     Stack,
     Typography,
 } from "@mui/material";
@@ -30,7 +26,7 @@ const SkillSetDialog = ({
         <Stack
             component={motion.div}
             initial={{ height: "70vh" }}
-            animate={{ height: dialogIsOpen ? "80vh" : 0 }}
+            animate={{ height: dialogIsOpen ? "50vh" : 0 }}
             sx={{
                 overflow: "hidden",
                 justifyContent: "space-evenly",

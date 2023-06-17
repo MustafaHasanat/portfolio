@@ -18,7 +18,7 @@ const DownloadButton = () => {
     const lgScreen = useMediaQuery("(min-width:1440px)");
     const fourKScreen = useMediaQuery("(min-width:2560px)");
 
-    const buttonWidth = { xs: "12rem", md: "15rem" };
+    const buttonWidth = { xs: "18rem", md: "15rem" };
     const buttonHeight = fourKScreen
         ? "4rem"
         : lgScreen
@@ -37,13 +37,6 @@ const DownloadButton = () => {
             animate={{
                 opacity: 1,
                 x: lgScreen ? 0 : "-50%",
-            }}
-            transition={{
-                ease: "easeIn",
-                duration: 0.3,
-                type: "spring",
-                stiffness: 400,
-                damping: 15,
             }}
             whileTap={{ scale: 0.9 }}
             sx={downloadButtonStyles(buttonWidth, buttonHeight)}

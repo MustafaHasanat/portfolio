@@ -2,18 +2,11 @@ import { Avatar, Box, useMediaQuery, useTheme } from "@mui/material";
 import Link from "next/link";
 import { urls } from "@/utils/constants/global";
 import { motion, useAnimation } from "framer-motion";
-import { useSelector } from "react-redux";
-import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 const BMCBox = () => {
     const theme = useTheme();
     const bmcAnimations = useAnimation();
     const mdScreen = useMediaQuery("(min-width:768px)");
-
-    const globalAssets = useSelector(
-        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
-            state.globalAssetsReducer.globalAssets
-    );
 
     return (
         <Box
@@ -29,7 +22,7 @@ const BMCBox = () => {
         >
             <Link href={urls.myBMCURL} title="bmc" target="_blank">
                 <Avatar
-                    src={globalAssets?.bmcLogo?.src}
+                    src={"/icons/bmcLogo.jpg"}
                     component="div"
                     onMouseEnter={() => {
                         bmcAnimations.start("visible");
@@ -66,7 +59,7 @@ const BMCBox = () => {
                             transition: { duration: 0.3 },
                         },
                     }}
-                    src={globalAssets?.bmcSlogan?.src}
+                    src={"/icons/bmcSlogan.png"}
                     sx={{
                         padding: 1,
                         bgcolor: theme.palette.secondary.light,

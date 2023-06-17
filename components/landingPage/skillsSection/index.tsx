@@ -30,6 +30,7 @@ const SkillsSection = ({ inViewRef, skillSets }: SkillsSectionProps) => {
             bgcolor={theme.palette.secondary.main}
             alignItems="center"
             py={{ xs: 15, md: 10 }}
+            height={{ xs: "auto", md: "130vh", lg: "140vh" }}
         >
             <Box
                 ref={inViewRef}
@@ -53,24 +54,23 @@ const SkillsSection = ({ inViewRef, skillSets }: SkillsSectionProps) => {
             </Box>
 
             <Stack
-                direction={{ xs: "column-reverse", md: "row" }}
-                alignItems="start"
                 justifyContent={{ xs: "start", md: "center" }}
-                px={{ xs: 10, md: 15 }}
+                alignItems="center"
+                px={{ xs: 5, md: 15 }}
                 my={3}
                 spacing={5}
                 height="auto"
                 width="100%"
             >
-                <SkillsBox
-                    hoveredSkillSet={hoveredSkillSet}
-                    currentSkillSet={currentSkillSet}
-                />
                 <ControlBox
                     skillSets={skillSets}
                     setHoveredSkillSet={setHoveredSkillSet}
                     currentSkillSet={currentSkillSet}
                     setCurrentSkillSet={setCurrentSkillSet}
+                />
+                <SkillsBox
+                    hoveredSkillSet={hoveredSkillSet}
+                    currentSkillSet={currentSkillSet}
                 />
             </Stack>
         </Stack>

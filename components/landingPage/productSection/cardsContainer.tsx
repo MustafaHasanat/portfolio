@@ -1,6 +1,6 @@
 import { Stack } from "@mui/material";
 import { useTheme } from "@mui/material";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import FrontFace from "./frontFace";
 import BackFace from "./backFace";
 import FlipBox from "@/components/shared/flipBox";
@@ -15,6 +15,7 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
     const theme = useTheme();
     const [cardTransform, setCardTransform] = useState("rotateY(0deg)");
     const [cardFlipped, setCardFlipped] = useState(0);
+    const [filteredProducts, setFilteredProducts] = useState(products);
 
     const faceSX = {
         width: "100%",
@@ -42,9 +43,19 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
         }
     };
 
+    useEffect(() => {
+        setFilteredProducts((products) =>
+            products.filter((product) => {
+                if (product.isActive) {
+                    return product;
+                }
+            })
+        );
+    }, []);
+
     return (
         <Stack id="cards-container" direction="row" sx={CardsBox}>
-            {products.map((product, index) => {
+            {filteredProducts.map((product, index) => {
                 return (
                     <Fragment key={`product card number: ${index}`}>
                         <FlipBox
@@ -85,7 +96,7 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
                                     ? cardTransform
                                     : "rotateY(0deg)"
                             }
-                            width={{ xs: "80vw", lg: "25vw", xl: "20vw" }}
+                            width={{ xs: "85vw", lg: "25vw", xl: "20vw" }}
                         />
                     </Fragment>
                 );

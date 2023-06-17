@@ -40,7 +40,7 @@ const IconicButton = ({
                 flexDirection: "column",
                 alignItems: "center",
                 width: "10%",
-                color: color,
+                color: buttonHovered ? hoverColor : color,
                 border: `1px solid`,
                 borderRadius: 1,
                 transition: "0.2s ease",
@@ -54,7 +54,9 @@ const IconicButton = ({
             <Stack
                 component={motion.div}
                 initial={{ y: 0 }}
-                whileHover={{ y: lgScreen ? `-${buttonHeight}` : 0 }}
+                whileHover={{
+                    y: lgScreen ? `-${buttonHeight}` : 0,
+                }}
                 sx={{
                     width: "100%",
                     position: "absolute",

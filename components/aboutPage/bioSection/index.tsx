@@ -1,8 +1,5 @@
 import { Box, useTheme } from "@mui/material";
-import { MutableRefObject } from "react";
 import ButtonSet from "./buttonSet";
-import { useSelector } from "react-redux";
-import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import Title from "./title";
 import ImageBox from "./imageBox";
 import ParagraphBox from "./paragraphBox";
@@ -10,11 +7,6 @@ import { BioSectionProps, MainBoxStyles } from "./styles";
 
 const BioSection = ({ inViewRef }: BioSectionProps) => {
     const theme = useTheme();
-
-    const globalAssets = useSelector(
-        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
-            state.globalAssetsReducer.globalAssets
-    );
 
     return (
         <Box sx={MainBoxStyles(theme.palette.secondary.main)} id="about-bio">
@@ -28,10 +20,10 @@ const BioSection = ({ inViewRef }: BioSectionProps) => {
             />
 
             {ImageBox({
-                src: globalAssets?.mySecondAvatar?.src,
+                src: "/images/avatar.jpg",
                 alt: "avatar",
-                width: { xs: "50vw", lg: "30vw" },
-                height: { xs: "50vw", lg: "30vw" },
+                width: { xs: "90vw", md: "50vw", lg: "30vw" },
+                height: { xs: "90vw", md: "50vw", lg: "30vw" },
                 shadowColor: theme.palette.secondary.main,
                 extraSX: {
                     float: { xs: "unset", lg: "right" },

@@ -13,7 +13,6 @@ export const projectsReducer = (initialValues: ReducerProps) => {
                     ...state,
                     filterIsOpened: action.payload,
                 };
-                break;
             case "searchTerm":
                 return {
                     ...state,

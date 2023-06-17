@@ -23,11 +23,11 @@ export const ProductBox = (bgcolor: string) => {
 export const CardsBox = {
     gap: { xs: 5, md: 15 },
     my: 5,
-    px: { xs: 5, md: 15 },
+    px: { xs: 2, md: 15 },
     flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center",
-    zIndex: 2,
+    zIndex: 5,
     position: "relative",
 };
 

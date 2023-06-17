@@ -14,7 +14,7 @@ const SkillsBox = ({ hoveredSkillSet, currentSkillSet }: SkillsBoxProps) => {
         <Stack
             spacing={4}
             sx={{
-                width: { xs: "100%", md: "60%", lg: "35vw" },
+                width: { xs: "100%", lg: "60vw" },
                 p: 3,
                 borderRadius: 3,
                 boxShadow: `0 0 15px ${theme.palette.primary.main}`,
@@ -34,41 +34,46 @@ const SkillsBox = ({ hoveredSkillSet, currentSkillSet }: SkillsBoxProps) => {
                 {hoveredSkillSet ? hoveredSkillSet.title : "skills"}
             </Typography>
 
-            <Stack width="100%" spacing={2} overflow="scroll">
+            <Stack
+                width="100%"
+                gap={3}
+                flexWrap="wrap"
+                direction="row"
+                justifyContent="center"
+            >
                 {currentSkillSet.skills.map((skill, skillIndex) => {
                     return (
-                        <Fragment key={`skill set list number:${skillIndex}`}>
-                            <Stack
-                                direction="row"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                bgcolor={theme.palette.text.primary}
-                                borderRadius={2}
-                                py={1}
-                                px={2}
-                                height="4rem"
-                                width="100%"
+                        <Stack
+                            key={`skill set list number:${skillIndex}`}
+                            direction="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            bgcolor={theme.palette.text.primary}
+                            borderRadius={2}
+                            py={1}
+                            px={2}
+                            height="4rem"
+                            width="15rem"
+                        >
+                            <Typography
+                                color={theme.palette.secondary.main}
+                                fontSize={{ xs: "1.2rem", md: "1.5rem" }}
                             >
-                                <Typography
-                                    color={theme.palette.secondary.main}
-                                    fontSize={{ xs: "1.2rem", md: "1.5rem" }}
-                                >
-                                    {skill.name}
-                                </Typography>
+                                {skill.name}
+                            </Typography>
 
-                                <Avatar
-                                    variant="square"
-                                    src={skill.logo.asset.url}
-                                    sx={{
-                                        padding: 0.5,
-                                        bgcolor: "white",
-                                        height: "100%",
-                                        width: "auto",
-                                        borderRadius: 2,
-                                    }}
-                                />
-                            </Stack>
-                        </Fragment>
+                            <Avatar
+                                variant="square"
+                                src={skill.logo.asset.url}
+                                sx={{
+                                    padding: 0.5,
+                                    bgcolor: "white",
+                                    height: "100%",
+                                    width: "auto",
+                                    borderRadius: 2,
+                                }}
+                            />
+                        </Stack>
                     );
                 })}
             </Stack>

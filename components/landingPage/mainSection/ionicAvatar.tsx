@@ -7,8 +7,6 @@ import {
     orbitalPathStyles,
 } from "./styles";
 import { AvatarIcon } from "@/types/avatarIcon";
-import { useSelector } from "react-redux";
-import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     const [scaleValue, setScaleValue] = useState(1);
@@ -16,11 +14,6 @@ const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     const mdScreen = useMediaQuery("(min-width:768px)");
     const lgScreen = useMediaQuery("(min-width:1440px)");
     const fourKScreen = useMediaQuery("(min-width:2560px)");
-
-    const globalAssets = useSelector(
-        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
-            state.globalAssetsReducer.globalAssets
-    );
 
     useEffect(() => {
         if (fourKScreen) {
@@ -39,7 +32,7 @@ const IonicAvatar = ({ avatarIcons }: { avatarIcons: AvatarIcon[] }) => {
     return (
         <Box sx={ionicContainerStyles(scaleValue)}>
             <Avatar
-                src={globalAssets?.myMainAvatar?.src}
+                src="images/avatar.jpg"
                 alt="avatar"
                 sx={avatarStyles(scaleValue)}
             />
