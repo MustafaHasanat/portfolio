@@ -26,7 +26,6 @@ const CourseCard = ({
 }: CourseCardProps) => {
     const theme = useTheme();
     const isVisible = isCardOpened(index);
-    const mdScreen = useMediaQuery("(min-width:768px)");
     const lgScreen = useMediaQuery("(min-width:1440px)");
 
     const dispatch = useDispatch();

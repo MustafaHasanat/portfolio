@@ -12,7 +12,7 @@ const ButtonSet = () => {
             ml={{ xs: 0, md: 3 }}
             mt={3}
             sx={{
-                float: { xs: "revert", md: "right", lg: "left" },
+                float: { xs: "right", md: "right", lg: "left" },
             }}
         >
             <Link href="/about/story" title="Read more about me ...">

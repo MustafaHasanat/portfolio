@@ -1,6 +1,4 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import { useSelector } from "react-redux";
-import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 import Title from "@/components/aboutPage/bioSection/title";
 import ImageBox from "@/components/aboutPage/bioSection/imageBox";
 import ParagraphBox from "@/components/aboutPage/bioSection/paragraphBox";
@@ -8,11 +6,6 @@ import ParagraphBox from "@/components/aboutPage/bioSection/paragraphBox";
 export default function Story() {
     const theme = useTheme();
     const lgScreen = useMediaQuery("(min-width:1440px)");
-
-    const globalAssets = useSelector(
-        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
-            state.globalAssetsReducer.globalAssets
-    );
 
     return (
         <Box
@@ -23,7 +16,7 @@ export default function Story() {
             bgcolor={theme.palette.secondary.main}
         >
             {ImageBox({
-                src: globalAssets?.mySecondAvatar?.src,
+                src: "/images/avatar.jpg",
                 alt: "avatar",
                 width: { xs: "90vw", lg: "25vw" },
                 height: { xs: "90vw", lg: "25vw" },
@@ -67,7 +60,7 @@ export default function Story() {
                     },
                 })}
             {ImageBox({
-                src: globalAssets?.graduationPhoto?.src,
+                src: "/images/graduationPhoto.jpg",
                 alt: "avatar",
                 width: { xs: "90vw", lg: "25vw" },
                 height: { xs: "30rem", lg: "70vh" },
@@ -108,7 +101,7 @@ export default function Story() {
                     },
                 })}
             {ImageBox({
-                src: globalAssets?.ltucPhoto?.src,
+                src: "/images/ltucPhoto.jpg",
                 alt: "avatar",
                 width: { xs: "90vw", lg: "35vw" },
                 height: { xs: "13rem", lg: "45vh" },
@@ -145,7 +138,7 @@ export default function Story() {
                     },
                 })}
             {ImageBox({
-                src: globalAssets?.workPhoto?.src,
+                src: "/images/workPhoto.jpg",
                 alt: "avatar",
                 width: { xs: "90vw", lg: "30vw" },
                 height: { xs: "17rem", lg: "50vh" },

@@ -2,11 +2,9 @@ import { Box, Stack } from "@mui/material";
 import React, { MutableRefObject, useEffect, useRef } from "react";
 import Form from "./form";
 import { snackbarActions, navigationBarActions } from "@/utils/store/store";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Hexagons from "./hexagons";
 import theme from "@/styles/theme";
-import { useInView } from "framer-motion";
-import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
 
 interface FooterProps {
     footerInView: boolean;
@@ -27,11 +25,6 @@ const Footer = ({ footerRef, footerInView }: FooterProps) => {
         dispatch(snackbarActions.setMessage(snackbarMessage));
         dispatch(snackbarActions.setActive(true));
     };
-
-    const globalAssets = useSelector(
-        (state: { globalAssetsReducer: { globalAssets: GlobalAssetProps } }) =>
-            state.globalAssetsReducer.globalAssets
-    );
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
@@ -71,7 +64,6 @@ const Footer = ({ footerRef, footerInView }: FooterProps) => {
 
     return (
         <Stack
-            id="layout-footer"
             component="footer"
             direction={{ xs: "column-reverse", lg: "row" }}
             justifyContent={{ xs: "space-evenly", lg: "space-between" }}
@@ -85,7 +77,7 @@ const Footer = ({ footerRef, footerInView }: FooterProps) => {
                     linear-gradient(
                         rgba(0, 0, 0, 0.6), 
                         rgba(0, 0, 0, 1)), 
-                        url("${globalAssets?.footerBG?.src}")`,
+                        url("/wallpapers/footerBG.jpg")`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
                 backgroundPosition: "top",

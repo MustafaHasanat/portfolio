@@ -1,11 +1,13 @@
 import IntroSection from "@/components/productsPage/introSection";
 import ProjectsSection from "@/components/productsPage/projectsSection";
+import IconicButton from "@/components/shared/iconicButton";
 import { Product } from "@/types/product";
 import { Project } from "@/types/project";
 import { getAllProducts, getProductByTitle } from "@/utils/sanity/product";
 import { getAllProjects } from "@/utils/sanity/project";
-import { Stack, useTheme } from "@mui/material";
+import { Divider, Stack, Typography, useTheme } from "@mui/material";
 import { useEffect, useState } from "react";
+import DomainVerificationIcon from "@mui/icons-material/DomainVerification";
 
 interface ProductProps {
     product: Product;
@@ -45,6 +47,12 @@ export default function ProjectDetails({ product, projects }: ProductProps) {
     const theme = useTheme();
     const [currentProjects, setCurrentProjects] = useState<Project[]>([]);
 
+    const goToFooter = () => {
+        document.getElementById("footer-form-box")?.scrollIntoView({
+            behavior: "smooth",
+        });
+    };
+
     useEffect(() => {
         setCurrentProjects(
             projects.filter((project) => {
@@ -64,6 +72,46 @@ export default function ProjectDetails({ product, projects }: ProductProps) {
             }}
         >
             <IntroSection product={product} />
+
+            <IconicButton
+                icon={
+                    <DomainVerificationIcon
+                        sx={{
+                            color: theme.palette.primary.main,
+                            height: "rem",
+                        }}
+                    />
+                }
+                buttonHeight="4rem"
+                color={theme.palette.primary.main}
+                hoverColor={theme.palette.primary.main}
+                onClick={goToFooter}
+                extraSX={{
+                    width: "15rem",
+                    alignSelf: "center",
+                    my: 5
+                }}
+            >
+                <Typography
+                    fontSize="1rem"
+                    textTransform="uppercase"
+                    letterSpacing={2}
+                >
+                    get yours now!
+                </Typography>
+            </IconicButton>
+
+            <Divider
+                    sx={{
+                        bgcolor: theme.palette.primary.main,
+                        width: "100%",
+                        height: "1px",
+                        opacity: 0.4,
+                        mt: 1,
+                        mb: 5,
+                    }}
+                />
+
             <ProjectsSection projects={currentProjects} />
         </Stack>
     );

@@ -35,6 +35,7 @@ const Layout = ({ children }: LayoutProps) => {
     const headerAnimations = useAnimation();
     const [drawerIsOpened, setDrawerIsOpened] = useState(false);
     const lgScreen = useMediaQuery("(min-width:1440px)");
+    const mdScreen = useMediaQuery("(min-width:768px)");
 
     const dispatch = useDispatch();
     const isModalActive = useSelector(
@@ -69,9 +70,7 @@ const Layout = ({ children }: LayoutProps) => {
 
     useEffect(() => {
         setDrawerIsOpened(false);
-        document.getElementById("layout-box")?.scrollIntoView({
-            behavior: "smooth",
-        });
+        document.getElementById("layout-box")?.scrollIntoView();
     }, [router.asPath]);
 
     return (
@@ -102,8 +101,9 @@ const Layout = ({ children }: LayoutProps) => {
 
             <Contacts />
             <SnackBar />
-            <NavigationBar landingSectionInView={landingSectionInView} />
-
+            {mdScreen && (
+                <NavigationBar landingSectionInView={landingSectionInView} />
+            )}
             <Footer footerRef={footerRef} footerInView={footerInView} />
         </Stack>
     );

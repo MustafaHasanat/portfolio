@@ -1,7 +1,6 @@
 import { AnimationControls, motion } from "framer-motion";
 import Navbar from "../navbar";
-import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import BMCBox from "./bmcBox";
+import { Stack, useTheme } from "@mui/material";
 
 interface LeftDrawerProps {
     animation: AnimationControls;
@@ -9,7 +8,6 @@ interface LeftDrawerProps {
 }
 const LeftDrawer = ({ animation, drawerIsOpened }: LeftDrawerProps) => {
     const theme = useTheme();
-    const mdScreen = useMediaQuery("(min-width:768px)");
 
     return (
         <Stack
@@ -27,42 +25,21 @@ const LeftDrawer = ({ animation, drawerIsOpened }: LeftDrawerProps) => {
                 right: 0,
                 pt: { xs: "20vh", sm: "16vh" },
                 px: { xs: 0, sm: 7 },
-                width: { xs: "100%", sm: "auto" },
+                width: { xs: "100%", md: "auto" },
                 height: "100%",
                 bgcolor: theme.palette.secondary.main,
                 borderLeft: {
                     xs: "unset",
-                    sm: `3px solid ${theme.palette.primary.main}`,
+                    md: `3px solid ${theme.palette.primary.main}`,
                 },
                 borderBottom: {
                     xs: `3px solid ${theme.palette.primary.main}`,
-                    sm: "unset",
+                    md: "unset",
                 },
                 zIndex: 35,
             }}
         >
             <Navbar animation={animation} />
-
-            {!mdScreen && (
-                <Stack
-                    direction="row"
-                    p={3}
-                    mt={3}
-                    spacing={3}
-                    justifyContent="center"
-                    alignItems="center"
-                >
-                    <BMCBox />
-
-                    <Typography
-                        variant="h6"
-                        color={theme.palette.text.primary}
-                        width="50%"
-                    >
-                        Buy me a coffee !
-                    </Typography>
-                </Stack>
-            )}
         </Stack>
     );
 };

@@ -1,13 +1,13 @@
 import { keyframes } from "@mui/material";
 
-export const mainSectionStyles = (borderColor: string, bgImage: string) => {
+export const mainSectionStyles = (borderColor: string) => {
     return {
         justifyContent: "center",
         alignItems: { xs: "start", md: "center" },
         position: "relative",
         width: "100%",
         height: "101vh",
-        background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("${bgImage}")`,
+        background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("wallpapers/desktopLanding.jpg")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         borderBottom: `1px solid ${borderColor}`,
