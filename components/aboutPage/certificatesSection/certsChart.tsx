@@ -40,7 +40,7 @@ const CertsChart = ({
                         onClick={handleClick}
                         data={chartData}
                         options={radialChartOptions}
-                        style={chartStyles(theme.palette.text.primary)}
+                        style={chartStyles("transparent")}
                     />
                 );
             case "polar":
@@ -50,7 +50,7 @@ const CertsChart = ({
                         onClick={handleClick}
                         data={chartData}
                         options={radialChartOptions}
-                        style={chartStyles(theme.palette.text.primary)}
+                        style={chartStyles("transparent")}
                     />
                 );
             case "doughnut":
@@ -59,7 +59,7 @@ const CertsChart = ({
                         ref={chartRef}
                         onClick={handleClick}
                         data={chartData}
-                        style={chartStyles(theme.palette.text.primary)}
+                        style={chartStyles("transparent")}
                     />
                 );
             case "pie":
@@ -68,7 +68,7 @@ const CertsChart = ({
                         ref={chartRef}
                         onClick={handleClick}
                         data={chartData}
-                        style={chartStyles(theme.palette.text.primary)}
+                        style={chartStyles("transparent")}
                     />
                 );
         }
@@ -105,7 +105,11 @@ const CertsChart = ({
     }, [courses]);
 
     return (
-        <Stack width={{ xs: "70vw", lg: "40%" }}>
+        <Stack
+            width={{ xs: "70vw", lg: "40%" }}
+            zIndex={1}
+            bgcolor="transparent"
+        >
             {chartComponent(chartType)}
         </Stack>
     );

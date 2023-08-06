@@ -12,10 +12,6 @@ export const ProductBox = (bgcolor: string) => {
             top: 0,
             width: "100%",
             height: "100%",
-            backgroundImage: `url("bg2.jpg")`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
         },
     };
 };

@@ -59,47 +59,45 @@ const NavigationBar = ({ landingSectionInView }: NavigationBarProps) => {
         >
             {bars.map((bar, index) => {
                 return (
-                    <Fragment key={`${bar} bar number: ${index}`}>
-                        <Box
-                            component={motion.button}
-                            initial={{
-                                opacity: 0.3,
-                                background: theme.palette.primary.main,
-                            }}
-                            animate={{
-                                height: getView(bar) ? "80px" : "30px",
-                                background: landingSectionInView
-                                    ? theme.palette.primary.main
-                                    : theme.palette.primary.main,
-                                borderRadius: 3,
-                                transition: {
-                                    type: "spring",
-                                },
-                            }}
-                            whileHover={{
-                                scale: 1.2,
-                                opacity: 1,
-                                transition: {
-                                    type: "spring",
-                                },
-                            }}
-                            whileTap={{
-                                scale: 0.7,
-                                opacity: 1,
-                                transition: {
-                                    type: "spring",
-                                },
-                            }}
-                            onClick={() => {
-                                handleClick(bar);
-                            }}
-                            sx={{
-                                width: "20px",
-                                cursor: "pointer",
-                                border: 0,
-                            }}
-                        />
-                    </Fragment>
+                    <Box
+                        key={`${bar} bar number: ${index}`}
+                        component={motion.button}
+                        initial={{
+                            opacity: 0.3,
+                            background: theme.palette.primary.main,
+                        }}
+                        animate={{
+                            height: getView(bar) ? "80px" : "30px",
+                            background: landingSectionInView
+                                ? theme.palette.primary.main
+                                : theme.palette.primary.main,
+                            transition: {
+                                type: "spring",
+                            },
+                        }}
+                        whileHover={{
+                            scale: 1.2,
+                            opacity: 1,
+                            transition: {
+                                type: "spring",
+                            },
+                        }}
+                        whileTap={{
+                            scale: 0.7,
+                            opacity: 1,
+                            transition: {
+                                type: "spring",
+                            },
+                        }}
+                        onClick={() => {
+                            handleClick(bar);
+                        }}
+                        sx={{
+                            width: "20px",
+                            cursor: "pointer",
+                            border: 0,
+                        }}
+                    />
                 );
             })}
         </Stack>

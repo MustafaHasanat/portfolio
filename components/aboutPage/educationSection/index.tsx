@@ -3,6 +3,9 @@ import { Box, Stack, useTheme } from "@mui/material";
 import { Fragment, MutableRefObject } from "react";
 import { Certificate } from "@/types/certificate";
 import EducationCard from "./educationCard";
+import SVGBG from "@/components/shared/svgbg/svgbgTemplate";
+import svgbg1 from "@/components/shared/svgbg/landingPage/svgbg1";
+import svgbg2 from "@/components/shared/svgbg/landingPage/svgbg2";
 
 interface EducationSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -41,7 +44,6 @@ const EducationSection = ({
             >
                 <AnimatedTitle
                     text="education"
-                    tertiary={theme.palette.secondary.main}
                     shadowColor={theme.palette.primary.main}
                     fontSize={{
                         xs: "0.8rem",
@@ -51,6 +53,9 @@ const EducationSection = ({
                     }}
                 />
             </Box>
+
+            <SVGBG position="top" SVGElement={svgbg1}></SVGBG>
+            <SVGBG position="bottom" SVGElement={svgbg2}></SVGBG>
 
             <Stack
                 width="100%"

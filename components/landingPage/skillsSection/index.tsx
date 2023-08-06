@@ -29,8 +29,7 @@ const SkillsSection = ({ inViewRef, skillSets }: SkillsSectionProps) => {
             position="relative"
             bgcolor={theme.palette.secondary.main}
             alignItems="center"
-            py={{ xs: 15, md: 10 }}
-            height={{ xs: "auto", md: "130vh", lg: "140vh" }}
+            py={10}
         >
             <Box
                 ref={inViewRef}

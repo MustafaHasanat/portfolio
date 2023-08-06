@@ -5,6 +5,9 @@ import { ProductBox } from "./styles";
 import { Product } from "@/types/product";
 import CardsContainer from "./cardsContainer";
 import AnimatedTitle from "@/components/shared/animatedTitle";
+import SVGBG from "@/components/shared/svgbg/svgbgTemplate";
+import svgbg1 from "@/components/shared/svgbg/landingPage/svgbg1";
+import svgbg2 from "@/components/shared/svgbg/landingPage/svgbg2";
 
 interface ProductSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -33,10 +36,12 @@ const ProductSection = ({ inViewRef, products }: ProductSectionProps) => {
             >
                 <AnimatedTitle
                     text="What Do I do"
-                    tertiary={theme.palette.secondary.main}
                     shadowColor={theme.palette.primary.main}
                 />
             </Box>
+
+            <SVGBG position="top" SVGElement={svgbg1}></SVGBG>
+            <SVGBG position="bottom" SVGElement={svgbg2}></SVGBG>
 
             <CardsContainer products={products} />
         </Stack>

@@ -34,6 +34,7 @@ const EducationCard = ({ cert }: EducationCardProps) => {
                 alignItems: "center",
                 borderRadius: 3,
                 bgcolor: theme.palette.secondary.main,
+                boxShadow: `0px 0px 25px ${theme.palette.text.primary}`,
             }}
         >
             <UpperSection cert={cert} />

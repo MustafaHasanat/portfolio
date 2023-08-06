@@ -73,15 +73,9 @@ const Footer = ({ footerRef, footerInView }: FooterProps) => {
             sx={{
                 position: "relative",
                 height: { xs: "auto", lg: "100vh" },
-                background: `
-                    linear-gradient(
-                        rgba(0, 0, 0, 0.6), 
-                        rgba(0, 0, 0, 1)), 
-                        url("/wallpapers/footerBG.jpg")`,
+                background: `linear-gradient(rgba(29, 34, 40, 1), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url("wallpapers/landingPage.svg")`,
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",
-                backgroundPosition: "top",
-                borderTop: `1px solid ${theme.palette.primary.main}`,
             }}
         >
             <Box

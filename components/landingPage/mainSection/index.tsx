@@ -16,9 +16,7 @@ const MainSection = ({ avatarIcons, inViewRef }: MainSectionProps) => {
     return (
         <Stack
             id="home-main"
-            sx={mainSectionStyles(
-                theme.palette.primary.main,
-            )}
+            sx={mainSectionStyles(theme.palette.primary.main)}
             direction="row"
         >
             <Box

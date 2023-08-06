@@ -139,13 +139,13 @@ const Contacts = ({}: ContactsProps) => {
                             onMouseLeave={() => {
                                 setHoveredContact(0);
                             }}
-                            transition={{
-                                ease: "easeIn",
-                                duration: 0.3,
-                                type: "spring",
-                                stiffness: 400,
-                                damping: 15,
-                            }}
+                            // transition={{
+                            //     ease: "easeIn",
+                            //     duration: 0.3,
+                            //     type: "spring",
+                            //     stiffness: 400,
+                            //     damping: 15,
+                            // }}
                             whileHover={{
                                 scale: 1.3,
                                 opacity: 1,

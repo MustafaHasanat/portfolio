@@ -7,11 +7,10 @@ export const mainSectionStyles = (borderColor: string) => {
         position: "relative",
         width: "100%",
         height: "101vh",
-        background: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("wallpapers/desktopLanding.jpg")`,
+        background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6), rgba(29, 34, 40, 1)), url("wallpapers/landingPage.svg")`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        borderBottom: `1px solid ${borderColor}`,
-        pt: { xs: 40, md: 0 },
+        pt: 0,
     };
 };
 
@@ -39,10 +38,10 @@ const hidden = keyframes`
 export const ionicContainerStyles = (scale: number) => {
     return {
         width: "50%",
-        height: { xs: "auto", md: "100%" },
+        height: { xs: "100%", md: "100%" },
         position: "relative",
+        top: 0,
         zIndex: 30,
-        bgcolor: "transparent",
     };
 };
 
@@ -102,11 +101,11 @@ export const downloadButtonStyles = (width: any, height: any) => {
     return {
         position: "absolute",
         overflow: "hidden",
-        borderRadius: 1,
+        borderRadius: 0,
         justifyContent: "center",
         alignItems: "center",
         left: { xs: "50%", lg: 100 },
-        bottom: { xs: "25vh", md: "calc(10% + 1vh)" },
+        bottom: { xs: "15vh", md: "calc(10% + 1vh)" },
         width: width,
         height: height,
         zIndex: 31,
