@@ -9,6 +9,9 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalActions } from "@/utils/store/store";
 import useMultiControl from "@/hooks/useMultiControl";
+import SVGBG from "@/components/shared/svgbg/svgbgTemplate";
+import svgbg1 from "@/components/shared/svgbg/landingPage/svgbg1";
+import svgbg2 from "@/components/shared/svgbg/landingPage/svgbg2";
 
 interface CertificatesSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -92,7 +95,6 @@ const CertificatesSection = ({
             >
                 <AnimatedTitle
                     text="courses"
-                    tertiary={theme.palette.secondary.main}
                     shadowColor={theme.palette.primary.main}
                     fontSize={{
                         xs: "0.8rem",
@@ -102,6 +104,9 @@ const CertificatesSection = ({
                     }}
                 />
             </Box>
+
+            <SVGBG position="top" SVGElement={svgbg1}></SVGBG>
+            <SVGBG position="bottom" SVGElement={svgbg2}></SVGBG>
 
             <Stack
                 direction={{ xs: "column", lg: "row" }}

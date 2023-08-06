@@ -7,6 +7,9 @@ import shuffleArray from "@/utils/helpers/shuffleArray";
 import { Quote } from "@/types/quote";
 import ArrowComponent from "./arrowComponent";
 import Flipper from "./flipper";
+import SVGBG from "@/components/shared/svgbg/svgbgTemplate";
+import svgbg1 from "@/components/shared/svgbg/landingPage/svgbg1";
+import svgbg3 from "@/components/shared/svgbg/landingPage/svgbg3";
 
 interface QuotesSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -74,11 +77,6 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
                     width: "100%",
                     height: "100%",
                     opacity: 0.3,
-                    backgroundImage: `url("bg2.jpg")`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    backdropFilter: "blur(10px)",
                 },
             }}
         >
@@ -99,10 +97,12 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
             >
                 <AnimatedTitle
                     text="favorite quotes"
-                    tertiary={theme.palette.secondary.main}
                     shadowColor={theme.palette.primary.main}
                 />
             </Box>
+
+            <SVGBG position="top" SVGElement={svgbg1}></SVGBG>
+            <SVGBG position="bottom" SVGElement={svgbg3}></SVGBG>
 
             <Stack
                 direction={{ xs: "column", md: "row" }}

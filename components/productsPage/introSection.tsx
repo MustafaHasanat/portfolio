@@ -16,7 +16,6 @@ const IntroSection = ({ product }: IntroSectionProps) => {
             color={theme.palette.text.primary}
             alignItems="center"
             justifyContent="center"
-            width="100%"
         >
             <Box
                 sx={{

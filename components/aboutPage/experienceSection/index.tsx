@@ -28,7 +28,6 @@ const ExperienceSection = ({
             py={10}
             position="relative"
             alignItems="center"
-            width="100%"
             bgcolor={theme.palette.secondary.main}
         >
             <Box

@@ -39,13 +39,13 @@ const DownloadButton = () => {
                 x: lgScreen ? 0 : "-50%",
             }}
             whileTap={{ scale: 0.9 }}
-            sx={downloadButtonStyles(buttonWidth, buttonHeight)}
             onMouseEnter={() => {
                 buttonAnimations.start("visible");
             }}
             onMouseLeave={() => {
                 buttonAnimations.start("hidden");
             }}
+            sx={downloadButtonStyles(buttonWidth, buttonHeight)}
         >
             <Stack
                 component={motion.div}
@@ -97,31 +97,6 @@ const DownloadButton = () => {
                 </Link>
             </Stack>
 
-            {/* {WelcomeSectionConstants.downloadButtonAnimations(
-                "2px",
-                shadowColor
-            ).map((item, index) => {
-                return (
-                    <Fragment key={`shadow item number: ${index}`}>
-                        <Box
-                            component="span"
-                            sx={{
-                                position: "absolute",
-                                display: "block",
-                                top: item.pos[0],
-                                bottom: item.pos[1],
-                                left: item.pos[2],
-                                right: item.pos[3],
-                                width: item.width,
-                                height: item.height,
-                                background: item.background,
-                                animation: item.animation,
-                                animationDelay: item.animationDelay,
-                            }}
-                        />
-                    </Fragment>
-                );
-            })} */}
         </Button>
     );
 };

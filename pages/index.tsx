@@ -94,7 +94,7 @@ export default function Home({
     ]);
 
     return (
-        <Stack p={0} m={0} width="100%">
+        <Stack p={0} m={0} width="100%" bgcolor="#E1E2E2">
             <MainSection avatarIcons={avatarIcons} inViewRef={mainSecRef} />
             <ProductSection
                 inViewRef={productSecRef}

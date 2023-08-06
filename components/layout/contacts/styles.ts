@@ -114,7 +114,6 @@ export const itemTextVariants = (shadow: string) => {
 
 export const contactItemStyles = {
     position: "absolute",
-    bgcolor: "transparent",
     border: "none",
     width: "4rem",
     height: "4rem",
