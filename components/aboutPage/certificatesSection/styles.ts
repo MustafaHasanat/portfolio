@@ -43,6 +43,9 @@ export const ListBoxStyles = (bgcolor: string) => {
         borderRadius: 3,
         p: 4,
         zIndex: 2,
+        background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("wallpapers/landingPage.svg")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
     };
 };
 

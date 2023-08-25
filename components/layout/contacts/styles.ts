@@ -57,7 +57,7 @@ export const contactsContainerStyles = (isModalActive: boolean) => {
         height: "4rem",
         bottom: { xs: 30, md: "10%" },
         right: { xs: 30, md: 100 },
-        zIndex: isModalActive ? 200 : 10,
+        zIndex: isModalActive ? 200 : 32,
     };
 };
 

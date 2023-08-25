@@ -20,9 +20,11 @@ const CardsContainer = ({ products }: CardsContainerProps) => {
     const faceSX = {
         width: "100%",
         backfaceVisibility: "hidden",
-        background: theme.palette.secondary.main,
         boxShadow: "0 0 5px rgb(255, 255, 255)",
         backdropFilter: "blur(10px)",
+        background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("wallpapers/landingPage.svg")`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
     };
 
     const flipCard = (card: number, face: string) => {

@@ -77,16 +77,24 @@ const Header = ({
                     cursor: "pointer",
                 }}
             >
-                <Avatar
-                    variant="square"
-                    src={"/icons/logo.png"}
-                    alt="logo"
+                <Link
+                    href="/"
                     sx={{
                         width: "3rem",
                         height: "auto",
-                        filter: `drop-shadow(0px 0px 2px ${theme.palette.primary.main})`,
                     }}
-                />
+                >
+                    <Avatar
+                        variant="square"
+                        src={"/icons/logo.png"}
+                        alt="logo"
+                        sx={{
+                            width: "3rem",
+                            height: "auto",
+                            filter: `drop-shadow(0px 0px 2px ${theme.palette.primary.main})`,
+                        }}
+                    />
+                </Link>
 
                 {mdScreen && (
                     <Link href="/" sx={{ textDecoration: "none" }}>

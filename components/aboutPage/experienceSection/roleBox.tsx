@@ -39,6 +39,9 @@ const RoleBox = ({ experience, index }: RoleBoxProps) => {
                     overflow: "hidden",
                     borderRadius: 3,
                     alignItems: "start",
+                    background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("wallpapers/landingPage.svg")`,
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
                 }}
             >
                 <Stack

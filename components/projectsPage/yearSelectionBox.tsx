@@ -68,7 +68,7 @@ const YearSelectionBox = ({
             <Stack
                 sx={{
                     position: "relative",
-                    width: "50%",
+                    width: "8rem",
                     height: "100%",
                     bgcolor: theme.palette.text.primary,
                     borderRadius: 1,

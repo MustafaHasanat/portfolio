@@ -55,7 +55,15 @@ const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     };
 
     return (
-        <Stack alignItems="center" height="auto" p={3} spacing={2}>
+        <Stack
+            alignItems="center"
+            height="auto"
+            p={3}
+            spacing={2}
+            sx={{
+                
+            }}
+        >
             {getIcon(title)}
 
             <Typography

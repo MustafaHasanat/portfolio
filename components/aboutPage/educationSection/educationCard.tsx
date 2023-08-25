@@ -35,6 +35,9 @@ const EducationCard = ({ cert }: EducationCardProps) => {
                 borderRadius: 3,
                 bgcolor: theme.palette.secondary.main,
                 boxShadow: `0px 0px 25px ${theme.palette.text.primary}`,
+                background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("wallpapers/landingPage.svg")`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
             }}
         >
             <UpperSection cert={cert} />
