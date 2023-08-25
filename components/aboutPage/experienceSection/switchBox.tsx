@@ -20,14 +20,14 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
         return (
             <Stack direction="row" spacing={1}>
                 <Typography
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.primary}
                     fontWeight="bold"
                 >
                     {title}
                 </Typography>
 
                 <Typography
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.primary}
                     sx={{
                         opacity: 0.8,
                     }}
@@ -96,7 +96,7 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
                         />
                     }
                     buttonHeight="4rem"
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.primary}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {
                         setBulletsIsVisible(true);
@@ -145,7 +145,11 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
                                     }}
                                 />
 
-                                <Typography fontSize="1rem" fontWeight="bold">
+                                <Typography
+                                    fontSize="1rem"
+                                    fontWeight="bold"
+                                    color={theme.palette.text.primary}
+                                >
                                     {bullet}
                                 </Typography>
                             </Stack>
@@ -163,7 +167,7 @@ const SwitchBox = ({ experience }: SwitchBoxProps) => {
                         />
                     }
                     buttonHeight="4rem"
-                    color={theme.palette.secondary.main}
+                    color={theme.palette.text.primary}
                     hoverColor={theme.palette.primary.main}
                     onClick={() => {
                         setBulletsIsVisible(false);

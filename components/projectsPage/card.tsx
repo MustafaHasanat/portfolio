@@ -12,9 +12,11 @@ import getDateInfo from "@/utils/helpers/getDateInfo";
 import { CardProps } from "./styles";
 import IconicButton from "../shared/iconicButton";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import { useRouter } from "next/router";
 
 const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
     const theme = useTheme();
+    const router = useRouter();
     const lgScreen = useMediaQuery("(min-width:1440px)");
 
     const filterIsOpened = projectsState?.filterIsOpened || false;
@@ -146,9 +148,11 @@ const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
                     buttonHeight="3rem"
                     color={theme.palette.secondary.main}
                     hoverColor={theme.palette.primary.main}
-                    onClick={() => {}}
+                    onClick={() => {
+                        router.push("/projects/" + project.alt);
+                    }}
                     extraSX={{
-                        width: { xs: "5rem", md: "12rem" },
+                        width: { xs: "12rem", md: "12rem" },
                         alignSelf: "end",
                     }}
                 >

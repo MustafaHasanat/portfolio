@@ -20,6 +20,10 @@ const SkillsBox = ({ hoveredSkillSet, currentSkillSet }: SkillsBoxProps) => {
                 boxShadow: `0 0 15px ${theme.palette.primary.main}`,
                 height: "100%",
                 alignItems: "center",
+                background: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("wallpapers/landingPage.svg")`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                transition: "all 0.3s ease"
             }}
         >
             <Typography
