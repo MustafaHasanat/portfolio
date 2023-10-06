@@ -9,6 +9,7 @@ const Title = ({ text, color, extraSX }: TitleProps) => {
             my={3}
             fontWeight="bold"
             fontSize={{ xs: "1.7rem", md: "3rem" }}
+            width="100%"
             sx={extraSX}
         >
             {text}

@@ -9,14 +9,15 @@ import { useAnimation, motion } from "framer-motion";
 import Link from "next/link";
 import { urls } from "@/utils/constants/global";
 import DescriptionIcon from '@mui/icons-material/Description';
+import { mqHook } from "@/styles/mq";
 
 const DownloadButton = () => {
     const theme = useTheme();
     const buttonAnimations = useAnimation();
 
-    const mdScreen = useMediaQuery("(min-width:768px)");
-    const lgScreen = useMediaQuery("(min-width:1440px)");
-    const fourKScreen = useMediaQuery("(min-width:2560px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
+    const lgScreen = useMediaQuery(mqHook.LG);
+    const fourKScreen = useMediaQuery(mqHook.XL);
 
     const buttonWidth = { xs: "18rem", md: "15rem" };
     const buttonHeight = fourKScreen

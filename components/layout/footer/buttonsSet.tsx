@@ -4,6 +4,7 @@ import { useState } from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import { motion } from "framer-motion";
 import IconicButton from "@/components/shared/iconicButton";
+import { mqHook } from "@/styles/mq";
 
 interface ButtonsSetProps {
     clearForm: () => void;
@@ -11,7 +12,7 @@ interface ButtonsSetProps {
 
 const ButtonsSet = ({ clearForm }: ButtonsSetProps) => {
     const theme = useTheme();
-    const mdScreen = useMediaQuery("(min-width:425px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
     const [sendHovered, setSendHovered] = useState(false);
 
     return (

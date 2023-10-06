@@ -18,6 +18,7 @@ import { getAllGlobalAssets } from "@/utils/sanity/globalAsset";
 import { GlobalAsset } from "@/types/globalAsset";
 import LeftDrawer from "./header/leftDrawer";
 import { useRouter } from "next/router";
+import { mqHook } from "@/styles/mq";
 
 interface LayoutProps {
     children: JSX.Element;
@@ -34,8 +35,8 @@ const Layout = ({ children }: LayoutProps) => {
 
     const headerAnimations = useAnimation();
     const [drawerIsOpened, setDrawerIsOpened] = useState(false);
-    const lgScreen = useMediaQuery("(min-width:1440px)");
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
+    const mdScreen = useMediaQuery(mqHook.MD);
 
     const dispatch = useDispatch();
     const isModalActive = useSelector(

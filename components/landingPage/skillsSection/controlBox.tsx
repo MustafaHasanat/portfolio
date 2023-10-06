@@ -4,6 +4,7 @@ import { SkillSet } from "@/types/skillSet";
 import DesktopControlBox from "./desktopControlBox";
 import MobileControlBox from "./mobileControlBox";
 import SkillSetDialog from "./skillsetDialog";
+import { mqHook } from "@/styles/mq";
 
 interface ControlBoxProps {
     setHoveredSkillSet: Dispatch<SetStateAction<SkillSet | null>>;
@@ -18,7 +19,7 @@ const ControlBox = ({
     currentSkillSet,
     setCurrentSkillSet,
 }: ControlBoxProps) => {
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
     const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
     return (

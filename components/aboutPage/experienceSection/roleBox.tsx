@@ -5,6 +5,7 @@ import theme from "@/styles/theme";
 import SwitchBox from "./switchBox";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { mqHook } from "@/styles/mq";
 
 interface RoleBoxProps {
     experience: Experience;
@@ -13,7 +14,7 @@ interface RoleBoxProps {
 
 const RoleBox = ({ experience, index }: RoleBoxProps) => {
     const cardRef = useRef(null);
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
     const cardInView = useInView(cardRef);
 
     return (

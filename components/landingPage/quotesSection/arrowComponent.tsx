@@ -1,6 +1,7 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import { mqHook } from "@/styles/mq";
 
 interface ArrowComponentProps {
     transform: string;
@@ -18,7 +19,7 @@ const ArrowComponent = ({
     size,
 }: ArrowComponentProps) => {
     const theme = useTheme();
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
     const newTransform = "translateY(-50%) " + transform;
 
     return (
