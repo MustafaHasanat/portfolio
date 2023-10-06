@@ -2,11 +2,12 @@ import { Avatar, Box, useMediaQuery, useTheme } from "@mui/material";
 import Link from "next/link";
 import { urls } from "@/utils/constants/global";
 import { motion, useAnimation } from "framer-motion";
+import { mqHook } from "@/styles/mq";
 
 const BMCBox = () => {
     const theme = useTheme();
     const bmcAnimations = useAnimation();
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
 
     return (
         <Box

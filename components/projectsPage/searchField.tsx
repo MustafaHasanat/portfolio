@@ -3,9 +3,10 @@ import { Stack } from "@mui/material";
 import FilterAltSharpIcon from "@mui/icons-material/FilterAltSharp";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { SearchFieldProps } from "./styles";
+import { mqHook } from "@/styles/mq";
 
 const SearchField = ({ projectsState, dispatchProject }: SearchFieldProps) => {
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
     const theme = useTheme();
 
     return (

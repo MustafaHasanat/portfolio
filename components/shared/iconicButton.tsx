@@ -1,3 +1,4 @@
+import { mqHook } from "@/styles/mq";
 import { Box, Stack, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import { ReactNode, useState } from "react";
@@ -22,7 +23,7 @@ const IconicButton = ({
     extraSX,
 }: IconicButtonProps) => {
     const [buttonHovered, setButtonHovered] = useState(false);
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     return (
         <Box

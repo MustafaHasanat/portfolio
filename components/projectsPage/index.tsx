@@ -6,9 +6,10 @@ import { CardsContainerProps } from "./styles";
 import { ReducerProps } from "./styles";
 import { projectsReducer } from "./projectsReducer";
 import CardsContainer from "./cardsContainer";
+import { mqHook } from "@/styles/mq";
 
 const ProjectsPage = ({ projects }: CardsContainerProps) => {
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     const reducerInitialValues: ReducerProps = {
         projectsCards: projects,

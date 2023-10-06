@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import useGetRoute from "@/hooks/useGetRoute";
 import BMCBox from "../header/bmcBox";
 import theme from "@/styles/theme";
+import { mqHook } from "@/styles/mq";
 
 interface NavbarProps {
     animation: AnimationControls;
@@ -16,7 +17,7 @@ interface NavbarProps {
 const Navbar = ({ animation }: NavbarProps) => {
     const dispatch = useDispatch();
     const { path, number: pathNumber } = useGetRoute();
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
 
     useEffect(() => {
         dispatch(

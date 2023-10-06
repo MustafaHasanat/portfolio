@@ -10,6 +10,7 @@ import Flipper from "./flipper";
 import SVGBG from "@/components/shared/svgbg/svgbgTemplate";
 import svgbg1 from "@/components/shared/svgbg/landingPage/svgbg1";
 import svgbg3 from "@/components/shared/svgbg/landingPage/svgbg3";
+import { mqHook } from "@/styles/mq";
 
 interface QuotesSectionProps {
     inViewRef: MutableRefObject<null>;
@@ -20,7 +21,7 @@ const QuotesSection = ({ inViewRef, quotes }: QuotesSectionProps) => {
     const theme = useTheme();
     let shuffledQuotes = quotes;
     const [shiftIndex, setShiftIndex] = useState(1);
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
 
     useEffect(() => {
         shuffledQuotes = shuffleArray(shuffledQuotes);

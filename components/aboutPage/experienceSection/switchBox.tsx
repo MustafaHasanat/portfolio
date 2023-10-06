@@ -7,13 +7,14 @@ import { Experience } from "@/types/experience";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import { mqHook } from "@/styles/mq";
 
 interface SwitchBoxProps {
     experience: Experience;
 }
 
 const SwitchBox = ({ experience }: SwitchBoxProps) => {
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
     const [bulletsIsVisible, setBulletsIsVisible] = useState(false);
 
     const pairBox = (title: string, text: string) => {

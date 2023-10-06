@@ -4,6 +4,7 @@ import Card from "./card";
 import SearchField from "./searchField";
 import FilterBox from "./filterBox";
 import { ReducerActionProps, ReducerProps } from "./styles";
+import { mqHook } from "@/styles/mq";
 
 interface Props {
     projectsState: ReducerProps;
@@ -16,7 +17,7 @@ const CardsContainer = ({
     dispatchProject,
     clearFilter,
 }: Props) => {
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     return (
         <Stack

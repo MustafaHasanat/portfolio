@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { motion } from "framer-motion";
 import LaunchIcon from "@mui/icons-material/Launch";
+import { mqHook } from "@/styles/mq";
 
 const LandingPagePic = ({
     href,
@@ -20,7 +21,7 @@ const LandingPagePic = ({
     project: Project;
     filterIsOpened: boolean;
 }) => {
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
     const theme = useTheme();
 
     const avatarPhoto = (

@@ -2,6 +2,7 @@ import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { Fragment } from "react";
 import { ChartControllerProps, ChartControllerStyles } from "./styles";
+import { mqHook } from "@/styles/mq";
 
 const ChartController = ({
     values,
@@ -10,7 +11,7 @@ const ChartController = ({
     extraSX,
 }: ChartControllerProps) => {
     const theme = useTheme();
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     return (
         <Stack

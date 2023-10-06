@@ -1,3 +1,4 @@
+import { mqHook } from "@/styles/mq";
 import { Author } from "@/types/author";
 import { Quote } from "@/types/quote";
 import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
@@ -11,7 +12,7 @@ interface FlipperProps {
 
 const Flipper = ({ shiftIndex, shuffledQuotes }: FlipperProps) => {
     const theme = useTheme();
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const mdScreen = useMediaQuery(mqHook.MD);
 
     const cardWidth = "20vw";
     const cardsSpacing = "10vw";

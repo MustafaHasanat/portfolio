@@ -13,11 +13,12 @@ import { CardProps } from "./styles";
 import IconicButton from "../shared/iconicButton";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { useRouter } from "next/router";
+import { mqHook } from "@/styles/mq";
 
 const Card = ({ projectsState, dispatchProject, project }: CardProps) => {
     const theme = useTheme();
     const router = useRouter();
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     const filterIsOpened = projectsState?.filterIsOpened || false;
 

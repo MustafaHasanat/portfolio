@@ -20,6 +20,7 @@ import KeyboardRoundedIcon from "@mui/icons-material/KeyboardRounded";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import { useRouter } from "next/router";
 import TextsmsIcon from "@mui/icons-material/Textsms";
+import { mqHook } from "@/styles/mq";
 
 interface FrontFaceProps {
     index: number;
@@ -29,9 +30,9 @@ interface FrontFaceProps {
 
 const FrontFace = ({ index, product, flipCard }: FrontFaceProps) => {
     const { title, description, tags } = product;
-    const fourKScreen = useMediaQuery("(min-width:2560px)");
-    const lgScreen = useMediaQuery("(min-width:1440px)");
-    const smScreen = useMediaQuery("(min-width:425px)");
+    const fourKScreen = useMediaQuery(mqHook.XL);
+    const lgScreen = useMediaQuery(mqHook.LG);
+    const smScreen = useMediaQuery(mqHook.SM);
     const theme = useTheme();
     const router = useRouter();
 

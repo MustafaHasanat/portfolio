@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material";
+import { mq } from "./mq";
 
 const theme = createTheme({
     typography: {
@@ -21,11 +22,11 @@ const theme = createTheme({
 
     breakpoints: {
         values: {
-            xs: 0,
-            sm: 425,  // mobile
-            md: 768,  // tablet
-            lg: 1440,  // laptop
-            xl: 2560,  // 4K
+            xs: mq.XS,
+            sm: mq.SM,
+            md: mq.MD,
+            lg: mq.LG,
+            xl: mq.XL,
         },
     },
 });

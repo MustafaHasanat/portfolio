@@ -24,13 +24,14 @@ import {
 import Link from "next/link";
 import constants from "@/utils/constants";
 import { GlobalAssetProps } from "@/utils/store/globalAssetsSlice";
+import { mqHook } from "@/styles/mq";
 
 interface ContactsProps {}
 
 const Contacts = ({}: ContactsProps) => {
     const theme = useTheme();
     const animationController = useAnimation();
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     const [hoveredContact, setHoveredContact] = useState(0);
     const [isButtonActive, setIsButtonActive] = useState(false);

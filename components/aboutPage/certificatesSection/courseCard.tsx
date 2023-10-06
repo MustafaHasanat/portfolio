@@ -16,6 +16,7 @@ import {
     CourseCardStyles,
     CourseCardUpperBoxStyles,
 } from "./styles";
+import { mqHook } from "@/styles/mq";
 
 const CourseCard = ({
     course,
@@ -26,7 +27,7 @@ const CourseCard = ({
 }: CourseCardProps) => {
     const theme = useTheme();
     const isVisible = isCardOpened(index);
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     const dispatch = useDispatch();
     const toggleModalVisibility = (state: boolean) => {

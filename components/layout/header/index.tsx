@@ -7,6 +7,7 @@ import { headerBoxStyles } from "./styles";
 import SlidingTitle from "@/components/shared/slidingTitle";
 import MenuRoundedIcon from "@mui/icons-material/MenuRounded";
 import BMCBox from "./bmcBox";
+import { mqHook } from "@/styles/mq";
 
 interface HeaderProps {
     landingSectionInView: boolean;
@@ -23,8 +24,8 @@ const Header = ({
 }: HeaderProps) => {
     const theme = useTheme();
     const [headerPosition, setHeaderPosition] = useState("0vh");
-    const lgScreen = useMediaQuery("(min-width:1440px)");
-    const mdScreen = useMediaQuery("(min-width:768px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
+    const mdScreen = useMediaQuery(mqHook.MD);
 
     useEffect(() => {
         var lastScroll = 0;

@@ -11,6 +11,7 @@ import IconicButton from "../shared/iconicButton";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ToolsSelectionBox from "./toolsSelectionBox";
 import { FilterBoxProps } from "./styles";
+import { mqHook } from "@/styles/mq";
 
 const FilterBox = ({
     projectsState,
@@ -18,7 +19,7 @@ const FilterBox = ({
     clearFilter,
 }: FilterBoxProps) => {
     const theme = useTheme();
-    const lgScreen = useMediaQuery("(min-width:1440px)");
+    const lgScreen = useMediaQuery(mqHook.LG);
 
     return (
         <Stack
